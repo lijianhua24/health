@@ -7,9 +7,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.wd.homemodel.adapter.MyAdapter;
 import com.wd.homemodel.bean.BannerBean;
 import com.wd.homemodel.bean.DepartmentBean;
 import com.wd.homemodel.bean.InfoSectionBean;
@@ -37,6 +39,10 @@ public class MainActivity extends BaseActivity<BannerPresenter> implements HomeC
     ImageView homeXiaoxi;
     @BindView(R.id.home_recy)
     RecyclerView homeRecy;
+    private List<BannerBean.ResultBean> bannerlist;
+    private List<SectionBean.ResultBean> sectionlist;
+    private List<InfoSectionBean.ResultBean> infoSectionList;
+    private List<DepartmentBean.ResultBean> departmentlist;
 
     @Override
     protected BannerPresenter providePresenter() {
@@ -54,7 +60,8 @@ public class MainActivity extends BaseActivity<BannerPresenter> implements HomeC
         homeSou.getBackground().setAlpha(30);
         mPresenter.getDepartmentPresenter();
         mPresenter.getSectionPresenter();
-
+        mPresenter.getInfoSectionPresenter("2",1,5);
+        homeRecy.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @Override
@@ -66,6 +73,10 @@ public class MainActivity extends BaseActivity<BannerPresenter> implements HomeC
     public void onBnnerSuccess(BannerBean data) {
         String message = data.getMessage();
         Log.d("banner", message);
+        bannerlist = data.getResult();
+        if (bannerlist!=null){
+            homeRecy.setAdapter(new MyAdapter(this,bannerlist,sectionlist,departmentlist,infoSectionList));
+        }
     }
 
     @Override
@@ -77,8 +88,10 @@ public class MainActivity extends BaseActivity<BannerPresenter> implements HomeC
     public void onSectionSuccess(Object data) {
         SectionBean sectionBean = (SectionBean) data;
         Log.d("sectionBean",sectionBean.getMessage());
-
-        List<SectionBean.ResultBean> result = sectionBean.getResult();
+        sectionlist = sectionBean.getResult();
+        if (sectionlist!=null){
+            homeRecy.setAdapter(new MyAdapter(this,bannerlist,sectionlist,departmentlist,infoSectionList));
+        }
     }
 
     @Override
@@ -90,6 +103,10 @@ public class MainActivity extends BaseActivity<BannerPresenter> implements HomeC
     public void onDepartmentSuccess(Object data) {
         DepartmentBean departmentBean = (DepartmentBean) data;
         Log.d("departmentBean",departmentBean.getMessage());
+        departmentlist = departmentBean.getResult();
+        if (departmentlist!=null){
+            homeRecy.setAdapter(new MyAdapter(this,bannerlist,sectionlist,departmentlist,infoSectionList));
+        }
     }
 
     @Override
@@ -101,6 +118,11 @@ public class MainActivity extends BaseActivity<BannerPresenter> implements HomeC
     public void onInfoSectionSuccess(Object data) {
         InfoSectionBean infoSectionBean = (InfoSectionBean) data;
         Log.d("infoSectionBean",infoSectionBean.getMessage());
+        infoSectionList = infoSectionBean.getResult();
+
+        if (infoSectionList!=null){
+            homeRecy.setAdapter(new MyAdapter(this,bannerlist,sectionlist,departmentlist,infoSectionList));
+        }
     }
 
     @Override

@@ -71,4 +71,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:adapter-rxjava2:+'
 
     implementation rootProject.ext.dependencies["fresco:fresco"]
+
+    implementation rootProject.ext.dependencies["Xbanner"]
+
+    implementation 'com.zhy:autolayout:1.4.5'
+
 }
