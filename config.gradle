@@ -73,5 +73,10 @@ ext {
             "constraint-layout"      : 'com.android.support.constraint:constraint-layout:1.1.0',//约束性布局
             "test:runner"            : 'com.android.support.test:runner:1.0.2',//测试依赖，新建项目时会默认添加，一般不建议添加
             "espresso-core"          : 'com.android.support.test.espresso:espresso-core:3.0.2',//测试依赖，新建项目时会默认添加，一般不建议添加
+            "rxjava2:rxjava"         : 'io.reactivex.rxjava2:rxjava:+',
+            "rxjava2:rxandroid"      : 'io.reactivex.rxjava2:rxandroid:+',
+            "retrofit2:adapter"      : 'com.squareup.retrofit2:adapter-rxjava2:+',
+            "logging-interceptor"      : 'com.squareup.okhttp3:logging-interceptor:3.6.0',
+            "fresco:fresco"      : 'com.facebook.fresco:fresco:1.9.0'
     ]
 }
