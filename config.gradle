@@ -77,5 +77,6 @@ ext {
             "rxjava2:rxandroid"      : 'io.reactivex.rxjava2:rxandroid:+',
             "retrofit2:adapter"      : 'com.squareup.retrofit2:adapter-rxjava2:+',
             "logging-interceptor"      : 'com.squareup.okhttp3:logging-interceptor:3.6.0',
+            "fresco:fresco"      : 'com.facebook.fresco:fresco:1.9.0'
     ]
 }
