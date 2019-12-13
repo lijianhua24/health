@@ -14,6 +14,7 @@ public class App extends Application {
         super.onCreate();
         sContext = this;
         ToastUtils.init(sContext);
+
     }
 
     public static App getAppContext() {
