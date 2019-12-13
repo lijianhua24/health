@@ -17,7 +17,6 @@ public class App extends Application {
         ToastUtils.init(sContext);
         Fresco.initialize(this);
 
-
     }
 
     public static App getAppContext() {
