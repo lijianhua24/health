@@ -77,6 +77,15 @@ ext {
             "rxjava2:rxandroid"      : 'io.reactivex.rxjava2:rxandroid:+',
             "retrofit2:adapter"      : 'com.squareup.retrofit2:adapter-rxjava2:+',
             "logging-interceptor"      : 'com.squareup.okhttp3:logging-interceptor:3.6.0',
-            "fresco:fresco"      : 'com.facebook.fresco:fresco:1.9.0'
+            //fresco
+            "fresco:fresco"      : 'com.facebook.fresco:fresco:1.9.0',
+            //recyclerview展示
+            "recyclerview"      : 'com.android.support:recyclerview-v7:28.0.0',
+            //xbanner
+            "Xbanner"      : 'com.github.xiaohaibin:XBanner:androidx_v1.0.2',
+            //xrecyclerview
+            "xrecyclerview"      : 'com.jcodecraeer:xrecyclerview:1.5.9',
+            "xrecyclerviews"      : 'com.android.support:design:28.0.0',
+
     ]
 }
