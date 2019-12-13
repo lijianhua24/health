@@ -2,6 +2,7 @@ package com.wd.mylibrary.app;
 
 import android.app.Application;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.wd.mylibrary.Test.ToastUtils;
 
 
@@ -14,6 +15,9 @@ public class App extends Application {
         super.onCreate();
         sContext = this;
         ToastUtils.init(sContext);
+        Fresco.initialize(this);
+
+
     }
 
     public static App getAppContext() {
