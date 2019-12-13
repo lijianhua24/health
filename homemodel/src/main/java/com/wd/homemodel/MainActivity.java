@@ -1,16 +1,30 @@
 package com.wd.homemodel;
 
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
+import com.wd.mylibrary.Base.BaseActivity;
+import com.wd.mylibrary.Base.BasePresenter;
+
 
 
 //@Route(path = "/app/sMainActivity")
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
+    @Override
+    protected BasePresenter providePresenter() {
+        return null;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected void initData() {
+
+    }
+
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected int provideLayoutId() {
+        return R.layout.activity_main;
     }
 }

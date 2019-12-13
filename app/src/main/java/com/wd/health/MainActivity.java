@@ -1,21 +1,30 @@
 package com.wd.health;
 
 import android.os.Bundle;
-import android.widget.Button;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.wd.mylibrary.Base.BaseActivity;
 import com.wd.mylibrary.Base.BasePresenter;
-import com.wd.mylibrary.Test.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
+
 //@Route(path = "/app/MainActivity")
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
 
-    @BindView(R.id.tiao_btn)
-    Button tiaoBtn;
+    @BindView(R.id.lin_movei)
+    ImageView linMovei;
+    @BindView(R.id.lay_one)
+    LinearLayout layOne;
+    @BindView(R.id.lay_two)
+    LinearLayout layTwo;
+    @BindView(R.id.image_myy_dj)
+    ImageView imageMyyDj;
+    @BindView(R.id.image_cinem_dj)
+    ImageView imageCinemDj;
 
     @Override
     protected BasePresenter providePresenter() {
@@ -29,7 +38,9 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
+        linMovei.setOnClickListener(this);
+        imageCinemDj.setOnClickListener(this);
+        imageMyyDj.setOnClickListener(this);
     }
 
     @Override
@@ -38,10 +49,26 @@ public class MainActivity extends BaseActivity {
     }
 
 
-
-    @OnClick(R.id.tiao_btn)
-    public void onViewClicked() {
-        ToastUtils.show("李建华");
-       // ARouter.getInstance().build("/app/sMainActivity").navigation();
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.lin_movei:
+                linMovei.setBackgroundResource(R.mipmap.common_tab_home_s);
+                imageCinemDj.setBackgroundResource(R.mipmap.common_tab_circle_n);
+                imageMyyDj.setBackgroundResource(R.mipmap.common_tab_video_n);
+                break;
+            case R.id.image_cinem_dj:
+                linMovei.setBackgroundResource(R.mipmap.common_tab_home_n);
+                imageCinemDj.setBackgroundResource(R.mipmap.common_tab_circle_s);
+                imageMyyDj.setBackgroundResource(R.mipmap.common_tab_video_n);
+                break;
+            case R.id.image_myy_dj:
+                linMovei.setBackgroundResource(R.mipmap.common_tab_home_n);
+                imageCinemDj.setBackgroundResource(R.mipmap.common_tab_circle_n);
+                imageMyyDj.setBackgroundResource(R.mipmap.common_tab_video_s);
+                break;
+        }
     }
+
+
 }
