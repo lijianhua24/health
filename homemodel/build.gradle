@@ -69,4 +69,6 @@ dependencies {
 
     //让retrofit支持Rxjava2
     implementation 'com.squareup.retrofit2:adapter-rxjava2:+'
+
+    implementation rootProject.ext.dependencies["fresco:fresco"]
 }
