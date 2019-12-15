@@ -2,9 +2,12 @@ package com.wd.homemodel.utils;
 
 import com.wd.homemodel.bean.BannerBean;
 import com.wd.homemodel.bean.DepartmentBean;
+import com.wd.homemodel.bean.DrugBean;
 import com.wd.homemodel.bean.InfoSectionBean;
 import com.wd.homemodel.bean.SearchBean;
 import com.wd.homemodel.bean.SectionBean;
+import com.wd.homemodel.bean.SubjectBean;
+import com.wd.homemodel.bean.UnitDiseaseBean;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -30,6 +33,18 @@ public interface ApiServers {
     //根据资讯板块查询资讯列表
     @GET("share/information/v1/findInformationList")
     Observable<InfoSectionBean> getInFoSection(@Query("plateId") String plateId,@Query("page") Integer page,@Query("count") Integer count);
+
+    //根据科室查询对应病症
+    @GET("share/knowledgeBase/v1/findDiseaseCategory")
+    Observable<UnitDiseaseBean> getUnitsease(@Query("departmentId") Integer departmentId);
+
+    //药品科目分类列表查询
+    @GET("share/knowledgeBase/v1/findDrugsCategoryList")
+    Observable<SubjectBean> getSubject();
+
+    //根据药品类目查询常见药品
+    @GET("share/knowledgeBase/v1/findDrugsKnowledgeList")
+    Observable<DrugBean> getDrug(@Query("drugsCategoryId") Integer drugsCategoryId,@Query("page") Integer page,@Query("count") Integer count);
 
     //
 }

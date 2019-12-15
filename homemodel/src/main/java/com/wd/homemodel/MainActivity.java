@@ -2,66 +2,59 @@ package com.wd.homemodel;
 
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
-import com.facebook.drawee.view.SimpleDraweeView;
-import com.wd.homemodel.adapter.MyAdapter;
-import com.wd.homemodel.bean.BannerBean;
-import com.wd.homemodel.bean.DepartmentBean;
-import com.wd.homemodel.bean.InfoSectionBean;
-import com.wd.homemodel.bean.SectionBean;
-import com.wd.homemodel.contract.HomeContract;
-import com.wd.homemodel.presenter.BannerPresenter;
+import com.wd.homemodel.fragment.HomeFragment;
 import com.wd.mylibrary.Base.BaseActivity;
+import com.wd.mylibrary.Base.BasePresenter;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 
 //@Route(path = "/app/sMainActivity")
-public class MainActivity extends BaseActivity<BannerPresenter> implements HomeContract.BnnerContreact.IView {
+public class MainActivity extends BaseActivity {
 
 
-    @BindView(R.id.home_touxiang)
-    SimpleDraweeView homeTouxiang;
-    @BindView(R.id.home_sou)
-    EditText homeSou;
-    @BindView(R.id.home_xiaoxi)
-    ImageView homeXiaoxi;
-    @BindView(R.id.home_recy)
-    RecyclerView homeRecy;
-    private List<BannerBean.ResultBean> bannerlist;
-    private List<SectionBean.ResultBean> sectionlist;
-    private List<InfoSectionBean.ResultBean> infoSectionList;
-    private List<DepartmentBean.ResultBean> departmentlist;
+    @BindView(R.id.home_pager)
+    ViewPager homePager;
+
+    private ArrayList<Fragment> list;
+    private ArrayList<String> name;
 
     @Override
-    protected BannerPresenter providePresenter() {
-        return new BannerPresenter();
+    protected BasePresenter providePresenter() {
+        return null;
     }
 
     @Override
     protected void initData() {
+        list.add(new HomeFragment());
+        homePager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
+            @NonNull
+            @Override
+            public Fragment getItem(int position) {
+                return list.get(position);
+            }
 
+            @Override
+            public int getCount() {
+                return list.size();
+            }
+        });
     }
 
     @Override
     protected void initView() {
-        mPresenter.getBnnerPresenter();
-        homeSou.getBackground().setAlpha(30);
-        mPresenter.getDepartmentPresenter();
-        mPresenter.getSectionPresenter();
-        mPresenter.getInfoSectionPresenter("2",1,5);
-        homeRecy.setLayoutManager(new LinearLayoutManager(this));
+        list = new ArrayList<>();
+        name = new ArrayList<>();
+
     }
 
     @Override
@@ -69,77 +62,6 @@ public class MainActivity extends BaseActivity<BannerPresenter> implements HomeC
         return R.layout.activity_main;
     }
 
-    @Override
-    public void onBnnerSuccess(BannerBean data) {
-        String message = data.getMessage();
-        Log.d("banner", message);
-        bannerlist = data.getResult();
-        if (bannerlist!=null){
-            homeRecy.setAdapter(new MyAdapter(this,bannerlist,sectionlist,departmentlist,infoSectionList));
-        }
-    }
-
-    @Override
-    public void onBnnerFailure(Throwable e) {
-
-    }
-
-    @Override
-    public void onSectionSuccess(Object data) {
-        SectionBean sectionBean = (SectionBean) data;
-        Log.d("sectionBean",sectionBean.getMessage());
-        sectionlist = sectionBean.getResult();
-        if (sectionlist!=null){
-            homeRecy.setAdapter(new MyAdapter(this,bannerlist,sectionlist,departmentlist,infoSectionList));
-        }
-    }
-
-    @Override
-    public void onSectionFailure(Throwable e) {
-
-    }
-
-    @Override
-    public void onDepartmentSuccess(Object data) {
-        DepartmentBean departmentBean = (DepartmentBean) data;
-        Log.d("departmentBean",departmentBean.getMessage());
-        departmentlist = departmentBean.getResult();
-        if (departmentlist!=null){
-            homeRecy.setAdapter(new MyAdapter(this,bannerlist,sectionlist,departmentlist,infoSectionList));
-        }
-    }
-
-    @Override
-    public void onDepartmentFailure(Throwable e) {
-
-    }
-
-    @Override
-    public void onInfoSectionSuccess(Object data) {
-        InfoSectionBean infoSectionBean = (InfoSectionBean) data;
-        Log.d("infoSectionBean",infoSectionBean.getMessage());
-        infoSectionList = infoSectionBean.getResult();
-
-        if (infoSectionList!=null){
-            homeRecy.setAdapter(new MyAdapter(this,bannerlist,sectionlist,departmentlist,infoSectionList));
-        }
-    }
-
-    @Override
-    public void onInfoSectionFailure(Throwable e) {
-
-    }
 
 
-    @OnClick({R.id.home_touxiang, R.id.home_sou, R.id.home_xiaoxi})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.home_touxiang:
-                break;
-            case R.id.home_sou:
-                break;
-            case R.id.home_xiaoxi:
-                break;
-        }
-    }
 }
