@@ -28,6 +28,7 @@
     <TextView
         android:textColor="@color/lan"
         android:textSize="12sp"
+        android:id="@+id/home_gengduo"
         android:text="查看更多>>"
         android:gravity="right"
         android:padding="12dp"

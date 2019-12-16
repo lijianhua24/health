@@ -235,4 +235,34 @@ public interface HomeContract {
 
         }
     }
+
+    interface InfoSectionContreact {
+        interface IModel {
+            void getInfoSectionsModel(String plateId, Integer page,Integer count,IModelInfoSectionsCallback callback);
+
+            //model层中的接口回调
+            interface IModelInfoSectionsCallback {
+                void onInfoSectionSuccess(Object data);
+
+                void onInfoSectionFailure(Throwable e);
+            }
+        }
+
+        //view层  命名必须是IView
+        interface IView extends IBaseView {
+
+
+            void onInfoSectionSuccess(Object data);
+
+            void onInfoSectionFailure(Throwable e);
+
+        }
+
+        //presenter层   命名必须是IPresenter
+        interface IPresenter {
+
+            void getInfoSectionPresenter(String plateId, Integer page,Integer count);
+
+        }
+    }
 }

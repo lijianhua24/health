@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
 
 //@Route(path = "/app/sMainActivity")
 //
-public class MainActivity extends BaseActivity {
+public class HomeActivity extends BaseActivity {
 
 
     @BindView(R.id.home_pager)
@@ -60,7 +60,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_main;
+        return R.layout.activity_home;
     }
 
 

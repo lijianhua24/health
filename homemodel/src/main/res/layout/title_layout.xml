@@ -19,6 +19,12 @@
             android:layout_height="32dp">
 
         </com.facebook.drawee.view.SimpleDraweeView>
+        <TextView
+            android:id="@+id/title_name"
+            android:textSize="16sp"
+            android:textColor="@color/hei"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
         <ImageView
             android:id="@+id/home_xiaoxi"
             android:background="@mipmap/common_nav_message_black_s"

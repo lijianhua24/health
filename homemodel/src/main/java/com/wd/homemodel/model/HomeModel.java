@@ -15,7 +15,7 @@ import com.wd.mylibrary.utils.CommonObserver;
 import com.wd.mylibrary.utils.CommonSchedulers;
 
 public class HomeModel implements HomeContract.BnnerContreact.IModel,HomeContract.CommonContreact.IModel,HomeContract.DepartmentContreact.IModel,
-HomeContract.FindContreact.IModel,HomeContract.CmedicinesContreact.IModel{
+HomeContract.FindContreact.IModel,HomeContract.CmedicinesContreact.IModel,HomeContract.InfoSectionContreact.IModel{
 
     @Override
     public void getBannerDataModel(IModelCallback callback) {
@@ -183,6 +183,23 @@ HomeContract.FindContreact.IModel,HomeContract.CmedicinesContreact.IModel{
                     @Override
                     public void onError(Throwable e) {
                         callback.onCmedicinesFailure(e);
+                    }
+                });
+    }
+
+    @Override
+    public void getInfoSectionsModel(String plateId, Integer page, Integer count, IModelInfoSectionsCallback callback) {
+        RequestNet.getInstance().create().getInFoSection(plateId,page,count)
+                .compose(CommonSchedulers.<InfoSectionBean>io2main())
+                .subscribe(new CommonObserver<InfoSectionBean>() {
+                    @Override
+                    public void onNext(InfoSectionBean emailBean) {
+                        callback.onInfoSectionSuccess(emailBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.onInfoSectionFailure(e);
                     }
                 });
     }

@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -40,7 +41,7 @@ public class SectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 if (che){
                 }
                 ((MyHolder) holder).name.setText(sectionlist.get(position).getName());
-                ((MyHolder) holder).name.setOnClickListener(new View.OnClickListener() {
+                ((MyHolder) holder).linear.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         if (setChage!=null){
@@ -67,10 +68,12 @@ public class SectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     class MyHolder extends RecyclerView.ViewHolder {
 
         private final TextView name;
+        private final LinearLayout linear;
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.zi_department_tv);
+            linear = itemView.findViewById(R.id.zi_department_linear);
         }
     }
     public void onListenter(setChage setChage){
