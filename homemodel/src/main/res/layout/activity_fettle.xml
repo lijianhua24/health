@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/hui"
+    android:layout_height="match_parent"
+    tools:context=".view.FettleActivity">
+    <include layout="@layout/title_layout"/>
+    <com.google.android.material.tabs.TabLayout
+        android:layout_marginTop="6dp"
+        android:id="@+id/fettle_tab"
+        app:tabSelectedTextColor="#3087ea"
+        app:tabIndicatorColor="@null"
+        app:tabBackground="@color/bai"
+        android:scrollbarSize="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"/>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/fettle_pager"
+        android:layout_marginTop="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>
