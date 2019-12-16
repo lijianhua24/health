@@ -14,7 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.FettleActivity"></activity>
+        <activity android:name=".view.CmedicinesActivity"></activity>
+        <activity android:name=".view.FindActivity" />
+        <activity android:name=".view.FettleActivity" />
         <activity android:name=".view.BannerXQActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

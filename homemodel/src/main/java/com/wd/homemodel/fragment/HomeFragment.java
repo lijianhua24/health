@@ -1,15 +1,13 @@
 package com.wd.homemodel.fragment;
 
 import android.util.Log;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.homemodel.R;
+import com.wd.homemodel.adapter.InfoSectionAdapter;
 import com.wd.homemodel.adapter.MyAdapter;
 import com.wd.homemodel.bean.BannerBean;
 import com.wd.homemodel.bean.DepartmentBean;
@@ -18,7 +16,6 @@ import com.wd.homemodel.bean.SectionBean;
 import com.wd.homemodel.contract.HomeContract;
 import com.wd.homemodel.presenter.BannerPresenter;
 import com.wd.mylibrary.Base.BaseFragment;
-import com.wd.mylibrary.Test.ToastUtils;
 
 import java.util.List;
 
@@ -30,6 +27,8 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements HomeC
 
     @BindView(R.id.home_recy)
     RecyclerView homeRecy;
+    @BindView(R.id.home_recy2)
+    RecyclerView homeRecy2;
 
     private List<BannerBean.ResultBean> bannerlist;
     private List<SectionBean.ResultBean> sectionlist;
@@ -41,15 +40,15 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements HomeC
         String message = data.getMessage();
         Log.d("banner", message);
         bannerlist = data.getResult();
-        if (bannerlist!=null){
-            MyAdapter myAdapter = new MyAdapter(getActivity(), bannerlist, sectionlist, departmentlist, infoSectionList);
+        if (bannerlist != null) {
+            MyAdapter myAdapter = new MyAdapter(getActivity(), bannerlist, sectionlist, departmentlist);
             homeRecy.setAdapter(myAdapter);
             myAdapter.onListenter(new MyAdapter.setChage() {
                 @Override
                 public void getChange(int i) {
                     // ToastUtils.show(i);
-                    Toast.makeText(getActivity(), ""+i, Toast.LENGTH_SHORT).show();
-                    mPresenter.getInfoSectionPresenter(i+"", 1, 5);
+                    Toast.makeText(getActivity(), "" + i, Toast.LENGTH_SHORT).show();
+                    mPresenter.getInfoSectionPresenter(i + "", 1, 5);
                 }
             });
         }
@@ -63,17 +62,17 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements HomeC
     @Override
     public void onSectionSuccess(Object data) {
         SectionBean sectionBean = (SectionBean) data;
-        Log.d("sectionBean",sectionBean.getMessage());
+        Log.d("sectionBean", sectionBean.getMessage());
         sectionlist = sectionBean.getResult();
-        if (sectionlist!=null){
-            MyAdapter myAdapter = new MyAdapter(getActivity(), bannerlist, sectionlist, departmentlist, infoSectionList);
+        if (sectionlist != null) {
+            MyAdapter myAdapter = new MyAdapter(getActivity(), bannerlist, sectionlist, departmentlist);
             homeRecy.setAdapter(myAdapter);
             myAdapter.onListenter(new MyAdapter.setChage() {
                 @Override
                 public void getChange(int i) {
-                   // ToastUtils.show(i);
-                    Toast.makeText(getActivity(), ""+i, Toast.LENGTH_SHORT).show();
-                    mPresenter.getInfoSectionPresenter(i+"", 1, 5);
+                    // ToastUtils.show(i);
+                    Toast.makeText(getActivity(), "" + i, Toast.LENGTH_SHORT).show();
+                    mPresenter.getInfoSectionPresenter(i + "", 1, 5);
                 }
             });
         }
@@ -87,19 +86,20 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements HomeC
     @Override
     public void onDepartmentSuccess(Object data) {
         DepartmentBean departmentBean = (DepartmentBean) data;
-        Log.d("departmentBean",departmentBean.getMessage());
+        Log.d("departmentBean", departmentBean.getMessage());
         departmentlist = departmentBean.getResult();
-        if (departmentlist!=null){
-            MyAdapter myAdapter = new MyAdapter(getActivity(), bannerlist, sectionlist, departmentlist, infoSectionList);
+        if (departmentlist != null) {
+            MyAdapter myAdapter = new MyAdapter(getActivity(), bannerlist, sectionlist, departmentlist);
             homeRecy.setAdapter(myAdapter);
             myAdapter.onListenter(new MyAdapter.setChage() {
                 @Override
                 public void getChange(int i) {
                     // ToastUtils.show(i);
-                    Toast.makeText(getActivity(), ""+i, Toast.LENGTH_SHORT).show();
-                    mPresenter.getInfoSectionPresenter(i+"", 1, 5);
+                    Toast.makeText(getActivity(), "" + i, Toast.LENGTH_SHORT).show();
+                    mPresenter.getInfoSectionPresenter(i + "", 1, 5);
                 }
             });
+
         }
     }
 
@@ -111,20 +111,12 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements HomeC
     @Override
     public void onInfoSectionSuccess(Object data) {
         InfoSectionBean infoSectionBean = (InfoSectionBean) data;
-        Log.d("infoSectionBean",infoSectionBean.getMessage());
+        Log.d("infoSectionBean", infoSectionBean.getMessage());
         infoSectionList = infoSectionBean.getResult();
 
-        if (infoSectionList!=null){
-            MyAdapter myAdapter = new MyAdapter(getActivity(), bannerlist, sectionlist, departmentlist, infoSectionList);
-            homeRecy.setAdapter(myAdapter);
-            myAdapter.onListenter(new MyAdapter.setChage() {
-                @Override
-                public void getChange(int i) {
-                    // ToastUtils.show(i);
-                    Toast.makeText(getActivity(), ""+i, Toast.LENGTH_SHORT).show();
-                    mPresenter.getInfoSectionPresenter(i+"", 1, 5);
-                }
-            });
+        if (infoSectionList != null) {
+            InfoSectionAdapter infoSectionAdapter = new InfoSectionAdapter(getActivity(), infoSectionList);
+            homeRecy2.setAdapter(infoSectionAdapter);
         }
     }
 
@@ -147,10 +139,16 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements HomeC
     protected void initView() {
         mPresenter.getBnnerPresenter();
         //homeSou.getBackground().setAlpha(30);
+        homeRecy.setHasFixedSize(true);
+        homeRecy.setNestedScrollingEnabled(false);
+        homeRecy2.setHasFixedSize(true);
+        homeRecy2.setNestedScrollingEnabled(false);
         mPresenter.getDepartmentPresenter();
         mPresenter.getSectionPresenter();
         mPresenter.getInfoSectionPresenter("1", 1, 5);
         homeRecy.setLayoutManager(new LinearLayoutManager(getActivity()));
+        homeRecy2.setLayoutManager(new LinearLayoutManager(getActivity()));
+
     }
 
     @Override

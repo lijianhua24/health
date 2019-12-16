@@ -1,6 +1,8 @@
 package com.wd.homemodel.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +13,10 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.homemodel.R;
+import com.wd.homemodel.app.App;
 import com.wd.homemodel.bean.UnitDiseaseBean;
+import com.wd.homemodel.view.CmedicinesActivity;
+import com.wd.homemodel.view.FindActivity;
 
 import java.util.List;
 
@@ -34,6 +39,18 @@ public class UnitDiseaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof  MyHolder){
             ((MyHolder) holder).unitdiseas.setText(result.get(position).getName());
+            ((MyHolder) holder).unitdiseas.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int id = result.get(position).getId();
+                    String name = result.get(position).getName();
+                    SharedPreferences.Editor edit = App.sharedPreferences.edit();
+                    edit.putInt("bingid",id);
+                    edit.putString("name",name);
+                    edit.commit();
+                    context.startActivity(new Intent(context, CmedicinesActivity.class));
+                }
+            });
         }
     }
 

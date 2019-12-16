@@ -40,14 +40,12 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<BannerBean.ResultBean> bannerlist;
     private List<SectionBean.ResultBean> sectionlist;
     private List<DepartmentBean.ResultBean> departmentlist;
-    private List<InfoSectionBean.ResultBean> infoSectionList;
     private setChage setChage;
 
-    public MyAdapter(FragmentActivity activity, List<BannerBean.ResultBean> bannerlist, List<SectionBean.ResultBean> sectionlist, List<DepartmentBean.ResultBean> departmentlist, List<InfoSectionBean.ResultBean> infoSectionList) {
+    public MyAdapter(FragmentActivity activity, List<BannerBean.ResultBean> bannerlist, List<SectionBean.ResultBean> sectionlist, List<DepartmentBean.ResultBean> departmentlist) {
         this.context = activity;
         this.sectionlist = sectionlist;
         this.departmentlist = departmentlist;
-        this.infoSectionList = infoSectionList;
         this.bannerlist = bannerlist;
 
     }
@@ -70,10 +68,10 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         } else if (viewType == 4) {
             View inflate = LayoutInflater.from(context).inflate(R.layout.section_layout, parent, false);
             return new MySectionHolder(inflate);
-        } else if (viewType == 5) {
+        } /*else if (viewType == 5) {
             View inflate = LayoutInflater.from(context).inflate(R.layout.infosection_layout, parent, false);
             return new MyInfoSectionHolder(inflate);
-        }
+        }*/
         return null;
     }
 
@@ -148,7 +146,6 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 break;
             case 4:
                 if (holder instanceof MySectionHolder) {
-                    Log.d("infoSectionList", infoSectionList.get(position).getSource());
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
                     linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
                     ((MySectionHolder) holder).section_recy.setLayoutManager(linearLayoutManager);
@@ -166,20 +163,20 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     }
                 }
                 break;
-            case 5:
+           /* case 5:
                 if (holder instanceof MyInfoSectionHolder) {
                     if (infoSectionList != null) {
                         ((MyInfoSectionHolder) holder).infosection_recy.setLayoutManager(new LinearLayoutManager(context));
                         ((MyInfoSectionHolder) holder).infosection_recy.setAdapter(new InfoSectionAdapter(context, infoSectionList));
                     }
                 }
-                break;
+                break;*/
         }
     }
 
     @Override
     public int getItemCount() {
-        return 6;
+        return 5;
     }
 
     @Override
@@ -194,8 +191,6 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             return 3;
         } else if (position == 4) {
             return 4;
-        } else if (position == 5) {
-            return 5;
         }
         return 0;
     }

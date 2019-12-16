@@ -1,8 +1,10 @@
 package com.wd.homemodel.utils;
 
 import com.wd.homemodel.bean.BannerBean;
+import com.wd.homemodel.bean.CmedicinesBean;
 import com.wd.homemodel.bean.DepartmentBean;
 import com.wd.homemodel.bean.DrugBean;
+import com.wd.homemodel.bean.FindBean;
 import com.wd.homemodel.bean.InfoSectionBean;
 import com.wd.homemodel.bean.SearchBean;
 import com.wd.homemodel.bean.SectionBean;
@@ -46,5 +48,11 @@ public interface ApiServers {
     @GET("share/knowledgeBase/v1/findDrugsKnowledgeList")
     Observable<DrugBean> getDrug(@Query("drugsCategoryId") Integer drugsCategoryId,@Query("page") Integer page,@Query("count") Integer count);
 
-    //
+    //查询常见药品详情
+    @GET("share/knowledgeBase/v1/findDrugsKnowledge")
+    Observable<FindBean> getFind(@Query("id") Integer id);
+
+    //查询常见病症详情
+    @GET("share/knowledgeBase/v1/findDiseaseKnowledge")
+    Observable<CmedicinesBean> getCmedicines(@Query("id") Integer id);
 }

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.wd.homemodel.R;
 import com.wd.homemodel.adapter.DrugAdapter;
 import com.wd.homemodel.adapter.KeShiAdapter;
+import com.wd.homemodel.adapter.SubjectAdapter;
 import com.wd.homemodel.bean.DrugBean;
 import com.wd.homemodel.bean.SubjectBean;
 import com.wd.homemodel.contract.HomeContract;
@@ -29,7 +30,12 @@ public class DepartmentFragment extends BaseFragment<DepartmentPresenter> implem
 
     @Override
     public void onDrugSuccess(Object data) {
-       
+       DrugBean drugBean = (DrugBean) data;
+        List<DrugBean.ResultBean> result = drugBean.getResult();
+        if (result!=null){
+            SubjectAdapter subjectAdapter = new SubjectAdapter(getActivity(), result);
+            departentBing.setAdapter(subjectAdapter);
+        }
     }
 
     @Override
@@ -40,7 +46,6 @@ public class DepartmentFragment extends BaseFragment<DepartmentPresenter> implem
     @Override
     public void onSubjectSuccess(Object data) {
         SubjectBean drugBean = (SubjectBean) data;
-        Toast.makeText(getActivity(), ""+drugBean.getMessage(), Toast.LENGTH_SHORT).show();
         List<SubjectBean.ResultBean> result = drugBean.getResult();
         DrugAdapter drugAdapter = new DrugAdapter(getActivity(), result);
         departentKeshi.setAdapter(drugAdapter);
@@ -72,7 +77,7 @@ public class DepartmentFragment extends BaseFragment<DepartmentPresenter> implem
 
     @Override
     protected void initView() {
-        Toast.makeText(getActivity(), ""+1, Toast.LENGTH_SHORT).show();
+        mPresenter.getDrugPresenter(1,1,100);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3);
         departentBing.setLayoutManager(gridLayoutManager);
         departentKeshi.setLayoutManager(new LinearLayoutManager(getActivity()));

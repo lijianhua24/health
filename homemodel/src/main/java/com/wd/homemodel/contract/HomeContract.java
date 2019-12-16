@@ -66,7 +66,6 @@ public interface HomeContract {
 
             void onInfoSectionFailure(Throwable e);
 
-
         }
 
         //presenter层   命名必须是IPresenter
@@ -83,8 +82,6 @@ public interface HomeContract {
         }
     }
 
-
-
     interface CommonContreact {
         interface IModel {
             void getUnitDiseaseDataModel(Integer id,IModelUnitDiseaseCallback callback);
@@ -96,8 +93,6 @@ public interface HomeContract {
                 void onUnitDiseaseFailure(Throwable e);
             }
 
-
-
             //查询科室列表
             void getDepartmentsDataModel(IModelDepartmentsCallback callback);
 
@@ -107,7 +102,6 @@ public interface HomeContract {
 
                 void onDepartmentFailure(Throwable e);
             }
-
 
         }
 
@@ -123,7 +117,6 @@ public interface HomeContract {
 
             void onUnitDiseaseFailure(Throwable e);
 
-
         }
 
         //presenter层   命名必须是IPresenter
@@ -132,8 +125,6 @@ public interface HomeContract {
             void getUnitDiseasePresenter(Integer id);
 
             void getDepartmentPresenter();
-
-
 
         }
     }
@@ -149,8 +140,6 @@ public interface HomeContract {
                 void onDrugFailure(Throwable e);
             }
 
-
-
             //查询科室列表
             void getSubjectModel(IModelSubjectCallback callback);
 
@@ -161,12 +150,10 @@ public interface HomeContract {
                 void onSubjectFailure(Throwable e);
             }
 
-
         }
 
         //view层  命名必须是IView
         interface IView extends IBaseView {
-
 
             void onDrugSuccess(Object data);
 
@@ -175,8 +162,6 @@ public interface HomeContract {
             void onSubjectSuccess(Object data);
 
             void onSubjectFailure(Throwable e);
-
-
         }
 
         //presenter层   命名必须是IPresenter
@@ -186,7 +171,67 @@ public interface HomeContract {
 
             void getSubjectPresenter();
 
+        }
+    }
 
+
+    interface FindContreact {
+        interface IModel {
+            void getFindModel(Integer id,IModelFindCallback callback);
+
+            //model层中的接口回调
+            interface IModelFindCallback {
+                void onFindSuccess(Object data);
+
+                void onFindFailure(Throwable e);
+            }
+        }
+
+        //view层  命名必须是IView
+        interface IView extends IBaseView {
+
+
+            void onFindSuccess(Object data);
+
+            void onFindFailure(Throwable e);
+
+        }
+
+        //presenter层   命名必须是IPresenter
+        interface IPresenter {
+
+            void getFindPresenter(Integer id);
+
+        }
+    }
+
+
+    interface CmedicinesContreact {
+        interface IModel {
+            void getCmedicinesModel(Integer id,IModelCmedicinesCallback callback);
+
+            //model层中的接口回调
+            interface IModelCmedicinesCallback {
+                void onCmedicinesSuccess(Object data);
+
+                void onCmedicinesFailure(Throwable e);
+            }
+        }
+
+        //view层  命名必须是IView
+        interface IView extends IBaseView {
+
+
+            void onCmedicinesSuccess(Object data);
+
+            void onCmedicinesFailure(Throwable e);
+
+        }
+
+        //presenter层   命名必须是IPresenter
+        interface IPresenter {
+
+            void getCmedicinesPresenter(Integer id);
 
         }
     }

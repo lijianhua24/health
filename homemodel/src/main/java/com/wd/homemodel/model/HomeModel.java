@@ -1,8 +1,10 @@
 package com.wd.homemodel.model;
 
 import com.wd.homemodel.bean.BannerBean;
+import com.wd.homemodel.bean.CmedicinesBean;
 import com.wd.homemodel.bean.DepartmentBean;
 import com.wd.homemodel.bean.DrugBean;
+import com.wd.homemodel.bean.FindBean;
 import com.wd.homemodel.bean.InfoSectionBean;
 import com.wd.homemodel.bean.SectionBean;
 import com.wd.homemodel.bean.SubjectBean;
@@ -12,7 +14,8 @@ import com.wd.homemodel.utils.RequestNet;
 import com.wd.mylibrary.utils.CommonObserver;
 import com.wd.mylibrary.utils.CommonSchedulers;
 
-public class HomeModel implements HomeContract.BnnerContreact.IModel,HomeContract.CommonContreact.IModel,HomeContract.DepartmentContreact.IModel {
+public class HomeModel implements HomeContract.BnnerContreact.IModel,HomeContract.CommonContreact.IModel,HomeContract.DepartmentContreact.IModel,
+HomeContract.FindContreact.IModel,HomeContract.CmedicinesContreact.IModel{
 
     @Override
     public void getBannerDataModel(IModelCallback callback) {
@@ -146,6 +149,40 @@ public class HomeModel implements HomeContract.BnnerContreact.IModel,HomeContrac
                     @Override
                     public void onError(Throwable e) {
                         callback.onSubjectFailure(e);
+                    }
+                });
+    }
+
+    @Override
+    public void getFindModel(Integer id, IModelFindCallback callback) {
+        RequestNet.getInstance().create().getFind(id)
+                .compose(CommonSchedulers.<FindBean>io2main())
+                .subscribe(new CommonObserver<FindBean>() {
+                    @Override
+                    public void onNext(FindBean emailBean) {
+                        callback.onFindSuccess(emailBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.onFindFailure(e);
+                    }
+                });
+    }
+
+    @Override
+    public void getCmedicinesModel(Integer id, IModelCmedicinesCallback callback) {
+        RequestNet.getInstance().create().getCmedicines(id)
+                .compose(CommonSchedulers.<CmedicinesBean>io2main())
+                .subscribe(new CommonObserver<CmedicinesBean>() {
+                    @Override
+                    public void onNext(CmedicinesBean emailBean) {
+                        callback.onCmedicinesSuccess(emailBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.onCmedicinesFailure(e);
                     }
                 });
     }
