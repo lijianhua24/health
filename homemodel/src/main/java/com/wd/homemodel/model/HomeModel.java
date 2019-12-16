@@ -7,6 +7,7 @@ import com.wd.homemodel.bean.DrugBean;
 import com.wd.homemodel.bean.FindBean;
 import com.wd.homemodel.bean.InfoSectionBean;
 import com.wd.homemodel.bean.SectionBean;
+import com.wd.homemodel.bean.SpyDetailsBean;
 import com.wd.homemodel.bean.SubjectBean;
 import com.wd.homemodel.bean.UnitDiseaseBean;
 import com.wd.homemodel.contract.HomeContract;
@@ -15,7 +16,7 @@ import com.wd.mylibrary.utils.CommonObserver;
 import com.wd.mylibrary.utils.CommonSchedulers;
 
 public class HomeModel implements HomeContract.BnnerContreact.IModel,HomeContract.CommonContreact.IModel,HomeContract.DepartmentContreact.IModel,
-HomeContract.FindContreact.IModel,HomeContract.CmedicinesContreact.IModel,HomeContract.InfoSectionContreact.IModel{
+HomeContract.FindContreact.IModel,HomeContract.CmedicinesContreact.IModel,HomeContract.InfoSectionContreact.IModel,HomeContract.SpyDetailsContreact.IModel{
 
     @Override
     public void getBannerDataModel(IModelCallback callback) {
@@ -200,6 +201,23 @@ HomeContract.FindContreact.IModel,HomeContract.CmedicinesContreact.IModel,HomeCo
                     @Override
                     public void onError(Throwable e) {
                         callback.onInfoSectionFailure(e);
+                    }
+                });
+    }
+
+    @Override
+    public void getSpyDetailsModel(String userId, String sessionId, Integer infoId, IModelSpyDetailsCallback callback) {
+        RequestNet.getInstance().create().getSpyDetal(userId,sessionId,infoId)
+                .compose(CommonSchedulers.<SpyDetailsBean>io2main())
+                .subscribe(new CommonObserver<SpyDetailsBean>() {
+                    @Override
+                    public void onNext(SpyDetailsBean emailBean) {
+                        callback.onSpyDetailsSuccess(emailBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.onSpyDetailsFailure(e);
                     }
                 });
     }
