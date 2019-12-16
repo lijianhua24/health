@@ -1,4 +1,4 @@
-package com.wd.mymodule;
+package com.wd.mymodule.activity;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -6,6 +6,9 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.wd.mylibrary.Base.BaseActivity;
 import com.wd.mylibrary.Base.BasePresenter;
+import com.wd.mymodule.custom.NoScrollViewPager;
+import com.wd.mymodule.R;
+import com.wd.mymodule.fragment.MyFragment;
 
 import java.util.ArrayList;
 

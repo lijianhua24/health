@@ -1,8 +1,7 @@
-package com.wd.mymodule;
-
+package com.wd.mymodule.fragment;
 import com.wd.mylibrary.Base.BaseFragment;
 import com.wd.mylibrary.Base.BasePresenter;
-
+import com.wd.mymodule.R;
 /**
  * <p>文件描述：<p>
  * <p>作者：黎怡志<p>
@@ -17,12 +16,10 @@ public class MyFragment  extends BaseFragment {
 
     @Override
     protected void initData() {
-
     }
 
     @Override
     protected void initView() {
-
     }
 
     @Override

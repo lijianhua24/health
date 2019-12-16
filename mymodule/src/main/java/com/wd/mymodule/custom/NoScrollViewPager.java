@@ -1,4 +1,4 @@
-package com.wd.mymodule;
+package com.wd.mymodule.custom;
 
 import android.content.Context;
 import android.util.AttributeSet;

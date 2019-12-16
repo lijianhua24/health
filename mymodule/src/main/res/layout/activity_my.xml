@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MyActivity">
-    <com.wd.mymodule.NoScrollViewPager
+    tools:context=".activity.MyActivity">
+    <com.wd.mymodule.custom.NoScrollViewPager
         android:id="@+id/my_viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </com.wd.mymodule.NoScrollViewPager>
+    </com.wd.mymodule.custom.NoScrollViewPager>
 </LinearLayout>

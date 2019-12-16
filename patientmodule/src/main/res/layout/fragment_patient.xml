@@ -51,6 +51,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/dp_30"
+            android:maxLines="1"
             android:background="@drawable/ed_back_shape"
             android:hint="请输入病症名称或标题关键字"
             android:paddingLeft="@dimen/dp_10"
@@ -100,6 +101,7 @@
                     android:layout_height="@dimen/dp_24"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="24dp"
+                    android:layout_marginTop="@dimen/dp_10"
                     android:background="@mipmap/common_icon_search_n" />
 
             </RelativeLayout>
