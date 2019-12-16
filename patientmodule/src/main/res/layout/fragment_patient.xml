@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/patient_relative_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_74"
+        android:background="#ffff">
+
+        <ImageView
+            android:id="@+id/patient_iv_user_head_pic"
+            android:layout_width="@dimen/dp_32"
+            android:layout_height="@dimen/dp_32"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_20"
+                android:background="@mipmap/dermatology" />
+
+        <ImageView
+            android:id="@+id/patient_iv_user_message"
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp_20"
+            android:background="@mipmap/common_nav_message_black_n" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/patient_relative_serach"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_74"
+        android:background="#ffff"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/patient_tv_department_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:text="内科"
+            android:textColor="#0DB1FA"
+            android:textSize="@dimen/sp_16" />
+        <EditText
+            android:id="@+id/patient_tv_department_keyword"
+            android:layout_width="@dimen/dp_210"
+            android:layout_height="@dimen/dp_28"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_30"
+            android:background="@drawable/ed_back_shape"
+            android:hint="请输入病症名称或标题关键字"
+            android:paddingLeft="@dimen/dp_10"
+            android:src="@null"
+            android:textSize="@dimen/sp_12" />
+
+        <ImageView
+            android:id="@+id/patient_iv_user_news"
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp_20"
+            android:background="@mipmap/common_nav_message_black_n" />
+
+    </RelativeLayout>
+
+    <com.wd.health.view.custom.ObservableScrollView
+        android:id="@+id/patient_scorll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dp_10"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/patient_linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_600"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_36"
+                android:layout_marginTop="@dimen/dp_6"
+                android:background="#ffff">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/patient_recycler_department"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dp_60">
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <ImageView
+                    android:id="@+id/patient_iv_search"
+                    android:layout_width="@dimen/dp_24"
+                    android:layout_height="@dimen/dp_24"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="24dp"
+                    android:background="@mipmap/common_icon_search_n" />
+
+            </RelativeLayout>
+
+
+            <com.jcodecraeer.xrecyclerview.XRecyclerView
+                android:id="@+id/patient_recycler_sick_circle_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone">
+
+            </com.jcodecraeer.xrecyclerview.XRecyclerView>
+
+            <TextView
+                android:id="@+id/patient_fragment_tv_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="↑选择科室查询病症详情"
+                android:textColor="#309DF7"
+                android:textSize="@dimen/sp_20" />
+
+        </LinearLayout>
+
+    </com.wd.health.view.custom.ObservableScrollView>
+
+</LinearLayout>
