@@ -1,2 +1,2 @@
-include ':app', ':mylibrary', ':homemodel'
+include ':app', ':mylibrary', ':homemodel',':usermodule'
 rootProject.name='jiankang'
