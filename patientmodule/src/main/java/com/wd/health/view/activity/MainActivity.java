@@ -1,4 +1,4 @@
-package com.wd.health.view;
+package com.wd.health.view.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

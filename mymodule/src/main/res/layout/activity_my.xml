@@ -5,11 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.activity.MainActivity">
-
-    <com.wd.health.view.custom.NoScrollViewPager
-        android:id="@+id/patient_pager"
+    tools:context=".MyActivity">
+    <com.wd.mymodule.NoScrollViewPager
+        android:id="@+id/my_viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </com.wd.health.view.custom.NoScrollViewPager>
+    </com.wd.mymodule.NoScrollViewPager>
 </LinearLayout>

@@ -1,12 +1,8 @@
-package com.wd.health.view;
+package com.wd.health.view.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.text.format.DateUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -16,11 +12,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.wd.health.R;
 import com.wd.health.bean.PatientDetailsBean;
-import com.wd.health.contract.IContract;
 import com.wd.health.contract.IContractDetails;
 import com.wd.health.presenter.PatientDetailsPresenter;
 import com.wd.mylibrary.Base.BaseActivity;
-import com.wd.mylibrary.Base.BasePresenter;
 import com.wd.mylibrary.Test.Logger;
 
 import java.text.SimpleDateFormat;

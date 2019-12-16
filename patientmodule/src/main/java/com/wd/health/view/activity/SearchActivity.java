@@ -1,4 +1,4 @@
-package com.wd.health.view;
+package com.wd.health.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;

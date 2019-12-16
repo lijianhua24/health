@@ -24,15 +24,14 @@ import com.wd.health.bean.DepartmentListBean;
 import com.wd.health.bean.KeywordSearchBean;
 import com.wd.health.contract.IContract;
 import com.wd.health.presenter.DepartmentListPresenter;
-import com.wd.health.view.PatientDetailsActivity;
-import com.wd.health.view.SearchActivity;
+import com.wd.health.view.activity.PatientDetailsActivity;
+import com.wd.health.view.activity.SearchActivity;
 import com.wd.health.view.adapter.KeywordSearchAdapter;
 import com.wd.health.view.adapter.RecyclerConsultationAdapter;
 import com.wd.health.view.adapter.RecyclerSickCircleAdapter;
 import com.wd.health.view.custom.ObservableScrollView;
 import com.wd.mylibrary.Base.BaseFragment;
 import com.wd.mylibrary.Test.Logger;
-import com.wd.mylibrary.Test.ToastUtils;
 
 import java.util.List;
 
@@ -62,7 +61,7 @@ public class PatientFragment extends BaseFragment<DepartmentListPresenter> imple
 
     //病友圈列表展示
     private int page = 1;
-    private int count = 5;
+    private int count1 = 10;
     private RecyclerSickCircleAdapter recyclerSickCircleAdapter;
     private EditText patient_tv_department_keyword;
     private KeywordSearchAdapter keywordSearchAdapter;
@@ -85,9 +84,9 @@ public class PatientFragment extends BaseFragment<DepartmentListPresenter> imple
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                String trim = patient_tv_department_keyword.getText().toString().trim();
-                mPresenter.getKeywordSearchPresenter(trim);
-                mPresenter.getCircleListShowPresenter(id, page, count);
+                String keyWord = patient_tv_department_keyword.getText().toString().trim();
+                mPresenter.getKeywordSearchPresenter(keyWord);
+                mPresenter.getCircleListShowPresenter(id, page, count1);
             }
 
             @Override
@@ -101,14 +100,14 @@ public class PatientFragment extends BaseFragment<DepartmentListPresenter> imple
             @Override
             public void onRefresh() {
                 page = 1;
-                mPresenter.getCircleListShowPresenter(id, page, count);
+                mPresenter.getCircleListShowPresenter(id, page, count1);
                 patient_recycler_sick_circle_list.refreshComplete();
             }
 
             @Override
             public void onLoadMore() {
                 page++;
-                mPresenter.getCircleListShowPresenter(id, page, count);
+                mPresenter.getCircleListShowPresenter(id, page, count1);
                 patient_recycler_sick_circle_list.loadMoreComplete();
             }
         });
@@ -195,7 +194,7 @@ public class PatientFragment extends BaseFragment<DepartmentListPresenter> imple
                 patient_fragment_tv_select.setVisibility(View.GONE);
                 patient_recycler_sick_circle_list.setVisibility(View.VISIBLE);
                 id = result.get(position).getId();
-                mPresenter.getCircleListShowPresenter(id, page, count);
+                mPresenter.getCircleListShowPresenter(id, page, count1);
             }
         });
 
