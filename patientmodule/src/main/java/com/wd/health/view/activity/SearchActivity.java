@@ -15,6 +15,8 @@ import com.wd.health.R;
 import com.wd.health.bean.CircleListShowBean;
 import com.wd.health.bean.DepartmentListBean;
 import com.wd.health.bean.KeywordSearchBean;
+import com.wd.health.bean.ReleasePatientsBean;
+import com.wd.health.bean.UnitDiseaseBean;
 import com.wd.health.contract.IContract;
 import com.wd.health.presenter.DepartmentListPresenter;
 import com.wd.health.view.adapter.KeywordSearchAdapter;
@@ -118,5 +120,25 @@ public class SearchActivity extends BaseActivity<DepartmentListPresenter> implem
     @Override
     public void KeywordSearchFailure(Throwable e) {
             ToastUtils.show("查不到");
+    }
+
+    @Override
+    public void ReleasePatientssuccess(ReleasePatientsBean ReleasePatientsBean) {
+
+    }
+
+    @Override
+    public void ReleasePatientsFailure(Throwable e) {
+
+    }
+
+    @Override
+    public void UnitDiseasessuccess(UnitDiseaseBean unitDiseaseBean) {
+
+    }
+
+    @Override
+    public void UnitDiseaseFailure(Throwable e) {
+
     }
 }

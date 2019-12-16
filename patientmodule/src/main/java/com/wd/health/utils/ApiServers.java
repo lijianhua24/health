@@ -4,10 +4,16 @@ import com.wd.health.bean.CircleListShowBean;
 import com.wd.health.bean.DepartmentListBean;
 import com.wd.health.bean.KeywordSearchBean;
 import com.wd.health.bean.PatientDetailsBean;
+import com.wd.health.bean.ReleasePatientsBean;
+import com.wd.health.bean.UnitDiseaseBean;
+
+import java.util.Map;
 
 import io.reactivex.Observable;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 /**
@@ -46,4 +52,19 @@ public interface ApiServers {
             @Header("sessionId")    String sessionId,
             @Query("sickCircleId") int sickCircleId
     );
+
+    //发布病友圈
+    @POST("user/sickCircle/verify/v1/publishSickCircle")
+    Observable<ReleasePatientsBean> releasepatientsbean(
+            @Header("userId")       int userId,
+            @Header("sessionId")    String sessionId,
+            @Body Map<String ,Object> map
+    );
+    //根据科室查询对应病症
+    @GET("share/knowledgeBase/v1/findDiseaseCategory")
+    Observable<UnitDiseaseBean> unitdiseasebean(
+            @Query("departmentId") int  departmentId
+    );
+
+
 }

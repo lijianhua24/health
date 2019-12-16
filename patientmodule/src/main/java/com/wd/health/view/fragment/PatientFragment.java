@@ -22,6 +22,8 @@ import com.wd.health.R;
 import com.wd.health.bean.CircleListShowBean;
 import com.wd.health.bean.DepartmentListBean;
 import com.wd.health.bean.KeywordSearchBean;
+import com.wd.health.bean.ReleasePatientsBean;
+import com.wd.health.bean.UnitDiseaseBean;
 import com.wd.health.contract.IContract;
 import com.wd.health.presenter.DepartmentListPresenter;
 import com.wd.health.view.activity.PatientDetailsActivity;
@@ -232,6 +234,7 @@ public class PatientFragment extends BaseFragment<DepartmentListPresenter> imple
 
     @Override
     public void KeywordSearchsuccess(KeywordSearchBean keywordSearchBean) {
+        Logger.d("FFEEE",""+keywordSearchBean);
         List<KeywordSearchBean.ResultBean> result = keywordSearchBean.getResult();
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
             linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -243,6 +246,26 @@ public class PatientFragment extends BaseFragment<DepartmentListPresenter> imple
 
     @Override
     public void KeywordSearchFailure(Throwable e) {
+
+    }
+
+    @Override
+    public void ReleasePatientssuccess(ReleasePatientsBean ReleasePatientsBean) {
+
+    }
+
+    @Override
+    public void ReleasePatientsFailure(Throwable e) {
+
+    }
+
+    @Override
+    public void UnitDiseasessuccess(UnitDiseaseBean unitDiseaseBean) {
+
+    }
+
+    @Override
+    public void UnitDiseaseFailure(Throwable e) {
 
     }
 }

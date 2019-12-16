@@ -1,11 +1,8 @@
 package com.wd.health.view.activity;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
-
-import android.os.Bundle;
 
 import com.wd.health.R;
 import com.wd.health.view.custom.NoScrollViewPager;
@@ -15,7 +12,7 @@ import com.wd.mylibrary.Base.BasePresenter;
 
 import java.util.ArrayList;
 
-public class MainActivity extends BaseActivity {
+public class PatientActivity extends BaseActivity {
 
     private NoScrollViewPager patient_pager;
     private ArrayList<Fragment> list;
@@ -51,6 +48,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_main;
+        return R.layout.activity_patient;
     }
 }
