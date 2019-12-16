@@ -1,5 +1,7 @@
 package com.wd.homemodel.utils;
 
+import android.content.Intent;
+
 import com.wd.homemodel.bean.BannerBean;
 import com.wd.homemodel.bean.CmedicinesBean;
 import com.wd.homemodel.bean.DepartmentBean;
@@ -8,11 +10,13 @@ import com.wd.homemodel.bean.FindBean;
 import com.wd.homemodel.bean.InfoSectionBean;
 import com.wd.homemodel.bean.SearchBean;
 import com.wd.homemodel.bean.SectionBean;
+import com.wd.homemodel.bean.SpyDetailsBean;
 import com.wd.homemodel.bean.SubjectBean;
 import com.wd.homemodel.bean.UnitDiseaseBean;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Query;
 
 public interface ApiServers {
@@ -55,4 +59,10 @@ public interface ApiServers {
     //查询常见病症详情
     @GET("share/knowledgeBase/v1/findDiseaseKnowledge")
     Observable<CmedicinesBean> getCmedicines(@Query("id") Integer id);
+
+    //资讯详情
+    @GET("share/information/v1/findInformation")
+    Observable<SpyDetailsBean> getSpyDetal(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("infoId")Integer infoId);
+
+    //
 }

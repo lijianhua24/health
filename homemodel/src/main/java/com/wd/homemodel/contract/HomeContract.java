@@ -265,4 +265,34 @@ public interface HomeContract {
 
         }
     }
+
+    interface SpyDetailsContreact {
+        interface IModel {
+            void getSpyDetailsModel(String userId,String sessionId,Integer infoId,IModelSpyDetailsCallback callback);
+
+            //model层中的接口回调
+            interface IModelSpyDetailsCallback {
+                void onSpyDetailsSuccess(Object data);
+
+                void onSpyDetailsFailure(Throwable e);
+            }
+        }
+
+        //view层  命名必须是IView
+        interface IView extends IBaseView {
+
+
+            void onSpyDetailsSuccess(Object data);
+
+            void onSpyDetailsFailure(Throwable e);
+
+        }
+
+        //presenter层   命名必须是IPresenter
+        interface IPresenter {
+
+            void getSpyDetailsPresenter(String userId,String sessionId,Integer infoId);
+
+        }
+    }
 }
