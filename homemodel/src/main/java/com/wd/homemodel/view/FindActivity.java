@@ -67,7 +67,7 @@ public class FindActivity extends BaseActivity<FindPresenter> implements HomeCon
         if (id != 0) {
             mPresenter.getFindPresenter(id);
         }
-
+        findShixiang.setNestedScrollingEnabled(false);
     }
 
     @Override
@@ -106,6 +106,7 @@ public class FindActivity extends BaseActivity<FindPresenter> implements HomeCon
             findShixiang.setLayoutManager(new LinearLayoutManager(this));
             findShixiang.setAdapter(new PrecautionsAdapter(this,split));
             findWenhao.setText(result.getApprovalNumber());
+
         }
     }
 

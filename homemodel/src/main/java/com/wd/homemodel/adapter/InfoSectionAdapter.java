@@ -1,11 +1,14 @@
 package com.wd.homemodel.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,7 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.homemodel.R;
+import com.wd.homemodel.app.App;
 import com.wd.homemodel.bean.InfoSectionBean;
+import com.wd.homemodel.view.SpyDetailsActivity;
 
 import org.w3c.dom.Text;
 
@@ -56,6 +61,16 @@ public class InfoSectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                         ((MyThreeHodel) holder).time.setText(simpleDateFormat.format(infoSectionList.get(position).getReleaseTime()));
                         ((MyThreeHodel) holder).dorect.setText(infoSectionList.get(position).getSource());
                         ((MyThreeHodel) holder).name.setText(infoSectionList.get(position).getTitle());
+                        ((MyThreeHodel) holder).linear.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                int id = infoSectionList.get(position).getId();
+                                SharedPreferences.Editor edit = App.sharedPreferences.edit();
+                                edit.putInt("zixunid",id);
+                                edit.commit();
+                                context.startActivity(new Intent(context, SpyDetailsActivity.class));
+                            }
+                        });
                     }
                 break;
             case 1:
@@ -68,6 +83,16 @@ public class InfoSectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                    // ((MyViewHolder) holder).workJkzx.setText(simpleDateFormat.format(date));
                     ((MyoneHodel) holder).time.setText(simpleDateFormat.format(infoSectionList.get(position).getReleaseTime()));
                     ((MyoneHodel) holder).img.setImageURI(Uri.parse(infoSectionList.get(position).getThumbnail()));
+                    ((MyoneHodel) holder).linear.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            int id = infoSectionList.get(position).getId();
+                            SharedPreferences.Editor edit = App.sharedPreferences.edit();
+                            edit.putInt("zixunid",id);
+                            edit.commit();
+                            context.startActivity(new Intent(context, SpyDetailsActivity.class));
+                        }
+                    });
                 }
                 break;
             case 2:
@@ -81,6 +106,16 @@ public class InfoSectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     ((MyTwoHodel) holder).dorect.setText(infoSectionList.get(position).getSource());
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日");
                     ((MyTwoHodel) holder).time.setText(simpleDateFormat.format(infoSectionList.get(position).getReleaseTime()));
+                    ((MyTwoHodel) holder).linear.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            int id = infoSectionList.get(position).getId();
+                            SharedPreferences.Editor edit = App.sharedPreferences.edit();
+                            edit.putInt("zixunid",id);
+                            edit.commit();
+                            context.startActivity(new Intent(context, SpyDetailsActivity.class));
+                        }
+                    });
 
                 }
                 break;
@@ -111,6 +146,7 @@ public class InfoSectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         private final TextView dorect;
         private final TextView name;
+        private final LinearLayout linear;
         private final TextView time;
         private final SimpleDraweeView img;
 
@@ -121,6 +157,7 @@ public class InfoSectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             name = itemView.findViewById(R.id.zi_infosection_name);
             time = itemView.findViewById(R.id.zi_infosection_time);
             img = itemView.findViewById(R.id.zi_infosection_img);
+            linear = itemView.findViewById(R.id.zi_infosection_linear);
         }
     }
 
@@ -129,6 +166,7 @@ public class InfoSectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         private final TextView dorect;
         private final TextView name;
         private final TextView time;
+        private final LinearLayout linear;
         private final SimpleDraweeView img,twoimg,threeimg;
 
         public MyTwoHodel(@NonNull View itemView) {
@@ -140,6 +178,7 @@ public class InfoSectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             img = itemView.findViewById(R.id.two_oneimg);
             twoimg = itemView.findViewById(R.id.two_twoimg);
             threeimg = itemView.findViewById(R.id.two_threeimg);
+            linear = itemView.findViewById(R.id.two_twolinear);
         }
     }
 
@@ -148,6 +187,7 @@ public class InfoSectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         private final TextView dorect;
         private final TextView name;
         private final TextView time;
+        private final LinearLayout linear;
 
         public MyThreeHodel(@NonNull View itemView) {
 
@@ -155,6 +195,7 @@ public class InfoSectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             dorect = itemView.findViewById(R.id.three_dector);
             name = itemView.findViewById(R.id.three_name);
             time = itemView.findViewById(R.id.three_time);
+            linear = itemView.findViewById(R.id.three_linear);
         }
     }
 }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:background="#fff"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/titles_touxiang"
+            android:background="@mipmap/common_icon_back_black_n"
+
+            android:layout_marginLeft="12dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp">
+
+        </ImageView>
+        <TextView
+            android:id="@+id/titles_name"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:textColor="@color/hei"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/home_xiaoxi"
+            android:background="@mipmap/common_nav_message_black_s"
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="12dp"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+</LinearLayout>

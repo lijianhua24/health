@@ -1,11 +1,14 @@
 package com.wd.homemodel.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,7 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.homemodel.R;
+import com.wd.homemodel.app.App;
 import com.wd.homemodel.bean.InfoSectionBean;
+import com.wd.homemodel.view.SpyDetailsActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -53,6 +58,16 @@ public class GengDuoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         ((MyThreeHodel) holder).time.setText(simpleDateFormat.format(infoSectionList.get(position).getReleaseTime()));
                         ((MyThreeHodel) holder).dorect.setText(infoSectionList.get(position).getSource());
                         ((MyThreeHodel) holder).name.setText(infoSectionList.get(position).getTitle());
+                        ((MyThreeHodel) holder).linear.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                int id = infoSectionList.get(position).getId();
+                                SharedPreferences.Editor edit = App.sharedPreferences.edit();
+                                edit.putInt("zixunid",id);
+                                edit.commit();
+                                context.startActivity(new Intent(context, SpyDetailsActivity.class));
+                            }
+                        });
                     }
                 break;
             case 1:
@@ -65,6 +80,16 @@ public class GengDuoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                    // ((MyViewHolder) holder).workJkzx.setText(simpleDateFormat.format(date));
                     ((MyoneHodel) holder).time.setText(simpleDateFormat.format(infoSectionList.get(position).getReleaseTime()));
                     ((MyoneHodel) holder).img.setImageURI(Uri.parse(infoSectionList.get(position).getThumbnail()));
+                    ((MyoneHodel) holder).linear.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            int id = infoSectionList.get(position).getId();
+                            SharedPreferences.Editor edit = App.sharedPreferences.edit();
+                            edit.putInt("zixunid",id);
+                            edit.commit();
+                            context.startActivity(new Intent(context, SpyDetailsActivity.class));
+                        }
+                    });
                 }
                 break;
             case 2:
@@ -78,6 +103,16 @@ public class GengDuoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     ((MyTwoHodel) holder).dorect.setText(infoSectionList.get(position).getSource());
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日");
                     ((MyTwoHodel) holder).time.setText(simpleDateFormat.format(infoSectionList.get(position).getReleaseTime()));
+                    ((MyTwoHodel) holder).linear.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            int id = infoSectionList.get(position).getId();
+                            SharedPreferences.Editor edit = App.sharedPreferences.edit();
+                            edit.putInt("zixunid",id);
+                            edit.commit();
+                            context.startActivity(new Intent(context, SpyDetailsActivity.class));
+                        }
+                    });
 
                 }
                 break;
@@ -110,6 +145,7 @@ public class GengDuoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         private final TextView name;
         private final TextView time;
         private final SimpleDraweeView img;
+        private final LinearLayout linear;
 
         public MyoneHodel(@NonNull View itemView) {
 
@@ -118,6 +154,7 @@ public class GengDuoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             name = itemView.findViewById(R.id.zi_gengduo_name);
             time = itemView.findViewById(R.id.zi_gengduo_time);
             img = itemView.findViewById(R.id.zi_gengduo_img);
+            linear = itemView.findViewById(R.id.zi_gengduo_linear);
         }
     }
 
@@ -126,6 +163,7 @@ public class GengDuoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         private final TextView dorect;
         private final TextView name;
         private final TextView time;
+        private final LinearLayout linear;
         private final SimpleDraweeView img,twoimg,threeimg;
 
         public MyTwoHodel(@NonNull View itemView) {
@@ -137,6 +175,7 @@ public class GengDuoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             img = itemView.findViewById(R.id.two_gengduo_gengduooneimg);
             twoimg = itemView.findViewById(R.id.two_gengduo_gengduotwoimg);
             threeimg = itemView.findViewById(R.id.two_gengduo_gengduothreeimg);
+            linear = itemView.findViewById(R.id.two_gengduo_gengduolinear);
         }
     }
 
@@ -145,6 +184,7 @@ public class GengDuoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         private final TextView dorect;
         private final TextView name;
         private final TextView time;
+        private final LinearLayout linear;
 
         public MyThreeHodel(@NonNull View itemView) {
 
@@ -152,6 +192,7 @@ public class GengDuoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             dorect = itemView.findViewById(R.id.three_gengduodector);
             name = itemView.findViewById(R.id.three_gengduoname);
             time = itemView.findViewById(R.id.three_gengduotime);
+            linear = itemView.findViewById(R.id.three_gengduolinear);
         }
     }
 }

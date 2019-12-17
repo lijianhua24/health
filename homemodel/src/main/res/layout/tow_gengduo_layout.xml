@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:paddingLeft="12dp"
+    android:id="@+id/two_gengduo_gengduolinear"
     android:background="#fff"
 
     android:paddingRight="12dp"

@@ -31,7 +31,7 @@ public class BannerXQActivity extends BaseActivity {
     protected void initView() {
         jumpUrl = App.sharedPreferences.getString("jumpUrl", null);
         bannerXqWb.loadUrl(jumpUrl);
-        finish();
+        //finish();
     }
 
     @Override

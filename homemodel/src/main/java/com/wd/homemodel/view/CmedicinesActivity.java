@@ -63,7 +63,7 @@ public class CmedicinesActivity extends BaseActivity<CmedicinesPreesenter> imple
                 String[] split = benefitTaboo.split("。");
                 cmedicinesYiji.setAdapter(new YiJiAdapter(this, split));
             }else {
-                yijiWu.setVisibility(View.INVISIBLE);
+                yijiWu.setVisibility(View.VISIBLE);
             }
             String westernMedicineTreatment = result.getWesternMedicineTreatment();
 
@@ -71,7 +71,7 @@ public class CmedicinesActivity extends BaseActivity<CmedicinesPreesenter> imple
                 String[] split1 = westernMedicineTreatment.split("。");
                 cmedicinesXiyao.setAdapter(new XiyaoAdapter(this, split1));
             }else {
-                xiyaoWu.setVisibility(View.INVISIBLE);
+                xiyaoWu.setVisibility(View.VISIBLE);
             }
             String chineseMedicineTreatment = result.getChineseMedicineTreatment();
 
@@ -100,6 +100,9 @@ public class CmedicinesActivity extends BaseActivity<CmedicinesPreesenter> imple
         cmedicinesYiji.setLayoutManager(new LinearLayoutManager(this));
         cmedicinesXiyao.setLayoutManager(new LinearLayoutManager(this));
         cmedicinesZhongyao.setLayoutManager(new LinearLayoutManager(this));
+        cmedicinesZhongyao.setNestedScrollingEnabled(false);
+        cmedicinesYiji.setNestedScrollingEnabled(false);
+        cmedicinesXiyao.setNestedScrollingEnabled(false);
     }
 
     @Override
@@ -114,10 +117,5 @@ public class CmedicinesActivity extends BaseActivity<CmedicinesPreesenter> imple
     }
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
+
 }

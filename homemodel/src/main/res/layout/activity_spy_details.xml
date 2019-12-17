@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.SpyDetailsActivity">
+    <androidx.core.widget.NestedScrollView
+        android:background="@color/hui"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <include layout="@layout/titles_layout"/>
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:background="@color/bai"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:textColor="@color/hei"
+                    android:id="@+id/syp_title"
+                    android:layout_marginTop="10dp"
+                    android:textSize="16sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <RelativeLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="10sp"
+                        android:textColor="@color/hei"
+                        android:id="@+id/spy_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:textColor="@color/hei"
+                        android:textSize="10sp"
+                        android:layout_toLeftOf="@id/spy_name"
+                        android:layout_marginLeft="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
+                <WebView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/spy_wib"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+    <ImageView
+        android:background="@mipmap/common_button_collection_small_n"
+        android:layout_width="50dp"
+        android:id="@+id/spy_shoucang"
+        android:layout_marginTop="400dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_height="50dp"/>
+    <ImageView
+        android:background="@mipmap/common_button_share_n"
+        android:layout_alignParentRight="true"
+        android:layout_width="50dp"
+        android:layout_marginTop="466dp"
+        android:layout_marginRight="20dp"
+        android:id="@+id/spy_fenxiang"
+        android:layout_height="50dp"/>
+</RelativeLayout>
