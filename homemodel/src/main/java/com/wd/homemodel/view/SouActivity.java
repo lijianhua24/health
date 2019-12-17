@@ -3,6 +3,7 @@ package com.wd.homemodel.view;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -65,6 +66,9 @@ public class SouActivity extends BaseActivity<SearchPresenter> implements HomeCo
     private TextView textView1;
     private ArrayList<HistoryBean> name;
     private HistoryAdaapter historyAdaapter;
+    String lishi;
+    private SharedPreferences.Editor edit;
+    private ArrayList<HistoryBean> beanArrayList;
 
     @Override
     protected SearchPresenter providePresenter() {
@@ -79,9 +83,8 @@ public class SouActivity extends BaseActivity<SearchPresenter> implements HomeCo
     @Override
     protected void initView() {
         name = new ArrayList<>();
-        for (int i = 0; i < name.size(); i++) {
-
-        }
+        beanArrayList = this.name;
+        edit = App.sharedPreferences.edit();
         mPresenter.getPopularPresenter();
         souRecy.setNestedScrollingEnabled(false);
         souDoctors.setNestedScrollingEnabled(false);
@@ -91,8 +94,33 @@ public class SouActivity extends BaseActivity<SearchPresenter> implements HomeCo
         souDoctors.setLayoutManager(new LinearLayoutManager(this));
         souDrug.setLayoutManager(new LinearLayoutManager(this));
         souIllness.setLayoutManager(new LinearLayoutManager(this));
-        historyAdaapter = new HistoryAdaapter(this, name);
-        souRecy.setAdapter(historyAdaapter);
+        String lishijilu = App.sharedPreferences.getString("lishijilu", null);
+        if (lishijilu!=null){
+            lishi = lishijilu;
+            String[] split = lishijilu.split(",");
+            for (int i = 0; i < split.length; i++) {
+               if (split[i]!=null){
+                   this.name.add(new HistoryBean(split[i]));
+               }
+            }
+            historyAdaapter = new HistoryAdaapter(this, this.name);
+            souRecy.setAdapter(historyAdaapter);
+        }
+        if (historyAdaapter!=null){
+            historyAdaapter.onChange(new HistoryAdaapter.onLisenter() {
+                @Override
+                public void getlistenter(String name, String id) {
+                    if (name!=null){
+                        mPresenter.getSearchPresenter(name);
+                    }
+                    if (id!=null){
+                        Integer integer = Integer.valueOf(id);
+                        beanArrayList.remove(integer);
+                        historyAdaapter.notifyDataSetChanged();
+                    }
+                }
+            });
+        }
     }
 
     @Override
@@ -103,22 +131,24 @@ public class SouActivity extends BaseActivity<SearchPresenter> implements HomeCo
     @OnClick(R.id.sou_sou)
     public void onViewClicked() {
         String trim = souEdit.getText().toString().trim();
-        Toast.makeText(this, ""+trim, Toast.LENGTH_SHORT).show();
-        name.add(new HistoryBean(trim));
-        Gson gson =new Gson();
-        String lishigson = gson.toJson(name);
-        SharedPreferences.Editor edit = App.sharedPreferences.edit();
-        edit.putString("lishi",lishigson);
-        edit.commit();
-        String lishi = App.sharedPreferences.getString("lishi", null);
-        if (lishi!=null){
-            HistoryBean historyBean = gson.fromJson(lishi, HistoryBean.class);
-            String name = historyBean.getName();
+        if (trim!=null){
+           for (int i = 0; i < name.size(); i++) {
+               if (name.get(i).getName()!=trim){
+                   name.add(new HistoryBean(trim));
+               }
+           }
+           if (lishi==null){
+               lishi=trim+",";
+           }else {
+               lishi=(trim+",")+lishi;
+           }
+           edit.putString("lishijilu",lishi);
+           edit.commit();
+           mPresenter.getSearchPresenter(trim);
+       }else {
+           Toast.makeText(this, "请输入要搜索的内容", Toast.LENGTH_SHORT).show();
+       }
 
-        }
-        mPresenter.getSearchPresenter(trim);
-        historyAdaapter = new HistoryAdaapter(this, name);
-        souRecy.setAdapter(historyAdaapter);
     }
 
     @Override
@@ -172,11 +202,23 @@ public class SouActivity extends BaseActivity<SearchPresenter> implements HomeCo
                 @Override
                 public void onClick(View view) {
                     String s = textView1.getText().toString();
-                    SouActivity.this.name.add(new HistoryBean(s));
+                    for (int j = 0; j < name.size(); j++) {
+                        if (name.get(j).getName()!=s){
+                            SouActivity.this.name.add(new HistoryBean(s));
+                        }
+                    }
                     historyAdaapter = new HistoryAdaapter(SouActivity.this, name);
                     souRecy.setAdapter(historyAdaapter);
+                    if (lishi==null){
+                        lishi=list+",";
 
-                    Toast.makeText(SouActivity.this, "" + list, Toast.LENGTH_SHORT).show();
+                    }else {
+                        lishi=(list+",")+lishi;
+
+                    }
+                    edit.putString("lishijilu",lishi);
+                    edit.commit();
+                    mPresenter.getSearchPresenter(list);
                 }
             });
             flowlayout.addView(textView1, lp);

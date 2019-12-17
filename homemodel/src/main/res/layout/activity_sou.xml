@@ -24,14 +24,25 @@
 
         </com.facebook.drawee.view.SimpleDraweeView>
         <EditText
+            android:id="@+id/sou_edit"
+            android:hint="病症 药品名称"
+            android:textSize="12sp"
+            android:textColor="@color/hei"
+
+            android:gravity="center_vertical"
+            android:textColorHint="@color/hei"
+            android:paddingLeft="20dp"
             android:layout_toRightOf="@id/home_touxiang"
             android:layout_marginLeft="10dp"
-            android:id="@+id/sou_edit"
             android:layout_width="260dp"
-            android:layout_height="32dp"/>
+            android:layout_marginRight="10dp"
+            android:layout_height="32dp"
+            android:background="@drawable/searchback"
+            />
         <TextView
             android:id="@+id/sou_sou"
             android:text="搜索"
+            android:layout_marginTop="4dp"
             android:textSize="16sp"
             android:textColor="@color/lan"
             android:layout_width="wrap_content"

@@ -2,9 +2,9 @@ package com.wd.homemodel.fragment;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,8 +40,9 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements HomeC
     RecyclerView homeRecy2;
     @BindView(R.id.home_gengduo)
     TextView homeGengduo;
-    @BindView(R.id.home_sou)
-    Button homeSou;
+    @BindView(R.id.search)
+    TextView homeSou;
+
     private int i1;
     private List<BannerBean.ResultBean> bannerlist;
     private List<SectionBean.ResultBean> sectionlist;
@@ -155,7 +156,9 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements HomeC
                 startActivity(new Intent(getActivity(), SouActivity.class));
             }
         });
+        /*homeSou.setBackgroundColor(Color.argb(255, 0, 255, 0)); //背景透明度
 
+        homeSou.setTextColor(Color.argb(255, 0, 255, 0));*/
 
     }
 

@@ -6,39 +6,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
-    <RelativeLayout
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:layout_marginTop="32dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/home_touxiang"
-            android:background="@mipmap/boy"
 
-            android:layout_marginLeft="12dp"
-            android:layout_width="32dp"
-            android:layout_height="32dp">
-
-        </com.facebook.drawee.view.SimpleDraweeView>
-        <EditText
-            android:id="@+id/home_sou"
-            android:background="@drawable/sou"
-            android:hint="病症,药品名称,医生名称"
-            android:textSize="12sp"
-            android:padding="10dp"
-            android:layout_toRightOf="@id/home_touxiang"
-            android:layout_marginLeft="10dp"
-            android:layout_width="260dp"
-            android:layout_height="32dp"/>
-        <ImageView
-            android:id="@+id/home_xiaoxi"
-            android:background="@mipmap/common_nav_message_black_s"
-            android:layout_width="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="12dp"
-            android:layout_height="wrap_content"/>
-    </RelativeLayout>
 <androidx.viewpager.widget.ViewPager
     android:id="@+id/home_pager"
     android:layout_width="match_parent"

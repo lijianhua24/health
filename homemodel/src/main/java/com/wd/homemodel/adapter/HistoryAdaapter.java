@@ -19,6 +19,9 @@ import java.util.ArrayList;
 public class HistoryAdaapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
     private ArrayList<HistoryBean> name;
+    private onLisenter onLisenter;
+
+
     public HistoryAdaapter(SouActivity souActivity, ArrayList<HistoryBean> name) {
         this.context = souActivity;
         this.name = name;
@@ -34,11 +37,22 @@ public class HistoryAdaapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof MyHolder){
-            ((MyHolder) holder).name.setText(name.get(position).getName()+position);
+            ((MyHolder) holder).name.setText(name.get(position).getName());
             ((MyHolder) holder).cuowu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    if (onLisenter!=null){
+                        onLisenter.getlistenter(null,position+"");
+                    }
+                }
+            });
+            ((MyHolder) holder).name.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String name1 = name.get(position).getName();
+                    if (onLisenter!=null){
+                        onLisenter.getlistenter(name1,null);
+                    }
                 }
             });
         }
@@ -58,5 +72,11 @@ public class HistoryAdaapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             name = itemView.findViewById(R.id.history_name);
             cuowu = itemView.findViewById(R.id.history_cuowu);
         }
+    }
+    public void onChange(onLisenter onLisenter){
+        this.onLisenter = onLisenter;
+    }
+    public interface onLisenter{
+        void getlistenter(String name,String id);
     }
 }
