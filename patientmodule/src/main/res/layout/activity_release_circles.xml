@@ -414,7 +414,7 @@
                     android:layout_width="@dimen/dp_300"
                     android:layout_height="@dimen/dp_36"
                     android:layout_centerHorizontal="true"
-                    android:background="@drawable/btn_bluelogin"
+
                     android:text="发表"
                     android:textSize="@dimen/sp_14"
                     android:textColor="#ffffff"/>
@@ -430,6 +430,6 @@
             </RelativeLayout>
 
         </LinearLayout>
-
+    <!--android:background="@drawable/btn_bluelogin"-->
 
     </ScrollView>
