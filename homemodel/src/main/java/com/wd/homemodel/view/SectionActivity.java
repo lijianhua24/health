@@ -44,6 +44,7 @@ public class SectionActivity extends BaseActivity<SectionPresenter> implements H
        }else {
            mPresenter.getInfoSectionPresenter("1", 1, 100);
        }
+        sectionRecyGengduo.setNestedScrollingEnabled(false);
     }
 
     @Override
@@ -57,6 +58,7 @@ public class SectionActivity extends BaseActivity<SectionPresenter> implements H
         List<InfoSectionBean.ResultBean> result = infoSectionBean.getResult();
         GengDuoAdapter gengDuoAdapter = new GengDuoAdapter(this, result);
         sectionRecyGengduo.setAdapter(gengDuoAdapter);
+
     }
 
     @Override

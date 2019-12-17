@@ -103,6 +103,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                                     @Override
                                     public void onClick(View view) {
                                         String jumpUrl = bannerlist.get(position).getJumpUrl();
+                                        Log.d("jumpUrl",jumpUrl);
                                         SharedPreferences.Editor edit = App.sharedPreferences.edit();
                                         edit.putString("jumpUrl", jumpUrl);
                                         edit.commit();
@@ -141,7 +142,15 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 break;
             case 3:
                 if (holder instanceof MyPingCeHolder) {
-
+                    holder.itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            SharedPreferences.Editor edit = App.sharedPreferences.edit();
+                            edit.putString("jumpUrl", "https://www.wjx.cn/jq/33939807.aspx");
+                            edit.commit();
+                            context.startActivity(new Intent(context, BannerXQActivity.class));
+                        }
+                    });
                 }
                 break;
             case 4:

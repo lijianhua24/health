@@ -17,7 +17,7 @@
             android:layout_width="4dp"
             android:layout_height="30dp"/>
         <TextView
-            android:text="问诊资讯"
+            android:text="健康评测"
             android:textSize="16sp"
             android:layout_marginLeft="10dp"
             android:textColor="@color/lan"

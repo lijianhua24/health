@@ -19,7 +19,6 @@ import butterknife.ButterKnife;
 
 
 //@Route(path = "/app/sMainActivity")
-//
 public class HomeActivity extends BaseActivity {
 
 
