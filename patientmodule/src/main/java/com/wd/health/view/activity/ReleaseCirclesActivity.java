@@ -1,4 +1,5 @@
 package com.wd.health.view.activity;
+
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -24,6 +25,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.tu.loadingdialog.LoadingDailog;
 import com.bumptech.glide.Glide;
 import com.wd.health.R;
 import com.wd.health.bean.CircleListShowBean;
@@ -34,6 +36,7 @@ import com.wd.health.bean.UnitDiseaseBean;
 import com.wd.health.contract.IContract;
 import com.wd.health.presenter.DepartmentListPresenter;
 import com.wd.health.view.adapter.ConsultationTwoAdapter;
+import com.wd.health.view.adapter.IllnessAdapter;
 import com.wd.mylibrary.Base.BaseActivity;
 import com.wd.mylibrary.utils.ImageUtil;
 
@@ -56,7 +59,6 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
     Calendar calendar = Calendar.getInstance(Locale.CHINA);
     private RelativeLayout release_circle_iv_choose_department;
     private RelativeLayout release_circle_iv_choose_disease;
-    //问诊咨询
     private RecyclerView popup_recycler_department;
     private RecyclerView popup_recycler_disease;
     private TextView release_circle_tv_choose_disease;
@@ -65,9 +67,7 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
     private ImageView release_circle_iv_delete_Picture;
     private int id;
     private PopupWindow popWindow;
-    //对应病症
     private PopupWindow popWindowDisease;
-    //function:发布圈子
     private ImageView release_sickCircle_iv_user_head_pic;
     private ImageView patient_iv_user_message;
     private EditText release_circle_et_title;
@@ -81,6 +81,7 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
     private MultipartBody.Part picture;
     private String path;
     private int sickCircleId;
+    private LoadingDailog loadingDailog;
 
     @Override
     protected DepartmentListPresenter providePresenter() {
@@ -267,7 +268,7 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
                 map.put("amount", 0);
                 //调发布圈子接口
                 mPresenter.getReleasePatientsPresenter(userId, sessionId, map);
-             /*   shapeLoadingDialog.show();*/
+                loadingDailog.show();
             }
         });
 
@@ -357,18 +358,32 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
 
     @Override
     public void UnitDiseasessuccess(UnitDiseaseBean unitDiseaseBean) {
+        final List<UnitDiseaseBean.ResultBean> result = unitDiseaseBean.getResult();
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        IllnessAdapter illnessAdapter = new IllnessAdapter(result, this);
+        popup_recycler_disease.setLayoutManager(linearLayoutManager);
+        popup_recycler_disease.setAdapter(illnessAdapter);
 
+        illnessAdapter.onItemClickListener(new IllnessAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                String name = result.get(position).getName();
+                release_circle_tv_choose_disease.setText(name + "");
+                popWindowDisease.dismiss();
+            }
+        });
     }
 
     @Override
     public void UnitDiseaseFailure(Throwable e) {
 
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //判断是不是选中图片了
-        if (requestCode == 1){
+        if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
                 Uri uri = data.getData();
                 if (uri != null) {
@@ -417,6 +432,7 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
         popWindow.showAsDropDown(v, 50, 0);
         mPresenter.getDepartmentListPresenter();
     }
+
     //根据科室查询对应病症
     private void initPopWindowDisease(View v) {
         View view = LayoutInflater.from(this).inflate(R.layout.item_popip_disease, null, false);

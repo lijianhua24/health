@@ -4,6 +4,7 @@ import com.wd.health.bean.CircleListShowBean;
 import com.wd.health.bean.PatientDetailsBean;
 import com.wd.health.bean.KeywordSearchBean;
 import com.wd.health.bean.PatientDetailsBean;
+import com.wd.health.bean.QueryCommentBean;
 import com.wd.mylibrary.Base.IBaseView;
 
 /**
@@ -16,16 +17,24 @@ public interface IContractDetails extends IBaseView {
     interface iView extends IBaseView {
         void PatientDetailssuccess(PatientDetailsBean patientDetailsBean);
         void PatientDetailsFailure(Throwable e);
+
+        void QueryCommentsuccess(QueryCommentBean queryCommentBean);
+        void QueryCommentFailure(Throwable e);
     }
 
     interface iModel{
         void getPatientDetails(int userId, String sessionId, int sickCircleId,iPatientDetailsCallBack callBack);
+        void getQueryComment(int userId, String sessionId, int sickCircleId,int page,int count,iPatientDetailsCallBack callBack);
         interface iPatientDetailsCallBack{
             void PatientDetailssuccess(PatientDetailsBean PatientDetailsBean);
             void PatientDetailsFailure(Throwable e);
+
+            void QueryCommentsuccess(QueryCommentBean queryCommentBean);
+            void QueryCommentFailure(Throwable e);
         }
     }
     interface iPresenter{
         void getPatientDetailsPresenter(int userId, String sessionId, int sickCircleId);
+        void getQueryCommentPresenter(int userId, String sessionId, int sickCircleId,int page,int count);
     }
 }

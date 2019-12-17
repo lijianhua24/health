@@ -1,9 +1,12 @@
 package com.wd.health.view.activity;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -12,12 +15,16 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.wd.health.R;
 import com.wd.health.bean.PatientDetailsBean;
+import com.wd.health.bean.QueryCommentBean;
 import com.wd.health.contract.IContractDetails;
 import com.wd.health.presenter.PatientDetailsPresenter;
+import com.wd.health.view.adapter.RecyclerSickCircleCommentListAdapter;
+import com.wd.health.view.custom.SyLinearLayoutManager;
 import com.wd.mylibrary.Base.BaseActivity;
 import com.wd.mylibrary.Test.Logger;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter> implements IContractDetails.iView {
 
@@ -44,6 +51,7 @@ public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter
     private ImageView patient_activity_iv_send_content;
     //输入评论内容
     private EditText patient_activity_et_content;
+    private RecyclerSickCircleCommentListAdapter recyclerSickCircleCommentListAdapter;
 
     @Override
     protected void initData() {
@@ -51,6 +59,17 @@ public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter
         int sickCircleId = intent.getIntExtra("sickCircleId", 0);
         Logger.d("FFFFFFF", sickCircleId + "");
         mPresenter.getPatientDetailsPresenter(445, "1576310426648445", sickCircleId);
+        //关闭帖子
+        patient_activity_iv_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                patient_activity_relative_content.setVisibility(View.GONE);
+                patient_activity_relative_release_sickCircle.setVisibility(View.VISIBLE);
+                InputMethodManager imm =(InputMethodManager)getSystemService(
+                        Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(patient_activity_et_content.getWindowToken(), 0);
+            }
+        });
     }
 
     @Override
@@ -110,12 +129,20 @@ public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter
                 .into(patient_activity_iv_picture);
         patient_activity_tv_commentNum.setText(result.getCommentNum() + "");
         patient_activity_tv_collectionNum.setText(result.getCollectionNum() + "");
-
+        int sickCircleId = result.getSickCircleId();
         patient_activity_iv_intent_release_sickCircle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PatientDetailsActivity.this, ReleaseCirclesActivity.class);
                 startActivity(intent);
+            }
+        });
+        patient_activity_iv_content.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPresenter.getQueryCommentPresenter(445,"1541576408889268154",sickCircleId, 1, 10);
+                patient_activity_relative_content.setVisibility(View.VISIBLE);
+                patient_activity_relative_release_sickCircle.setVisibility(View.GONE);
             }
         });
 
@@ -124,6 +151,23 @@ public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter
 
     @Override
     public void PatientDetailsFailure(Throwable e) {
+
+    }
+
+    @Override
+    public void QueryCommentsuccess(QueryCommentBean queryCommentBean) {
+        if (queryCommentBean.getStatus().equals("0000")){
+            List<QueryCommentBean.ResultBean> result = queryCommentBean.getResult();
+            SyLinearLayoutManager syLinearLayoutManager = new SyLinearLayoutManager(this, SyLinearLayoutManager.VERTICAL, false);
+            recyclerSickCircleCommentListAdapter = new RecyclerSickCircleCommentListAdapter(this);
+            recyclerSickCircleCommentListAdapter.addData(result);
+            recycler_sick_circle_comment_list.setLayoutManager(syLinearLayoutManager);
+            recycler_sick_circle_comment_list.setAdapter(recyclerSickCircleCommentListAdapter);
+        }
+    }
+
+    @Override
+    public void QueryCommentFailure(Throwable e) {
 
     }
 }

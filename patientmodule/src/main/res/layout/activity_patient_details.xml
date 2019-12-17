@@ -231,11 +231,9 @@
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/dp_10"
                             android:textSize="@dimen/sp_12" />
-
                     </LinearLayout>
 
                 </LinearLayout>
-
             </ScrollView>
 
         </LinearLayout>

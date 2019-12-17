@@ -4,6 +4,7 @@ import com.wd.health.bean.CircleListShowBean;
 import com.wd.health.bean.DepartmentListBean;
 import com.wd.health.bean.KeywordSearchBean;
 import com.wd.health.bean.PatientDetailsBean;
+import com.wd.health.bean.QueryCommentBean;
 import com.wd.health.bean.ReleasePatientsBean;
 import com.wd.health.bean.UnitDiseaseBean;
 
@@ -64,6 +65,15 @@ public interface ApiServers {
     @GET("share/knowledgeBase/v1/findDiseaseCategory")
     Observable<UnitDiseaseBean> unitdiseasebean(
             @Query("departmentId") int  departmentId
+    );
+    //查询病友圈详情
+    @GET("user/sickCircle/v1/findSickCircleCommentList")
+    Observable<QueryCommentBean>querycommentbean(
+            @Header("userId")       int userId,
+            @Header("sessionId")    String sessionId,
+            @Query("sickCircleId") int sickCircleId,
+            @Query("page") int page,
+            @Query("count") int count
     );
 
 

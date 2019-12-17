@@ -1,6 +1,7 @@
 package com.wd.health.presenter;
 
 import com.wd.health.bean.PatientDetailsBean;
+import com.wd.health.bean.QueryCommentBean;
 import com.wd.health.contract.IContractDetails;
 import com.wd.health.model.PatientDetailsModel;
 import com.wd.mylibrary.Base.BasePresenter;
@@ -35,6 +36,41 @@ public class PatientDetailsPresenter extends BasePresenter<IContractDetails.iVie
             @Override
             public void PatientDetailsFailure(Throwable e) {
                 getView().PatientDetailsFailure(e);
+            }
+
+            @Override
+            public void QueryCommentsuccess(QueryCommentBean queryCommentBean) {
+
+            }
+
+            @Override
+            public void QueryCommentFailure(Throwable e) {
+
+            }
+        });
+    }
+
+    @Override
+    public void getQueryCommentPresenter(int userId, String sessionId, int sickCircleId, int page, int count) {
+        model.getQueryComment(userId, sessionId, sickCircleId, page, count, new IContractDetails.iModel.iPatientDetailsCallBack() {
+            @Override
+            public void PatientDetailssuccess(PatientDetailsBean PatientDetailsBean) {
+
+            }
+
+            @Override
+            public void PatientDetailsFailure(Throwable e) {
+
+            }
+
+            @Override
+            public void QueryCommentsuccess(QueryCommentBean queryCommentBean) {
+                getView().QueryCommentsuccess(queryCommentBean);
+            }
+
+            @Override
+            public void QueryCommentFailure(Throwable e) {
+                getView().QueryCommentFailure(e);
             }
         });
     }
