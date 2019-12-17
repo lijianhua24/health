@@ -295,4 +295,50 @@ public interface HomeContract {
 
         }
     }
+
+
+    interface SearchContreact {
+        interface IModel {
+            void getSearchModel(String keyWord,IModelSearchCallback callback);
+
+            //model层中的接口回调
+            interface IModelSearchCallback {
+                void onSearchSuccess(Object data);
+
+                void onSearchFailure(Throwable e);
+            }
+
+            void getPopularModel(IModelPopularCallback callback);
+
+            //model层中的接口回调
+            interface IModelPopularCallback {
+                void onPopularSuccess(Object data);
+
+                void onPopularFailure(Throwable e);
+            }
+        }
+
+        //view层  命名必须是IView
+        interface IView extends IBaseView {
+
+
+            void onSearchSuccess(Object data);
+
+            void onSearchFailure(Throwable e);
+
+            void onPopularSuccess(Object data);
+
+            void onPopularFailure(Throwable e);
+
+        }
+
+        //presenter层   命名必须是IPresenter
+        interface IPresenter {
+
+            void getSearchPresenter(String keyWord);
+
+            void getPopularPresenter();
+
+        }
+    }
 }

@@ -8,6 +8,7 @@ import com.wd.homemodel.bean.DepartmentBean;
 import com.wd.homemodel.bean.DrugBean;
 import com.wd.homemodel.bean.FindBean;
 import com.wd.homemodel.bean.InfoSectionBean;
+import com.wd.homemodel.bean.PopularBean;
 import com.wd.homemodel.bean.SearchBean;
 import com.wd.homemodel.bean.SectionBean;
 import com.wd.homemodel.bean.SpyDetailsBean;
@@ -24,9 +25,9 @@ public interface ApiServers {
     @GET("share/v1/bannersShow")
     Observable<BannerBean> getBanner();
 
-   /* //首页搜索
+    //首页搜索
     @GET("share/v1/homePageSearch")
-    Observable<SearchBean> getSearBean(@Query("keyWord") String keyWord);*/
+    Observable<SearchBean> getSearBean(@Query("keyWord") String keyWord);
 
     //查询健康资讯板块
     @GET("share/information/v1/findInformationPlateList")
@@ -64,5 +65,7 @@ public interface ApiServers {
     @GET("share/information/v1/findInformation")
     Observable<SpyDetailsBean> getSpyDetal(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("infoId")Integer infoId);
 
-    //
+    //热门搜索
+    @GET("share/v1/popularSearch")
+    Observable<PopularBean> getPopular();
 }

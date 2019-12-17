@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.SpyDetailsActivity"></activity>
+        <activity android:name=".view.SouActivity"></activity>
+        <activity android:name=".view.SpyDetailsActivity" />
         <activity android:name=".view.SectionActivity" />
         <activity android:name=".view.CmedicinesActivity" />
         <activity android:name=".view.FindActivity" />

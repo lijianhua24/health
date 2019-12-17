@@ -6,6 +6,8 @@ import com.wd.homemodel.bean.DepartmentBean;
 import com.wd.homemodel.bean.DrugBean;
 import com.wd.homemodel.bean.FindBean;
 import com.wd.homemodel.bean.InfoSectionBean;
+import com.wd.homemodel.bean.PopularBean;
+import com.wd.homemodel.bean.SearchBean;
 import com.wd.homemodel.bean.SectionBean;
 import com.wd.homemodel.bean.SpyDetailsBean;
 import com.wd.homemodel.bean.SubjectBean;
@@ -16,7 +18,8 @@ import com.wd.mylibrary.utils.CommonObserver;
 import com.wd.mylibrary.utils.CommonSchedulers;
 
 public class HomeModel implements HomeContract.BnnerContreact.IModel,HomeContract.CommonContreact.IModel,HomeContract.DepartmentContreact.IModel,
-HomeContract.FindContreact.IModel,HomeContract.CmedicinesContreact.IModel,HomeContract.InfoSectionContreact.IModel,HomeContract.SpyDetailsContreact.IModel{
+HomeContract.FindContreact.IModel,HomeContract.CmedicinesContreact.IModel,HomeContract.InfoSectionContreact.IModel,HomeContract.SpyDetailsContreact.IModel,
+HomeContract.SearchContreact.IModel{
 
     @Override
     public void getBannerDataModel(IModelCallback callback) {
@@ -218,6 +221,40 @@ HomeContract.FindContreact.IModel,HomeContract.CmedicinesContreact.IModel,HomeCo
                     @Override
                     public void onError(Throwable e) {
                         callback.onSpyDetailsFailure(e);
+                    }
+                });
+    }
+
+    @Override
+    public void getSearchModel(String keyWord, IModelSearchCallback callback) {
+        RequestNet.getInstance().create().getSearBean(keyWord)
+                .compose(CommonSchedulers.<SearchBean>io2main())
+                .subscribe(new CommonObserver<SearchBean>() {
+                    @Override
+                    public void onNext(SearchBean emailBean) {
+                        callback.onSearchSuccess(emailBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.onSearchFailure(e);
+                    }
+                });
+    }
+
+    @Override
+    public void getPopularModel( IModelPopularCallback callback) {
+        RequestNet.getInstance().create().getPopular()
+                .compose(CommonSchedulers.<PopularBean>io2main())
+                .subscribe(new CommonObserver<PopularBean>() {
+                    @Override
+                    public void onNext(PopularBean emailBean) {
+                        callback.onPopularSuccess(emailBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.onPopularFailure(e);
                     }
                 });
     }

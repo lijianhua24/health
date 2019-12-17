@@ -3,6 +3,8 @@ package com.wd.homemodel.fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +22,7 @@ import com.wd.homemodel.bean.SectionBean;
 import com.wd.homemodel.contract.HomeContract;
 import com.wd.homemodel.presenter.BannerPresenter;
 import com.wd.homemodel.view.SectionActivity;
+import com.wd.homemodel.view.SouActivity;
 import com.wd.mylibrary.Base.BaseFragment;
 
 import java.util.List;
@@ -37,6 +40,8 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements HomeC
     RecyclerView homeRecy2;
     @BindView(R.id.home_gengduo)
     TextView homeGengduo;
+    @BindView(R.id.home_sou)
+    Button homeSou;
     private int i1;
     private List<BannerBean.ResultBean> bannerlist;
     private List<SectionBean.ResultBean> sectionlist;
@@ -91,7 +96,7 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements HomeC
                 @Override
                 public void getChange(int i) {
                     // ToastUtils.show(i);
-                    if (i!=0){
+                    if (i != 0) {
                         i1 = i;
                         mPresenter.getInfoSectionPresenter(i + "", 1, 5);
                     }
@@ -144,6 +149,13 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements HomeC
         homeRecy2.setLayoutManager(new LinearLayoutManager(getActivity()));
         homeRecy.setNestedScrollingEnabled(false);
         homeRecy2.setNestedScrollingEnabled(false);
+        homeSou.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), SouActivity.class));
+            }
+        });
+
 
     }
 
@@ -155,9 +167,9 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements HomeC
     @OnClick(R.id.home_gengduo)
     public void onViewClicked() {
         Toast.makeText(getActivity(), "更多", Toast.LENGTH_SHORT).show();
-            SharedPreferences.Editor edit = App.sharedPreferences.edit();
-            edit.putInt("i1",i1);
-            edit.commit();
-            startActivity(new Intent(getActivity(), SectionActivity.class));
+        SharedPreferences.Editor edit = App.sharedPreferences.edit();
+        edit.putInt("i1", i1);
+        edit.commit();
+        startActivity(new Intent(getActivity(), SectionActivity.class));
     }
 }
