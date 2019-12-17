@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.activity.SearchActivity">
+    <RelativeLayout
+        android:id="@+id/patient_relative_serach"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_74"
+        android:background="#ffff"
+        android:visibility="visible">
+        <ImageView
+            android:id="@+id/search_back"
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_24"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:background="@mipmap/back"
+            android:textColor="#0DB1FA" />
+        <EditText
+            android:id="@+id/search_keyword"
+            android:layout_width="@dimen/dp_210"
+            android:layout_height="@dimen/dp_28"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_30"
+            android:background="@drawable/ed_back_shape"
+            android:hint="请输入病症名称或标题关键字"
+            android:paddingLeft="@dimen/dp_10"
+            android:src="@null"
+            android:textSize="@dimen/sp_12" />
+
+        <TextView
+            android:id="@+id/search_text"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_24"
+            android:textColor="#3087ea"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/dp_28"
+            android:text="搜索"
+            android:layout_marginRight="@dimen/dp_20" />
+
+    </RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/search_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+</LinearLayout>
