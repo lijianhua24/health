@@ -1,6 +1,7 @@
 package com.wd.homemodel.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.homemodel.R;
 import com.wd.homemodel.bean.DepartmentBean;
 import com.wd.homemodel.bean.SectionBean;
+import com.wd.homemodel.view.InquiryActivity;
 
 import java.net.URI;
 import java.util.List;
@@ -39,6 +41,12 @@ public class DepartentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
             ((MyHolder) holder).image.setImageURI(Uri.parse(departmentlist.get(position).getPic()));
             ((MyHolder) holder).name.setText(departmentlist.get(position).getDepartmentName());
+            ((MyHolder) holder).name.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    context.startActivity(new Intent(context, InquiryActivity.class));
+                }
+            });
         }
     }
 
