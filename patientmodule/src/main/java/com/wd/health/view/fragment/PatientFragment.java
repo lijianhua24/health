@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.EditText;
@@ -44,14 +45,13 @@ import com.wd.health.view.custom.ObservableScrollView;
 import com.wd.mylibrary.Base.BaseFragment;
 import com.wd.mylibrary.Test.Logger;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class PatientFragment extends BaseFragment<DepartmentListPresenter> implements ObservableScrollView.ScrollViewListener, IContract.iView {
-
-    private RecyclerConsultationAdapter recyclerConsultationAdapter;
     private int mImageHeight;
-    private List<DepartmentListBean.ResultBean> result;
+    private List<DepartmentListBean.ResultBean> result1;
     private int positions;
     private int id;
     private ImageView patient_iv_user_message;
@@ -61,41 +61,46 @@ public class PatientFragment extends BaseFragment<DepartmentListPresenter> imple
 
     private RelativeLayout patient_relative_titlebar;
     private TextView patient_tv_department_name;
-    private TextView patient_fragment_tv_select;
     //用户收到的消息
     private ImageView patient_iv_user_news;
     private RelativeLayout patient_relative_serach;
     private ObservableScrollView patient_scorll_view;
-    private LinearLayout patient_linear_layout;
-    private List<CircleListShowBean.ResultBean> showBeanResult;
+    private RelativeLayout patient_linear_layout;
 
     //病友圈列表展示
-
-    private RecyclerSickCircleAdapter recyclerSickCircleAdapter;
     private EditText patient_tv_department_keyword;
     private KeywordSearchAdapter keywordSearchAdapter;
     private TabLayout patient_tablayout;
     private ViewPager patient_viewpager;
+    private RecyclerView xiangxi_rlv;
+    private int anInt;
 
     @Override
-    protected DepartmentListPresenter providePresenter() {
+    protected DepartmentListPresenter providePresenter(){
         return new DepartmentListPresenter();
     }
 
     @Override
     protected void initData() {
-        mPresenter.getDepartmentListPresenter();
         initListener();
         patient_scorll_view.setScrollViewListener(this);
+        mPresenter.getDepartmentListPresenter();
+        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext());
+        xiangxi_rlv.setLayoutManager(linearLayoutManager1);
+
         patient_tv_department_keyword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                String keyWord = patient_tv_department_keyword.getText().toString().trim();
-                mPresenter.getKeywordSearchPresenter(keyWord);
+                //获取输入框内容
+                String trim = patient_tv_department_keyword.getText().toString().trim();
+                if (trim != null) {
+                    mPresenter.getKeywordSearchPresenter(trim);
+                }
             }
 
             @Override
@@ -117,6 +122,7 @@ public class PatientFragment extends BaseFragment<DepartmentListPresenter> imple
         patient_iv_user_head_pic = getActivity().findViewById(R.id.patient_iv_user_head_pic);
         patient_iv_user_message = getActivity().findViewById(R.id.patient_iv_user_message);
         patient_iv_search = getActivity().findViewById(R.id.patient_iv_search);
+        xiangxi_rlv = getActivity().findViewById(R.id.xiangxi_rlv);
         patient_relative_titlebar = getActivity().findViewById(R.id.patient_relative_titlebar);
         patient_tv_department_name = getActivity().findViewById(R.id.patient_tv_department_name);
         patient_iv_user_news = getActivity().findViewById(R.id.patient_iv_user_news);
@@ -160,7 +166,7 @@ public class PatientFragment extends BaseFragment<DepartmentListPresenter> imple
         } else if (t > 10 && t < mImageHeight) {
             //设置搜索框隐藏
             patient_relative_serach.setVisibility(View.VISIBLE);
-            patient_tv_department_name.setText(result.get(positions).getDepartmentName());
+//            patient_tv_department_name.setText(result1.get(positions).getDepartmentName());
             //标题显示
             patient_relative_titlebar.setVisibility(View.GONE);
         }
@@ -168,33 +174,40 @@ public class PatientFragment extends BaseFragment<DepartmentListPresenter> imple
 
     @Override
     public void DepartmentListsuccess(DepartmentListBean departmentListBean) {
-        Logger.e("FFFF", "" + departmentListBean);
-        result = departmentListBean.getResult();
+        List<DepartmentListBean.ResultBean> result = departmentListBean.getResult();
+        ArrayList<String> list = new ArrayList<>();
+        for (int i=0;i<result.size();i++){
+            list.add(result.get(i).getDepartmentName());
+        }
         patient_viewpager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
             @NonNull
             @Override
             public Fragment getItem(int position) {
-                int id = result.get(position).getId();
+                //创建fragment对象并返回
                 Bundle bundle = new Bundle();
-                bundle.putInt("id", id);
-                SickCircleFragment sickCircleFragment = new SickCircleFragment();
+                anInt = result.get(position).getId();
+                bundle.putInt("anInt", anInt);
+                SickCircleFragment sickCircleFragment= new SickCircleFragment();
                 sickCircleFragment.setArguments(bundle);
                 return sickCircleFragment;
             }
 
             @Override
             public int getCount() {
-                return result.size();
+                return list.size();
             }
 
             @Nullable
             @Override
             public CharSequence getPageTitle(int position) {
-                String departmentName = result.get(position).getDepartmentName();
-                return departmentName;
+                return list.get(position);
             }
+
         });
+        //关联
         patient_tablayout.setupWithViewPager(patient_viewpager);
+        patient_viewpager.setOffscreenPageLimit(list.size());
+
     }
 
     @Override
@@ -214,28 +227,19 @@ public class PatientFragment extends BaseFragment<DepartmentListPresenter> imple
 
     @Override
     public void KeywordSearchsuccess(KeywordSearchBean keywordSearchBean) {
-    /*    Logger.e("FFFF", "" + keywordSearchBean);
-        patient_viewpager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
-            @NonNull
+        List<KeywordSearchBean.ResultBean> result = keywordSearchBean.getResult();
+        keywordSearchAdapter  = new KeywordSearchAdapter(getContext());
+        xiangxi_rlv.setAdapter(keywordSearchAdapter);
+        keywordSearchAdapter.addData(result);
+        keywordSearchAdapter.onItemClickListener(new KeywordSearchAdapter.OnItemClickListener() {
             @Override
-            public Fragment getItem(int position) {
-                SickCircleFragment sickCircleFragment = new SickCircleFragment();
-                return sickCircleFragment;
-            }
-
-            @Override
-            public int getCount() {
-                return PatientFragment.this.result.size();
-            }
-
-            @Nullable
-            @Override
-            public CharSequence getPageTitle(int position) {
-                String departmentName = PatientFragment.this.result.get(position).getDepartmentName();
-                return departmentName;
+            public void onItemClick(int position, int id) {
+                int sickCircleId = result.get(position).getSickCircleId();
+                Intent intent=new Intent(getContext(),PatientDetailsActivity.class);
+                intent.putExtra("sickCircleId",sickCircleId);
+                startActivity(intent);
             }
         });
-        patient_tablayout.setupWithViewPager(patient_viewpager);*/
     }
 
     @Override

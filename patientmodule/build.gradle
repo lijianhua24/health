@@ -40,7 +40,6 @@ dependencies {
     implementation rootProject.ext.dependencies["xrecyclerview"]
     implementation rootProject.ext.dependencies["xrecyclerviews"]
     implementation rootProject.ext.dependencies["glide"]
-    implementation rootProject.ext.dependencies["Dialog"]
     implementation rootProject.ext.dependencies["fresco:fresco"]
 
     implementation project(path: ':mylibrary')

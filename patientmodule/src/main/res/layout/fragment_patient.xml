@@ -8,63 +8,65 @@
     <RelativeLayout
         android:id="@+id/patient_relative_titlebar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_74"
+        android:layout_height="74dp"
         android:background="#ffff">
-
-        <ImageView
-            android:id="@+id/patient_iv_user_head_pic"
-            android:layout_width="@dimen/dp_32"
-            android:layout_height="@dimen/dp_32"
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/circle_touxiang"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/dp_20"
-                android:background="@mipmap/dermatology" />
+            android:layout_marginLeft="15dp"
+            android:background="@mipmap/dermatology"
+
+            app:roundAsCircle="true" />
 
         <ImageView
-            android:id="@+id/patient_iv_user_message"
-            android:layout_width="@dimen/dp_24"
-            android:layout_height="@dimen/dp_24"
+            android:id="@+id/circle_message"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/dp_20"
-            android:background="@mipmap/common_nav_message_black_n" />
+            android:layout_marginRight="15dp"
+            android:src="@mipmap/common_nav_message_black_n"/>
 
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/patient_relative_serach"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_74"
+        android:layout_height="74dp"
         android:background="#ffff"
         android:visibility="gone">
+
         <TextView
             android:id="@+id/patient_tv_department_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginLeft="20dp"
             android:text="内科"
             android:textColor="#0DB1FA"
-            android:textSize="@dimen/sp_16" />
+            android:textSize="18sp" />
+
         <EditText
-            android:id="@+id/patient_tv_department_keyword"
-            android:layout_width="@dimen/dp_210"
-            android:layout_height="@dimen/dp_28"
+            android:layout_width="210dp"
+            android:layout_height="28dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/dp_30"
-            android:maxLines="1"
             android:background="@drawable/ed_back_shape"
             android:hint="请输入病症名称或标题关键字"
-            android:paddingLeft="@dimen/dp_10"
+            android:paddingLeft="10dp"
             android:src="@null"
-            android:textSize="@dimen/sp_12" />
+            android:id="@+id/patient_tv_department_keyword"
+            android:textSize="12sp" />
 
         <ImageView
             android:id="@+id/patient_iv_user_news"
-            android:layout_width="@dimen/dp_24"
-            android:layout_height="@dimen/dp_24"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/dp_20"
+            android:layout_marginRight="20dp"
             android:background="@mipmap/common_nav_message_black_n" />
 
     </RelativeLayout>
@@ -73,42 +75,55 @@
         android:id="@+id/patient_scorll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginTop="10dp"
         android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/patient_linear_layout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_600"
-            android:orientation="vertical">
-            <LinearLayout
-                android:orientation="horizontal"
+            android:layout_height="600dp"
+            >
+
+            <RelativeLayout
+                android:id="@+id/bbb"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_40">
+                android:layout_height="36dp"
+                android:layout_marginTop="6dp"
+                android:background="#ffff">
+
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/patient_tablayout"
+                    app:tabSelectedTextColor="#3087ea"
+                    app:tabMode="scrollable"
+                    app:tabGravity="fill"
+                    android:layout_marginRight="20dp"
+                    android:layout_toLeftOf="@+id/patient_iv_search"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="@dimen/dp_60"
-                    app:tabGravity="fill">
-                </com.google.android.material.tabs.TabLayout>
+                    android:layout_height="match_parent"></com.google.android.material.tabs.TabLayout>
+
                 <ImageView
                     android:id="@+id/patient_iv_search"
-                    android:layout_width="@dimen/dp_24"
-                    android:layout_height="@dimen/dp_24"
-                    android:layout_marginLeft="-40dp"
-                    android:layout_marginTop="@dimen/dp_8"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
                     android:background="@mipmap/common_icon_search_n" />
 
-            </LinearLayout>
+            </RelativeLayout>
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/patient_viewpager"
+                android:layout_below="@id/bbb"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_600">
-            </androidx.viewpager.widget.ViewPager>
+                android:layout_height="600dp"></androidx.viewpager.widget.ViewPager>
+            <androidx.recyclerview.widget.RecyclerView
+                android:visibility="gone"
+                android:layout_below="@id/bbb"
+                android:id="@+id/xiangxi_rlv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
+    </com.wd.health.view.custom.ObservableScrollView>
 
-        </LinearLayout>
-
-        </com.wd.health.view.custom.ObservableScrollView>
 
 </LinearLayout>

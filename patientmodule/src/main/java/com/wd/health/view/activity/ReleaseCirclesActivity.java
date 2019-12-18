@@ -13,12 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,8 +28,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.android.tu.loadingdialog.LoadingDailog;
 import com.bumptech.glide.Glide;
 import com.wd.health.R;
 import com.wd.health.bean.CircleListShowBean;
@@ -87,6 +87,8 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
     private MultipartBody.Part picture;
     private String path;
     private int sickCircleId;
+    private Switch item_switch;
+    private LinearLayout linearLayout;
 
 
     @Override
@@ -96,7 +98,17 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
 
     @Override
     protected void initData() {
-
+        //悬赏额度的开关
+        item_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    linearLayout.setVisibility(View.VISIBLE);
+                } else {
+                    linearLayout.setVisibility(View.GONE);
+                }
+            }
+        });
         //设置在activity启动的时候输入法默认是不开启的
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
@@ -297,6 +309,8 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
     @Override
     protected void initView() {
         release_circle_tv_startTime = (TextView) findViewById(R.id.release_circle_tv_startTime);
+        item_switch = (Switch) findViewById(R.id.item_switch);
+        linearLayout = (LinearLayout) findViewById(R.id.xuanshangedu_linear);
         release_circle_iv_startTime = (RelativeLayout) findViewById(R.id.release_circle_iv_startTime);
         release_circle_iv_choose_department = (RelativeLayout) findViewById(R.id.release_circle_iv_choose_department);
         release_circle_iv_choose_disease = (RelativeLayout) findViewById(R.id.release_circle_iv_choose_disease);
@@ -306,7 +320,6 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
         release_circle_iv_endTime = (RelativeLayout) findViewById(R.id.release_circle_iv_endTime);
         release_circle_iv_upload_Picture = (ImageView) findViewById(R.id.release_circle_iv_upload_Picture);
         release_circle_iv_delete_Picture = (ImageView) findViewById(R.id.release_circle_iv_delete_Picture);
-
         release_sickCircle_iv_user_head_pic = (ImageView) findViewById(R.id.release_sickCircle_iv_user_head_pic);
         patient_iv_user_message = (ImageView) findViewById(R.id.patient_iv_user_message);
         release_circle_et_title = (EditText) findViewById(R.id.release_circle_et_title);

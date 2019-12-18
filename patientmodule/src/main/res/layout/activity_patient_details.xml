@@ -167,10 +167,9 @@
 
                     <ImageView
                         android:id="@+id/patient_activity_iv_picture"
-                        android:layout_width="@dimen/dp_320"
+                        android:layout_width="@dimen/dp_150"
                         android:layout_height="@dimen/dp_144"
                         android:layout_marginTop="@dimen/dp_10"/>
-
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp_34"
