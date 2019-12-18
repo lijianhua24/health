@@ -144,7 +144,7 @@ public class PatientFragment extends BaseFragment<DepartmentListPresenter> imple
             public void onGlobalLayout() {
                 //此时就可以得到控件的高度
                 mImageHeight = patient_linear_layout.getHeight();
-                //我们做的第一件事情就是移除监听,卸磨杀驴,减少内存的消耗
+                //                //我们做的第一件事情就是移除监听,卸磨杀驴,减少内存的消耗
                 patient_linear_layout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
             }
         });
@@ -214,7 +214,28 @@ public class PatientFragment extends BaseFragment<DepartmentListPresenter> imple
 
     @Override
     public void KeywordSearchsuccess(KeywordSearchBean keywordSearchBean) {
+    /*    Logger.e("FFFF", "" + keywordSearchBean);
+        patient_viewpager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
+            @NonNull
+            @Override
+            public Fragment getItem(int position) {
+                SickCircleFragment sickCircleFragment = new SickCircleFragment();
+                return sickCircleFragment;
+            }
 
+            @Override
+            public int getCount() {
+                return PatientFragment.this.result.size();
+            }
+
+            @Nullable
+            @Override
+            public CharSequence getPageTitle(int position) {
+                String departmentName = PatientFragment.this.result.get(position).getDepartmentName();
+                return departmentName;
+            }
+        });
+        patient_tablayout.setupWithViewPager(patient_viewpager);*/
     }
 
     @Override

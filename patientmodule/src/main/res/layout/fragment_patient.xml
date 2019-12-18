@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_74"
         android:background="#ffff"
-        android:visibility="visible">
+        android:visibility="gone">
         <TextView
             android:id="@+id/patient_tv_department_name"
             android:layout_width="wrap_content"
