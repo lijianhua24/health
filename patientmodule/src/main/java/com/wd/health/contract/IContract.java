@@ -2,12 +2,16 @@ package com.wd.health.contract;
 
 import com.wd.health.bean.CircleListShowBean;
 import com.wd.health.bean.DepartmentListBean;
+import com.wd.health.bean.DoTaskBean;
 import com.wd.health.bean.KeywordSearchBean;
 import com.wd.health.bean.ReleasePatientsBean;
 import com.wd.health.bean.UnitDiseaseBean;
+import com.wd.health.bean.UploadPatientBean;
 import com.wd.mylibrary.Base.IBaseView;
 
 import java.util.Map;
+
+import okhttp3.MultipartBody;
 
 /**
  * <p>文件描述：<p>
@@ -31,6 +35,12 @@ public interface IContract  extends IBaseView {
 
         void UnitDiseasessuccess(UnitDiseaseBean unitDiseaseBean);
         void UnitDiseaseFailure(Throwable e);
+
+        void uploadPatientsuccess(UploadPatientBean uploadPatientBean);
+        void uploadPatientFailure(Throwable e);
+
+        void DoTasksuccess(DoTaskBean doTaskBean);
+        void DoTaskFailure(Throwable e);
     }
 
     interface iModel{
@@ -39,7 +49,10 @@ public interface IContract  extends IBaseView {
                                 Map<String ,Object> map,
                                 iDepartmentListCallBack callBack);
         void getKeywordSearch(String keyWord,iDepartmentListCallBack callBack);
+
         void getUnitDisease(int  departmentId,iDepartmentListCallBack callBack);
+        void getuploadPatient(int  userId, String sessionId, int sickCircleId, MultipartBody.Part part, iDepartmentListCallBack callBack);
+        void getDoTask(int  userId, String sessionId, int taskId,iDepartmentListCallBack callBack);
         void getCircleListShow(int departmentId,int page,int count,iDepartmentListCallBack callBack);
         interface iDepartmentListCallBack{
             void DepartmentListsuccess(DepartmentListBean departmentListBean);
@@ -58,6 +71,12 @@ public interface IContract  extends IBaseView {
             void UnitDiseasesuccess(UnitDiseaseBean unitDiseaseBean);
             void UnitDiseaseFailure(Throwable e);
 
+
+            void uploadPatientsuccess(UploadPatientBean uploadPatientBean);
+            void uploadPatientFailure(Throwable e);
+
+            void DoTasksuccess(DoTaskBean doTaskBean);
+            void DoTaskFailure(Throwable e);
         }
     }
     interface iPresenter{
@@ -68,5 +87,8 @@ public interface IContract  extends IBaseView {
                                          Map<String ,Object>map
         );
         void getUnitDiseasePresenter(int departmentId);
+
+        void getuploadPatient(int  userId, String sessionId, int sickCircleId, MultipartBody.Part part);
+        void getDoTask(int  userId, String sessionId, int taskId);
     }
 }

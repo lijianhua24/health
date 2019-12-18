@@ -1,10 +1,10 @@
 package com.wd.health.view.activity;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -13,7 +13,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.health.R;
+import com.wd.health.bean.CommentCircleBean;
 import com.wd.health.bean.PatientDetailsBean;
 import com.wd.health.bean.QueryCommentBean;
 import com.wd.health.contract.IContractDetails;
@@ -22,8 +24,11 @@ import com.wd.health.view.adapter.RecyclerSickCircleCommentListAdapter;
 import com.wd.health.view.custom.SyLinearLayoutManager;
 import com.wd.mylibrary.Base.BaseActivity;
 import com.wd.mylibrary.Test.Logger;
+import com.wd.mylibrary.Test.ToastUtils;
+import com.wd.mylibrary.app.Constant;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter> implements IContractDetails.iView {
@@ -42,12 +47,16 @@ public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter
     private ImageView patient_activity_iv_intent_release_sickCircle;
     private TextView patient_activity_tv_commentNum;
     private TextView patient_activity_tv_collectionNum;
+    private TextView nameNickName;
+    private TextView timeadoptTime;
+    private TextView textadoptComment;
     private RecyclerView recycler_sick_circle_comment_list;
     private TextView patient_activity_tv_treatment_time;
     private ImageView patient_activity_iv_content;
     private RelativeLayout patient_activity_relative_content;
     private ImageView patient_activity_iv_cancel;
     //发表评论
+    private SimpleDraweeView imgHeadPic;
     private ImageView patient_activity_iv_send_content;
     //输入评论内容
     private EditText patient_activity_et_content;
@@ -65,11 +74,20 @@ public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter
             public void onClick(View v) {
                 patient_activity_relative_content.setVisibility(View.GONE);
                 patient_activity_relative_release_sickCircle.setVisibility(View.VISIBLE);
-                InputMethodManager imm =(InputMethodManager)getSystemService(
+                InputMethodManager imm = (InputMethodManager) getSystemService(
                         Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(patient_activity_et_content.getWindowToken(), 0);
             }
         });
+
+        patient_activity_iv_send_content.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String trim = patient_activity_et_content.getText().toString().trim();
+                mPresenter.getCommentCircle(445, "1576550914923445", sickCircleId, trim);
+            }
+        });
+
     }
 
     @Override
@@ -80,7 +98,11 @@ public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter
     @Override
     protected void initView() {
         patient_iv_user_head_pic = (ImageView) findViewById(R.id.patient_iv_user_head_pic);
+        imgHeadPic = (SimpleDraweeView) findViewById(R.id.img_HeadPic);
         patient_activity_tv_title = (TextView) findViewById(R.id.patient_activity_tv_title);
+        nameNickName = (TextView) findViewById(R.id.name_NickName);
+        timeadoptTime = (TextView) findViewById(R.id.time_adoptTime);
+        textadoptComment = (TextView) findViewById(R.id.text_adoptComment);
         patient_iv_user_message = (ImageView) findViewById(R.id.patient_iv_user_message);
         patient_activity_iv_intent_release_sickCircle = (ImageView) findViewById(R.id.patient_activity_iv_intent_release_sickCircle);
         patient_activity_iv_cancel = (ImageView) findViewById(R.id.patient_activity_iv_cancel);
@@ -130,6 +152,14 @@ public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter
         patient_activity_tv_commentNum.setText(result.getCommentNum() + "");
         patient_activity_tv_collectionNum.setText(result.getCollectionNum() + "");
         int sickCircleId = result.getSickCircleId();
+
+        Uri parse = Uri.parse(result.getAdoptHeadPic());
+        imgHeadPic.setImageURI(parse);
+        nameNickName.setText(result.getAdoptNickName());
+        textadoptComment.setText(result.getAdoptComment());
+        Date date1 = new Date(result.getTreatmentEndTime());
+        SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+        textadoptComment.setText(simpleDateFormat1.format(date1));
         patient_activity_iv_intent_release_sickCircle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,7 +170,7 @@ public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter
         patient_activity_iv_content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPresenter.getQueryCommentPresenter(445,"1541576408889268154",sickCircleId, 1, 10);
+                mPresenter.getQueryCommentPresenter(445, "1541576408889268154", sickCircleId, 1, 10);
                 patient_activity_relative_content.setVisibility(View.VISIBLE);
                 patient_activity_relative_release_sickCircle.setVisibility(View.GONE);
             }
@@ -156,7 +186,7 @@ public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter
 
     @Override
     public void QueryCommentsuccess(QueryCommentBean queryCommentBean) {
-        if (queryCommentBean.getStatus().equals("0000")){
+        if (queryCommentBean.getStatus().equals("0000")) {
             List<QueryCommentBean.ResultBean> result = queryCommentBean.getResult();
             SyLinearLayoutManager syLinearLayoutManager = new SyLinearLayoutManager(this, SyLinearLayoutManager.VERTICAL, false);
             recyclerSickCircleCommentListAdapter = new RecyclerSickCircleCommentListAdapter(this);
@@ -168,6 +198,20 @@ public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter
 
     @Override
     public void QueryCommentFailure(Throwable e) {
+
+    }
+
+    @Override
+    public void CommentCirclesuccess(CommentCircleBean commentCircleBean) {
+if (commentCircleBean.getStatus()== Constant.SUCCESS_CODE){
+    ToastUtils.show(commentCircleBean.getMessage());
+}else {
+    ToastUtils.show(commentCircleBean.getMessage());
+}
+    }
+
+    @Override
+    public void CommentCircleFailure(Throwable e) {
 
     }
 }

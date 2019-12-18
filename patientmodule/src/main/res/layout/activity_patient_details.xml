@@ -232,7 +232,86 @@
                             android:layout_marginLeft="@dimen/dp_10"
                             android:textSize="@dimen/sp_12" />
                     </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/adoptFlag"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:layout_width="4dp"
+                                android:layout_height="20dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="10dp"
+                                android:text="被采纳的建议"
+                                android:textColor="#333333"
+                                android:textSize="12sp" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            xmlns:fresco="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp">
+
+                            <com.facebook.drawee.view.SimpleDraweeView
+                                fresco:placeholderImage="@mipmap/dermatology"
+                                fresco:failureImage="@mipmap/dermatology"
+                                android:id="@+id/img_HeadPic"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                />
+
+                            <TextView
+                                android:id="@+id/name_NickName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_toRightOf="@id/img_HeadPic"
+                                android:text="可爱的姑娘"
+                                android:textColor="#333333"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBottom="@id/img_HeadPic"
+                                android:layout_marginLeft="10dp"
+                                android:layout_toRightOf="@id/img_HeadPic"
+                                android:text="获取1000金币"
+                                android:textColor="#ffab26"
+                                android:textSize="10sp" />
+
+                            <TextView
+                                android:id="@+id/time_adoptTime"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:text="201991515:55:56"
+                                android:textColor="#333333"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/text_adoptComment"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp"
+                            android:text="hhhhhhhhhhhhh"
+                            android:textColor="#333333"
+                            android:textSize="12sp" />
+                    </LinearLayout>
                 </LinearLayout>
             </ScrollView>
 

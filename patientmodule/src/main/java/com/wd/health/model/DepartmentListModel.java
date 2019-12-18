@@ -2,9 +2,11 @@ package com.wd.health.model;
 
 import com.wd.health.bean.CircleListShowBean;
 import com.wd.health.bean.DepartmentListBean;
+import com.wd.health.bean.DoTaskBean;
 import com.wd.health.bean.KeywordSearchBean;
 import com.wd.health.bean.ReleasePatientsBean;
 import com.wd.health.bean.UnitDiseaseBean;
+import com.wd.health.bean.UploadPatientBean;
 import com.wd.health.contract.IContract;
 import com.wd.health.utils.ApiServers;
 import com.wd.health.utils.RetrofitManager;
@@ -12,6 +14,9 @@ import com.wd.mylibrary.utils.CommonObserver;
 import com.wd.mylibrary.utils.CommonSchedulers;
 
 import java.util.Map;
+
+import io.reactivex.functions.Consumer;
+import okhttp3.MultipartBody;
 
 /**
  * <p>文件描述：<p>
@@ -89,6 +94,42 @@ public class DepartmentListModel implements IContract.iModel {
                     @Override
                     public void onError(Throwable e) {
                         callBack.UnitDiseaseFailure(e);
+                    }
+                });
+    }
+
+    @Override
+    public void getuploadPatient(int userId, String sessionId, int sickCircleId, MultipartBody.Part part, iDepartmentListCallBack callBack) {
+        RetrofitManager.getInstance().create(ApiServers.class)
+                .UploadPatient(userId, sessionId, sickCircleId, part)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<UploadPatientBean>() {
+                    @Override
+                    public void onNext(UploadPatientBean uploadPatientBean) {
+                        callBack.uploadPatientsuccess(uploadPatientBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callBack.uploadPatientFailure(e);
+                    }
+                });
+    }
+
+    @Override
+    public void getDoTask(int userId, String sessionId, int taskId, iDepartmentListCallBack callBack) {
+        RetrofitManager.getInstance().create(ApiServers.class)
+                .dotaskbean(userId, sessionId, taskId)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<DoTaskBean>() {
+                    @Override
+                    public void onNext(DoTaskBean doTaskBean) {
+                        callBack.DoTasksuccess(doTaskBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callBack.DoTaskFailure(e);
                     }
                 });
     }

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,14 +32,18 @@ import com.bumptech.glide.Glide;
 import com.wd.health.R;
 import com.wd.health.bean.CircleListShowBean;
 import com.wd.health.bean.DepartmentListBean;
+import com.wd.health.bean.DoTaskBean;
 import com.wd.health.bean.KeywordSearchBean;
 import com.wd.health.bean.ReleasePatientsBean;
 import com.wd.health.bean.UnitDiseaseBean;
+import com.wd.health.bean.UploadPatientBean;
 import com.wd.health.contract.IContract;
 import com.wd.health.presenter.DepartmentListPresenter;
 import com.wd.health.view.adapter.ConsultationTwoAdapter;
 import com.wd.health.view.adapter.IllnessAdapter;
 import com.wd.mylibrary.Base.BaseActivity;
+import com.wd.mylibrary.Test.ToastUtils;
+import com.wd.mylibrary.app.Constant;
 import com.wd.mylibrary.utils.ImageUtil;
 
 import java.io.File;
@@ -76,12 +82,12 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
     private EditText release_circle_et_treatmentProcess;
     private Button release_circle_btn_publish;
     private LinearLayout release_circle_linear_sick_circle;
-    private String sessionId;
-    private int userId;
+    private String sessionId = "1576550914923445";
+    private int userId = 445;
     private MultipartBody.Part picture;
     private String path;
     private int sickCircleId;
-    private LoadingDailog loadingDailog;
+
 
     @Override
     protected DepartmentListPresenter providePresenter() {
@@ -193,11 +199,23 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
             @Override
             public void onClick(View v) {
                 Toast.makeText(ReleaseCirclesActivity.this, "打开相册", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Intent.ACTION_PICK);
+                Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                 intent.setType("image/*");
                 startActivityForResult(intent, 1);
             }
         });
+        //删除选中图片
+        release_circle_iv_delete_Picture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                release_circle_iv_upload_Picture.setImageResource(R.mipmap.add);
+            }
+        });
+
+       /* shapeLoadingDialog = new ShapeLoadingDialog.Builder(ReleaseCirclesActivity.this)
+                .loadText("上传图片中...")
+                RepleaseCircleBean
+                .build();*/
         release_circle_btn_publish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -268,7 +286,9 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
                 map.put("amount", 0);
                 //调发布圈子接口
                 mPresenter.getReleasePatientsPresenter(userId, sessionId, map);
-                loadingDailog.show();
+                mPresenter.getuploadPatient(userId, sessionId, sickCircleId, picture);
+
+                /*loadingDailog.show();*/
             }
         });
 
@@ -305,9 +325,10 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
     @Override
     public void DepartmentListsuccess(DepartmentListBean departmentListBean) {
         final List<DepartmentListBean.ResultBean> result = departmentListBean.getResult();
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,5);
+        gridLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
         ConsultationTwoAdapter consultationTwoAdapter = new ConsultationTwoAdapter(result, this);
-        popup_recycler_department.setLayoutManager(linearLayoutManager);
+        popup_recycler_department.setLayoutManager(gridLayoutManager);
         popup_recycler_department.setAdapter(consultationTwoAdapter);
 
         consultationTwoAdapter.onItemClickListener(new ConsultationTwoAdapter.OnItemClickListener() {
@@ -348,7 +369,21 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
 
     @Override
     public void ReleasePatientssuccess(ReleasePatientsBean ReleasePatientsBean) {
-
+                if (ReleasePatientsBean.getStatus().equals("0000")) {
+            Toast.makeText(this, ReleasePatientsBean.getMessage(), Toast.LENGTH_SHORT).show();
+            sickCircleId = ReleasePatientsBean.getResult();
+            Log.i("sickCircleId", "publishSuccess: " + "sickCircleId" + sickCircleId);
+            if (picture != null){
+                mPresenter.getuploadPatient(userId,sessionId, sickCircleId,picture);
+            }else {
+                //做任务
+                mPresenter.getDoTask(userId,sessionId,1003);
+//                    shapeLoadingDialog.dismiss();
+                finish();
+            }
+                    } else {
+            Toast.makeText(this, ReleasePatientsBean.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -359,9 +394,10 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
     @Override
     public void UnitDiseasessuccess(UnitDiseaseBean unitDiseaseBean) {
         final List<UnitDiseaseBean.ResultBean> result = unitDiseaseBean.getResult();
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
+        gridLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
         IllnessAdapter illnessAdapter = new IllnessAdapter(result, this);
-        popup_recycler_disease.setLayoutManager(linearLayoutManager);
+        popup_recycler_disease.setLayoutManager(gridLayoutManager);
         popup_recycler_disease.setAdapter(illnessAdapter);
 
         illnessAdapter.onItemClickListener(new IllnessAdapter.OnItemClickListener() {
@@ -377,6 +413,38 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
     @Override
     public void UnitDiseaseFailure(Throwable e) {
 
+    }
+
+    @Override
+    public void uploadPatientsuccess(UploadPatientBean uploadPatientBean) {
+        if (uploadPatientBean.getStatus().equals("0000")) {
+            Toast.makeText(this, uploadPatientBean.getMessage(), Toast.LENGTH_SHORT).show();
+            //做任务
+            mPresenter.getDoTask(userId, sessionId, 1003);
+//                shapeLoadingDialog.dismiss();
+            finish();
+        } else {
+            Toast.makeText(this, uploadPatientBean.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void uploadPatientFailure(Throwable e) {
+
+    }
+
+    @Override
+    public void DoTasksuccess(DoTaskBean doTaskBean) {
+        if (doTaskBean.getStatus().equals("0000")){
+            Toast.makeText(this, "每日首发病友圈完成!快去领取奖励吧", Toast.LENGTH_SHORT).show();
+            mPresenter.getuploadPatient(userId,sessionId, sickCircleId,picture);
+        }
+    }
+
+
+
+    @Override
+    public void DoTaskFailure(Throwable e) {
     }
 
     @Override

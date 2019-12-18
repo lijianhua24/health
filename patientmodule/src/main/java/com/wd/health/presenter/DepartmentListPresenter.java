@@ -2,14 +2,18 @@ package com.wd.health.presenter;
 
 import com.wd.health.bean.CircleListShowBean;
 import com.wd.health.bean.DepartmentListBean;
+import com.wd.health.bean.DoTaskBean;
 import com.wd.health.bean.KeywordSearchBean;
 import com.wd.health.bean.ReleasePatientsBean;
 import com.wd.health.bean.UnitDiseaseBean;
+import com.wd.health.bean.UploadPatientBean;
 import com.wd.health.contract.IContract;
 import com.wd.health.model.DepartmentListModel;
 import com.wd.mylibrary.Base.BasePresenter;
 
 import java.util.Map;
+
+import okhttp3.MultipartBody;
 
 /**
  * <p>文件描述：<p>
@@ -73,6 +77,26 @@ public class DepartmentListPresenter extends BasePresenter<IContract.iView> impl
 
             }
 
+            @Override
+            public void uploadPatientsuccess(UploadPatientBean uploadPatientBean) {
+
+            }
+
+            @Override
+            public void uploadPatientFailure(Throwable e) {
+
+            }
+
+            @Override
+            public void DoTasksuccess(DoTaskBean doTaskBean) {
+
+            }
+
+            @Override
+            public void DoTaskFailure(Throwable e) {
+
+            }
+
 
         });
     }
@@ -131,6 +155,26 @@ public class DepartmentListPresenter extends BasePresenter<IContract.iView> impl
             public void UnitDiseaseFailure(Throwable e) {
 
             }
+
+            @Override
+            public void uploadPatientsuccess(UploadPatientBean uploadPatientBean) {
+
+            }
+
+            @Override
+            public void uploadPatientFailure(Throwable e) {
+
+            }
+
+            @Override
+            public void DoTasksuccess(DoTaskBean doTaskBean) {
+
+            }
+
+            @Override
+            public void DoTaskFailure(Throwable e) {
+
+            }
         });
     }
 
@@ -184,6 +228,26 @@ public class DepartmentListPresenter extends BasePresenter<IContract.iView> impl
 
             @Override
             public void UnitDiseaseFailure(Throwable e) {
+
+            }
+
+            @Override
+            public void uploadPatientsuccess(UploadPatientBean uploadPatientBean) {
+
+            }
+
+            @Override
+            public void uploadPatientFailure(Throwable e) {
+
+            }
+
+            @Override
+            public void DoTasksuccess(DoTaskBean doTaskBean) {
+
+            }
+
+            @Override
+            public void DoTaskFailure(Throwable e) {
 
             }
         });
@@ -240,6 +304,26 @@ public class DepartmentListPresenter extends BasePresenter<IContract.iView> impl
             public void UnitDiseaseFailure(Throwable e) {
 
             }
+
+            @Override
+            public void uploadPatientsuccess(UploadPatientBean uploadPatientBean) {
+
+            }
+
+            @Override
+            public void uploadPatientFailure(Throwable e) {
+
+            }
+
+            @Override
+            public void DoTasksuccess(DoTaskBean doTaskBean) {
+
+            }
+
+            @Override
+            public void DoTaskFailure(Throwable e) {
+
+            }
         });
     }
 
@@ -294,6 +378,176 @@ public class DepartmentListPresenter extends BasePresenter<IContract.iView> impl
             @Override
             public void UnitDiseaseFailure(Throwable e) {
                 getView().UnitDiseaseFailure(e);
+            }
+
+            @Override
+            public void uploadPatientsuccess(UploadPatientBean uploadPatientBean) {
+
+            }
+
+            @Override
+            public void uploadPatientFailure(Throwable e) {
+
+            }
+
+            @Override
+            public void DoTasksuccess(DoTaskBean doTaskBean) {
+
+            }
+
+            @Override
+            public void DoTaskFailure(Throwable e) {
+
+            }
+        });
+    }
+
+    @Override
+    public void getuploadPatient(int userId, String sessionId, int sickCircleId, MultipartBody.Part part) {
+        departmentListModel.getuploadPatient(userId, sessionId, sickCircleId, part, new IContract.iModel.iDepartmentListCallBack() {
+            @Override
+            public void DepartmentListsuccess(DepartmentListBean departmentListBean) {
+
+            }
+
+            @Override
+            public void DepartmentListFailure(Throwable e) {
+
+            }
+
+            @Override
+            public void CircleListShowsuccess(CircleListShowBean circleListShowBean) {
+
+            }
+
+            @Override
+            public void CircleListShowFailure(Throwable e) {
+
+            }
+
+            @Override
+            public void KeywordSearchsuccess(KeywordSearchBean keywordSearchBean) {
+
+            }
+
+            @Override
+            public void KeywordSearchFailure(Throwable e) {
+
+            }
+
+            @Override
+            public void ReleasePatientssuccess(ReleasePatientsBean ReleasePatientsBean) {
+
+            }
+
+            @Override
+            public void ReleasePatientsFailure(Throwable e) {
+
+            }
+
+            @Override
+            public void UnitDiseasesuccess(UnitDiseaseBean unitDiseaseBean) {
+
+            }
+
+            @Override
+            public void UnitDiseaseFailure(Throwable e) {
+
+            }
+
+            @Override
+            public void uploadPatientsuccess(UploadPatientBean uploadPatientBean) {
+                getView().uploadPatientsuccess(uploadPatientBean);
+            }
+
+            @Override
+            public void uploadPatientFailure(Throwable e) {
+                getView().uploadPatientFailure(e);
+            }
+
+            @Override
+            public void DoTasksuccess(DoTaskBean doTaskBean) {
+
+            }
+
+            @Override
+            public void DoTaskFailure(Throwable e) {
+
+            }
+        });
+    }
+
+    @Override
+    public void getDoTask(int userId, String sessionId, int taskId) {
+        departmentListModel.getDoTask(userId, sessionId, taskId, new IContract.iModel.iDepartmentListCallBack() {
+            @Override
+            public void DepartmentListsuccess(DepartmentListBean departmentListBean) {
+
+            }
+
+            @Override
+            public void DepartmentListFailure(Throwable e) {
+
+            }
+
+            @Override
+            public void CircleListShowsuccess(CircleListShowBean circleListShowBean) {
+
+            }
+
+            @Override
+            public void CircleListShowFailure(Throwable e) {
+
+            }
+
+            @Override
+            public void KeywordSearchsuccess(KeywordSearchBean keywordSearchBean) {
+
+            }
+
+            @Override
+            public void KeywordSearchFailure(Throwable e) {
+
+            }
+
+            @Override
+            public void ReleasePatientssuccess(ReleasePatientsBean ReleasePatientsBean) {
+
+            }
+
+            @Override
+            public void ReleasePatientsFailure(Throwable e) {
+
+            }
+
+            @Override
+            public void UnitDiseasesuccess(UnitDiseaseBean unitDiseaseBean) {
+
+            }
+
+            @Override
+            public void UnitDiseaseFailure(Throwable e) {
+
+            }
+
+            @Override
+            public void uploadPatientsuccess(UploadPatientBean uploadPatientBean) {
+
+            }
+
+            @Override
+            public void uploadPatientFailure(Throwable e) {
+
+            }
+
+            @Override
+            public void DoTasksuccess(DoTaskBean doTaskBean) {
+                getView().DoTasksuccess(doTaskBean);
+            }
+
+            @Override
+            public void DoTaskFailure(Throwable e) {
+                getView().DoTaskFailure(e);
             }
         });
     }

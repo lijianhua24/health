@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -14,16 +15,24 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.tabs.TabLayout;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.health.R;
 import com.wd.health.bean.CircleListShowBean;
 import com.wd.health.bean.DepartmentListBean;
+import com.wd.health.bean.DoTaskBean;
 import com.wd.health.bean.KeywordSearchBean;
 import com.wd.health.bean.ReleasePatientsBean;
 import com.wd.health.bean.UnitDiseaseBean;
+import com.wd.health.bean.UploadPatientBean;
 import com.wd.health.contract.IContract;
 import com.wd.health.presenter.DepartmentListPresenter;
 import com.wd.health.view.activity.PatientDetailsActivity;
@@ -49,8 +58,7 @@ public class PatientFragment extends BaseFragment<DepartmentListPresenter> imple
     //搜索框
     private ImageView patient_iv_user_head_pic;
     private ImageView patient_iv_search;
-    private RecyclerView patient_recycler_department;
-    private XRecyclerView patient_recycler_sick_circle_list;
+
     private RelativeLayout patient_relative_titlebar;
     private TextView patient_tv_department_name;
     private TextView patient_fragment_tv_select;
@@ -62,11 +70,12 @@ public class PatientFragment extends BaseFragment<DepartmentListPresenter> imple
     private List<CircleListShowBean.ResultBean> showBeanResult;
 
     //病友圈列表展示
-    private int page = 1;
-    private int count1 = 10;
+
     private RecyclerSickCircleAdapter recyclerSickCircleAdapter;
     private EditText patient_tv_department_keyword;
     private KeywordSearchAdapter keywordSearchAdapter;
+    private TabLayout patient_tablayout;
+    private ViewPager patient_viewpager;
 
     @Override
     protected DepartmentListPresenter providePresenter() {
@@ -81,14 +90,12 @@ public class PatientFragment extends BaseFragment<DepartmentListPresenter> imple
         patient_tv_department_keyword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String keyWord = patient_tv_department_keyword.getText().toString().trim();
                 mPresenter.getKeywordSearchPresenter(keyWord);
-                mPresenter.getCircleListShowPresenter(id, page, count1);
             }
 
             @Override
@@ -96,24 +103,6 @@ public class PatientFragment extends BaseFragment<DepartmentListPresenter> imple
 
             }
         });
-
-        //病友圈列表刷新
-        patient_recycler_sick_circle_list.setLoadingListener(new XRecyclerView.LoadingListener() {
-            @Override
-            public void onRefresh() {
-                page = 1;
-                mPresenter.getCircleListShowPresenter(id, page, count1);
-                patient_recycler_sick_circle_list.refreshComplete();
-            }
-
-            @Override
-            public void onLoadMore() {
-                page++;
-                mPresenter.getCircleListShowPresenter(id, page, count1);
-                patient_recycler_sick_circle_list.loadMoreComplete();
-            }
-        });
-
         patient_iv_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,25 +110,23 @@ public class PatientFragment extends BaseFragment<DepartmentListPresenter> imple
                 startActivity(intent);
             }
         });
-
     }
 
-    @SuppressLint("WrongViewCast")
     @Override
     protected void initView() {
         patient_iv_user_head_pic = getActivity().findViewById(R.id.patient_iv_user_head_pic);
         patient_iv_user_message = getActivity().findViewById(R.id.patient_iv_user_message);
         patient_iv_search = getActivity().findViewById(R.id.patient_iv_search);
-        patient_recycler_department = getActivity().findViewById(R.id.patient_recycler_department);
-        patient_recycler_sick_circle_list = getActivity().findViewById(R.id.patient_recycler_sick_circle_list);
         patient_relative_titlebar = getActivity().findViewById(R.id.patient_relative_titlebar);
         patient_tv_department_name = getActivity().findViewById(R.id.patient_tv_department_name);
-        patient_fragment_tv_select = getActivity().findViewById(R.id.patient_fragment_tv_select);
         patient_iv_user_news = getActivity().findViewById(R.id.patient_iv_user_news);
         patient_relative_serach = getActivity().findViewById(R.id.patient_relative_serach);
         patient_scorll_view = getActivity().findViewById(R.id.patient_scorll_view);
         patient_tv_department_keyword = getActivity().findViewById(R.id.patient_tv_department_keyword);
         patient_linear_layout = getActivity().findViewById(R.id.patient_linear_layout);
+        patient_tablayout = getActivity().findViewById(R.id.patient_tablayout);
+        patient_viewpager = getActivity().findViewById(R.id.patient_viewpager);
+
     }
 
     @Override
@@ -183,24 +170,31 @@ public class PatientFragment extends BaseFragment<DepartmentListPresenter> imple
     public void DepartmentListsuccess(DepartmentListBean departmentListBean) {
         Logger.e("FFFF", "" + departmentListBean);
         result = departmentListBean.getResult();
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        patient_recycler_department.setLayoutManager(linearLayoutManager);
-        recyclerConsultationAdapter = new RecyclerConsultationAdapter(getContext());
-        recyclerConsultationAdapter.addData(result);
-        patient_recycler_department.setAdapter(recyclerConsultationAdapter);
-        recyclerConsultationAdapter.onItemClickListener(new RecyclerConsultationAdapter.OnItemClickListener() {
+        patient_viewpager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
+            @NonNull
             @Override
-            public void onItemClick(int position) {
-                positions = position;
-                patient_fragment_tv_select.setVisibility(View.GONE);
-                patient_recycler_sick_circle_list.setVisibility(View.VISIBLE);
-                id = result.get(position).getId();
-                mPresenter.getCircleListShowPresenter(id, page, count1);
+            public Fragment getItem(int position) {
+                int id = result.get(position).getId();
+                Bundle bundle = new Bundle();
+                bundle.putInt("id", id);
+                SickCircleFragment sickCircleFragment = new SickCircleFragment();
+                sickCircleFragment.setArguments(bundle);
+                return sickCircleFragment;
+            }
+
+            @Override
+            public int getCount() {
+                return result.size();
+            }
+
+            @Nullable
+            @Override
+            public CharSequence getPageTitle(int position) {
+                String departmentName = result.get(position).getDepartmentName();
+                return departmentName;
             }
         });
-
-
+        patient_tablayout.setupWithViewPager(patient_viewpager);
     }
 
     @Override
@@ -210,21 +204,7 @@ public class PatientFragment extends BaseFragment<DepartmentListPresenter> imple
 
     @Override
     public void CircleListShowsuccess(CircleListShowBean circleListShowBean) {
-        showBeanResult = circleListShowBean.getResult();
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        recyclerSickCircleAdapter = new RecyclerSickCircleAdapter(getContext());
-        recyclerSickCircleAdapter.addData(showBeanResult);
-        patient_recycler_sick_circle_list.setLayoutManager(linearLayoutManager);
-        patient_recycler_sick_circle_list.setAdapter(recyclerSickCircleAdapter);
-        ;
-        recyclerSickCircleAdapter.onItemClickListener(new RecyclerSickCircleAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position, int sickCircleId) {
-                Intent intent = new Intent(getContext(), PatientDetailsActivity.class);
-                intent.putExtra("sickCircleId", sickCircleId);
-                startActivity(intent);
-            }
-        });
+
     }
 
     @Override
@@ -234,14 +214,7 @@ public class PatientFragment extends BaseFragment<DepartmentListPresenter> imple
 
     @Override
     public void KeywordSearchsuccess(KeywordSearchBean keywordSearchBean) {
-        Logger.d("FFEEE",""+keywordSearchBean);
-        List<KeywordSearchBean.ResultBean> result = keywordSearchBean.getResult();
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-            linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-            patient_recycler_sick_circle_list.setLayoutManager(linearLayoutManager);
-            keywordSearchAdapter = new KeywordSearchAdapter(getContext());
-            keywordSearchAdapter.addData(result);
-            patient_recycler_sick_circle_list.setAdapter(keywordSearchAdapter);
+
     }
 
     @Override
@@ -266,6 +239,26 @@ public class PatientFragment extends BaseFragment<DepartmentListPresenter> imple
 
     @Override
     public void UnitDiseaseFailure(Throwable e) {
+
+    }
+
+    @Override
+    public void uploadPatientsuccess(UploadPatientBean uploadPatientBean) {
+
+    }
+
+    @Override
+    public void uploadPatientFailure(Throwable e) {
+
+    }
+
+    @Override
+    public void DoTasksuccess(DoTaskBean doTaskBean) {
+
+    }
+
+    @Override
+    public void DoTaskFailure(Throwable e) {
 
     }
 }

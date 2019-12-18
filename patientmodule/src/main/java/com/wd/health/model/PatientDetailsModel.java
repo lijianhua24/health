@@ -1,5 +1,6 @@
 package com.wd.health.model;
 
+import com.wd.health.bean.CommentCircleBean;
 import com.wd.health.bean.PatientDetailsBean;
 import com.wd.health.bean.QueryCommentBean;
 import com.wd.health.contract.IContractDetails;
@@ -19,6 +20,25 @@ import io.reactivex.schedulers.Schedulers;
  * <p>更改时间：2019/12/14<p>
  */
 public class PatientDetailsModel implements IContractDetails.iModel {
+    @Override
+    public void getCommentCircle(int userId, String sessionId, int sickCircleId, String content, iPatientDetailsCallBack callBack) {
+        RetrofitManager.getInstance().create(ApiServers.class)
+                .commentcirclebean(userId, sessionId, sickCircleId, content)
+                .subscribeOn(Schedulers.io())
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<CommentCircleBean>() {
+                    @Override
+                    public void onNext(CommentCircleBean commentCircleBean) {
+                        callBack.CommentCirclesuccess(commentCircleBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callBack.CommentCircleFailure(e);
+                    }
+                });
+    }
+
     @Override
     public void getPatientDetails(int userId, String sessionId, int sickCircleId, iPatientDetailsCallBack callBack) {
         RetrofitManager.getInstance().create(ApiServers.class)

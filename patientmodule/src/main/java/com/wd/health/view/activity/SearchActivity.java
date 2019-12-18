@@ -14,9 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.wd.health.R;
 import com.wd.health.bean.CircleListShowBean;
 import com.wd.health.bean.DepartmentListBean;
+import com.wd.health.bean.DoTaskBean;
 import com.wd.health.bean.KeywordSearchBean;
 import com.wd.health.bean.ReleasePatientsBean;
 import com.wd.health.bean.UnitDiseaseBean;
+import com.wd.health.bean.UploadPatientBean;
 import com.wd.health.contract.IContract;
 import com.wd.health.presenter.DepartmentListPresenter;
 import com.wd.health.view.adapter.KeywordSearchAdapter;
@@ -139,6 +141,27 @@ public class SearchActivity extends BaseActivity<DepartmentListPresenter> implem
 
     @Override
     public void UnitDiseaseFailure(Throwable e) {
+
+    }
+
+    @Override
+    public void uploadPatientsuccess(UploadPatientBean uploadPatientBean) {
+
+
+    }
+
+    @Override
+    public void uploadPatientFailure(Throwable e) {
+
+    }
+
+    @Override
+    public void DoTasksuccess(DoTaskBean doTaskBean) {
+
+    }
+
+    @Override
+    public void DoTaskFailure(Throwable e) {
 
     }
 }

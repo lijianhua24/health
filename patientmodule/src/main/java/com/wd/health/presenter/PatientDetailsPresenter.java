@@ -1,5 +1,6 @@
 package com.wd.health.presenter;
 
+import com.wd.health.bean.CommentCircleBean;
 import com.wd.health.bean.PatientDetailsBean;
 import com.wd.health.bean.QueryCommentBean;
 import com.wd.health.contract.IContractDetails;
@@ -47,6 +48,16 @@ public class PatientDetailsPresenter extends BasePresenter<IContractDetails.iVie
             public void QueryCommentFailure(Throwable e) {
 
             }
+
+            @Override
+            public void CommentCirclesuccess(CommentCircleBean commentCircleBean) {
+
+            }
+
+            @Override
+            public void CommentCircleFailure(Throwable e) {
+
+            }
         });
     }
 
@@ -71,6 +82,51 @@ public class PatientDetailsPresenter extends BasePresenter<IContractDetails.iVie
             @Override
             public void QueryCommentFailure(Throwable e) {
                 getView().QueryCommentFailure(e);
+            }
+
+            @Override
+            public void CommentCirclesuccess(CommentCircleBean commentCircleBean) {
+
+            }
+
+            @Override
+            public void CommentCircleFailure(Throwable e) {
+
+            }
+        });
+    }
+
+    @Override
+    public void getCommentCircle(int userId, String sessionId, int sickCircleId, String content) {
+        model.getCommentCircle(userId, sessionId, sickCircleId, content, new IContractDetails.iModel.iPatientDetailsCallBack() {
+            @Override
+            public void PatientDetailssuccess(PatientDetailsBean PatientDetailsBean) {
+
+            }
+
+            @Override
+            public void PatientDetailsFailure(Throwable e) {
+
+            }
+
+            @Override
+            public void QueryCommentsuccess(QueryCommentBean queryCommentBean) {
+
+            }
+
+            @Override
+            public void QueryCommentFailure(Throwable e) {
+
+            }
+
+            @Override
+            public void CommentCirclesuccess(CommentCircleBean commentCircleBean) {
+                getView().CommentCirclesuccess(commentCircleBean);
+            }
+
+            @Override
+            public void CommentCircleFailure(Throwable e) {
+                getView().CommentCircleFailure(e);
             }
         });
     }
