@@ -1,6 +1,8 @@
 package com.wd.homemodel.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.homemodel.R;
+import com.wd.homemodel.app.App;
 import com.wd.homemodel.bean.SearchBean;
+import com.wd.homemodel.view.FindActivity;
 import com.wd.homemodel.view.SouActivity;
 
 import java.util.List;
@@ -40,7 +44,11 @@ public class DrugsAdaapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             ((MyHolder) holder).cuowu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    int drugsId = name.get(position).getDrugsId();
+                    SharedPreferences.Editor edit = App.sharedPreferences.edit();
+                    edit.putInt("id",drugsId);
+                    edit.commit();
+                    context.startActivity(new Intent(context, FindActivity.class));
                 }
             });
         }

@@ -1,6 +1,8 @@
 package com.wd.homemodel.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.homemodel.R;
+import com.wd.homemodel.app.App;
 import com.wd.homemodel.bean.HistoryBean;
 import com.wd.homemodel.bean.SearchBean;
+import com.wd.homemodel.view.CmedicinesActivity;
 import com.wd.homemodel.view.SouActivity;
 
 import java.util.ArrayList;
@@ -40,9 +44,16 @@ public class DiseaseAdaapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof MyHolder){
             ((MyHolder) holder).name.setText(name.get(position).getDiseaseName());
-            ((MyHolder) holder).cuowu.setOnClickListener(new View.OnClickListener() {
+            ((MyHolder) holder).relat.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    int diseaseId = name.get(position).getDiseaseId();
+                    String diseaseName = name.get(position).getDiseaseName();
+                    SharedPreferences.Editor edit = App.sharedPreferences.edit();
+                    edit.putInt("bingid",diseaseId);
+                    edit.putString("name",diseaseName);
+                    edit.commit();
+                    context.startActivity(new Intent(context, CmedicinesActivity.class));
 
                 }
             });
@@ -56,12 +67,12 @@ public class DiseaseAdaapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     class MyHolder extends RecyclerView.ViewHolder {
 
         private final TextView name;
-        private final RelativeLayout cuowu;
+        private final RelativeLayout relat;
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.disease_name);
-            cuowu = itemView.findViewById(R.id.disease_relat);
+            relat = itemView.findViewById(R.id.disease_relat);
         }
     }
 }
