@@ -5,6 +5,7 @@
     android:layout_marginLeft="5dp"
     android:paddingTop="10dp"
     android:gravity="center"
+    android:id="@+id/zi_linear_tv"
     android:orientation="vertical"
     android:layout_marginRight="5dp"
     android:layout_marginTop="2dp"

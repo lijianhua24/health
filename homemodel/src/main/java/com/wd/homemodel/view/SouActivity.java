@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.google.gson.Gson;
 import com.wd.homemodel.R;
 import com.wd.homemodel.adapter.DiseaseAdaapter;
 import com.wd.homemodel.adapter.DoctorAdaapter;
@@ -62,13 +61,21 @@ public class SouActivity extends BaseActivity<SearchPresenter> implements HomeCo
     NestedScrollView souSv;
     @BindView(R.id.sou_no)
     LinearLayout souNo;
+    @BindView(R.id.sou_tv_doctors)
+    TextView souTvDoctors;
+    @BindView(R.id.sou_tv_drug)
+    TextView souTvDrug;
+    @BindView(R.id.sou_tv_Illness)
+    TextView souTvIllness;
 
     private TextView textView1;
-    private ArrayList<HistoryBean> name;
+    private ArrayList<HistoryBean> beanArrayList;
     private HistoryAdaapter historyAdaapter;
     String lishi;
+
+    private String lishijilu;
+    private String[] split;
     private SharedPreferences.Editor edit;
-    private ArrayList<HistoryBean> beanArrayList;
 
     @Override
     protected SearchPresenter providePresenter() {
@@ -82,9 +89,10 @@ public class SouActivity extends BaseActivity<SearchPresenter> implements HomeCo
 
     @Override
     protected void initView() {
-        name = new ArrayList<>();
-        beanArrayList = this.name;
-        edit = App.sharedPreferences.edit();
+        //souRecy.setNestedScrollingEnabled(false);
+
+        beanArrayList = new ArrayList<>();
+        edit = App.sharedPreferences1.edit();
         mPresenter.getPopularPresenter();
         souRecy.setNestedScrollingEnabled(false);
         souDoctors.setNestedScrollingEnabled(false);
@@ -94,34 +102,63 @@ public class SouActivity extends BaseActivity<SearchPresenter> implements HomeCo
         souDoctors.setLayoutManager(new LinearLayoutManager(this));
         souDrug.setLayoutManager(new LinearLayoutManager(this));
         souIllness.setLayoutManager(new LinearLayoutManager(this));
-        String lishijilu = App.sharedPreferences.getString("lishijilu", null);
-        if (lishijilu!=null){
+        lishijilu = App.sharedPreferences1.getString("lishijilu", null);
+        if (lishijilu != null) {
             lishi = lishijilu;
-            String[] split = lishijilu.split(",");
+            split = lishijilu.split(",");
             for (int i = 0; i < split.length; i++) {
-               if (split[i]!=null){
-                   this.name.add(new HistoryBean(split[i]));
-               }
+                if (split[i] != null) {
+                    beanArrayList.add(new HistoryBean(split[i]));
+                }
             }
-            historyAdaapter = new HistoryAdaapter(this, this.name);
+            historyAdaapter = new HistoryAdaapter(this, beanArrayList);
             souRecy.setAdapter(historyAdaapter);
         }
-        if (historyAdaapter!=null){
+        if (historyAdaapter != null) {
             historyAdaapter.onChange(new HistoryAdaapter.onLisenter() {
                 @Override
                 public void getlistenter(String name, String id) {
-                    if (name!=null){
+                    if (name != null) {
                         mPresenter.getSearchPresenter(name);
                     }
-                    if (id!=null){
+                    if (id != null) {
+
                         Integer integer = Integer.valueOf(id);
-                        beanArrayList.remove(integer);
+                        String jilu = null;
+                        Log.d("ddddddddddddddd", integer + "");
+                        Toast.makeText(SouActivity.this, ""+integer, Toast.LENGTH_SHORT).show();
+                        for (int i = 0; i < beanArrayList.size(); i++) {
+                            if (i != integer) {
+                                if (jilu == null) {
+                                    String name1 = beanArrayList.get(i).getName();
+                                    jilu = name1 + ",";
+                                } else {
+                                    String name1 = beanArrayList.get(i).getName();
+                                    jilu =  jilu+(name1 + ",");
+                                }
+                                Log.d("1", jilu);
+                                edit.putString("lishijilu", jilu);
+                                edit.commit();
+                            } else  {
+                                Toast.makeText(SouActivity.this, ""+i, Toast.LENGTH_SHORT).show();
+                                beanArrayList.remove(i);
+                            }
+
+
+                        }
+                        if (beanArrayList.size() == 0) {
+                            App.sharedPreferences1.edit().clear().commit();
+                        }
+                        Toast.makeText(SouActivity.this, "" + jilu, Toast.LENGTH_SHORT).show();
                         historyAdaapter.notifyDataSetChanged();
+
                     }
                 }
             });
+
         }
     }
+
 
     @Override
     protected int provideLayoutId() {
@@ -130,45 +167,63 @@ public class SouActivity extends BaseActivity<SearchPresenter> implements HomeCo
 
     @OnClick(R.id.sou_sou)
     public void onViewClicked() {
-        String trim = souEdit.getText().toString().trim();
-        if (trim!=null){
-           for (int i = 0; i < name.size(); i++) {
-               if (name.get(i).getName()!=trim){
-                   name.add(new HistoryBean(trim));
-               }
-           }
-           if (lishi==null){
-               lishi=trim+",";
-           }else {
-               lishi=(trim+",")+lishi;
-           }
-           edit.putString("lishijilu",lishi);
-           edit.commit();
-           mPresenter.getSearchPresenter(trim);
-       }else {
-           Toast.makeText(this, "请输入要搜索的内容", Toast.LENGTH_SHORT).show();
-       }
+        String s = souEdit.getText().toString();
+        String trim = s.trim();
+        if (!trim.isEmpty()) {
+            for (int i = 0; i < beanArrayList.size(); i++) {
+                if (beanArrayList.get(i).getName() != trim) {
+                    beanArrayList.add(new HistoryBean(trim));
+                }
+            }
+            if (lishi == null) {
+                lishi = trim + ",";
+            } else {
+                lishi = (trim + ",") + lishi;
+            }
+            edit.putString("lishijilu", lishi);
+            edit.commit();
+            mPresenter.getSearchPresenter(trim);
+        } else {
+            Toast.makeText(this, "请输入要搜索的内容", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
     @Override
     public void onSearchSuccess(Object data) {
-    //搜索成功
+        //搜索成功
         linearHistory.setVisibility(View.GONE);
         souNo.setVisibility(View.GONE);
         SearchBean searchBean = (SearchBean) data;
-        List<SearchBean.ResultBean.DiseaseSearchVoListBean> diseaseSearchVoList = searchBean.getResult().getDiseaseSearchVoList();
-        List<SearchBean.ResultBean.DoctorSearchVoListBean> doctorSearchVoList = searchBean.getResult().getDoctorSearchVoList();
-        List<SearchBean.ResultBean.DrugsSearchVoListBean> drugsSearchVoList = searchBean.getResult().getDrugsSearchVoList();
-        if (diseaseSearchVoList.size()!=0 || doctorSearchVoList.size()!=0 || drugsSearchVoList.size()!=0){
-            souSv.setVisibility(View.VISIBLE);
-            souIllness.setAdapter(new DiseaseAdaapter(this,diseaseSearchVoList));
-            souDoctors.setAdapter(new DoctorAdaapter(this,doctorSearchVoList));
-            souDrug.setAdapter(new DrugsAdaapter(this,drugsSearchVoList));
-        }else {
-            linearHistory.setVisibility(View.GONE);
-            souSv.setVisibility(View.GONE);
-            souNo.setVisibility(View.VISIBLE);
+        String message = searchBean.getMessage();
+        if (message.contains("搜索成功")) {
+            List<SearchBean.ResultBean.DiseaseSearchVoListBean> diseaseSearchVoList = searchBean.getResult().getDiseaseSearchVoList();
+            List<SearchBean.ResultBean.DoctorSearchVoListBean> doctorSearchVoList = searchBean.getResult().getDoctorSearchVoList();
+            List<SearchBean.ResultBean.DrugsSearchVoListBean> drugsSearchVoList = searchBean.getResult().getDrugsSearchVoList();
+            if (diseaseSearchVoList.size() != 0 || doctorSearchVoList.size() != 0 || drugsSearchVoList.size() != 0) {
+                souSv.setVisibility(View.VISIBLE);
+                souIllness.setAdapter(new DiseaseAdaapter(this, diseaseSearchVoList));
+                souDoctors.setAdapter(new DoctorAdaapter(this, doctorSearchVoList));
+                souDrug.setAdapter(new DrugsAdaapter(this, drugsSearchVoList));
+                if (diseaseSearchVoList.size() == 0) {
+                    souIllness.setVisibility(View.GONE);
+                    souTvIllness.setVisibility(View.GONE);
+                }
+                if (doctorSearchVoList.size() == 0) {
+                    souDoctors.setVisibility(View.GONE);
+                    souTvDoctors.setVisibility(View.GONE);
+                }
+                if (drugsSearchVoList.size() == 0) {
+                    souDrug.setVisibility(View.GONE);
+                    souTvDrug.setVisibility(View.GONE);
+                }
+            } else {
+                linearHistory.setVisibility(View.GONE);
+                souSv.setVisibility(View.GONE);
+                souNo.setVisibility(View.VISIBLE);
+            }
+        } else {
+            Toast.makeText(this, "请输入内容", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -182,7 +237,6 @@ public class SouActivity extends BaseActivity<SearchPresenter> implements HomeCo
         //热门搜索
         PopularBean popularBean = (PopularBean) data;
         List<PopularBean.ResultBean> result = popularBean.getResult();
-        Toast.makeText(this, ""+result.get(0).getName(), Toast.LENGTH_SHORT).show();
         flowlayout = (XCFlowLayout) findViewById(R.id.flowlayout);
         ViewGroup.MarginLayoutParams lp = new ViewGroup.MarginLayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -202,21 +256,21 @@ public class SouActivity extends BaseActivity<SearchPresenter> implements HomeCo
                 @Override
                 public void onClick(View view) {
                     String s = textView1.getText().toString();
-                    for (int j = 0; j < name.size(); j++) {
-                        if (name.get(j).getName()!=s){
-                            SouActivity.this.name.add(new HistoryBean(s));
+                    for (int j = 0; j < beanArrayList.size(); j++) {
+                        if (beanArrayList.get(j).getName() != s) {
+                            SouActivity.this.beanArrayList.add(new HistoryBean(s));
                         }
                     }
-                    historyAdaapter = new HistoryAdaapter(SouActivity.this, name);
+                    historyAdaapter = new HistoryAdaapter(SouActivity.this, beanArrayList);
                     souRecy.setAdapter(historyAdaapter);
-                    if (lishi==null){
-                        lishi=list+",";
+                    if (lishi == null) {
+                        lishi = list + ",";
 
-                    }else {
-                        lishi=(list+",")+lishi;
+                    } else {
+                        lishi = (list + ",") + lishi;
 
                     }
-                    edit.putString("lishijilu",lishi);
+                    edit.putString("lishijilu", lishi);
                     edit.commit();
                     mPresenter.getSearchPresenter(list);
                 }
@@ -229,5 +283,6 @@ public class SouActivity extends BaseActivity<SearchPresenter> implements HomeCo
     public void onPopularFailure(Throwable e) {
 
     }
+
 
 }

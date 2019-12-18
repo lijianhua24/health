@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -41,7 +42,7 @@ public class DepartentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
             ((MyHolder) holder).image.setImageURI(Uri.parse(departmentlist.get(position).getPic()));
             ((MyHolder) holder).name.setText(departmentlist.get(position).getDepartmentName());
-            ((MyHolder) holder).name.setOnClickListener(new View.OnClickListener() {
+            ((MyHolder) holder).linear.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     context.startActivity(new Intent(context, InquiryActivity.class));
@@ -58,11 +59,13 @@ public class DepartentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         private final SimpleDraweeView image;
         private final TextView name;
+        private final LinearLayout linear;
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.zi_section_mv);
             name = itemView.findViewById(R.id.zi_section_tv);
+            linear = itemView.findViewById(R.id.zi_linear_tv);
         }
     }
 }
