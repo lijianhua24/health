@@ -1,5 +1,6 @@
 package com.wd.doctor.model;
 
+import com.wd.doctor.bean.ImageQueryBean;
 import com.wd.doctor.bean.LoginBean;
 import com.wd.doctor.contract.LoginContract;
 import com.wd.doctor.utils.ApiServers;
@@ -28,6 +29,24 @@ public class LoginModel implements LoginContract.iModel {
                     @Override
                     public void onError(Throwable e) {
                         callBack.onLoginFailure(e);
+                    }
+                });
+    }
+
+    @Override
+    public void getImageQueryData(iLoginCallBack callBack) {
+        RetrofitManager.getInstance().create(ApiServers.class)
+                .getImageQuery()
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<ImageQueryBean>() {
+                    @Override
+                    public void onNext(ImageQueryBean imageQueryBean) {
+                        callBack.onImageQuerySuccess(imageQueryBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callBack.onImageQueryFailure(e);
                     }
                 });
     }

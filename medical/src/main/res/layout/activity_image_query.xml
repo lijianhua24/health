@@ -14,11 +14,32 @@
         android:text="为您设置一张证件照吧"
         android:textColor="@color/blue"
         android:layout_marginTop="@dimen/dp_70"
+        android:id="@+id/imqu_tv_one"
         android:layout_marginLeft="@dimen/dp_30"
         ></TextView>
     <com.stx.xhb.androidx.XBanner
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:isClipChildrenModeLessThree="true"
+        android:layout_width="@dimen/dp_300"
+        android:layout_height="@dimen/dp_360"
+        app:isClipChildrenMode="true"
+        android:layout_marginLeft="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_70"
+        app:isAutoPlay="false"
+        android:id="@+id/imqu_xb_xbannerone"
+        app:clipChildrenLeftRightMargin="@dimen/dp_20"
+        app:clipChildrenTopBottomMargin="@dimen/dp_10"
+        android:layout_below="@id/imqu_tv_one"
+        app:pointsVisibility="false"
         ></com.stx.xhb.androidx.XBanner>
+    <Button
+        android:layout_width="@dimen/dp_300"
+        android:layout_height="@dimen/dp_36"
+        android:background="@drawable/btlogin"
+        android:text="完成设置"
+        android:id="@+id/imqu_btn_butone"
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/white"
+        android:layout_marginLeft="@dimen/dp_30"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dp_40"
+        ></Button>
 </RelativeLayout>

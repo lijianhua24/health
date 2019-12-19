@@ -65,7 +65,7 @@ dependencies {
     implementation rootProject.ext.dependencies["fresco:fresco"]
     implementation rootProject.ext.dependencies["recyclerview"]
     implementation rootProject.ext.dependencies["xrecyclerview"]
-//    implementation rootProject.ext.dependencies["Xbanner"]
+    implementation rootProject.ext.dependencies["Xbanner"]
 
     //Tablayout
     implementation 'com.android.support:support-v4:27.1.1'

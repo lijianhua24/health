@@ -68,6 +68,15 @@ public class LoginBean {
         private String sessionId;
         private String userName;
         private int whetherHaveImagePic;
+        private String imagePic;
+
+        public String getImagePic() {
+            return imagePic;
+        }
+
+        public void setImagePic(String imagePic) {
+            this.imagePic = imagePic;
+        }
 
         public int getDepartmentId() {
             return departmentId;

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wd.doctor.R;
+import com.wd.doctor.bean.ImageQueryBean;
 import com.wd.doctor.bean.LoginBean;
 import com.wd.doctor.contract.LoginContract;
 import com.wd.doctor.presenter.LoginPresenter;
@@ -19,6 +20,8 @@ import com.wd.mylibrary.Base.BaseActivity;
 import com.wd.mylibrary.Test.Logger;
 import com.wd.mylibrary.Test.ToastUtils;
 import com.wd.mylibrary.utils.RsaCoder;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,6 +43,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     private boolean lock;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor edit;
+    private Intent intent;
+    private List<ImageQueryBean.ResultBean> result1;
 
     @Override
     protected LoginPresenter providePresenter() {
@@ -121,7 +126,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         Logger.d("LoginActivity",""+loginBean.getMessage());
         ToastUtils.show(""+loginBean.getMessage());
         LoginBean.ResultBean result = loginBean.getResult();
-        if (result != null) {
             String name = result.getName();//姓名
             String inauguralHospital = result.getInauguralHospital();//就职医院
             String jobTitle = result.getJobTitle();//职称
@@ -132,25 +136,36 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
             edit.putString("sessionId",sessionId);
             edit.commit();
 
-            if (loginBean.getMessage().equals("登录成功")) {
-                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                intent.putExtra("name",name);
-                intent.putExtra("inauguralHospital",inauguralHospital);
-                intent.putExtra("jobTitle",jobTitle);
-                intent.putExtra("departmentName",departmentName);
-                startActivity(intent);
-            }else{
+        if (loginBean.getMessage().equals("登录成功")) {
+            intent = new Intent(LoginActivity.this, HomeActivity.class);
+            intent.putExtra("name",name);
+            intent.putExtra("inauguralHospital",inauguralHospital);
+            intent.putExtra("jobTitle",jobTitle);
+            intent.putExtra("departmentName",departmentName);
+            int whetherHaveImagePic = result.getWhetherHaveImagePic();
+            if (whetherHaveImagePic == 1) {
+                intent.putExtra("imagePic",result.getImagePic());
+            } else if (whetherHaveImagePic == 2) {
+                intent.putExtra("imagePic",result1.get(1).getImagePic());
             }
-        }else {
-        }
-
-
+            startActivity(intent);
+        }else{ }
 
     }
 
     @Override
     public void onLoginFailure(Throwable e) {
         ToastUtils.show("登录失败，账号或密码错误");
+
+    }
+
+    @Override
+    public void onImageQuerySuccess(ImageQueryBean imageQueryBean) {
+        result1 = imageQueryBean.getResult();
+    }
+
+    @Override
+    public void onImageQueryFailure(Throwable e) {
 
     }
 

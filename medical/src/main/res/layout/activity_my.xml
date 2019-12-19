@@ -6,12 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".view.MyActivity">
 
-    <ImageView
+    <com.facebook.drawee.view.SimpleDraweeView
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_260"
-        android:src="@mipmap/z"
         android:id="@+id/my_iv_touxiang"
-        ></ImageView>
+        ></com.facebook.drawee.view.SimpleDraweeView>
     <ImageView
         android:layout_width="@dimen/dp_16"
         android:layout_height="@dimen/dp_16"

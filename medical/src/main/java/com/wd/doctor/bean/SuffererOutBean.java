@@ -77,6 +77,15 @@ public class SuffererOutBean {
         private int userId;
         private int whetherContent;
 
+        public String getContent() {
+            return content;
+        }
+
+        public void setContent(String content) {
+            this.content = content;
+        }
+
+        private String content;
         public int getAmount() {
             return amount;
         }

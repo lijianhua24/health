@@ -43,6 +43,7 @@ public class HomeActivity extends BaseActivity {
     RelativeLayout homeRlWenzheng;
     @BindView(R.id.home_rl_dayi)
     RelativeLayout homeRlDayi;
+    private String imagePic;
 
     @Override
     protected BasePresenter providePresenter() {
@@ -53,10 +54,12 @@ public class HomeActivity extends BaseActivity {
     protected void initData() {
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
+        imagePic = intent.getStringExtra("imagePic");
         String inauguralHospital = intent.getStringExtra("inauguralHospital");
         String jobTitle = intent.getStringExtra("jobTitle");
         String departmentName = intent.getStringExtra("departmentName");
-        homeSdvTouxiang.setImageURI("res://mipmap/" + R.mipmap.e);
+//        homeSdvTouxiang.setImageURI("res://mipmap/" + R.mipmap.e);
+        homeSdvTouxiang.setImageURI(imagePic);
         homeTvName.setText(name);//姓名
         homeTvYiyuan.setText(inauguralHospital);//就职医院
         homeTvZhicheng.setText(jobTitle);//职称
@@ -65,7 +68,10 @@ public class HomeActivity extends BaseActivity {
         homeRlGerenwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, MyActivity.class));
+                Intent intent1 = new Intent();
+                intent1.setClass(HomeActivity.this, MyActivity.class);
+                intent1.putExtra("imagePic",imagePic);
+                startActivity(intent1);
             }
         });
         //答疑

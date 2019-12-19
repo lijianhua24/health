@@ -1,5 +1,6 @@
 package com.wd.doctor.presenter;
 
+import com.wd.doctor.bean.PostReviewBean;
 import com.wd.doctor.bean.SuffererOutBean;
 import com.wd.doctor.contract.SuffererOutContract;
 import com.wd.doctor.model.SuffererOutModel;
@@ -34,6 +35,49 @@ public class SuffererOutPresenter extends BasePresenter<SuffererOutContract.iVie
             public void onSuffererOutFailure(Throwable failure) {
                 if (isViewAttached()) {
                     getView().onSuffererOutFailure(failure);
+                }
+            }
+
+            @Override
+            public void onPostReviewSuccess(PostReviewBean postReviewBean) {
+
+            }
+
+            @Override
+            public void onPostReviewFailure(Throwable failure) {
+
+            }
+        });
+    }
+
+    @Override
+    public void getPostReviewPresenter(int doctorId, String sessionId, int sickCircleId, String content) {
+        suffererOutModel.getPostReviewData(doctorId, sessionId, sickCircleId, content, new SuffererOutContract.iModel.iSuffererOutCallBack() {
+            @Override
+            public void onSuffererOutSuccess(SuffererOutBean suffererOutBean) {
+
+            }
+
+            @Override
+            public void onSuffererOutFailure(Throwable failure) {
+
+            }
+
+            @Override
+            public void onPostReviewSuccess(PostReviewBean postReviewBean) {
+                if (isViewAttached()) {
+                    if (postReviewBean != null && Constant.SUCCESS_CODE.equals(postReviewBean.getStatus())) {
+                        getView().onPostReviewSuccess(postReviewBean);
+                    }else {
+                        getView().onPostReviewFailure(new Exception("服务器异常"));
+                    }
+                }
+            }
+
+            @Override
+            public void onPostReviewFailure(Throwable failure) {
+                if (isViewAttached()) {
+                    getView().onPostReviewFailure(failure);
                 }
             }
         });

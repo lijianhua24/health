@@ -3,27 +3,32 @@ package com.wd.doctor.view;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.doctor.R;
+import com.wd.doctor.bean.PostReviewBean;
 import com.wd.doctor.bean.SuffererOutBean;
 import com.wd.doctor.contract.SuffererOutContract;
 import com.wd.doctor.presenter.SuffererOutPresenter;
 import com.wd.doctor.utils.GuideView;
+import com.wd.doctor.utils.InputUtil.HideIMEUtil;
 import com.wd.mylibrary.Base.BaseActivity;
 import com.wd.mylibrary.Test.Logger;
-import com.wd.mylibrary.Test.ToastUtils;
 
 import java.text.SimpleDateFormat;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class SuffererOutActivity extends BaseActivity<SuffererOutPresenter> implements SuffererOutContract.iView {
 
@@ -51,13 +56,35 @@ public class SuffererOutActivity extends BaseActivity<SuffererOutPresenter> impl
     @BindView(R.id.sufferer_tv_amount)
     TextView suffererTvAmount;
     @BindView(R.id.sufferer_iv_dian)
-    TextView suffererIvDian;
+    TextView suffererIvDian;//我来解答
     @BindView(R.id.sufferer_tv_EndTime)
     TextView suffererTvEndTime;
+    @BindView(R.id.tv_my_jd)
+    TextView tvMyJd;//发表完成后的内容文本框
+    @BindView(R.id.linear_cancel_jd)
+    LinearLayout linearCancelJd;//内容文本框的整个布局
+    @BindView(R.id.lin_ll_one)
+    LinearLayout linLlOne;//我来解答的整个布局
+    @BindView(R.id.et_text)
+    EditText etText;
+    @BindView(R.id.img_enjoy)
+    ImageView imgEnjoy;//表情
+    @BindView(R.id.img_send)
+    ImageView imgSend;//发送
+    @BindView(R.id.linear_et)
+    LinearLayout linearEt;
+    @BindView(R.id.relative_edit)
+    RelativeLayout relativeEdit;//输入框整个布局
+    @BindView(R.id.Relative_show)
+    RelativeLayout RelativeShow;
     private SharedPreferences sharedPreferences;
     private GuideView guideView;
     private GuideView guideView2;
     private GuideView guideView3;
+    private int doctorId;
+    private String sessionId;
+    private int sickCircleId;
+    private int whetherContent;
 
 
     @Override
@@ -74,23 +101,50 @@ public class SuffererOutActivity extends BaseActivity<SuffererOutPresenter> impl
                 finish();
             }
         });
+        //点击事件我的解答
+        suffererIvDian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                linLlOne.setVisibility(View.GONE);
+                relativeEdit.setVisibility(View.VISIBLE);
+            }
+        });
+        //发送
+        imgSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String ed_tive = etText.getText().toString().trim();
+                mPresenter.getPostReviewPresenter(doctorId, sessionId, sickCircleId, ed_tive);
+            }
+        });
+
+//        RelativeShow.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (whetherContent == 1) {
+//                    linearCancelJd.setVisibility(View.VISIBLE);
+//                    linLlOne.setVisibility(View.GONE);
+////                    lineView.setVisibility(View.GONE);
+//                } else if (whetherContent == 2) {
+//                    linearCancelJd.setVisibility(View.GONE);
+//                    linLlOne.setVisibility(View.VISIBLE);
+////                    lineView.setVisibility(View.VISIBLE);
+//                }
+//                relativeEdit.setVisibility(View.GONE);
+//                HideIMEUtil.wrap(SuffererOutActivity.this);
+//            }
+//        });
 
     }
 
     @Override
     protected void initView() {
-        boolean b = hasNetwork();
-        if (b) {
-            sharedPreferences = getSharedPreferences("config", MODE_PRIVATE);
-            int doctorId = sharedPreferences.getInt("doctorId", 0);
-            String sessionId = sharedPreferences.getString("sessionId", "");
-            Intent intent = getIntent();
-            int sickCircleId = intent.getIntExtra("sickCircleId", 0);
-            mPresenter.getSuffererOutPresenter(doctorId, sessionId, sickCircleId);
-        }else {
-            ToastUtils.show("请检查一下网络");
-        }
-
+        sharedPreferences = getSharedPreferences("config", MODE_PRIVATE);
+        doctorId = sharedPreferences.getInt("doctorId", 0);
+        sessionId = sharedPreferences.getString("sessionId", "");
+        Intent intent = getIntent();
+        sickCircleId = intent.getIntExtra("sickCircleId", 0);
+        mPresenter.getSuffererOutPresenter(doctorId, sessionId, sickCircleId);
     }
 
     @Override
@@ -103,6 +157,22 @@ public class SuffererOutActivity extends BaseActivity<SuffererOutPresenter> impl
         Logger.d("SuffererOutActivity", "" + suffererOutBean.getMessage());
         SuffererOutBean.ResultBean result = suffererOutBean.getResult();
         if (result != null) {
+            //判断是否评论
+            whetherContent = suffererOutBean.getResult().getWhetherContent();
+            if (whetherContent == 1) {
+                linearCancelJd.setVisibility(View.VISIBLE);
+                linLlOne.setVisibility(View.GONE);
+//                lineView.setVisibility(View.GONE);
+            } else if (whetherContent == 2) {
+                linearCancelJd.setVisibility(View.GONE);
+                linLlOne.setVisibility(View.VISIBLE);
+//                lineView.setVisibility(View.VISIBLE);
+            }
+
+            //解答
+            String content = result.getContent();
+            tvMyJd.setText(content);
+
             suffererTvTitle.setText(result.getTitle());
             suffererTvAuthorName.setText(result.getAuthorName());
             suffererTvDepartmentName.setText(result.getDepartmentName());
@@ -120,7 +190,6 @@ public class SuffererOutActivity extends BaseActivity<SuffererOutPresenter> impl
             suffererImPicture.setImageURI(parse);
             suffererTvAmount.setText(result.getAmount() + "H币");
         } else {
-
         }
 
 
@@ -131,7 +200,22 @@ public class SuffererOutActivity extends BaseActivity<SuffererOutPresenter> impl
 
     }
 
+    @Override
+    public void onPostReviewSuccess(PostReviewBean postReviewBean) {
+        Logger.d("", "" + postReviewBean.getMessage());
+        if (postReviewBean.getMessage().equals("发表成功")) {
+            relativeEdit.setVisibility(View.GONE);
+            HideIMEUtil.wrap(this);
+            mPresenter.getSuffererOutPresenter(doctorId, sessionId, sickCircleId);
+        }
+    }
 
+    @Override
+    public void onPostReviewFailure(Throwable e) {
+
+    }
+
+    //转换时间
     public static class DateFormatUtilTwo {
         public static String format(String date) {
             if (TextUtils.isEmpty(date))
@@ -151,6 +235,8 @@ public class SuffererOutActivity extends BaseActivity<SuffererOutPresenter> impl
             return format.format(time);
         }
     }
+
+    //蒙层引导页
     private void setGuideView() {
 
         // 使用图片
@@ -224,7 +310,7 @@ public class SuffererOutActivity extends BaseActivity<SuffererOutPresenter> impl
 //                })
 //                .build();
 
-        guideView.show();
+//        guideView.show();
     }
 
     @Override

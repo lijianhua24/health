@@ -5,6 +5,7 @@ import com.wd.doctor.bean.DoctorInforBean;
 import com.wd.doctor.bean.EnquiryBean;
 import com.wd.doctor.bean.ImageQueryBean;
 import com.wd.doctor.bean.LoginBean;
+import com.wd.doctor.bean.PostReviewBean;
 import com.wd.doctor.bean.ResidencyBean;
 import com.wd.doctor.bean.SearchSuffererBean;
 import com.wd.doctor.bean.SimagePhotosBean;
@@ -56,6 +57,13 @@ public interface ApiServers {
     Observable<SuffererOutBean> getSuffererOut(@Header("doctorId")int doctorId,
                                                @Header("sessionId")String sessionId,
                                                @Query("sickCircleId")int sickCircleId);
+    //发表评论
+    //http://172.17.8.100/health/doctor/sickCircle/verify/v1/publishComment
+    @POST("doctor/sickCircle/verify/v1/publishComment")
+    Observable<PostReviewBean> getPostReview(@Header("doctorId")int doctorId,
+                                             @Header("sessionId")String sessionId,
+                                             @Query("sickCircleId")int sickCircleId,
+                                             @Query("content")String content);
     //根据关键词查询病友圈
     //http://172.17.8.100/health/doctor/sickCircle/v1/searchSickCircle
     @GET("doctor/sickCircle/v1/searchSickCircle")

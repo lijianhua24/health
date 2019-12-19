@@ -2,7 +2,9 @@ package com.wd.doctor.view;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.doctor.R;
 import com.wd.mylibrary.Base.BaseActivity;
 import com.wd.mylibrary.Base.BasePresenter;
@@ -25,7 +28,7 @@ import butterknife.ButterKnife;
 public class MyActivity extends BaseActivity {
     private static final String TAG = "MyActivity";
     @BindView(R.id.my_iv_touxiang)
-    ImageView myIvTouxiang;
+    SimpleDraweeView myIvTouxiang;
     @BindView(R.id.my_iv_back)
     ImageView myIvBack;
     @BindView(R.id.my_iv_xiaoxin)
@@ -40,7 +43,8 @@ public class MyActivity extends BaseActivity {
     RadioButton myRbtonJianyi;
     @BindView(R.id.my_rbton_huifu)
     RadioButton myRbtonHuifu;
-
+    private String imagePic;
+    private boolean a;
     @Override
     protected BasePresenter providePresenter() {
         return null;
@@ -48,6 +52,14 @@ public class MyActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+
+        //个人形象照
+        Intent intent = getIntent();
+        String imagePic = intent.getStringExtra("imagePic");
+//        myIvTouxiang.setImageURI("res://mipmap/" + R.mipmap.z);
+            myIvTouxiang.setImageURI(imagePic);
+
+
         //返回
         myIvBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,12 +67,14 @@ public class MyActivity extends BaseActivity {
                 finish();
             }
         });
+        //个人信息
         myTvGeren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MyActivity.this,DoctorInforActivity.class));
             }
         });
+
         //更换形象照
         myIvTouxiang.setOnClickListener(new View.OnClickListener() {
             @Override

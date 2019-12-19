@@ -1,5 +1,6 @@
 package com.wd.doctor.contract;
 
+import com.wd.doctor.bean.PostReviewBean;
 import com.wd.doctor.bean.SuffererOutBean;
 import com.wd.mylibrary.Base.IBaseView;
 
@@ -13,16 +14,25 @@ public interface SuffererOutContract {
     interface iView extends IBaseView {
         void onSuffererOutSuccess(SuffererOutBean suffererOutBean);
         void onSuffererOutFailure(Throwable e);
+
+        //发表评论
+        void onPostReviewSuccess(PostReviewBean postReviewBean);
+        void onPostReviewFailure(Throwable e);
     }
     interface iModel{
         void getSuffererOutData(int doctorId,String sessionId,int sickCircleId,iSuffererOutCallBack callBack);
+        void getPostReviewData(int doctorId,String sessionId,int sickCircleId,String content,iSuffererOutCallBack callBack);
         interface iSuffererOutCallBack{
             void onSuffererOutSuccess(SuffererOutBean suffererOutBean);
             void onSuffererOutFailure(Throwable failure);
+
+            void onPostReviewSuccess(PostReviewBean postReviewBean);
+            void onPostReviewFailure(Throwable failure);
         }
 
     }
     interface iPresenter{
         void getSuffererOutPresenter(int doctorId,String sessionId,int sickCircleId);
+        void getPostReviewPresenter(int doctorId,String sessionId,int sickCircleId,String content);
     }
 }
