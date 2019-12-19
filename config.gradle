@@ -86,6 +86,12 @@ ext {
             //xrecyclerview
             "xrecyclerview"      : 'com.jcodecraeer:xrecyclerview:1.5.9',
             "xrecyclerviews"      : 'com.android.support:design:28.0.0',
+            "Dialog"      : 'com.github.gittjy:LoadingDialog:1.0.2',
+            "jjdxm-ijkplayer"        : 'com.dou361.ijkplayer:jjdxm-ijkplayer:1.0.5',
+            "jiaozivideoplayer"      : "cn.jzvd:jiaozivideoplayer:7.0.3",
+            "ijkplayer"              : "tv.danmaku.ijk.media:ijkplayer-java:0.8.8",
+            "ijkplayerarmv7a"        : "tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8",
+            "ijkplayerexo"           : "tv.danmaku.ijk.media:ijkplayer-exo:0.8.8",
 
     ]
 }
