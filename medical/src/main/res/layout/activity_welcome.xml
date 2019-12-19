@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.WelcomeActivity">
+
+    <ImageView
+        android:layout_width="@dimen/dp_118"
+        android:layout_height="@dimen/dp_86"
+        android:src="@mipmap/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_140"
+        android:id="@+id/wc_logo"
+        ></ImageView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_30"
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/blue"
+        android:text="维度健康"
+        android:layout_below="@id/wc_logo"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/wc_jk"
+        ></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/sp_10"
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/blue"
+        android:text="医生版"
+        android:layout_below="@id/wc_jk"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/wc_yis"
+        ></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/sp_10"
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/hui"
+        android:text="八维移动通信学院毕业作品"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dp_40"
+        android:layout_centerHorizontal="true"
+        ></TextView>
+
+</RelativeLayout>

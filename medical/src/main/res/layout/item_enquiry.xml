@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/enqu_item_tv_title"
+        android:textColor="@color/hei"
+        android:textStyle="bold"
+        android:text="急性肠胃炎怎么办"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:textSize="@dimen/sp_16"
+        ></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/enqu_item_tv_title"
+        android:text="过热和湖过热和湖人热过热和湖人热过热和湖人热过热和湖人热过热和湖人热过热和湖人热过热和湖人热人热"
+        android:textSize="@dimen/sp_12"
+        android:lineHeight="@dimen/dp_20"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_10"
+        android:id="@+id/enqu_item_tv_nei"
+        ></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp_20"
+        android:layout_below="@id/enqu_item_tv_nei"
+        android:text="2018-12-25 12:28"
+        android:layout_marginTop="@dimen/dp_16"
+        android:textSize="@dimen/sp_10"
+        android:textColor="@color/hui"
+        android:id="@+id/enqu_item_tv_data"
+        ></TextView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="#f2f2f2"
+        android:layout_below="@id/enqu_item_tv_data"
+        ></View>
+</RelativeLayout>
