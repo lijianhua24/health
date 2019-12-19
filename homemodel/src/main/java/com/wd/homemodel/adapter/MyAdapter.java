@@ -126,7 +126,11 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     ((MyBaoDianHolder) holder).two.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            context.startActivity(new Intent(context, FettleActivity.class));
+                            Intent intent = new Intent();
+                            intent.putExtra("one",true);
+                            intent.setClass(context, FettleActivity.class);
+                            context.startActivity(intent);
+
                         }
                     });
                 }

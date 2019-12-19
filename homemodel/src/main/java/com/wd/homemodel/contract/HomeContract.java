@@ -343,4 +343,48 @@ public interface HomeContract {
     }
 
 
+    interface CheckDoctorsContreact {
+        interface IModel {
+            void getCheckDoctorsModel(Integer deptId,Integer condition,Integer sortBy,Integer page,Integer count,IModelCheckDoctorsCallback callback);
+
+            //model层中的接口回调
+            interface IModelCheckDoctorsCallback {
+                void onCheckDoctorsSuccess(Object data);
+
+                void onCheckDoctorsFailure(Throwable e);
+            }
+
+            void getDoctorDetailsModel(String userId,String sessionId,String doctorId,IModelDoctorDetailsCallback callback);
+
+            //model层中的接口回调
+            interface IModelDoctorDetailsCallback {
+                void onDoctorDetailsSuccess(Object data);
+
+                void onDoctorDetailsFailure(Throwable e);
+            }
+        }
+
+        //view层  命名必须是IView
+        interface IView extends IBaseView {
+
+
+            void onCheckDoctorsSuccess(Object data);
+
+            void onCheckDoctorsFailure(Throwable e);
+
+            void onDoctorDetailsSuccess(Object data);
+
+            void onDoctorDetailsFailure(Throwable e);
+
+        }
+
+        //presenter层   命名必须是IPresenter
+        interface IPresenter {
+
+            void getCheckDoctorsPresenter(Integer deptId,Integer condition,Integer sortBy,Integer page,Integer count);
+
+            void getDoctorDetailsPresenter(String userId,String sessionId,String doctorId);
+
+        }
+    }
 }

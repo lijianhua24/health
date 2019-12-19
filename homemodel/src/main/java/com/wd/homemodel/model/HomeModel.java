@@ -1,8 +1,10 @@
 package com.wd.homemodel.model;
 
 import com.wd.homemodel.bean.BannerBean;
+import com.wd.homemodel.bean.CheckDoctorsBean;
 import com.wd.homemodel.bean.CmedicinesBean;
 import com.wd.homemodel.bean.DepartmentBean;
+import com.wd.homemodel.bean.DoctorDetailsBean;
 import com.wd.homemodel.bean.DrugBean;
 import com.wd.homemodel.bean.FindBean;
 import com.wd.homemodel.bean.InfoSectionBean;
@@ -19,7 +21,7 @@ import com.wd.mylibrary.utils.CommonSchedulers;
 
 public class HomeModel implements HomeContract.BnnerContreact.IModel,HomeContract.CommonContreact.IModel,HomeContract.DepartmentContreact.IModel,
 HomeContract.FindContreact.IModel,HomeContract.CmedicinesContreact.IModel,HomeContract.InfoSectionContreact.IModel,HomeContract.SpyDetailsContreact.IModel,
-HomeContract.SearchContreact.IModel{
+HomeContract.SearchContreact.IModel,HomeContract.CheckDoctorsContreact.IModel{
 
     @Override
     public void getBannerDataModel(IModelCallback callback) {
@@ -255,6 +257,40 @@ HomeContract.SearchContreact.IModel{
                     @Override
                     public void onError(Throwable e) {
                         callback.onPopularFailure(e);
+                    }
+                });
+    }
+
+    @Override
+    public void getCheckDoctorsModel(Integer deptId, Integer condition, Integer sortBy, Integer page, Integer count, IModelCheckDoctorsCallback callback) {
+        RequestNet.getInstance().create().getCheckDoctors(deptId,condition,sortBy,page,count)
+                .compose(CommonSchedulers.<CheckDoctorsBean>io2main())
+                .subscribe(new CommonObserver<CheckDoctorsBean>() {
+                    @Override
+                    public void onNext(CheckDoctorsBean emailBean) {
+                        callback.onCheckDoctorsSuccess(emailBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.onCheckDoctorsFailure(e);
+                    }
+                });
+    }
+
+    @Override
+    public void getDoctorDetailsModel(String userId, String sessionId, String doctorId, IModelDoctorDetailsCallback callback) {
+        RequestNet.getInstance().create().getDoctorDetails(userId,sessionId,doctorId)
+                .compose(CommonSchedulers.<DoctorDetailsBean>io2main())
+                .subscribe(new CommonObserver<DoctorDetailsBean>() {
+                    @Override
+                    public void onNext(DoctorDetailsBean emailBean) {
+                        callback.onDoctorDetailsSuccess(emailBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.onDoctorDetailsFailure(e);
                     }
                 });
     }

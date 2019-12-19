@@ -2,6 +2,7 @@ package com.wd.homemodel.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.homemodel.R;
+import com.wd.homemodel.app.App;
 import com.wd.homemodel.bean.DepartmentBean;
 import com.wd.homemodel.bean.SectionBean;
 import com.wd.homemodel.view.InquiryActivity;
@@ -45,6 +47,11 @@ public class DepartentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             ((MyHolder) holder).linear.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    int id = departmentlist.get(position).getId();
+                    SharedPreferences.Editor edit = App.sharedPreferences.edit();
+                    edit.putInt("position",position);
+                    edit.putInt("id",id);
+                    edit.commit();
                     context.startActivity(new Intent(context, InquiryActivity.class));
                 }
             });

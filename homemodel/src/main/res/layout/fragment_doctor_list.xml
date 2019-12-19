@@ -1,14 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/bai"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".fragment.DoctorListFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tablayout"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="33dp"/>
+    <RelativeLayout
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+        <ImageView
+            android:id="@+id/imgs"
+            android:background="@color/hei"
+            android:layout_width="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_height="200dp"/>
+        <TextView
+            android:text="曾小贤"
+            android:id="@+id/name"
+            android:layout_below="@id/imgs"
+            android:layout_marginLeft="20dp"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginTop="9dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="副主任医师"
+            android:id="@+id/work"
+            android:layout_below="@id/imgs"
+            android:layout_toRightOf="@id/name"
+            android:layout_marginLeft="20dp"
+            android:textSize="10sp"
+            android:layout_marginTop="13dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/address"
+            android:text="东升有福啊大大"
+            android:layout_below="@id/name"
+            android:layout_marginLeft="20dp"
+            android:textSize="12sp"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/good"
+            android:text="好评率 98%"
+            android:layout_below="@id/address"
+            android:layout_marginLeft="20dp"
+            android:textSize="12sp"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="服务患者数 396"
+            android:id="@+id/number"
+            android:layout_below="@id/address"
+            android:layout_toRightOf="@id/good"
+            android:layout_marginLeft="20dp"
+            android:textSize="10sp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="13dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/more"
+            android:src="@mipmap/common_icon_more_n"
+            android:layout_below="@id/imgs"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="26dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"/>
+        <LinearLayout
+            android:layout_below="@id/number"
+            android:orientation="horizontal"
+            android:background="@drawable/back_a"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp">
+            <TextView
+                android:id="@+id/money"
+                android:text="500h/次"
+                android:textColor="@color/hei"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"/>
+            <Button
+                android:id="@+id/btn_go"
+                android:background="@color/lan"
+                android:text="问诊咨询"
+                android:textColor="@color/hei"
+                android:layout_width="98dp"
+                android:layout_height="40dp" />
+        </LinearLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp">
+        <ImageView
+            android:id="@+id/up"
+            android:src="@mipmap/common_list_previous_n"
+            android:layout_marginLeft="10dp"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recy"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_height="match_parent"/>
+        <ImageView
+            android:id="@+id/next"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/common_information_next_n"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"/>
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/page"
+        android:text="第1页"
+        android:textSize="10sp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
-</FrameLayout>
+</LinearLayout>

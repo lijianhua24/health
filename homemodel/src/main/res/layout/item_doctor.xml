@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="91dp"
+    android:layout_height="120dp" android:id="@+id/rela">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:id="@+id/name_item"
+            android:text="昆凌"
+            android:textColor="@color/bai"
+            android:gravity="center"
+            android:layout_alignBottom="@id/img"
+            android:layout_width="match_parent"
+            android:layout_height="26dp"/>
+    </RelativeLayout>
+</RelativeLayout>

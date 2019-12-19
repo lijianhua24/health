@@ -3,14 +3,21 @@ package com.wd.homemodel.view;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.tabs.TabLayout;
 import com.wd.homemodel.R;
+import com.wd.homemodel.app.App;
 import com.wd.homemodel.bean.DepartmentBean;
 import com.wd.homemodel.contract.HomeContract;
+import com.wd.homemodel.fragment.DoctorListFragment;
 import com.wd.homemodel.presenter.FettlesPresenter;
 import com.wd.mylibrary.Base.BaseActivity;
 
@@ -45,7 +52,7 @@ public class InquiryActivity extends BaseActivity<FettlesPresenter> implements H
 
     @Override
     protected void initView() {
-
+        mPresenter.getDepartmentPresenter();
     }
 
     @Override
@@ -57,6 +64,31 @@ public class InquiryActivity extends BaseActivity<FettlesPresenter> implements H
     public void onDepartmentSuccess(Object data) {
         DepartmentBean departmentBean = (DepartmentBean) data;
         List<DepartmentBean.ResultBean> result = departmentBean.getResult();
+        pager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
+            @NonNull
+            @Override
+            public Fragment getItem(int position) {
+                DoctorListFragment doctorListFragment = new DoctorListFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt("departmentId",result.get(position).getId());
+                doctorListFragment.setArguments(bundle);
+                return doctorListFragment;
+            }
+
+            @Override
+            public int getCount() {
+                return result.size();
+            }
+
+            @Nullable
+            @Override
+            public CharSequence getPageTitle(int position) {
+                return result.get(position).getDepartmentName();
+            }
+        });
+        int position1 = App.sharedPreferences.getInt("position", 0);
+        tab.setupWithViewPager(pager);
+           tab.getTabAt(position1).select();
 
     }
 
@@ -75,10 +107,4 @@ public class InquiryActivity extends BaseActivity<FettlesPresenter> implements H
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }

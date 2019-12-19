@@ -2,6 +2,7 @@ package com.wd.homemodel.view;
 
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,6 +13,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.tabs.TabLayout;
 import com.wd.homemodel.R;
+import com.wd.homemodel.app.App;
 import com.wd.homemodel.fragment.commonFragment.DepartmentFragment;
 import com.wd.homemodel.fragment.commonFragment.FettleFragment;
 import com.wd.mylibrary.Base.BaseActivity;
@@ -65,6 +67,16 @@ public class FettleActivity extends BaseActivity {
             }
         });
         fettleTab.setupWithViewPager(fettlePager);
+        fettleTab.setSelectedTabIndicatorHeight(0);
+        boolean one = getIntent().getBooleanExtra("one", false);
+            if (fettleTab!=null){
+                if (one){
+                    fettleTab.getTabAt(0).select();
+                }else {
+                    fettleTab.getTabAt(1).select();
+            }
+        }
+
     }
 
     @Override

@@ -3,8 +3,10 @@ package com.wd.homemodel.utils;
 import android.content.Intent;
 
 import com.wd.homemodel.bean.BannerBean;
+import com.wd.homemodel.bean.CheckDoctorsBean;
 import com.wd.homemodel.bean.CmedicinesBean;
 import com.wd.homemodel.bean.DepartmentBean;
+import com.wd.homemodel.bean.DoctorDetailsBean;
 import com.wd.homemodel.bean.DrugBean;
 import com.wd.homemodel.bean.FindBean;
 import com.wd.homemodel.bean.InfoSectionBean;
@@ -68,4 +70,15 @@ public interface ApiServers {
     //热门搜索
     @GET("share/v1/popularSearch")
     Observable<PopularBean> getPopular();
+
+    //查询问诊医生列表
+    @GET("user/inquiry/v1/findDoctorList")
+    Observable<CheckDoctorsBean> getCheckDoctors(@Query("deptId" ) Integer deptId,@Query("condition") Integer condition,@Query("sortBy") Integer sortBy,@Query("page") Integer page,@Query("count") Integer count);
+
+    //查询医生明细信息
+    @GET("user/inquiry/v1/findDoctorInfo")
+    Observable<DoctorDetailsBean> getDoctorDetails(@Header("userId") String userId,@Header("sessionId") String sessionId,@Query("doctorId") String doctorId);
+
+    //
+
 }
