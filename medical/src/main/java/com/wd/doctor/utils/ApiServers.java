@@ -3,11 +3,14 @@ package com.wd.doctor.utils;
 
 import com.wd.doctor.bean.DoctorInforBean;
 import com.wd.doctor.bean.EnquiryBean;
+import com.wd.doctor.bean.ImageQueryBean;
 import com.wd.doctor.bean.LoginBean;
 import com.wd.doctor.bean.ResidencyBean;
 import com.wd.doctor.bean.SearchSuffererBean;
+import com.wd.doctor.bean.SimagePhotosBean;
 import com.wd.doctor.bean.SuffererDetailBean;
 import com.wd.doctor.bean.SuffererOutBean;
+import com.wd.doctor.bean.UploadPhotoBean;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
@@ -57,4 +60,24 @@ public interface ApiServers {
     //http://172.17.8.100/health/doctor/sickCircle/v1/searchSickCircle
     @GET("doctor/sickCircle/v1/searchSickCircle")
     Observable<SearchSuffererBean> getSearchSufferer(@Query("keyWord")String keyWord);
+
+    //查询系统形象照
+    //http://172.17.8.100/health/doctor/v1/findSystemImagePic
+        @GET("doctor/v1/findSystemImagePic")
+        Observable<ImageQueryBean> getImageQuery();
+
+    //选择系统提供形象照
+    //http://172.17.8.100/health/doctor/verify/v1/chooseImagePic
+    @POST("doctor/verify/v1/chooseImagePic")
+    Observable<SimagePhotosBean> getSimagePhotos(@Header("doctorId")int doctorId,
+                                                 @Header("sessionId")String sessionId,
+                                                 @Query("imagePic")String imagePic);
+
+    //上传形象照
+    //http://172.17.8.100/health/doctor/verify/v1/uploadImagePic
+    @FormUrlEncoded
+    @POST("doctor/verify/v1/uploadImagePic")
+    Observable<UploadPhotoBean> getUploadPhoto(@Header("doctorId")int doctorId,
+                                                @Header("sessionId")String sessionId,
+                                                @Field("imagePic") String imagePic);
 }

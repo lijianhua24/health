@@ -81,10 +81,13 @@ public class SearchSuffererActivity extends BaseActivity<SearchSuffererPresenter
             searchRvRecycler.setLayoutManager(linearLayoutManager);
             SearchSuffererAdapter searchSuffererAdapter = new SearchSuffererAdapter(result, this);
             searchRvRecycler.setAdapter(searchSuffererAdapter);
+
+            searchRvRecycler.setVisibility(View.VISIBLE);
+            searchIvShione.setVisibility(View.GONE);
+            searchTvShitwo.setVisibility(View.GONE);
         } else {
             searchRvRecycler.setVisibility(View.GONE);
             searchIvShione.setVisibility(View.VISIBLE);
-            searchIvShione.setImageResource(R.mipmap.no_search_message);
             searchTvShitwo.setVisibility(View.VISIBLE);
             String trim = searchEtShu.getText().toString().trim();
             searchTvShitwo.setText("抱歉！没有找到  “"+trim+"”  的相关病友圈");

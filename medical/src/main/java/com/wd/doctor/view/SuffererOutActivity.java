@@ -19,6 +19,7 @@ import com.wd.doctor.presenter.SuffererOutPresenter;
 import com.wd.doctor.utils.GuideView;
 import com.wd.mylibrary.Base.BaseActivity;
 import com.wd.mylibrary.Test.Logger;
+import com.wd.mylibrary.Test.ToastUtils;
 
 import java.text.SimpleDateFormat;
 
@@ -78,13 +79,18 @@ public class SuffererOutActivity extends BaseActivity<SuffererOutPresenter> impl
 
     @Override
     protected void initView() {
+        boolean b = hasNetwork();
+        if (b) {
+            sharedPreferences = getSharedPreferences("config", MODE_PRIVATE);
+            int doctorId = sharedPreferences.getInt("doctorId", 0);
+            String sessionId = sharedPreferences.getString("sessionId", "");
+            Intent intent = getIntent();
+            int sickCircleId = intent.getIntExtra("sickCircleId", 0);
+            mPresenter.getSuffererOutPresenter(doctorId, sessionId, sickCircleId);
+        }else {
+            ToastUtils.show("请检查一下网络");
+        }
 
-        sharedPreferences = getSharedPreferences("config", MODE_PRIVATE);
-        int doctorId = sharedPreferences.getInt("doctorId", 0);
-        String sessionId = sharedPreferences.getString("sessionId", "");
-        Intent intent = getIntent();
-        int sickCircleId = intent.getIntExtra("sickCircleId", 0);
-        mPresenter.getSuffererOutPresenter(doctorId, sessionId, sickCircleId);
     }
 
     @Override
@@ -95,8 +101,8 @@ public class SuffererOutActivity extends BaseActivity<SuffererOutPresenter> impl
     @Override
     public void onSuffererOutSuccess(SuffererOutBean suffererOutBean) {
         Logger.d("SuffererOutActivity", "" + suffererOutBean.getMessage());
-        if (suffererOutBean != null) {
-            SuffererOutBean.ResultBean result = suffererOutBean.getResult();
+        SuffererOutBean.ResultBean result = suffererOutBean.getResult();
+        if (result != null) {
             suffererTvTitle.setText(result.getTitle());
             suffererTvAuthorName.setText(result.getAuthorName());
             suffererTvDepartmentName.setText(result.getDepartmentName());

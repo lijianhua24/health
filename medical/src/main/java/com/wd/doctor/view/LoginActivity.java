@@ -55,24 +55,32 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                 startActivity(new Intent(LoginActivity.this,ForgetActivity.class));
             }
         });
-        //登录
-        btLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = etEmail.getText().toString().trim();
-                String pwd = etPwd.getText().toString().trim();
-                if (!email.isEmpty() && !pwd.isEmpty()) {
-                    try {
-                        String s = RsaCoder.encryptByPublicKey(pwd);
-                        mPresenter.getLoginPresenter(email,s);
-                    } catch (Exception e) {
-                        e.printStackTrace();
+
+            //登录
+            btLogin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String email = etEmail.getText().toString().trim();
+                    String pwd = etPwd.getText().toString().trim();
+                    if (!email.isEmpty() && !pwd.isEmpty()) {
+                        try {
+                            String s = RsaCoder.encryptByPublicKey(pwd);
+                            boolean b = hasNetwork();
+                            if (b) {
+                            mPresenter.getLoginPresenter(email,s);
+                            }else {
+                                ToastUtils.show("请检查一下网络");
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }else {
+                        ToastUtils.show("输入不能为空");
                     }
-                }else {
-                    ToastUtils.show("输入不能为空");
                 }
-            }
-        });
+            });
+
+
         //申请入住
         tvSettledIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,29 +121,37 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         Logger.d("LoginActivity",""+loginBean.getMessage());
         ToastUtils.show(""+loginBean.getMessage());
         LoginBean.ResultBean result = loginBean.getResult();
-        String name = result.getName();//姓名
-        String inauguralHospital = result.getInauguralHospital();//就职医院
-        String jobTitle = result.getJobTitle();//职称
-        String departmentName = result.getDepartmentName();//科室名称
-        int doctorId = result.getId();
-        String sessionId = result.getSessionId();
-        edit.putInt("doctorId",doctorId);
-        edit.putString("sessionId",sessionId);
-        edit.commit();
+        if (result != null) {
+            String name = result.getName();//姓名
+            String inauguralHospital = result.getInauguralHospital();//就职医院
+            String jobTitle = result.getJobTitle();//职称
+            String departmentName = result.getDepartmentName();//科室名称
+            int doctorId = result.getId();
+            String sessionId = result.getSessionId();
+            edit.putInt("doctorId",doctorId);
+            edit.putString("sessionId",sessionId);
+            edit.commit();
 
-        if (loginBean.getMessage().equals("登录成功")) {
-            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-            intent.putExtra("name",name);
-            intent.putExtra("inauguralHospital",inauguralHospital);
-            intent.putExtra("jobTitle",jobTitle);
-            intent.putExtra("departmentName",departmentName);
-            startActivity(intent);
+            if (loginBean.getMessage().equals("登录成功")) {
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                intent.putExtra("name",name);
+                intent.putExtra("inauguralHospital",inauguralHospital);
+                intent.putExtra("jobTitle",jobTitle);
+                intent.putExtra("departmentName",departmentName);
+                startActivity(intent);
+            }else{
+            }
+        }else {
         }
+
+
+
     }
 
     @Override
     public void onLoginFailure(Throwable e) {
         ToastUtils.show("登录失败，账号或密码错误");
+
     }
 
 }

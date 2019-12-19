@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.ImageQueryActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp_16"
+        android:textStyle="bold"
+        android:text="为您设置一张证件照吧"
+        android:textColor="@color/blue"
+        android:layout_marginTop="@dimen/dp_70"
+        android:layout_marginLeft="@dimen/dp_30"
+        ></TextView>
+    <com.stx.xhb.androidx.XBanner
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:isClipChildrenModeLessThree="true"
+        ></com.stx.xhb.androidx.XBanner>
+</RelativeLayout>

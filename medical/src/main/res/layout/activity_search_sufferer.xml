@@ -57,6 +57,7 @@
         android:layout_width="@dimen/dp_129"
         android:layout_height="@dimen/dp_129"
         android:layout_below="@id/search_one"
+        android:src="@mipmap/no_search_message"
         android:layout_centerHorizontal="true"
         android:id="@+id/search_iv_shione"
         android:visibility="gone"
