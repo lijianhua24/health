@@ -1,0 +1,82 @@
+package com.wd.health.utils;
+
+import com.wd.health.bean.BannerBean;
+import com.wd.health.bean.CheckDoctorsBean;
+import com.wd.health.bean.CmedicinesBean;
+import com.wd.health.bean.DepartmentBean;
+import com.wd.health.bean.DoctorDetailsBean;
+import com.wd.health.bean.DrugBean;
+import com.wd.health.bean.FindBean;
+import com.wd.health.bean.InfoSectionBean;
+import com.wd.health.bean.PopularBean;
+import com.wd.health.bean.SearchBean;
+import com.wd.health.bean.SectionBean;
+import com.wd.health.bean.SpyDetailsBean;
+import com.wd.health.bean.SubjectBean;
+import com.wd.health.bean.UnitDiseaseBean;
+
+import io.reactivex.Observable;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.Query;
+
+public interface ApiServers {
+    //banner
+    @GET("share/v1/bannersShow")
+    Observable<BannerBean> getBanner();
+
+    //首页搜索
+    @GET("share/v1/homePageSearch")
+    Observable<SearchBean> getSearBean(@Query("keyWord") String keyWord);
+
+    //查询健康资讯板块
+    @GET("share/information/v1/findInformationPlateList")
+    Observable<SectionBean> getSection();
+
+    //查询科室列表
+    @GET("share/knowledgeBase/v1/findDepartment")
+    Observable<DepartmentBean> getDepartment();
+
+    //根据资讯板块查询资讯列表
+    @GET("share/information/v1/findInformationList")
+    Observable<InfoSectionBean> getInFoSection(@Query("plateId") String plateId,@Query("page") Integer page,@Query("count") Integer count);
+
+    //根据科室查询对应病症
+    @GET("share/knowledgeBase/v1/findDiseaseCategory")
+    Observable<UnitDiseaseBean> getUnitsease(@Query("departmentId") Integer departmentId);
+
+    //药品科目分类列表查询
+    @GET("share/knowledgeBase/v1/findDrugsCategoryList")
+    Observable<SubjectBean> getSubject();
+
+    //根据药品类目查询常见药品
+    @GET("share/knowledgeBase/v1/findDrugsKnowledgeList")
+    Observable<DrugBean> getDrug(@Query("drugsCategoryId") Integer drugsCategoryId,@Query("page") Integer page,@Query("count") Integer count);
+
+    //查询常见药品详情
+    @GET("share/knowledgeBase/v1/findDrugsKnowledge")
+    Observable<FindBean> getFind(@Query("id") Integer id);
+
+    //查询常见病症详情
+    @GET("share/knowledgeBase/v1/findDiseaseKnowledge")
+    Observable<CmedicinesBean> getCmedicines(@Query("id") Integer id);
+
+    //资讯详情
+    @GET("share/information/v1/findInformation")
+    Observable<SpyDetailsBean> getSpyDetal(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("infoId")Integer infoId);
+
+    //热门搜索
+    @GET("share/v1/popularSearch")
+    Observable<PopularBean> getPopular();
+
+    //查询问诊医生列表
+    @GET("user/inquiry/v1/findDoctorList")
+    Observable<CheckDoctorsBean> getCheckDoctors(@Query("deptId" ) Integer deptId,@Query("condition") Integer condition,@Query("sortBy") Integer sortBy,@Query("page") Integer page,@Query("count") Integer count);
+
+    //查询医生明细信息
+    @GET("user/inquiry/v1/findDoctorInfo")
+    Observable<DoctorDetailsBean> getDoctorDetails(@Header("userId") String userId,@Header("sessionId") String sessionId,@Query("doctorId") String doctorId);
+
+    //
+
+}

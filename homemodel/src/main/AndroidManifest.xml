@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.wd.homemodel">
+    package="com.wd.health">
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" /> <!-- 相机 -->
@@ -17,7 +18,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.PersonalActivity"></activity>
+        <activity android:name=".JgActivity"></activity>
+        <activity android:name=".view.IMMainActivity" />
+        <activity android:name=".view.PersonalActivity" />
         <activity android:name=".view.InquiryActivity" />
         <activity android:name=".view.SouActivity" />
         <activity android:name=".view.SpyDetailsActivity" />
@@ -40,6 +43,14 @@
         <meta-data
             android:name="design_height_in_dp"
             android:value="640" />
+
+        <service
+            android:name=".XService"
+            android:process=":pushcore">
+            <intent-filter>
+                <action android:name="cn.jiguang.user.service.action" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
