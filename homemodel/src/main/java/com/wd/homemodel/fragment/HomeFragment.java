@@ -163,6 +163,7 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements HomeC
         mPresenter.getDepartmentPresenter();
         mPresenter.getSectionPresenter();
         mPresenter.getInfoSectionPresenter("1", 1, 5);
+        mPresenter.getBnnerPresenter();
         homeRecy.setLayoutManager(new LinearLayoutManager(getActivity()));
         homeRecy2.setLayoutManager(new LinearLayoutManager(getActivity()));
         homeRecy.setNestedScrollingEnabled(false);

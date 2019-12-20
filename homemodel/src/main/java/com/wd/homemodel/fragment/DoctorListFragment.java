@@ -9,28 +9,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
 import com.wd.homemodel.R;
 import com.wd.homemodel.adapter.CheckDortorsAdapter;
-import com.wd.homemodel.adapter.MyAdapter;
 import com.wd.homemodel.app.App;
 import com.wd.homemodel.bean.CheckDoctorsBean;
 import com.wd.homemodel.contract.HomeContract;
 import com.wd.homemodel.presenter.CheckDoctorsPresenter;
 import com.wd.homemodel.view.PersonalActivity;
 import com.wd.mylibrary.Base.BaseFragment;
-import com.wd.mylibrary.Base.BasePresenter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -84,9 +77,8 @@ public class DoctorListFragment extends BaseFragment<CheckDoctorsPresenter> impl
         int id = App.sharedPreferences.getInt("id", 0);
         Bundle arguments = getArguments();
         departmentId = arguments.getInt("departmentId");
-        if (id==departmentId){
+
             mPresenter.getCheckDoctorsPresenter(departmentId, 1, 0, page, 4);
-        }
 
     }
 
@@ -191,6 +183,7 @@ public class DoctorListFragment extends BaseFragment<CheckDoctorsPresenter> impl
 
     @Override
     public void onCheckDoctorsFailure(Throwable e) {
+        Log.d(TAG, "onCheckDoctorsFailure: "+e);
     }
 
     @Override
