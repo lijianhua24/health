@@ -26,6 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="24dp"/>
             <LinearLayout
+                android:backgroundTint="@color/bai"
                 android:background="@color/bai"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"

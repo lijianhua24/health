@@ -87,8 +87,10 @@ public class InquiryActivity extends BaseActivity<FettlesPresenter> implements H
             }
         });
         int position1 = App.sharedPreferences.getInt("position", 0);
+        pager.setCurrentItem(position1);
         tab.setupWithViewPager(pager);
-           tab.getTabAt(position1).select();
+       // pager.getCurrentItem();
+        tab.getTabAt(position1).select();
 
     }
 

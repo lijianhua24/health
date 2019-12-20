@@ -26,6 +26,7 @@ import com.wd.homemodel.app.App;
 import com.wd.homemodel.bean.CheckDoctorsBean;
 import com.wd.homemodel.contract.HomeContract;
 import com.wd.homemodel.presenter.CheckDoctorsPresenter;
+import com.wd.homemodel.view.PersonalActivity;
 import com.wd.mylibrary.Base.BaseFragment;
 import com.wd.mylibrary.Base.BasePresenter;
 
@@ -68,13 +69,6 @@ public class DoctorListFragment extends BaseFragment<CheckDoctorsPresenter> impl
     @BindView(R.id.page)
     TextView page1;
 
-    /*@BindView(R.id.tablayout)
-    TabLayout tab;
-    @BindView(R.id.pager)
-    NoScrollViewPager pager;*/
-
-    /*private ArrayList<String> list;
-    private ArrayList<Fragment> list1;*/
     private int departmentId;
     private int position;
     int page = 1;
@@ -87,9 +81,13 @@ public class DoctorListFragment extends BaseFragment<CheckDoctorsPresenter> impl
 
     @Override
     protected void initData() {
+        int id = App.sharedPreferences.getInt("id", 0);
         Bundle arguments = getArguments();
         departmentId = arguments.getInt("departmentId");
-        mPresenter.getCheckDoctorsPresenter(departmentId, 1, 0, page, 4);
+        if (id==departmentId){
+            mPresenter.getCheckDoctorsPresenter(departmentId, 1, 0, page, 4);
+        }
+
     }
 
     @Override
@@ -240,9 +238,9 @@ public class DoctorListFragment extends BaseFragment<CheckDoctorsPresenter> impl
                 page1.setText("" + page);
                 break;
             case R.id.more:
-                /*Intent intent = new Intent(getActivity(),PersonalActivity.class);
+                Intent intent = new Intent(getActivity(), PersonalActivity.class);
                 intent.putExtra("doctorId",doctorId);
-                startActivity(intent);*/
+                startActivity(intent);
                 break;
         }
     }

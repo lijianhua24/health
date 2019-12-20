@@ -46,16 +46,16 @@ public class SectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     public void onClick(View view) {
                         if (setChage!=null){
                             int id = sectionlist.get(position).getId();
-                            setChage.getChange(id);
+                            setChage.getChange(position,id);
                         }
                     }
                 });
                 //        如果下标和传回来的下标相等 那么确定是点击的条目 把背景设置一下颜色
                 if (position == getmPosition()) {
-                    ((MyHolder) holder).name.setTextColor(context.getResources().getColor(R.color.colorAccent));
+                    ((MyHolder) holder).name.setTextColor(context.getResources().getColor(R.color.lan));
                 }else{
 //            否则的话就全白色初始化背景
-                    ((MyHolder) holder).name.setTextColor(context.getResources().getColor(R.color.colorPrimary));
+                    ((MyHolder) holder).name.setTextColor(context.getResources().getColor(R.color.hei));
                 }
             }
     }
@@ -80,11 +80,14 @@ public class SectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         this.setChage = setChage;
     }
     public interface setChage{
-        void getChange(int i);
+        void getChange(int i,int id);
     }
     private  int mPosition;
 
     public int getmPosition() {
         return mPosition;
+    }
+    public void setmPosition(int mPosition) {
+        this.mPosition = mPosition;
     }
 }

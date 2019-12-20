@@ -2,7 +2,6 @@ package com.wd.homemodel.fragment;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -14,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.wd.homemodel.R;
 import com.wd.homemodel.adapter.InfoSectionAdapter;
 import com.wd.homemodel.adapter.MyAdapter;
+import com.wd.homemodel.adapter.SectionAdapter;
 import com.wd.homemodel.app.App;
 import com.wd.homemodel.bean.BannerBean;
 import com.wd.homemodel.bean.DepartmentBean;
@@ -42,6 +42,8 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements HomeC
     TextView homeGengduo;
     @BindView(R.id.search)
     TextView homeSou;
+    @BindView(R.id.home_InfoSection_recy)
+    RecyclerView homeInfoSectionRecy;
 
     private int i1;
     private List<BannerBean.ResultBean> bannerlist;
@@ -52,10 +54,11 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements HomeC
     @Override
     public void onBnnerSuccess(BannerBean data) {
         String message = data.getMessage();
+        Toast.makeText(getActivity(), ""+message, Toast.LENGTH_SHORT).show();
         Log.d("banner", message);
         bannerlist = data.getResult();
         if (bannerlist != null) {
-            MyAdapter myAdapter = new MyAdapter(getActivity(), bannerlist, sectionlist, departmentlist);
+            MyAdapter myAdapter = new MyAdapter(getActivity(), bannerlist,departmentlist);
             homeRecy.setAdapter(myAdapter);
 
         }
@@ -63,7 +66,7 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements HomeC
 
     @Override
     public void onBnnerFailure(Throwable e) {
-
+        Log.d("2131231231", "onBnnerFailure: "+e);
     }
 
     @Override
@@ -71,9 +74,23 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements HomeC
         SectionBean sectionBean = (SectionBean) data;
         Log.d("sectionBean", sectionBean.getMessage());
         sectionlist = sectionBean.getResult();
-        if (sectionlist != null) {
-            MyAdapter myAdapter = new MyAdapter(getActivity(), bannerlist, sectionlist, departmentlist);
-            homeRecy.setAdapter(myAdapter);
+
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+            linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+        homeInfoSectionRecy.setLayoutManager(linearLayoutManager);
+            if (sectionlist != null) {
+                SectionAdapter sectionAdapter = new SectionAdapter(getActivity(), sectionlist);
+                homeInfoSectionRecy.setAdapter(sectionAdapter);
+                sectionAdapter.onListenter(new SectionAdapter.setChage() {
+                    @Override
+                    public void getChange(int i,int id) {
+                        sectionAdapter.setmPosition(i);
+                        sectionAdapter.notifyDataSetChanged();
+                        if (id!=0){
+                            mPresenter.getInfoSectionPresenter(id+"",1,5);
+                        }
+                    }
+                });
 
         }
     }
@@ -89,7 +106,7 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements HomeC
         Log.d("departmentBean", departmentBean.getMessage());
         departmentlist = departmentBean.getResult();
         if (departmentlist != null) {
-            MyAdapter myAdapter = new MyAdapter(getActivity(), bannerlist, sectionlist, departmentlist);
+            MyAdapter myAdapter = new MyAdapter(getActivity(), bannerlist, departmentlist);
             homeRecy.setAdapter(myAdapter);
             myAdapter.onListenter(new MyAdapter.setChage() {
 

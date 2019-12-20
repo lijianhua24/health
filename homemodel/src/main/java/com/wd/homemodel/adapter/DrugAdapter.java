@@ -56,9 +56,11 @@ public class DrugAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             });
             if (position == getmPosition()) {
                 ((MyHoler) holder).keshi_name.setBackgroundColor(Color.WHITE);
+                ((MyHoler) holder).drug_tiao.setBackgroundColor(context.getResources().getColor(R.color.lan));
             }else{
 //            否则的话就全白色初始化背景
                 ((MyHoler) holder).keshi_name.setBackgroundColor(Color.parseColor("#D5D5D8"));
+                ((MyHoler) holder).drug_tiao.setBackgroundColor(context.getResources().getColor(R.color.hui));
             }
         }
     }
@@ -69,11 +71,12 @@ public class DrugAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
     class MyHoler extends RecyclerView.ViewHolder {
 
-        private final TextView keshi_name;
+        private final TextView keshi_name,drug_tiao;
 
         public MyHoler(@NonNull View itemView) {
             super(itemView);
             keshi_name = itemView.findViewById(R.id.drug_name);
+            drug_tiao = itemView.findViewById(R.id.drug_tiao);
         }
     }
     public void setListenter(getChange getChange){

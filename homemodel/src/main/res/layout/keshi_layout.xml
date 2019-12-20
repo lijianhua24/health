@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:background="@color/hui"
     android:layout_marginTop="15dp"
+
     android:layout_height="wrap_content">
     <TextView
         android:id="@+id/keshi_name"
@@ -11,4 +12,11 @@
         android:textColor="@color/hei"
         android:layout_width="match_parent"
         android:layout_height="48dp"/>
-</LinearLayout>
+    <TextView
+
+        android:layout_marginTop="14dp"
+        android:id="@+id/keshi_tiao"
+        android:background="@color/lan"
+        android:layout_width="4dp"
+        android:layout_height="20dp"/>
+</RelativeLayout>

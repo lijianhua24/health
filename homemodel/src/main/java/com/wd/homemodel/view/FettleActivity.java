@@ -67,7 +67,7 @@ public class FettleActivity extends BaseActivity {
             }
         });
         fettleTab.setupWithViewPager(fettlePager);
-        fettleTab.setSelectedTabIndicatorHeight(0);
+       // fettleTab.setSelectedTabIndicatorHeight(0);
         boolean one = getIntent().getBooleanExtra("one", false);
             if (fettleTab!=null){
                 if (one){

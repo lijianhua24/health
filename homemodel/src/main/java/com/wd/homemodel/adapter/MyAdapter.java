@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
@@ -42,7 +43,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<DepartmentBean.ResultBean> departmentlist;
     private setChage setChage;
 
-    public MyAdapter(FragmentActivity activity, List<BannerBean.ResultBean> bannerlist, List<SectionBean.ResultBean> sectionlist, List<DepartmentBean.ResultBean> departmentlist) {
+    public MyAdapter(FragmentActivity activity, List<BannerBean.ResultBean> bannerlist, List<DepartmentBean.ResultBean> departmentlist) {
         this.context = activity;
         this.sectionlist = sectionlist;
         this.departmentlist = departmentlist;
@@ -65,10 +66,10 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         } else if (viewType == 3) {
             View inflate = LayoutInflater.from(context).inflate(R.layout.pingce_layout, parent, false);
             return new MyPingCeHolder(inflate);
-        } else if (viewType == 4) {
+        } /*else if (viewType == 4) {
             View inflate = LayoutInflater.from(context).inflate(R.layout.section_layout, parent, false);
             return new MySectionHolder(inflate);
-        } /*else if (viewType == 5) {
+        } *//*else if (viewType == 5) {
             View inflate = LayoutInflater.from(context).inflate(R.layout.infosection_layout, parent, false);
             return new MyInfoSectionHolder(inflate);
         }*/
@@ -82,6 +83,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             case 0:
                 if (holder instanceof MyBannerHolder) {
                     if (bannerlist != null) {
+                        Toast.makeText(context, ""+bannerlist.get(position).getImageUrl(), Toast.LENGTH_SHORT).show();
                         ((MyBannerHolder) holder).bannerBanner.setBannerData(R.layout.simple_image, new AbstractList<SimpleBannerInfo>() {
                             @Override
                             public SimpleBannerInfo get(int index) {
@@ -158,7 +160,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 }
                 break;
             case 4:
-                if (holder instanceof MySectionHolder) {
+                /*if (holder instanceof MySectionHolder) {
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
                     linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
                     ((MySectionHolder) holder).section_recy.setLayoutManager(linearLayoutManager);
@@ -173,9 +175,9 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                                 }
                             }
                         });
-                    }
+                    }*/
                 }
-                break;
+                //break;
            /* case 5:
                 if (holder instanceof MyInfoSectionHolder) {
                     if (infoSectionList != null) {
@@ -184,12 +186,12 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     }
                 }
                 break;*/
-        }
+
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return 4;
     }
 
     @Override
