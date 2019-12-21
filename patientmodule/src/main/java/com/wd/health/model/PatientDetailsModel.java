@@ -1,6 +1,7 @@
 package com.wd.health.model;
 
 import com.wd.health.bean.CommentCircleBean;
+import com.wd.health.bean.OpinionBean;
 import com.wd.health.bean.PatientDetailsBean;
 import com.wd.health.bean.QueryCommentBean;
 import com.wd.health.contract.IContractDetails;
@@ -55,6 +56,25 @@ public class PatientDetailsModel implements IContractDetails.iModel {
                     @Override
                     public void onError(Throwable e) {
                         callBack.PatientDetailsFailure(e);
+                    }
+                });
+    }
+
+    @Override
+    public void getOpinionBean(int userId, String sessionId, int commentId, int opinion, iPatientDetailsCallBack callBack) {
+        RetrofitManager.getInstance().create(ApiServers.class)
+                .opinionbean(userId, sessionId, commentId, opinion)
+                .subscribeOn(Schedulers.io())
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<OpinionBean>() {
+                    @Override
+                    public void onNext(OpinionBean opinionBean) {
+                        callBack.OpinionBeansuccess(opinionBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callBack.OpinionBeanFailure(e);
                     }
                 });
     }

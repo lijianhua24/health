@@ -319,14 +319,13 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_200"
+                    android:layout_height="@dimen/dp_100"
                     android:layout_marginLeft="@dimen/dp_10"
                     android:layout_marginTop="@dimen/dp_16"
                     android:layout_marginRight="@dimen/dp_8">
-
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_200">
+                        android:layout_height="@dimen/dp_100">
 
                         <EditText
                             android:id="@+id/release_circle_et_treatmentProcess"
@@ -359,28 +358,33 @@
 
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="@dimen/dp_77"
-                android:layout_height="@dimen/dp_77"
-                android:layout_marginLeft="@dimen/dp_20"
-                android:layout_marginTop="@dimen/dp_20">
+        <RelativeLayout
+            android:layout_width="82dp"
+            android:layout_height="@dimen/dp_77"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_20">
 
-                <ImageView
-                    android:id="@+id/release_circle_iv_upload_Picture"
-                    android:layout_width="@dimen/dp_72"
-                    android:layout_height="@dimen/dp_72"
-                    android:background="@mipmap/add"
-                    android:layout_marginTop="@dimen/dp_5"
-                    android:layout_marginRight="@dimen/dp_5"/>
+            <!--     <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/release_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </androidx.recyclerview.widget.RecyclerView>-->
+            <ImageView
+                android:id="@+id/release_circle_iv_upload_Picture"
+                android:layout_width="@dimen/dp_72"
+                android:layout_height="@dimen/dp_72"
+                android:layout_marginTop="@dimen/dp_5"
+                android:layout_marginRight="@dimen/dp_5"
+                android:background="@mipmap/add" />
 
-                <ImageView
-                    android:id="@+id/release_circle_iv_delete_Picture"
-                    android:layout_width="@dimen/dp_14"
-                    android:layout_height="@dimen/dp_14"
-                    android:background="@mipmap/common_icon_close_n"
-                    android:layout_alignParentRight="true"/>
+            <ImageView
+                android:id="@+id/release_circle_iv_delete_Picture"
+                android:layout_width="@dimen/dp_14"
+                android:layout_height="@dimen/dp_14"
+                android:layout_alignParentRight="true"
+                android:background="@mipmap/common_icon_close_n" />
 
-            </RelativeLayout>
+        </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_30"

@@ -3,11 +3,8 @@ package com.wd.health.view.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.webkit.WebView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.health.R;
@@ -21,10 +18,12 @@ import com.wd.health.bean.UploadPatientBean;
 import com.wd.health.contract.IContract;
 import com.wd.health.presenter.DepartmentListPresenter;
 import com.wd.health.view.activity.PatientDetailsActivity;
-import com.wd.health.view.adapter.KeywordSearchAdapter;
 import com.wd.health.view.adapter.RecyclerSickCircleAdapter;
 import com.wd.mylibrary.Base.BaseFragment;
+
 import java.util.List;
+
+import butterknife.BindView;
 
 /**
  * <p>文件描述：<p>
@@ -33,11 +32,11 @@ import java.util.List;
  * <p>更改时间：2019/12/18<p>
  */
 public class SickCircleFragment extends BaseFragment<DepartmentListPresenter> implements IContract.iView {
+    @BindView(R.id.patient_recycler_sick_circle_list)
+    XRecyclerView patient_recycler_sick_circle_list;
     private int page = 1;
     private int count1 = 10;
-    private RecyclerView patient_recycler_sick_circle_list;
     private int anInt;
-
     @Override
     protected DepartmentListPresenter providePresenter() {
         return new DepartmentListPresenter();
@@ -45,7 +44,7 @@ public class SickCircleFragment extends BaseFragment<DepartmentListPresenter> im
 
     @Override
     protected void initData() {
-       /* //病友圈列表刷新
+        //病友圈列表刷新
         patient_recycler_sick_circle_list.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
@@ -60,19 +59,17 @@ public class SickCircleFragment extends BaseFragment<DepartmentListPresenter> im
                 mPresenter.getCircleListShowPresenter(anInt, page, count1);
                 patient_recycler_sick_circle_list.loadMoreComplete();
             }
-        });*/
+        });
 
-        Bundle bundle = getArguments();
-        anInt = bundle.getInt("anInt");
-        Log.d("LLLLLLLKL", "initData: "+ anInt);
         mPresenter.getCircleListShowPresenter(anInt, page, count1);
 
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        patient_recycler_sick_circle_list.setLayoutManager(linearLayoutManager);
     }
 
     @Override
     protected void initView() {
-        patient_recycler_sick_circle_list = getActivity().findViewById(R.id.patient_recycler_sick_circle_list);
-
     }
 
     @Override
@@ -83,6 +80,9 @@ public class SickCircleFragment extends BaseFragment<DepartmentListPresenter> im
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        Bundle bundle = getArguments();
+        anInt = bundle.getInt("anInt");
+        Log.d("LLLLLLLKL", "initData: " + anInt);
 
     }
 
@@ -98,11 +98,11 @@ public class SickCircleFragment extends BaseFragment<DepartmentListPresenter> im
     @Override
     public void CircleListShowsuccess(CircleListShowBean circleListShowBean) {
         List<CircleListShowBean.ResultBean> result = circleListShowBean.getResult();
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        patient_recycler_sick_circle_list.setLayoutManager(linearLayoutManager);
+        Log.e("resultPPP", circleListShowBean.getResult() + "");
         RecyclerSickCircleAdapter recyclerSickCircleAdapter = new RecyclerSickCircleAdapter(getContext());
         patient_recycler_sick_circle_list.setAdapter(recyclerSickCircleAdapter);
         recyclerSickCircleAdapter.addData(result);
+        Log.d("MNMNMNM", "CircleListShowsuccess: " + recyclerSickCircleAdapter);
         recyclerSickCircleAdapter.onItemClickListener(new RecyclerSickCircleAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position, int sickCircleId) {

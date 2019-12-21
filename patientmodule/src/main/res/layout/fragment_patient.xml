@@ -46,7 +46,7 @@
             android:layout_marginLeft="20dp"
             android:text="内科"
             android:textColor="#0DB1FA"
-            android:textSize="18sp" />
+            android:textSize="@dimen/sp_14" />
 
         <EditText
             android:layout_width="210dp"
@@ -56,6 +56,7 @@
             android:background="@drawable/ed_back_shape"
             android:hint="请输入病症名称或标题关键字"
             android:paddingLeft="10dp"
+            android:singleLine="true"
             android:src="@null"
             android:id="@+id/patient_tv_department_keyword"
             android:textSize="12sp" />
@@ -96,6 +97,7 @@
                     app:tabSelectedTextColor="#3087ea"
                     app:tabMode="scrollable"
                     app:tabGravity="fill"
+                    app:tabIndicatorColor="#fff"
                     android:layout_marginRight="20dp"
                     android:layout_toLeftOf="@+id/patient_iv_search"
                     android:layout_width="match_parent"
@@ -115,7 +117,8 @@
                 android:id="@+id/patient_viewpager"
                 android:layout_below="@id/bbb"
                 android:layout_width="match_parent"
-                android:layout_height="600dp"></androidx.viewpager.widget.ViewPager>
+                android:layout_height="800dp">
+            </androidx.viewpager.widget.ViewPager>
             <androidx.recyclerview.widget.RecyclerView
                 android:visibility="gone"
                 android:layout_below="@id/bbb"

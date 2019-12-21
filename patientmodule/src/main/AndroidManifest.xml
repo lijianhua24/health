@@ -16,7 +16,9 @@
         <activity android:name=".view.activity.ReleaseCirclesActivity"></activity>
         <activity android:name=".view.activity.PatientDetailsActivity" />
         <activity android:name=".view.activity.SearchActivity" />
-        <activity android:name=".view.activity.PatientActivity">
+        <activity android:name=".view.activity.PatientActivity"
+            android:theme="@style/AppTheme"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

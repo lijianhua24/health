@@ -5,6 +5,7 @@ import com.wd.health.bean.CommentCircleBean;
 import com.wd.health.bean.DepartmentListBean;
 import com.wd.health.bean.DoTaskBean;
 import com.wd.health.bean.KeywordSearchBean;
+import com.wd.health.bean.OpinionBean;
 import com.wd.health.bean.PatientDetailsBean;
 import com.wd.health.bean.QueryCommentBean;
 import com.wd.health.bean.ReleasePatientsBean;
@@ -22,6 +23,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Query;
 
@@ -106,5 +108,14 @@ public interface ApiServers {
             @Header("userId")       int userId,
             @Header("sessionId")    String sessionId,
             @Query("taskId")        int taskId
+    );
+
+    //发表观点
+    @PUT("user/sickCircle/verify/v1/expressOpinion")
+    Observable<OpinionBean> opinionbean(
+            @Header("userId")       int userId,
+            @Header("sessionId")    String sessionId,
+            @Query("commentId")        int commentId,
+            @Query("opinion")        int opinion
     );
 }

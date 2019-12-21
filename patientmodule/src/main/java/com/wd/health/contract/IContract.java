@@ -54,6 +54,9 @@ public interface IContract  extends IBaseView {
         void getuploadPatient(int  userId, String sessionId, int sickCircleId, MultipartBody.Part part, iDepartmentListCallBack callBack);
         void getDoTask(int  userId, String sessionId, int taskId,iDepartmentListCallBack callBack);
         void getCircleListShow(int departmentId,int page,int count,iDepartmentListCallBack callBack);
+
+
+
         interface iDepartmentListCallBack{
             void DepartmentListsuccess(DepartmentListBean departmentListBean);
             void DepartmentListFailure(Throwable e);

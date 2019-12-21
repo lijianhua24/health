@@ -3,11 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="#cccc"
     android:orientation="vertical"
-    android:layout_height="match_parent"
     tools:context=".view.activity.PatientDetailsActivity">
+
     <RelativeLayout
+        android:id="@+id/activiy_patient_zong"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
@@ -35,11 +37,11 @@
                     android:id="@+id/patient_activity_tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00"
-                    android:textSize="@dimen/sp_16"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:textColor="#333333"/>
+                    android:text="00"
+                    android:textColor="#333333"
+                    android:textSize="@dimen/sp_16" />
 
                 <ImageView
                     android:id="@+id/patient_iv_user_message"
@@ -55,16 +57,16 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#fff"
-                android:layout_marginTop="@dimen/dp_10">
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="#fff">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_marginTop="@dimen/dp_12"
                     android:layout_marginLeft="@dimen/dp_20"
-                    android:layout_marginRight="@dimen/dp_20">
+                    android:layout_marginTop="@dimen/dp_12"
+                    android:layout_marginRight="@dimen/dp_20"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/patient_activity_tv_adoptNickName"
@@ -72,58 +74,58 @@
                         android:layout_height="wrap_content"
                         android:text="张三"
                         android:textColor="#3087ea"
-                        android:textSize="@dimen/sp_14"/>
+                        android:textSize="@dimen/sp_14" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_20"
                         android:text="[病症]"
                         android:textColor="#3087ea"
-                        android:textSize="@dimen/sp_12"
-                        android:layout_marginTop="@dimen/dp_20"/>
+                        android:textSize="@dimen/sp_12" />
 
                     <TextView
                         android:id="@+id/patient_activity_tv_disease"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_10"
                         android:text="面神经炎"
                         android:textColor="#333333"
-                        android:textSize="@dimen/sp_12"
-                        android:layout_marginTop="@dimen/dp_10"/>
+                        android:textSize="@dimen/sp_12" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_20"
                         android:text="[科室]"
                         android:textColor="#3087ea"
-                        android:textSize="@dimen/sp_12"
-                        android:layout_marginTop="@dimen/dp_20"/>
+                        android:textSize="@dimen/sp_12" />
 
                     <TextView
                         android:id="@+id/patient_activity_tv_department"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_10"
                         android:text="内科"
                         android:textColor="#333333"
-                        android:textSize="@dimen/sp_12"
-                        android:layout_marginTop="@dimen/dp_10"/>
+                        android:textSize="@dimen/sp_12" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_20"
                         android:text="[病症详情]"
                         android:textColor="#3087ea"
-                        android:textSize="@dimen/sp_12"
-                        android:layout_marginTop="@dimen/dp_20"/>
+                        android:textSize="@dimen/sp_12" />
 
                     <TextView
                         android:id="@+id/patient_activity_tv_detail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_10"
                         android:text="00"
                         android:textColor="#333333"
-                        android:textSize="@dimen/sp_12"
-                        android:layout_marginTop="@dimen/dp_10"/>
+                        android:textSize="@dimen/sp_12" />
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -141,10 +143,10 @@
                             android:id="@+id/patient_activity_tv_treatment_time"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
                             android:text="00"
-                            android:textSize="@dimen/sp_12"
                             android:textColor="#333333"
-                            android:layout_alignParentRight="true"/>
+                            android:textSize="@dimen/sp_12" />
 
                     </RelativeLayout>
 
@@ -152,24 +154,25 @@
                         android:id="@+id/patient_activity_tv_treatmentProcess"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_10"
                         android:text="00"
                         android:textColor="#333333"
-                        android:textSize="@dimen/sp_12"
-                        android:layout_marginTop="@dimen/dp_10"/>
+                        android:textSize="@dimen/sp_12" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_20"
                         android:text="[相关图片]"
                         android:textColor="#3087ea"
-                        android:textSize="@dimen/sp_12"
-                        android:layout_marginTop="@dimen/dp_20"/>
+                        android:textSize="@dimen/sp_12" />
 
                     <ImageView
                         android:id="@+id/patient_activity_iv_picture"
-                        android:layout_width="@dimen/dp_150"
+                        android:layout_width="match_parent"
                         android:layout_height="@dimen/dp_144"
-                        android:layout_marginTop="@dimen/dp_10"/>
+                        android:layout_marginTop="@dimen/dp_10" />
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp_34"
@@ -179,36 +182,36 @@
                             android:id="@+id/patient_activity_tv_commentNum"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="00"
                             android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
                             android:layout_marginRight="@dimen/dp_20"
-                            android:layout_centerVertical="true"/>
+                            android:text="00" />
 
                         <ImageView
                             android:id="@+id/patient_activity_iv_content"
                             android:layout_width="@dimen/dp_24"
                             android:layout_height="@dimen/dp_24"
-                            android:background="@mipmap/common_icon_comment_large_n"
                             android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
                             android:layout_marginRight="@dimen/dp_40"
-                            android:layout_centerVertical="true"/>
+                            android:background="@mipmap/common_icon_comment_large_n" />
 
                         <TextView
                             android:id="@+id/patient_activity_tv_collectionNum"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="00"
                             android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
                             android:layout_marginRight="@dimen/dp_75"
-                            android:layout_centerVertical="true"/>
+                            android:text="00" />
 
                         <ImageView
                             android:layout_width="@dimen/dp_24"
                             android:layout_height="@dimen/dp_24"
-                            android:background="@mipmap/common_button_collection_small_n"
                             android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
                             android:layout_marginRight="@dimen/dp_95"
-                            android:layout_centerVertical="true"/>
+                            android:background="@mipmap/common_button_collection_small_n" />
 
                     </RelativeLayout>
 
@@ -220,17 +223,18 @@
                         <View
                             android:layout_width="@dimen/dp_4"
                             android:layout_height="@dimen/dp_20"
-                            android:background="#3087ea"/>
+                            android:background="#3087ea" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="被采纳的建议"
-                            android:textColor="#333333"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/dp_10"
+                            android:text="被采纳的建议"
+                            android:textColor="#333333"
                             android:textSize="@dimen/sp_12" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:id="@+id/adoptFlag"
                         android:layout_width="match_parent"
@@ -257,19 +261,17 @@
 
                         </RelativeLayout>
 
-                        <RelativeLayout
-                            xmlns:fresco="http://schemas.android.com/apk/res-auto"
+                        <RelativeLayout xmlns:fresco="http://schemas.android.com/apk/res-auto"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="20dp">
 
                             <com.facebook.drawee.view.SimpleDraweeView
-                                fresco:placeholderImage="@mipmap/dermatology"
-                                fresco:failureImage="@mipmap/dermatology"
                                 android:id="@+id/img_HeadPic"
                                 android:layout_width="32dp"
                                 android:layout_height="32dp"
-                                />
+                                fresco:failureImage="@mipmap/dermatology"
+                                fresco:placeholderImage="@mipmap/dermatology" />
 
                             <TextView
                                 android:id="@+id/name_NickName"
@@ -319,9 +321,10 @@
         <RelativeLayout
             android:id="@+id/patient_activity_relative_content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:background="#80000000"
+            android:layout_height="match_parent"
             android:visibility="gone">
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_sick_circle_comment_list"
                 android:layout_width="match_parent"
@@ -335,26 +338,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_40"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="@dimen/dp_30"
-                android:layout_marginLeft="@dimen/dp_20">
+                android:layout_marginLeft="@dimen/dp_20"
+                android:layout_marginBottom="@dimen/dp_30">
 
                 <ImageView
                     android:id="@+id/patient_activity_iv_cancel"
                     android:layout_width="@dimen/dp_40"
                     android:layout_height="@dimen/dp_40"
-                    android:background="@mipmap/common_icon_close_grey_n"/>
+                    android:background="@mipmap/common_icon_close_grey_n" />
 
                 <EditText
                     android:id="@+id/patient_activity_et_content"
                     android:layout_width="@dimen/dp_260"
                     android:layout_height="@dimen/dp_40"
                     android:layout_marginLeft="@dimen/dp_20"
+                    android:background="@drawable/ed_detalis_shape"
                     android:hint="在此留下高见吧!!"
                     android:paddingLeft="@dimen/dp_10"
-                    android:background="@drawable/ed_detalis_shape"
-                    android:textSize="@dimen/sp_14"
                     android:textColor="#ffffff"
-                    android:textColorHint="#ffffff"/>
+                    android:textColorHint="#ffffff"
+                    android:textSize="@dimen/sp_14" />
 
             </LinearLayout>
 
@@ -362,11 +365,11 @@
                 android:id="@+id/patient_activity_iv_send_content"
                 android:layout_width="@dimen/dp_30"
                 android:layout_height="@dimen/dp_30"
-                android:background="@mipmap/common_icon_send_white_n"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginRight="@dimen/dp_25"
-                android:layout_marginBottom="@dimen/dp_35"/>
+                android:layout_marginBottom="@dimen/dp_35"
+                android:background="@mipmap/common_icon_send_white_n" />
 
         </RelativeLayout>
 
@@ -376,22 +379,22 @@
         android:id="@+id/patient_activity_relative_release_sickCircle"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_70"
-        android:orientation="vertical"
         android:layout_alignParentBottom="true"
-        android:background="#ffffff">
+        android:background="#ffffff"
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_60"
-            android:background="@mipmap/the_bottom_bar"
-            android:layout_alignParentBottom="true"/>
+            android:layout_alignParentBottom="true"
+            android:background="@mipmap/the_bottom_bar" />
 
         <ImageView
             android:id="@+id/patient_activity_iv_intent_release_sickCircle"
             android:layout_width="@dimen/dp_48"
             android:layout_height="@dimen/dp_48"
-            android:background="@mipmap/common_tab_circle_s"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:background="@mipmap/common_tab_circle_s" />
 
     </RelativeLayout>
 </LinearLayout>

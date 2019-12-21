@@ -1,6 +1,7 @@
 package com.wd.health.presenter;
 
 import com.wd.health.bean.CommentCircleBean;
+import com.wd.health.bean.OpinionBean;
 import com.wd.health.bean.PatientDetailsBean;
 import com.wd.health.bean.QueryCommentBean;
 import com.wd.health.contract.IContractDetails;
@@ -58,6 +59,16 @@ public class PatientDetailsPresenter extends BasePresenter<IContractDetails.iVie
             public void CommentCircleFailure(Throwable e) {
 
             }
+
+            @Override
+            public void OpinionBeansuccess(OpinionBean opinionBean) {
+
+            }
+
+            @Override
+            public void OpinionBeanFailure(Throwable e) {
+
+            }
         });
     }
 
@@ -91,6 +102,16 @@ public class PatientDetailsPresenter extends BasePresenter<IContractDetails.iVie
 
             @Override
             public void CommentCircleFailure(Throwable e) {
+
+            }
+
+            @Override
+            public void OpinionBeansuccess(OpinionBean opinionBean) {
+
+            }
+
+            @Override
+            public void OpinionBeanFailure(Throwable e) {
 
             }
         });
@@ -127,6 +148,61 @@ public class PatientDetailsPresenter extends BasePresenter<IContractDetails.iVie
             @Override
             public void CommentCircleFailure(Throwable e) {
                 getView().CommentCircleFailure(e);
+            }
+
+            @Override
+            public void OpinionBeansuccess(OpinionBean opinionBean) {
+
+            }
+
+            @Override
+            public void OpinionBeanFailure(Throwable e) {
+
+            }
+        });
+    }
+
+    @Override
+    public void getOpinionBean(int userId, String sessionId, int commentId, int opinion) {
+        model.getOpinionBean(userId, sessionId, commentId, opinion, new IContractDetails.iModel.iPatientDetailsCallBack() {
+            @Override
+            public void PatientDetailssuccess(PatientDetailsBean PatientDetailsBean) {
+
+            }
+
+            @Override
+            public void PatientDetailsFailure(Throwable e) {
+
+            }
+
+            @Override
+            public void QueryCommentsuccess(QueryCommentBean queryCommentBean) {
+
+            }
+
+            @Override
+            public void QueryCommentFailure(Throwable e) {
+
+            }
+
+            @Override
+            public void CommentCirclesuccess(CommentCircleBean commentCircleBean) {
+
+            }
+
+            @Override
+            public void CommentCircleFailure(Throwable e) {
+
+            }
+
+            @Override
+            public void OpinionBeansuccess(OpinionBean opinionBean) {
+                getView().OpinionBeansuccess(opinionBean);
+            }
+
+            @Override
+            public void OpinionBeanFailure(Throwable e) {
+                getView().OpinionBeanFailure(e);
             }
         });
     }

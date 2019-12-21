@@ -13,6 +13,10 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
+        }
     }
 
     buildTypes {
@@ -21,7 +25,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -34,8 +41,28 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
 
+    //Butterknife依赖
+    implementation 'com.jakewharton:butterknife:10.0.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
     implementation rootProject.ext.dependencies["recyclerview"]
+    implementation rootProject.ext.dependencies["xrecyclerview"]
+    implementation rootProject.ext.dependencies["xrecyclerviews"]
     implementation rootProject.ext.dependencies["glide"]
     implementation rootProject.ext.dependencies["fresco:fresco"]
+    implementation rootProject.ext.dependencies["gson"]
+    implementation rootProject.ext.dependencies["logging-interceptor"]
+    implementation rootProject.ext.dependencies["okhttp3"]
+    implementation rootProject.ext.dependencies["retrofit"]
+    implementation rootProject.ext.dependencies["retrofit-converter-gson"]
+    implementation rootProject.ext.dependencies["retrofit-adapter-rxjava"]
+    implementation rootProject.ext.dependencies["rxjava2:rxandroid"]
+    implementation rootProject.ext.dependencies["rxjava2:rxjava"]
+    implementation rootProject.ext.dependencies["retrofit2:adapter"]
+    implementation rootProject.ext.dependencies["jjdxm-ijkplayer"]
+    implementation rootProject.ext.dependencies["jiaozivideoplayer"]
+    implementation rootProject.ext.dependencies["ijkplayer"]
+    implementation rootProject.ext.dependencies["ijkplayerarmv7a"]
+    implementation rootProject.ext.dependencies["ijkplayerexo"]
+
     implementation project(path: ':mylibrary')
 }

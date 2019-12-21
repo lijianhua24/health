@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -34,6 +35,10 @@ public class SearchActivity extends BaseActivity<DepartmentListPresenter> implem
     private RecyclerView search_recyclerView;
     private RelativeLayout patient_relative_serach;
     private KeywordSearchAdapter keywordSearchAdapter;
+    private LinearLayout niumeiyou;
+    private TextView niuwei;
+    private String trim;
+
 
     @Override
     protected DepartmentListPresenter providePresenter() {
@@ -51,7 +56,7 @@ public class SearchActivity extends BaseActivity<DepartmentListPresenter> implem
         search_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String trim = search_keyword.getText().toString().trim();
+                trim = search_keyword.getText().toString().trim();
                 mPresenter.getKeywordSearchPresenter(trim);
             }
         });
@@ -62,7 +67,9 @@ public class SearchActivity extends BaseActivity<DepartmentListPresenter> implem
         search_back = findViewById(R.id.search_back);
         search_keyword = findViewById(R.id.search_keyword);
         search_text = findViewById(R.id.search_text);
-        search_recyclerView=findViewById(R.id.search_recyclerView);
+        niuwei=findViewById(R.id.niuwei);
+        search_recyclerView = findViewById(R.id.search_recyclerView);
+        niumeiyou = findViewById(R.id.niumeiyou);
     }
 
     @Override
@@ -99,7 +106,13 @@ public class SearchActivity extends BaseActivity<DepartmentListPresenter> implem
     @Override
     public void KeywordSearchsuccess(KeywordSearchBean keywordSearchBean) {
         List<KeywordSearchBean.ResultBean> result = keywordSearchBean.getResult();
-        if (result!=null){
+        if (result.size() == 0) {
+            niumeiyou.setVisibility(View.VISIBLE);
+            search_recyclerView.setVisibility(View.GONE);
+            niuwei.setText("抱歉,没有找到“" + trim + "”的病友圈");
+        } else {
+            niumeiyou.setVisibility(View.GONE);
+            search_recyclerView.setVisibility(View.VISIBLE);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
             linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
             search_recyclerView.setLayoutManager(linearLayoutManager);
@@ -108,7 +121,7 @@ public class SearchActivity extends BaseActivity<DepartmentListPresenter> implem
             search_recyclerView.setAdapter(keywordSearchAdapter);
             keywordSearchAdapter.onItemClickListener(new KeywordSearchAdapter.OnItemClickListener() {
                 @Override
-                public void onItemClick(int position,int id) {
+                public void onItemClick(int position, int id) {
 
                     Intent intent = new Intent(SearchActivity.this, PatientDetailsActivity.class);
                     intent.putExtra("sickCircleId", id);
@@ -116,12 +129,10 @@ public class SearchActivity extends BaseActivity<DepartmentListPresenter> implem
                 }
             });
         }
-
     }
-
     @Override
     public void KeywordSearchFailure(Throwable e) {
-            ToastUtils.show("查不到");
+        ToastUtils.show("没有网");
     }
 
     @Override

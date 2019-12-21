@@ -5,52 +5,10 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".VideoActivity">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_74"
-        android:background="#ffff">
-
-        <ImageView
-            android:id="@+id/small_iv_user_head_pic"
-            android:layout_width="@dimen/dp_32"
-            android:layout_height="@dimen/dp_32"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/dp_20"
-            android:background="@mipmap/dermatology" />
-
-        <ImageView
-            android:id="@+id/small_iv_user_message"
-            android:layout_width="@dimen/dp_24"
-            android:layout_height="@dimen/dp_24"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/dp_20"
-            android:background="@mipmap/common_nav_message_black_n" />
-
-    </RelativeLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/small_recycler_video"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_36"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="@dimen/dp_6"
-        android:background="#ffff">
-    </androidx.recyclerview.widget.RecyclerView>
-
-    <LinearLayout
+    tools:context=".view.activity.VideoActivity">
+    <com.wd.health.view.curtrom.NoScrollViewPager
+        android:id="@+id/video_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/small_recycler_video_voList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </androidx.recyclerview.widget.RecyclerView>
-
-    </LinearLayout>
-
-
+    </com.wd.health.view.curtrom.NoScrollViewPager>
 </LinearLayout>
