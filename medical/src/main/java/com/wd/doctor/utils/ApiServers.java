@@ -2,6 +2,7 @@ package com.wd.doctor.utils;
 
 
 import com.wd.doctor.bean.DoctorInforBean;
+import com.wd.doctor.bean.DoctorWalletBean;
 import com.wd.doctor.bean.EnquiryBean;
 import com.wd.doctor.bean.ImageQueryBean;
 import com.wd.doctor.bean.LoginBean;
@@ -11,6 +12,7 @@ import com.wd.doctor.bean.SearchSuffererBean;
 import com.wd.doctor.bean.SimagePhotosBean;
 import com.wd.doctor.bean.SuffererDetailBean;
 import com.wd.doctor.bean.SuffererOutBean;
+import com.wd.doctor.bean.ToBindBean;
 import com.wd.doctor.bean.UploadPhotoBean;
 
 import io.reactivex.Observable;
@@ -88,4 +90,27 @@ public interface ApiServers {
     Observable<UploadPhotoBean> getUploadPhoto(@Header("doctorId")int doctorId,
                                                 @Header("sessionId")String sessionId,
                                                 @Field("imagePic") String imagePic);
+    //查询医生钱包
+    //http://172.17.8.100/health/doctor/verify/v1/findDoctorWallet
+    @GET("doctor/verify/v1/findDoctorWallet")
+    Observable<DoctorWalletBean> getDoctorWallet(@Header("doctorId")int doctorId,
+                                                 @Header("sessionId")String sessionId);
+
+    //绑定身份证
+    //http://172.17.8.100/health/doctor/verify/v1/bindDoctorIdCard
+    @Headers({"Content-type:application/json;charset=UTF-8"})
+    @POST("doctor/verify/v1/bindDoctorIdCard")
+    Observable<ToBindBean> getToBind(@Header("doctorId")int doctorId,
+                                     @Header("sessionId")String sessionId,
+                                     @Body RequestBody route);
+    //绑定银行卡
+    //http://172.17.8.100/health/doctor/verify/v1/bindDoctorBankCard
+    @POST("octor/verify/v1/bindDoctorBankCard")
+    Observable<ToBindBean>getbindBank(@Header("doctorId")int doctorId,
+                                      @Header("sessionId")String sessionId,
+                                      @Query("bankCardNumber")String bankCardNumber,
+                                      @Query("bankName")String bankName,
+                                      @Query("bankCardType")int bankCardType);
+
+
 }

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
     <color name="white">#ffffff</color>
     <color name="qianhui">#dddddd</color>
+    <color name="qianbai">#f2f2f2</color>
     <color name="blue">#3087ea</color>
     <color name="hui">#666666</color>
     <color name="hei">#333333</color>
-    <color name="colorAccent">#FF4081</color>
-
     <color name="transparent">#00000000</color>
     <color name="shadow">#cc222222</color>
     <color name="Red_800">#ffb93221</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#F1F1F1</color>
 </resources>

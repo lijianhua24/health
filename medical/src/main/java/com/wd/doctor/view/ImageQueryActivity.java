@@ -1,14 +1,18 @@
 package com.wd.doctor.view;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.android.material.tabs.TabLayout;
 import com.stx.xhb.androidx.XBanner;
 import com.stx.xhb.androidx.entity.SimpleBannerInfo;
 import com.wd.doctor.R;
@@ -28,6 +32,7 @@ import butterknife.ButterKnife;
 public class ImageQueryActivity extends BaseActivity<ImageQueryPresenter> implements ImageQueryContract.iView {
 
     private static final String TAG = "ImageQueryActivity";
+
     @BindView(R.id.imqu_xb_xbannerone)
     XBanner imquXbXbannerone;
     @BindView(R.id.imqu_btn_butone)
@@ -101,7 +106,8 @@ public class ImageQueryActivity extends BaseActivity<ImageQueryPresenter> implem
 
     @Override
     public void onSimagePhotosSuccess(SimagePhotosBean simagePhotosBean) {
-        Logger.d("onSimagePhotosSuccess:",""+simagePhotosBean.getMessage());
+        Logger.d("onSimagePhotosSuccess:", "" + simagePhotosBean.getMessage());
+
     }
 
     @Override

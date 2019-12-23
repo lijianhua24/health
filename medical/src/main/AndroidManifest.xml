@@ -16,7 +16,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.ImageQueryActivity"></activity>
+        <activity android:name=".view.BindIdActivity"></activity>
+        <activity android:name=".view.ToBindActivity" />
+        <activity android:name=".view.ReplyActivity" />
+        <activity android:name=".view.BindInfoActivity" />
+        <activity android:name=".view.DoctorWalletActivity" />
+        <activity android:name=".view.ImageQueryActivity" />
         <activity android:name=".view.SearchSuffererActivity" />
         <activity android:name=".view.SuffererOutActivity" />
         <activity android:name=".view.EnquiryActivity" />
@@ -28,7 +33,9 @@
         <activity android:name=".view.ForgetActivity" />
         <activity android:name=".view.ResidencyActivity" />
         <activity android:name=".view.LoginActivity" />
-        <activity android:name=".view.WelcomeActivity">
+        <activity
+            android:name=".view.WelcomeActivity"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

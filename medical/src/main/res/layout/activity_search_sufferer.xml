@@ -23,6 +23,7 @@
         android:hint="请输入病症名称或标题关键字"
         android:background="@drawable/sousuokuang"
         android:paddingLeft="@dimen/dp_20"
+        android:singleLine="true"
         android:textSize="@dimen/sp_12"
         android:textColor="@color/hei"
         android:id="@+id/search_et_shu"

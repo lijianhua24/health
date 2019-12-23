@@ -44,6 +44,8 @@ public class EnquiryActivity extends BaseActivity<EnquiryPresenter> implements E
     View enquiryVOne;
     @BindView(R.id.enquiry_vp_vper)
     ViewPager enquiryVpVper;
+    @BindView(R.id.enqu_ll_touone)
+    LinearLayout enquLlTouone;
     private List<EnquiryBean.ResultBean> result;
 
     @Override
@@ -57,11 +59,11 @@ public class EnquiryActivity extends BaseActivity<EnquiryPresenter> implements E
         enquiryIvSousuo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(EnquiryActivity.this,SearchSuffererActivity.class));
+                startActivity(new Intent(EnquiryActivity.this, SearchSuffererActivity.class));
             }
         });
-
-        enquiryIvBack.setOnClickListener(new View.OnClickListener() {
+        //返回
+        enquLlTouone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -97,7 +99,7 @@ public class EnquiryActivity extends BaseActivity<EnquiryPresenter> implements E
             public Fragment getItem(int position) {
                 int id = result.get(position).getId();
                 Bundle bundle = new Bundle();
-                bundle.putInt("id",id);
+                bundle.putInt("id", id);
                 EnquiryFragment enquiryFragment = new EnquiryFragment();
                 enquiryFragment.setArguments(bundle);
                 return enquiryFragment;
@@ -111,8 +113,8 @@ public class EnquiryActivity extends BaseActivity<EnquiryPresenter> implements E
             @Nullable
             @Override
             public CharSequence getPageTitle(int position) {
-                    String departmentName = result.get(position).getDepartmentName();
-                    return departmentName;
+                String departmentName = result.get(position).getDepartmentName();
+                return departmentName;
             }
         });
         enquiryTlHuodong.setupWithViewPager(enquiryVpVper);
@@ -132,5 +134,6 @@ public class EnquiryActivity extends BaseActivity<EnquiryPresenter> implements E
     public void onSuffererDetailFailure(Throwable e) {
 
     }
+
 
 }

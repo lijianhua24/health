@@ -59,6 +59,23 @@ public class MyActivity extends BaseActivity {
 //        myIvTouxiang.setImageURI("res://mipmap/" + R.mipmap.z);
             myIvTouxiang.setImageURI(imagePic);
 
+         //设置消息自动回复
+            myRbtonHuifu.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(MyActivity.this,ReplyActivity.class));
+                }
+            });
+
+
+        //我的钱包
+        myRbtonQianbao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MyActivity.this,DoctorWalletActivity.class));
+            }
+        });
+
 
         //返回
         myIvBack.setOnClickListener(new View.OnClickListener() {

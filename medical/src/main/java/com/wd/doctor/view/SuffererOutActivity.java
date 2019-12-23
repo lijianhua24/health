@@ -66,7 +66,7 @@ public class SuffererOutActivity extends BaseActivity<SuffererOutPresenter> impl
     @BindView(R.id.lin_ll_one)
     LinearLayout linLlOne;//我来解答的整个布局
     @BindView(R.id.et_text)
-    EditText etText;
+    EditText etText;//输入框
     @BindView(R.id.img_enjoy)
     ImageView imgEnjoy;//表情
     @BindView(R.id.img_send)
@@ -101,15 +101,17 @@ public class SuffererOutActivity extends BaseActivity<SuffererOutPresenter> impl
                 finish();
             }
         });
-        //点击事件我的解答
+        //点击事件我的解答  1
         suffererIvDian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //我来解答布局隐藏
                 linLlOne.setVisibility(View.GONE);
+                //输入框布局显示
                 relativeEdit.setVisibility(View.VISIBLE);
             }
         });
-        //发送
+        //发送 2 输入内容发送
         imgSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -157,14 +159,18 @@ public class SuffererOutActivity extends BaseActivity<SuffererOutPresenter> impl
         Logger.d("SuffererOutActivity", "" + suffererOutBean.getMessage());
         SuffererOutBean.ResultBean result = suffererOutBean.getResult();
         if (result != null) {
-            //判断是否评论
+            //判断是否评论 4
             whetherContent = suffererOutBean.getResult().getWhetherContent();
             if (whetherContent == 1) {
+                //文本框布局显示
                 linearCancelJd.setVisibility(View.VISIBLE);
+                //我来解答布局隐藏
                 linLlOne.setVisibility(View.GONE);
 //                lineView.setVisibility(View.GONE);
             } else if (whetherContent == 2) {
+                //文本框布局隐藏
                 linearCancelJd.setVisibility(View.GONE);
+                //我来解答布局显示
                 linLlOne.setVisibility(View.VISIBLE);
 //                lineView.setVisibility(View.VISIBLE);
             }
@@ -203,6 +209,7 @@ public class SuffererOutActivity extends BaseActivity<SuffererOutPresenter> impl
     @Override
     public void onPostReviewSuccess(PostReviewBean postReviewBean) {
         Logger.d("", "" + postReviewBean.getMessage());
+        //3 发表成功 输入框布局隐藏 调用输入框退出工具类 重写接口p层拼参=刷新
         if (postReviewBean.getMessage().equals("发表成功")) {
             relativeEdit.setVisibility(View.GONE);
             HideIMEUtil.wrap(this);

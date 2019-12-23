@@ -1,6 +1,7 @@
 package com.wd.doctor.view;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -100,5 +101,18 @@ public class SearchSuffererActivity extends BaseActivity<SearchSuffererPresenter
 
     }
 
+    /**
+     * EditText 禁止换行
+     * 设置相关监听器
+     */
+    private void setListener(){
+        searchEtShu.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                return (event.getKeyCode()==KeyEvent.KEYCODE_ENTER);
+
+            }
+        });
+    }
 
 }

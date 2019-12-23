@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.BindIdActivity">
+
+    <ImageView
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="@dimen/dp_20"
+        android:src="@mipmap/back"
+        android:id="@+id/bindid_iv_back"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_40"
+        ></ImageView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/hei"
+        android:textSize="@dimen/sp_16"
+        android:text="绑定身份证"
+        android:textStyle="bold"
+        android:layout_alignTop="@id/bindid_iv_back"
+        android:layout_centerHorizontal="true"
+        ></TextView>
+
+    <RelativeLayout
+        android:layout_width="@dimen/dp_260"
+        android:layout_height="@dimen/dp_160"
+        android:background="@mipmap/id_card_front"
+        android:layout_marginLeft="@dimen/dp_50"
+        android:layout_marginTop="@dimen/dp_100"
+        android:id="@+id/bindid_rl_Portrait"
+        >
+
+        <ImageView
+            android:layout_width="@dimen/dp_64"
+            android:layout_height="@dimen/dp_64"
+            android:src="@mipmap/my_icon_camera_n"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_30"
+            android:id="@+id/bindid_iv_one"
+            ></ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_14"
+            android:text="点击拍摄/上传人像面"
+            android:gravity="center"
+            android:textColor="@color/blue"
+            android:layout_below="@+id/bindid_iv_one"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_centerHorizontal="true"
+            ></TextView>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="@dimen/dp_260"
+        android:layout_height="@dimen/dp_160"
+        android:background="@mipmap/id_card_back"
+        android:layout_below="@id/bindid_rl_Portrait"
+        android:layout_marginLeft="@dimen/dp_50"
+        android:layout_marginTop="@dimen/dp_20"
+        android:id="@+id/bindid_rl_emblem"
+        >
+        <ImageView
+            android:layout_width="@dimen/dp_64"
+            android:layout_height="@dimen/dp_64"
+            android:src="@mipmap/my_icon_camera_n"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_30"
+            android:id="@+id/bindid_iv_two"
+            ></ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_14"
+            android:text="点击拍摄/上传国徽面"
+            android:gravity="center"
+            android:textColor="@color/blue"
+            android:layout_below="@+id/bindid_iv_two"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_centerHorizontal="true"
+            ></TextView>
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="@dimen/dp_300"
+        android:layout_height="@dimen/dp_36"
+        android:text="下一步"
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/white"
+        android:background="@drawable/btlogin"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dp_60"
+        android:layout_centerHorizontal="true"
+        ></Button>
+    
+</RelativeLayout>

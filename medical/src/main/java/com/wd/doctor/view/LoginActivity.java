@@ -3,8 +3,11 @@ package com.wd.doctor.view;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +25,8 @@ import com.wd.mylibrary.Test.ToastUtils;
 import com.wd.mylibrary.utils.RsaCoder;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -67,21 +72,24 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                 public void onClick(View v) {
                     String email = etEmail.getText().toString().trim();
                     String pwd = etPwd.getText().toString().trim();
-                    if (!email.isEmpty() && !pwd.isEmpty()) {
-                        try {
-                            String s = RsaCoder.encryptByPublicKey(pwd);
-                            boolean b = hasNetwork();
-                            if (b) {
-                            mPresenter.getLoginPresenter(email,s);
-                            }else {
-                                ToastUtils.show("请检查一下网络");
+                        //判断非空
+                        if (!email.isEmpty() && !pwd.isEmpty()) {
+                            try {
+                                String s = RsaCoder.encryptByPublicKey(pwd);
+                                //判断网络
+                                boolean b = hasNetwork();
+                                if (b) {
+                                    mPresenter.getLoginPresenter(email,s);
+                                }else {
+                                    ToastUtils.show("请检查一下网络");
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
                             }
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                        }else {
+                            ToastUtils.show("输入不能为空");
                         }
-                    }else {
-                        ToastUtils.show("输入不能为空");
-                    }
+
                 }
             });
 
@@ -168,5 +176,32 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     public void onImageQueryFailure(Throwable e) {
 
     }
+    /**
+     * EditText 禁止换行
+     * 设置相关监听器
+     */
+    private void setListener(){
+        etEmail.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                return (event.getKeyCode()==KeyEvent.KEYCODE_ENTER);
 
-}
+            }
+        });
+        etPwd.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                return (event.getKeyCode()==KeyEvent.KEYCODE_ENTER);
+
+            }
+        });
+    }
+
+//    public static boolean isEmail(String email) {
+//        String str = "^([a-zA-Z0-9]*[-_]?[a-zA-Z0-9]+)*@([a-zA-Z0-9]*[-_]?[a-zA-Z0-9]+)+[\\.][A-Za-z]{2,3}([\\.][A-Za-z]{2})?$";
+//        Pattern p = Pattern.compile(str);
+//        Matcher m = p.matcher(email);
+//        Logger.d("aaa",""+m.matches() + "---");
+//        return m.matches();
+//    }
+    }
