@@ -33,5 +33,4 @@ public class CheckDoctorsFragment extends Fragment {
         return inflate;
     }
 
-
 }
