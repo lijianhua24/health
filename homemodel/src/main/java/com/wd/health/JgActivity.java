@@ -39,18 +39,17 @@ public class JgActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jg);
         ButterKnife.bind(this);
-        /*List<Conversation> conversationList = JMessageClient.getConversationList();
-        Conversation conversation = JMessageClient.getSingleConversation("ljh6", "c7f6a1d56cb8da740fd18bfa");
+        List<Conversation> conversationList = JMessageClient.getConversationList();
+        Conversation conversation = JMessageClient.getSingleConversation("lhb1", "c7f6a1d56cb8da740fd18bfa");
         String id = conversationList.get(0).getId();
-        Object targetInfo = conversation.getTargetInfo();
+        //Object targetInfo = conversation.getTargetInfo();
         String title = conversation.getTitle();
         Log.i(TAG, "onCreate1: "+title);
 
         List<Message> allMessage = conversation.getAllMessage();
-
+        Log.d(TAG, "onCreate12: "+allMessage.toString());
         for (int i = 0; i < allMessage.size(); i++) {
 
-          //  Log.d("allMessage",s);
             String fromType = allMessage.get(i).toString();
             ContentType content = allMessage.get(i).getContent().getContentType();
             Message message = conversation.getMessage(0);
@@ -65,14 +64,14 @@ public class JgActivity extends AppCompatActivity {
         String text = jgbean.getText();
         Log.d(TAG, "onCreate: "+text);
         Toast.makeText(this, ""+text, Toast.LENGTH_SHORT).show();
-        JMessageClient.registerEventReceiver(this);*/
+        JMessageClient.registerEventReceiver(this);
     }
 
     @OnClick(R.id.btton3)
     public void onViewClicked() {
         String s = editText3.getText().toString();
-        Conversation.createSingleConversation("ljh6", "c7f6a1d56cb8da740fd18bfa");
-        Message message = JMessageClient.createSingleTextMessage("ljh6", "c7f6a1d56cb8da740fd18bfa", s);
+        Conversation.createSingleConversation("lhb1", "c7f6a1d56cb8da740fd18bfa");
+        Message message = JMessageClient.createSingleTextMessage("lhb1", "c7f6a1d56cb8da740fd18bfa", s);
         JMessageClient.sendMessage(message);
         Toast.makeText(this, ""+message, Toast.LENGTH_SHORT).show();
     }
