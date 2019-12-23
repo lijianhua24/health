@@ -1,5 +1,6 @@
 package com.wd.health.model;
 
+import com.wd.health.bean.AttentionBean;
 import com.wd.health.bean.BannerBean;
 import com.wd.health.bean.CheckDoctorsBean;
 import com.wd.health.bean.CmedicinesBean;
@@ -14,6 +15,7 @@ import com.wd.health.bean.SectionBean;
 import com.wd.health.bean.SpyDetailsBean;
 import com.wd.health.bean.SubjectBean;
 import com.wd.health.bean.UnitDiseaseBean;
+import com.wd.health.bean.UnsubscribeBean;
 import com.wd.health.contract.HomeContract;
 import com.wd.health.utils.RequestNet;
 import com.wd.mylibrary.utils.CommonObserver;
@@ -285,6 +287,40 @@ HomeContract.SearchContreact.IModel,HomeContract.CheckDoctorsContreact.IModel{
                 .subscribe(new CommonObserver<DoctorDetailsBean>() {
                     @Override
                     public void onNext(DoctorDetailsBean emailBean) {
+                        callback.onDoctorDetailsSuccess(emailBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.onDoctorDetailsFailure(e);
+                    }
+                });
+    }
+
+    @Override
+    public void getAttentionModel(String userId, String sessionId, String doctorId, IModelAttentionCallback callback) {
+        RequestNet.getInstance().create().getAttention(userId,sessionId,doctorId)
+                .compose(CommonSchedulers.<AttentionBean>io2main())
+                .subscribe(new CommonObserver<AttentionBean>() {
+                    @Override
+                    public void onNext(AttentionBean emailBean) {
+                        callback.onDoctorDetailsSuccess(emailBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.onDoctorDetailsFailure(e);
+                    }
+                });
+    }
+
+    @Override
+    public void getUnsubscribeModel(String userId, String sessionId, String doctorId, IModelUnsubscribeCallback callback) {
+        RequestNet.getInstance().create().getUnsubscribe(userId,sessionId,doctorId)
+                .compose(CommonSchedulers.<UnsubscribeBean>io2main())
+                .subscribe(new CommonObserver<UnsubscribeBean>() {
+                    @Override
+                    public void onNext(UnsubscribeBean emailBean) {
                         callback.onDoctorDetailsSuccess(emailBean);
                     }
 

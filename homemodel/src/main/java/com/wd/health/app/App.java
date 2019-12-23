@@ -19,6 +19,9 @@ public class App extends com.wd.mylibrary.app.App {
         sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
         sharedPreferences1 = getSharedPreferences("user1", Context.MODE_PRIVATE);
         JMessageClient.init(this,true);
-
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.putString("userId","456");
+        edit.putString("sessionId","1577102918194456");
+        edit.commit();
     }
 }

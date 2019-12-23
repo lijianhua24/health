@@ -362,6 +362,22 @@ public interface HomeContract {
 
                 void onDoctorDetailsFailure(Throwable e);
             }
+            void getAttentionModel(String userId,String sessionId,String doctorId,IModelAttentionCallback callback);
+
+            //model层中的接口回调
+            interface IModelAttentionCallback {
+                void onDoctorDetailsSuccess(Object data);
+
+                void onDoctorDetailsFailure(Throwable e);
+            }
+            void getUnsubscribeModel(String userId,String sessionId,String doctorId,IModelUnsubscribeCallback callback);
+
+            //model层中的接口回调
+            interface IModelUnsubscribeCallback {
+                void onDoctorDetailsSuccess(Object data);
+
+                void onDoctorDetailsFailure(Throwable e);
+            }
         }
 
         //view层  命名必须是IView
@@ -376,6 +392,14 @@ public interface HomeContract {
 
             void onDoctorDetailsFailure(Throwable e);
 
+            void onAttentionSuccess(Object data);
+
+            void onAttentionFailure(Throwable e);
+
+            void onUnsubscribeSuccess(Object data);
+
+            void onUnsubscribeFailure(Throwable e);
+
         }
 
         //presenter层   命名必须是IPresenter
@@ -384,6 +408,10 @@ public interface HomeContract {
             void getCheckDoctorsPresenter(Integer deptId,Integer condition,Integer sortBy,Integer page,Integer count);
 
             void getDoctorDetailsPresenter(String userId,String sessionId,String doctorId);
+
+            void getAttentionPresenter(String userId,String sessionId,String doctorId);
+
+            void getUnsubscribePresenter(String userId,String sessionId,String doctorId);
 
         }
     }

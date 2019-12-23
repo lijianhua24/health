@@ -40,6 +40,36 @@ public class DoctorListPresenter extends BasePresenter<HomeContract.CheckDoctors
     }
 
     @Override
+    public void getAttentionPresenter(String userId, String sessionId, String doctorId) {
+        homeModel.getAttentionModel(userId, sessionId, doctorId, new HomeContract.CheckDoctorsContreact.IModel.IModelAttentionCallback() {
+            @Override
+            public void onDoctorDetailsSuccess(Object data) {
+                getView().onAttentionSuccess(data);
+            }
+
+            @Override
+            public void onDoctorDetailsFailure(Throwable e) {
+                getView().onAttentionFailure(e);
+            }
+        });
+    }
+
+    @Override
+    public void getUnsubscribePresenter(String userId, String sessionId, String doctorId) {
+            homeModel.getUnsubscribeModel(userId, sessionId, doctorId, new HomeContract.CheckDoctorsContreact.IModel.IModelUnsubscribeCallback() {
+                @Override
+                public void onDoctorDetailsSuccess(Object data) {
+                    getView().onDoctorDetailsSuccess(data);
+                }
+
+                @Override
+                public void onDoctorDetailsFailure(Throwable e) {
+                    getView().onDoctorDetailsFailure(e);
+                }
+            });
+    }
+
+    @Override
     protected void initModel() {
         homeModel = new HomeModel();
     }

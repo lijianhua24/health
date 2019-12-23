@@ -1,5 +1,6 @@
 package com.wd.health.utils;
 
+import com.wd.health.bean.AttentionBean;
 import com.wd.health.bean.BannerBean;
 import com.wd.health.bean.CheckDoctorsBean;
 import com.wd.health.bean.CmedicinesBean;
@@ -14,10 +15,13 @@ import com.wd.health.bean.SectionBean;
 import com.wd.health.bean.SpyDetailsBean;
 import com.wd.health.bean.SubjectBean;
 import com.wd.health.bean.UnitDiseaseBean;
+import com.wd.health.bean.UnsubscribeBean;
 
 import io.reactivex.Observable;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface ApiServers {
@@ -77,6 +81,11 @@ public interface ApiServers {
     @GET("user/inquiry/v1/findDoctorInfo")
     Observable<DoctorDetailsBean> getDoctorDetails(@Header("userId") String userId,@Header("sessionId") String sessionId,@Query("doctorId") String doctorId);
 
-    //
+    //关注医生
+    @POST("user/inquiry/verify/v1/followDoctor")
+    Observable<AttentionBean> getAttention(@Header("userId") String userId,@Header("sessionId") String sessionId,@Query("doctorId") String doctorId);
+
+    @DELETE("user/inquiry/verify/v1/cancelFollow")
+    Observable<UnsubscribeBean> getUnsubscribe(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("doctorId") String doctorId);
 
 }

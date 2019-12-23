@@ -15,7 +15,10 @@ import com.bumptech.glide.Glide;
 import com.wd.health.R;
 import com.wd.health.adapter.CommentAdapter;
 import com.wd.health.adapter.MyGiftAdapter;
+import com.wd.health.app.App;
+import com.wd.health.bean.AttentionBean;
 import com.wd.health.bean.DoctorDetailsBean;
+import com.wd.health.bean.UnsubscribeBean;
 import com.wd.health.contract.HomeContract;
 import com.wd.health.presenter.DoctorListPresenter;
 import com.wd.mylibrary.Base.BaseActivity;
@@ -68,9 +71,10 @@ public class PersonalActivity extends BaseActivity<DoctorListPresenter> implemen
     ImageView nolike;
 
     private int doctorId;
-    private int userId;
-    private String sesssionId;
     private int servicePrice;
+    private String userId;
+    private String sessionId;
+    private boolean Guanzhu;
     @Override
     protected DoctorListPresenter providePresenter() {
         return new DoctorListPresenter();
@@ -80,14 +84,27 @@ public class PersonalActivity extends BaseActivity<DoctorListPresenter> implemen
     protected void initData() {
 
         doctorId =this.getIntent().getIntExtra("doctorId", 0);
-        SharedPreferences user = getSharedPreferences("user", MODE_PRIVATE);
-        userId = user.getInt("userId", 0);
-        sesssionId = user.getString("sesssionId", "");
-        if (userId != 0 && !sesssionId.isEmpty()) {
-            mPresenter.getDoctorDetailsPresenter(userId+"", sesssionId, doctorId+"");
+        userId = App.sharedPreferences.getString("userId", null);
+        sessionId = App.sharedPreferences.getString("sessionId", null);
+        if (userId !=null && sessionId!=null) {
+            mPresenter.getDoctorDetailsPresenter(userId, sessionId, doctorId+"");
         } else {
             mPresenter.getDoctorDetailsPresenter("0", null, doctorId+"");
         }
+        nolike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Guanzhu =!Guanzhu;
+                if (userId!=null && sessionId!=null){
+
+                    if (Guanzhu){
+                        mPresenter.getAttentionPresenter(userId,sessionId,doctorId+"");
+                    }else {
+                        mPresenter.getUnsubscribePresenter(userId,sessionId,doctorId+"");
+                    }
+                }
+            }
+        });
     }
 
     @Override
@@ -118,8 +135,12 @@ public class PersonalActivity extends BaseActivity<DoctorListPresenter> implemen
             if (result != null) {
                 int followFlag = result.getFollowFlag();
                 if (followFlag == 1) {
-                    nolike.setVisibility(View.GONE);
-                    like.setVisibility(View.VISIBLE);
+                    Guanzhu = true;
+                    nolike.setBackgroundResource(R.mipmap.common_icon_attention_small_s);
+
+                }else {
+                    Guanzhu = false;
+                    nolike.setBackgroundResource(R.mipmap.common_icon_attention_small_n);
                 }
                 servicePrice = result.getServicePrice();
                 price.setText( servicePrice + "H币/次");
@@ -173,6 +194,28 @@ public class PersonalActivity extends BaseActivity<DoctorListPresenter> implemen
 
     @Override
     public void onDoctorDetailsFailure(Throwable e) {
+
+    }
+
+    @Override
+    public void onAttentionSuccess(Object data) {
+        AttentionBean attentionBean = (AttentionBean) data;
+        Toast.makeText(this, ""+attentionBean.getMessage(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onAttentionFailure(Throwable e) {
+
+    }
+
+    @Override
+    public void onUnsubscribeSuccess(Object data) {
+        UnsubscribeBean unsubscribeBean = (UnsubscribeBean) data;
+        Toast.makeText(this, ""+unsubscribeBean.getMessage(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onUnsubscribeFailure(Throwable e) {
 
     }
 }

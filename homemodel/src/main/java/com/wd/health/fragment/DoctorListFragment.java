@@ -201,6 +201,27 @@ public class DoctorListFragment extends BaseFragment<CheckDoctorsPresenter> impl
     public void onDoctorDetailsFailure(Throwable e) {
 
     }
+
+    @Override
+    public void onAttentionSuccess(Object data) {
+
+    }
+
+    @Override
+    public void onAttentionFailure(Throwable e) {
+
+    }
+
+    @Override
+    public void onUnsubscribeSuccess(Object data) {
+
+    }
+
+    @Override
+    public void onUnsubscribeFailure(Throwable e) {
+
+    }
+
     @OnClick({R.id.up, R.id.next, R.id.more})
     public void onViewClicked(View view) {
         switch (view.getId()) {
