@@ -105,6 +105,12 @@ public class PersonalActivity extends BaseActivity<DoctorListPresenter> implemen
                 }
             }
         });
+        goNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPresenter.getConsultPresenter(userId,sessionId,doctorId+"");
+            }
+        });
     }
 
     @Override
@@ -218,6 +224,16 @@ public class PersonalActivity extends BaseActivity<DoctorListPresenter> implemen
 
     @Override
     public void onUnsubscribeFailure(Throwable e) {
+
+    }
+
+    @Override
+    public void onConsultSuccess(Object data) {
+
+    }
+
+    @Override
+    public void onConsultFailure(Throwable e) {
 
     }
 }

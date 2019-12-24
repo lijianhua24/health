@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.wd.health.view.JgActivity;
 
 import cn.jpush.im.android.api.JMessageClient;
 
@@ -21,7 +22,8 @@ public class App extends com.wd.mylibrary.app.App {
         JMessageClient.init(this,true);
         SharedPreferences.Editor edit = sharedPreferences.edit();
         edit.putString("userId","456");
-        edit.putString("sessionId","1577102918194456");
+        edit.putString("sessionId","1577186425685456");
         edit.commit();
+
     }
 }

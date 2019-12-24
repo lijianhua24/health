@@ -378,6 +378,15 @@ public interface HomeContract {
 
                 void onUnsubscribeFailure(Throwable e);
             }
+
+            void getConsultModel(String userId,String sessionId,String doctorId,IModelConsultCallback callback);
+
+            //model层中的接口回调
+            interface IModelConsultCallback {
+                void onConsultSuccess(Object data);
+
+                void onConsultFailure(Throwable e);
+            }
         }
 
         //view层  命名必须是IView
@@ -400,6 +409,10 @@ public interface HomeContract {
 
             void onUnsubscribeFailure(Throwable e);
 
+            void onConsultSuccess(Object data);
+
+            void onConsultFailure(Throwable e);
+
         }
 
         //presenter层   命名必须是IPresenter
@@ -412,6 +425,8 @@ public interface HomeContract {
             void getAttentionPresenter(String userId,String sessionId,String doctorId);
 
             void getUnsubscribePresenter(String userId,String sessionId,String doctorId);
+
+            void getConsultPresenter(String userId,String sessionId,String doctorId);
 
         }
     }

@@ -70,6 +70,21 @@ public class CheckDoctorsPresenter extends BasePresenter<HomeContract.CheckDocto
     }
 
     @Override
+    public void getConsultPresenter(String userId, String sessionId, String doctorId) {
+        homeModel.getConsultModel(userId, sessionId, doctorId, new HomeContract.CheckDoctorsContreact.IModel.IModelConsultCallback() {
+            @Override
+            public void onConsultSuccess(Object data) {
+                getView().onConsultSuccess(data);
+            }
+
+            @Override
+            public void onConsultFailure(Throwable e) {
+                getView().onConsultFailure(e);
+            }
+        });
+    }
+
+    @Override
     protected void initModel() {
         homeModel = new HomeModel();
     }

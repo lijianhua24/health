@@ -4,12 +4,16 @@ import com.wd.health.bean.AttentionBean;
 import com.wd.health.bean.BannerBean;
 import com.wd.health.bean.CheckDoctorsBean;
 import com.wd.health.bean.CmedicinesBean;
+import com.wd.health.bean.ConsultBean;
+import com.wd.health.bean.CurrentBean;
 import com.wd.health.bean.DepartmentBean;
 import com.wd.health.bean.DoctorDetailsBean;
 import com.wd.health.bean.DrugBean;
 import com.wd.health.bean.FindBean;
 import com.wd.health.bean.InfoSectionBean;
 import com.wd.health.bean.PopularBean;
+import com.wd.health.bean.PushMessageBean;
+import com.wd.health.bean.RecordingBean;
 import com.wd.health.bean.SearchBean;
 import com.wd.health.bean.SectionBean;
 import com.wd.health.bean.SpyDetailsBean;
@@ -17,13 +21,16 @@ import com.wd.health.bean.SubjectBean;
 import com.wd.health.bean.UnitDiseaseBean;
 import com.wd.health.bean.UnsubscribeBean;
 import com.wd.health.contract.HomeContract;
+import com.wd.health.contract.IMContract;
 import com.wd.health.utils.RequestNet;
 import com.wd.mylibrary.utils.CommonObserver;
 import com.wd.mylibrary.utils.CommonSchedulers;
 
-public class HomeModel implements HomeContract.BnnerContreact.IModel,HomeContract.CommonContreact.IModel,HomeContract.DepartmentContreact.IModel,
-HomeContract.FindContreact.IModel,HomeContract.CmedicinesContreact.IModel,HomeContract.InfoSectionContreact.IModel,HomeContract.SpyDetailsContreact.IModel,
-HomeContract.SearchContreact.IModel,HomeContract.CheckDoctorsContreact.IModel{
+import java.security.MessageDigest;
+
+public class HomeModel implements HomeContract.BnnerContreact.IModel, HomeContract.CommonContreact.IModel, HomeContract.DepartmentContreact.IModel,
+        HomeContract.FindContreact.IModel, HomeContract.CmedicinesContreact.IModel, HomeContract.InfoSectionContreact.IModel, HomeContract.SpyDetailsContreact.IModel,
+        HomeContract.SearchContreact.IModel, HomeContract.CheckDoctorsContreact.IModel, IMContract.IModel {
 
     @Override
     public void getBannerDataModel(IModelCallback callback) {
@@ -78,7 +85,7 @@ HomeContract.SearchContreact.IModel,HomeContract.CheckDoctorsContreact.IModel{
 
     @Override
     public void getInfoSectionDataModel(String plateId, Integer page, Integer count, IModelInfoSectionCallback callback) {
-        RequestNet.getInstance().create().getInFoSection(plateId,page,count)
+        RequestNet.getInstance().create().getInFoSection(plateId, page, count)
                 .compose(CommonSchedulers.<InfoSectionBean>io2main())
                 .subscribe(new CommonObserver<InfoSectionBean>() {
                     @Override
@@ -94,7 +101,7 @@ HomeContract.SearchContreact.IModel,HomeContract.CheckDoctorsContreact.IModel{
     }
 
     @Override
-    public void getUnitDiseaseDataModel(Integer id,IModelUnitDiseaseCallback callback) {
+    public void getUnitDiseaseDataModel(Integer id, IModelUnitDiseaseCallback callback) {
         RequestNet.getInstance().create().getUnitsease(id)
                 .compose(CommonSchedulers.<UnitDiseaseBean>io2main())
                 .subscribe(new CommonObserver<UnitDiseaseBean>() {
@@ -129,7 +136,7 @@ HomeContract.SearchContreact.IModel,HomeContract.CheckDoctorsContreact.IModel{
 
     @Override
     public void getDrugDataModel(Integer drugsCategoryId, Integer page, Integer count, IModelDrugCallback callback) {
-        RequestNet.getInstance().create().getDrug(drugsCategoryId,page,count)
+        RequestNet.getInstance().create().getDrug(drugsCategoryId, page, count)
                 .compose(CommonSchedulers.<DrugBean>io2main())
                 .subscribe(new CommonObserver<DrugBean>() {
                     @Override
@@ -197,7 +204,7 @@ HomeContract.SearchContreact.IModel,HomeContract.CheckDoctorsContreact.IModel{
 
     @Override
     public void getInfoSectionsModel(String plateId, Integer page, Integer count, IModelInfoSectionsCallback callback) {
-        RequestNet.getInstance().create().getInFoSection(plateId,page,count)
+        RequestNet.getInstance().create().getInFoSection(plateId, page, count)
                 .compose(CommonSchedulers.<InfoSectionBean>io2main())
                 .subscribe(new CommonObserver<InfoSectionBean>() {
                     @Override
@@ -214,7 +221,7 @@ HomeContract.SearchContreact.IModel,HomeContract.CheckDoctorsContreact.IModel{
 
     @Override
     public void getSpyDetailsModel(String userId, String sessionId, Integer infoId, IModelSpyDetailsCallback callback) {
-        RequestNet.getInstance().create().getSpyDetal(userId,sessionId,infoId)
+        RequestNet.getInstance().create().getSpyDetal(userId, sessionId, infoId)
                 .compose(CommonSchedulers.<SpyDetailsBean>io2main())
                 .subscribe(new CommonObserver<SpyDetailsBean>() {
                     @Override
@@ -247,7 +254,7 @@ HomeContract.SearchContreact.IModel,HomeContract.CheckDoctorsContreact.IModel{
     }
 
     @Override
-    public void getPopularModel( IModelPopularCallback callback) {
+    public void getPopularModel(IModelPopularCallback callback) {
         RequestNet.getInstance().create().getPopular()
                 .compose(CommonSchedulers.<PopularBean>io2main())
                 .subscribe(new CommonObserver<PopularBean>() {
@@ -265,7 +272,7 @@ HomeContract.SearchContreact.IModel,HomeContract.CheckDoctorsContreact.IModel{
 
     @Override
     public void getCheckDoctorsModel(Integer deptId, Integer condition, Integer sortBy, Integer page, Integer count, IModelCheckDoctorsCallback callback) {
-        RequestNet.getInstance().create().getCheckDoctors(deptId,condition,sortBy,page,count)
+        RequestNet.getInstance().create().getCheckDoctors(deptId, condition, sortBy, page, count)
                 .compose(CommonSchedulers.<CheckDoctorsBean>io2main())
                 .subscribe(new CommonObserver<CheckDoctorsBean>() {
                     @Override
@@ -282,7 +289,7 @@ HomeContract.SearchContreact.IModel,HomeContract.CheckDoctorsContreact.IModel{
 
     @Override
     public void getDoctorDetailsModel(String userId, String sessionId, String doctorId, IModelDoctorDetailsCallback callback) {
-        RequestNet.getInstance().create().getDoctorDetails(userId,sessionId,doctorId)
+        RequestNet.getInstance().create().getDoctorDetails(userId, sessionId, doctorId)
                 .compose(CommonSchedulers.<DoctorDetailsBean>io2main())
                 .subscribe(new CommonObserver<DoctorDetailsBean>() {
                     @Override
@@ -299,7 +306,7 @@ HomeContract.SearchContreact.IModel,HomeContract.CheckDoctorsContreact.IModel{
 
     @Override
     public void getAttentionModel(String userId, String sessionId, String doctorId, IModelAttentionCallback callback) {
-        RequestNet.getInstance().create().getAttention(userId,sessionId,doctorId)
+        RequestNet.getInstance().create().getAttention(userId, sessionId, doctorId)
                 .compose(CommonSchedulers.<AttentionBean>io2main())
                 .subscribe(new CommonObserver<AttentionBean>() {
                     @Override
@@ -316,7 +323,7 @@ HomeContract.SearchContreact.IModel,HomeContract.CheckDoctorsContreact.IModel{
 
     @Override
     public void getUnsubscribeModel(String userId, String sessionId, String doctorId, IModelUnsubscribeCallback callback) {
-        RequestNet.getInstance().create().getUnsubscribe(userId,sessionId,doctorId)
+        RequestNet.getInstance().create().getUnsubscribe(userId, sessionId, doctorId)
                 .compose(CommonSchedulers.<UnsubscribeBean>io2main())
                 .subscribe(new CommonObserver<UnsubscribeBean>() {
                     @Override
@@ -327,6 +334,74 @@ HomeContract.SearchContreact.IModel,HomeContract.CheckDoctorsContreact.IModel{
                     @Override
                     public void onError(Throwable e) {
                         callback.onUnsubscribeFailure(e);
+                    }
+                });
+    }
+
+    @Override
+    public void getConsultModel(String userId, String sessionId, String doctorId, IModelConsultCallback callback) {
+        RequestNet.getInstance().create().getConsult(userId, sessionId, doctorId)
+                .compose(CommonSchedulers.<ConsultBean>io2main())
+                .subscribe(new CommonObserver<ConsultBean>() {
+                    @Override
+                    public void onNext(ConsultBean emailBean) {
+                        callback.onConsultSuccess(emailBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.onConsultFailure(e);
+                    }
+                });
+    }
+
+    @Override
+    public void getCurrentModel(String userId, String sessionId, IModelCurrentCallback callback) {
+        RequestNet.getInstance().create().getCurrent(userId, sessionId)
+                .compose(CommonSchedulers.<CurrentBean>io2main())
+                .subscribe(new CommonObserver<CurrentBean>() {
+                    @Override
+                    public void onNext(CurrentBean emailBean) {
+                        callback.onCurrentSuccess(emailBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.onCurrentFailure(e);
+                    }
+                });
+    }
+
+    @Override
+    public void getRecordingModel(String userId, String sessionId, int inquiryId, int page, int count, IModelRecordingCallback callback) {
+        RequestNet.getInstance().create().getRecording(userId, sessionId,inquiryId,page,count)
+                .compose(CommonSchedulers.<RecordingBean>io2main())
+                .subscribe(new CommonObserver<RecordingBean>() {
+                    @Override
+                    public void onNext(RecordingBean emailBean) {
+                        callback.onRecordingSuccess(emailBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.onRecordingFailure(e);
+                    }
+                });
+    }
+
+    @Override
+    public void getMessageDataModel(String userId, String sessionId, int inquiryId, String content, int type, int doctorId, IModelMessageCallback callback) {
+        RequestNet.getInstance().create().getMessage(userId, sessionId,inquiryId,content,type,doctorId)
+                .compose(CommonSchedulers.<PushMessageBean>io2main())
+                .subscribe(new CommonObserver<PushMessageBean>() {
+                    @Override
+                    public void onNext(PushMessageBean emailBean) {
+                        callback.onMessageSuccess(emailBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.onMessageFailure(e);
                     }
                 });
     }

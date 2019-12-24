@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.wd.health.JgActivity;
 import com.wd.health.R;
 
 import butterknife.BindView;

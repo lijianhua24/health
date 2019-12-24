@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:paddingTop="20dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="20dp"
+    android:paddingEnd="20dp"
+    android:paddingLeft="20dp"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <TextView
+        android:text="本次咨询将扣除500H币"
+        android:textColor="@color/hei"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/one_diss"
+            android:background="@color/hui"
+            android:text="取消"
+            android:textColor="@color/hei"
+            android:layout_width="98dp"
+            android:layout_height="40dp" />
+        <Button
+            android:id="@+id/one_go"
+            android:background="@color/lan"
+            android:text="问诊咨询"
+            android:textColor="@color/hei"
+            android:layout_width="98dp"
+            android:layout_height="40dp" />
+    </LinearLayout>
+
+</LinearLayout>
