@@ -374,9 +374,9 @@ public interface HomeContract {
 
             //model层中的接口回调
             interface IModelUnsubscribeCallback {
-                void onDoctorDetailsSuccess(Object data);
+                void onUnsubscribeSuccess(Object data);
 
-                void onDoctorDetailsFailure(Throwable e);
+                void onUnsubscribeFailure(Throwable e);
             }
         }
 

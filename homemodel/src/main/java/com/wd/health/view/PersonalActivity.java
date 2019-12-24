@@ -51,8 +51,6 @@ public class PersonalActivity extends BaseActivity<DoctorListPresenter> implemen
     TextView recrivegift;
     @BindView(R.id.recy)
     RecyclerView recy;
-    @BindView(R.id.like)
-    ImageView like;
     @BindView(R.id.jieshao)
     TextView jieshao;
     @BindView(R.id.scaddress)
@@ -99,8 +97,10 @@ public class PersonalActivity extends BaseActivity<DoctorListPresenter> implemen
 
                     if (Guanzhu){
                         mPresenter.getAttentionPresenter(userId,sessionId,doctorId+"");
+                        nolike.setBackgroundResource(R.mipmap.common_icon_attention_small_s);
                     }else {
                         mPresenter.getUnsubscribePresenter(userId,sessionId,doctorId+"");
+                        nolike.setBackgroundResource(R.mipmap.common_icon_attention_small_n);
                     }
                 }
             }
@@ -130,10 +130,12 @@ public class PersonalActivity extends BaseActivity<DoctorListPresenter> implemen
     @Override
     public void onDoctorDetailsSuccess(Object data) {
         DoctorDetailsBean doctorInfoBean = (DoctorDetailsBean) data;
+        Toast.makeText(this, ""+doctorInfoBean.getMessage(), Toast.LENGTH_SHORT).show();
         if (doctorInfoBean.getStatus().equals("0000")) {
             DoctorDetailsBean.ResultBean result = doctorInfoBean.getResult();
             if (result != null) {
                 int followFlag = result.getFollowFlag();
+                Toast.makeText(this, ""+followFlag, Toast.LENGTH_SHORT).show();
                 if (followFlag == 1) {
                     Guanzhu = true;
                     nolike.setBackgroundResource(R.mipmap.common_icon_attention_small_s);

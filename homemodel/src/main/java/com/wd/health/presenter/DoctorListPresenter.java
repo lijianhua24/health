@@ -58,13 +58,13 @@ public class DoctorListPresenter extends BasePresenter<HomeContract.CheckDoctors
     public void getUnsubscribePresenter(String userId, String sessionId, String doctorId) {
             homeModel.getUnsubscribeModel(userId, sessionId, doctorId, new HomeContract.CheckDoctorsContreact.IModel.IModelUnsubscribeCallback() {
                 @Override
-                public void onDoctorDetailsSuccess(Object data) {
-                    getView().onDoctorDetailsSuccess(data);
+                public void onUnsubscribeSuccess(Object data) {
+                    getView().onUnsubscribeSuccess(data);
                 }
 
                 @Override
-                public void onDoctorDetailsFailure(Throwable e) {
-                    getView().onDoctorDetailsFailure(e);
+                public void onUnsubscribeFailure(Throwable e) {
+                    getView().onUnsubscribeFailure(e);
                 }
             });
     }

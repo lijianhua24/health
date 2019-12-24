@@ -321,12 +321,12 @@ HomeContract.SearchContreact.IModel,HomeContract.CheckDoctorsContreact.IModel{
                 .subscribe(new CommonObserver<UnsubscribeBean>() {
                     @Override
                     public void onNext(UnsubscribeBean emailBean) {
-                        callback.onDoctorDetailsSuccess(emailBean);
+                        callback.onUnsubscribeSuccess(emailBean);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        callback.onDoctorDetailsFailure(e);
+                        callback.onUnsubscribeFailure(e);
                     }
                 });
     }

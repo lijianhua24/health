@@ -79,7 +79,9 @@ public class DoctorListFragment extends BaseFragment<CheckDoctorsPresenter> impl
         Bundle arguments = getArguments();
         departmentId = arguments.getInt("departmentId");
 
-            mPresenter.getCheckDoctorsPresenter(departmentId, 1, 0, page, 4);
+           if (departmentId == id){
+               mPresenter.getCheckDoctorsPresenter(departmentId, 1, 0, page, 4);
+           }
         btnGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -122,15 +122,6 @@
             android:layout_marginTop="20dp"
             android:layout_marginRight="28dp"
             android:src="@mipmap/common_icon_attention_small_n" />
-        <ImageView
-            android:visibility="gone"
-            android:id="@+id/like"
-            android:layout_width="16dp"
-            android:layout_height="18dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="28dp"
-            android:src="@mipmap/common_icon_attention_small_s" />
         <LinearLayout
             android:layout_below="@id/head_img"
             android:layout_width="match_parent"

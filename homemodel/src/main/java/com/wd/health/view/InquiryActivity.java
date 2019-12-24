@@ -68,6 +68,7 @@ public class InquiryActivity extends BaseActivity<FettlesPresenter> implements H
             public Fragment getItem(int position) {
                 DoctorListFragment doctorListFragment = new DoctorListFragment();
                 Bundle bundle = new Bundle();
+
                 bundle.putInt("departmentId",result.get(position).getId());
                 doctorListFragment.setArguments(bundle);
                 return doctorListFragment;
@@ -85,7 +86,7 @@ public class InquiryActivity extends BaseActivity<FettlesPresenter> implements H
             }
         });
         int position1 = App.sharedPreferences.getInt("position", 0);
-        pager.setCurrentItem(position1);
+        //pager.setCurrentItem(position1);
         tab.setupWithViewPager(pager);
        // pager.getCurrentItem();
         tab.getTabAt(position1).select();
