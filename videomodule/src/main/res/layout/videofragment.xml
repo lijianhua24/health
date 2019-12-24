@@ -1,45 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_74"
-        android:background="#ffff">
+    >
 
-        <ImageView
-            android:id="@+id/viewfragment_iv_user_head_pic"
-            android:layout_width="@dimen/dp_32"
-            android:layout_height="@dimen/dp_32"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/dp_20"
-            android:background="@mipmap/dermatology" />
-
-        <ImageView
-            android:id="@+id/viewfragment_iv_user_message"
-            android:layout_width="@dimen/dp_24"
-            android:layout_height="@dimen/dp_24"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/dp_20"
-            android:background="@mipmap/common_nav_message_black_n" />
-
-    </RelativeLayout>
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/videofragment_tablayout"
-        android:layout_width="match_parent"
-        android:layout_weight="1"
-        app:tabSelectedTextColor="#3087ea"
-        app:tabMode="scrollable"
-        app:tabGravity="fill"
-        android:layout_height="0dp">
-    </com.google.android.material.tabs.TabLayout>
     <androidx.viewpager.widget.ViewPager
-        android:layout_weight="12"
         android:id="@+id/videofragment_viewpager"
         android:layout_width="match_parent"
-        android:layout_height="0dp">
-    </androidx.viewpager.widget.ViewPager>
-</LinearLayout>
+        android:layout_height="match_parent" />
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/videofragment_tablayout"
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        app:tabIndicatorHeight="0dp" />
+    <CheckBox
+        android:layout_below="@id/videofragment_tablayout"
+        android:id="@+id/video_pull"
+        android:button="@null"
+        android:background="@drawable/video_selector_pendant"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_20"
+        android:layout_alignParentRight="true"
+        android:src="@mipmap/lalalalala"
+        android:layout_width="15dp"
+        android:layout_height="88dp"/>
+
+</RelativeLayout>

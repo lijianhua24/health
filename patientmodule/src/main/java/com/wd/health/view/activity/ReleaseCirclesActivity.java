@@ -39,6 +39,7 @@ import com.wd.health.bean.ReleasePatientsBean;
 import com.wd.health.bean.UnitDiseaseBean;
 import com.wd.health.bean.UploadPatientBean;
 import com.wd.health.contract.IContract;
+import com.wd.health.model.App;
 import com.wd.health.presenter.DepartmentListPresenter;
 import com.wd.health.view.adapter.ConsultationTwoAdapter;
 import com.wd.health.view.adapter.IllnessAdapter;
@@ -107,13 +108,14 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
     private int id;
     private PopupWindow popWindow;
     private PopupWindow popWindowDisease;
-    private String sessionId = "1576889997444445";
-    private int userId = 445;
     private MultipartBody.Part picture;
     private String path;
     private int sickCircleId;
     private RecyclerView popup_recycler_department;
     private RecyclerView popup_recycler_disease;
+    private int userId;
+    private String sessionId;
+
     @Override
     protected DepartmentListPresenter providePresenter() {
         return new DepartmentListPresenter();
@@ -320,8 +322,10 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
                 map.put("treatmentProcess", treatmentProcess);
                 map.put("amount", 0);
                 //调发布圈子接口
-                mPresenter.getReleasePatientsPresenter(userId, sessionId, map);
-                mPresenter.getuploadPatient(userId, sessionId, sickCircleId, picture);
+                userId = App.sharedPreferences.getInt("userId", 0);
+                sessionId = App.sharedPreferences.getString("sessionId", null);
+                mPresenter.getReleasePatientsPresenter(ReleaseCirclesActivity.this.userId, ReleaseCirclesActivity.this.sessionId, map);
+                mPresenter.getuploadPatient(ReleaseCirclesActivity.this.userId, ReleaseCirclesActivity.this.sessionId, sickCircleId, picture);
 
                 /*loadingDailog.show();*/
             }

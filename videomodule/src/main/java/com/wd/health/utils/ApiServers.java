@@ -2,6 +2,7 @@ package com.wd.health.utils;
 
 import com.wd.health.bean.HealthBuyBean;
 import com.wd.health.bean.HealthSortBean;
+import com.wd.health.bean.QvideoListBean;
 import com.wd.health.bean.VideoSortBean;
 
 import io.reactivex.Observable;
@@ -47,4 +48,20 @@ public interface ApiServers {
             @Header("sessionId")String sessionId,
             @Query("videoId") int videoId
     );
+
+    @GET("user/video/v1/findVideoCommentList")
+    Observable<QvideoListBean>QvideoList(
+            @Header("userId")int userId,
+            @Header("sessionId")String sessionId,
+            @Query("videoId") int videoId
+    );
+
+    @POST("user/video/verify/v1/addVideoComment")
+    Observable<HealthBuyBean>VideoComment(
+            @Header("userId")int userId,
+            @Header("sessionId")String sessionId,
+            @Query("videoId") int videoId,
+            @Query("content") String content
+    );
+
 }

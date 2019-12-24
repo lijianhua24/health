@@ -16,12 +16,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.health.R;
 import com.wd.health.bean.CommentCircleBean;
 import com.wd.health.bean.OpinionBean;
 import com.wd.health.bean.PatientDetailsBean;
 import com.wd.health.bean.QueryCommentBean;
 import com.wd.health.contract.IContractDetails;
+import com.wd.health.model.App;
 import com.wd.health.presenter.PatientDetailsPresenter;
 import com.wd.health.view.adapter.RecyclerSickCircleCommentListAdapter;
 import com.wd.health.view.custom.SyLinearLayoutManager;
@@ -95,13 +97,18 @@ public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter
     private RecyclerSickCircleCommentListAdapter recyclerSickCircleCommentListAdapter;
     private RelativeLayout activiy_patient_zong;
     private LinearLayout activiy_patient_deng;
+    private int userId;
+    private String sessionId;
+    int page = 1;
+    int count = 5;
 
     @Override
     protected void initData() {
         Intent intent = getIntent();
         int sickCircleId = intent.getIntExtra("sickCircleId", 0);
-        Logger.d("FFFFFFF", sickCircleId + "");
-        mPresenter.getPatientDetailsPresenter(445, "1576889997444445", sickCircleId);
+        userId = App.sharedPreferences.getInt("userId", 0);
+        sessionId = App.sharedPreferences.getString("sessionId", null);
+        mPresenter.getPatientDetailsPresenter(userId, sessionId, sickCircleId);
         //关闭帖子
         patient_activity_iv_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,7 +125,7 @@ public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter
             @Override
             public void onClick(View v) {
                 String trim = patient_activity_et_content.getText().toString().trim();
-                mPresenter.getCommentCircle(445, "1576831157143445", sickCircleId, trim);
+                mPresenter.getCommentCircle(userId, sessionId, sickCircleId, trim);
             }
         });
 
@@ -180,19 +187,15 @@ public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter
         patient_activity_iv_content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPresenter.getQueryCommentPresenter(445, "1576821330500445", sickCircleId, 1, 10);
+                mPresenter.getQueryCommentPresenter(userId, sessionId, sickCircleId, page, count);
                 patient_activity_relative_content.setVisibility(View.VISIBLE);
                 patient_activity_relative_release_sickCircle.setVisibility(View.GONE);
             }
         });
-
-
     }
 
     @Override
-    public void PatientDetailsFailure(Throwable e) {
-
-    }
+    public void PatientDetailsFailure(Throwable e){}
 
     @Override
     public void QueryCommentsuccess(QueryCommentBean queryCommentBean) {

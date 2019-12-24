@@ -54,6 +54,7 @@ dependencies {
     implementation rootProject.ext.dependencies["rxjava2:rxjava"]
     implementation rootProject.ext.dependencies["retrofit2:adapter"]
     implementation 'com.ypx.yimagepicker:androidx:2.4.2'
+
     implementation project(path: ':mylibrary')
 ////Gson
 //    //okhttp

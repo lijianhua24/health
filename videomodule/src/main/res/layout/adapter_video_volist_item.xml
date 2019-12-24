@@ -10,12 +10,6 @@
         android:layout_height="@dimen/dp_720">
     </com.dou361.ijkplayer.widget.IjkVideoView>
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_marginRight="@dimen/dp_15"
-        android:layout_alignParentRight="true"
-        android:layout_height="wrap_content"
-        android:background="@mipmap/lalalalala"></ImageView>
-    <ImageView
         android:id="@+id/adapter_video_start_stop"
         android:layout_width="@dimen/dp_65"
         android:layout_height="@dimen/dp_65"

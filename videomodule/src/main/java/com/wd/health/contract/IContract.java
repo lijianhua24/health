@@ -2,6 +2,7 @@ package com.wd.health.contract;
 
 import com.wd.health.bean.HealthBuyBean;
 import com.wd.health.bean.HealthSortBean;
+import com.wd.health.bean.QvideoListBean;
 import com.wd.health.bean.VideoSortBean;
 import com.wd.mylibrary.Base.IBaseView;
 
@@ -22,6 +23,14 @@ public interface IContract extends IBaseView {
         void HealthCollectionsuccess(HealthBuyBean healthBuyBean);
 
         void HealthCollectionFailure(Throwable e);
+
+        void QvideoListsuccess(QvideoListBean qvideoListBean);
+
+        void QvideoListFailure(Throwable e);
+
+        void VideoCommentsuccess(HealthBuyBean healthBuyBean);
+
+        void VideoCommentFailure(Throwable e);
     }
 
     interface iModel {
@@ -32,6 +41,8 @@ public interface IContract extends IBaseView {
         void getHealthBuy(int userId, String sessionId, int videoId, int price, iDepartmentListCallBack callBack);
 
         void getHealthCollection(int userId, String sessionId, int videoId, iDepartmentListCallBack callBack);
+        void getQvideoList(int userId, String sessionId, int videoId, iDepartmentListCallBack callBack);
+        void getVideoComment(int userId, String sessionId, int videoId,String content, iDepartmentListCallBack callBack);
 
         interface iDepartmentListCallBack {
             void healthSortsuccess(HealthSortBean healthSortBean);
@@ -49,6 +60,15 @@ public interface IContract extends IBaseView {
             void HealthCollectionsuccess(HealthBuyBean healthBuyBean);
 
             void HealthCollectionFailure(Throwable e);
+
+            void QvideoListsuccess(QvideoListBean qvideoListBean);
+
+            void QvideoListFailure(Throwable e);
+
+
+            void VideoCommentsuccess(HealthBuyBean healthBuyBean);
+
+            void VideoCommentFailure(Throwable e);
         }
 
     }
@@ -61,5 +81,7 @@ public interface IContract extends IBaseView {
         void getHealthBuy(int userId, String sessionId, int videoId, int price);
 
         void getHealthCollection(int userId, String sessionId, int videoId);
+        void getQvideoList(int userId, String sessionId, int videoId);
+        void getVideoComment(int userId, String sessionId, int videoId,String content);
     }
 }

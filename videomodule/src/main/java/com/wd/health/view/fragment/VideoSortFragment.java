@@ -4,26 +4,23 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.health.R;
 import com.wd.health.bean.HealthBuyBean;
 import com.wd.health.bean.HealthSortBean;
+import com.wd.health.bean.QvideoListBean;
 import com.wd.health.bean.VideoSortBean;
 import com.wd.health.contract.IContract;
+import com.wd.health.model.App;
 import com.wd.health.presenter.HealthSortPresenter;
 import com.wd.health.view.adapter.RecyclerVideoVoListAdapter;
 import com.wd.mylibrary.Base.BaseFragment;
 import com.wd.mylibrary.Test.ToastUtils;
 import com.wd.mylibrary.app.Constant;
-
 import java.util.List;
-
 import butterknife.BindView;
-
 /**
  * <p>文件描述：<p>
  * <p>作者：黎怡志<p>
@@ -37,8 +34,8 @@ public class VideoSortFragment extends BaseFragment<HealthSortPresenter> impleme
     private int anInt;
     private int page = 1;
     private int count = 5;
-    private int userId = 456;
-    private String sessionId = "1576890153311456";
+    private int userId;
+    private String sessionId;
 
     @Override
     protected HealthSortPresenter providePresenter() {
@@ -47,12 +44,15 @@ public class VideoSortFragment extends BaseFragment<HealthSortPresenter> impleme
 
     @Override
     protected void initData() {
+        sessionId = App.sharedPreferences.getString("sessionId", null);
+        userId = App.sharedPreferences.getInt("userId", 0);
+        Log.d("MNJNV", "initData: " + sessionId);
         xrecyclerview.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
                 page = 1;
-                mPresenter.getVideoSort(userId, sessionId, anInt, page, count);
                 xrecyclerview.refreshComplete();
+                mPresenter.getVideoSort(userId, sessionId, anInt, page, count);
             }
 
             @Override
@@ -62,6 +62,7 @@ public class VideoSortFragment extends BaseFragment<HealthSortPresenter> impleme
                 xrecyclerview.loadMoreComplete();
             }
         });
+
     }
 
     @Override
@@ -91,7 +92,7 @@ public class VideoSortFragment extends BaseFragment<HealthSortPresenter> impleme
 
     @Override
     public void healthSortFailure(Throwable e) {
-
+        ToastUtils.show("请检查网络");
     }
 
     @Override
@@ -132,7 +133,7 @@ public class VideoSortFragment extends BaseFragment<HealthSortPresenter> impleme
 
     @Override
     public void VideoSortFailure(Throwable e) {
-
+        ToastUtils.show("请检查网络");
     }
 
     @Override
@@ -146,7 +147,7 @@ public class VideoSortFragment extends BaseFragment<HealthSortPresenter> impleme
 
     @Override
     public void HealthBuyFailure(Throwable e) {
-
+        ToastUtils.show("请检查网络");
     }
 
     @Override
@@ -160,6 +161,27 @@ public class VideoSortFragment extends BaseFragment<HealthSortPresenter> impleme
 
     @Override
     public void HealthCollectionFailure(Throwable e) {
+        ToastUtils.show("请检查网络");
+    }
+
+    @Override
+    public void QvideoListsuccess(QvideoListBean qvideoListBean) {
 
     }
+
+    @Override
+    public void QvideoListFailure(Throwable e) {
+        ToastUtils.show("请检查网络");
+    }
+
+    @Override
+    public void VideoCommentsuccess(HealthBuyBean healthBuyBean) {
+
+    }
+
+    @Override
+    public void VideoCommentFailure(Throwable e) {
+        ToastUtils.show("请检查网络");
+    }
+
 }

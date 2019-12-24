@@ -100,7 +100,8 @@ public interface ApiServers {
     Observable<UploadPatientBean> UploadPatient(@Header("userId") int userId,
                                                 @Header("sessionId") String sessionId,
                                                 @Query("sickCircleId") int sickCircleId,
-                                                @Part MultipartBody.Part part);
+                                                @Part MultipartBody.Part part
+    );
 
     //做任务
     @POST("user/verify/v1/doTask")
