@@ -7,13 +7,6 @@ import com.wd.health.bean.VideoSortBean;
 import com.wd.health.contract.IContract;
 import com.wd.health.model.HealthSortModel;
 import com.wd.mylibrary.Base.BasePresenter;
-
-/**
- * <p>文件描述：<p>
- * <p>作者：黎怡志<p>
- * <p>创建时间：2019/12/19<p>
- * <p>更改时间：2019/12/19<p>
- */
 public class HealthSortPresenter extends BasePresenter<IContract.iView> implements IContract.iPresenter {
 
     private HealthSortModel healthSortModel;

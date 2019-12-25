@@ -1,5 +1,4 @@
 package com.wd.health.model;
-
 import com.wd.health.bean.CommentCircleBean;
 import com.wd.health.bean.OpinionBean;
 import com.wd.health.bean.PatientDetailsBean;
@@ -10,16 +9,7 @@ import com.wd.health.utils.RetrofitManager;
 import com.wd.mylibrary.Test.Logger;
 import com.wd.mylibrary.utils.CommonObserver;
 import com.wd.mylibrary.utils.CommonSchedulers;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-
-/**
- * <p>文件描述：<p>
- * <p>作者：黎怡志<p>
- * <p>创建时间：2019/12/14<p>
- * <p>更改时间：2019/12/14<p>
- */
 public class PatientDetailsModel implements IContractDetails.iModel {
     @Override
     public void getCommentCircle(int userId, String sessionId, int sickCircleId, String content, iPatientDetailsCallBack callBack) {
@@ -71,14 +61,12 @@ public class PatientDetailsModel implements IContractDetails.iModel {
                     public void onNext(OpinionBean opinionBean) {
                         callBack.OpinionBeansuccess(opinionBean);
                     }
-
                     @Override
                     public void onError(Throwable e) {
                         callBack.OpinionBeanFailure(e);
                     }
                 });
     }
-
     @Override
     public void getQueryComment(int userId, String sessionId, int sickCircleId, int page, int count, iPatientDetailsCallBack callBack) {
         RetrofitManager.getInstance().create(ApiServers.class)

@@ -44,6 +44,7 @@
             android:background="@mipmap/common_button_collection_large_n"
             android:layout_marginTop="@dimen/dp_20"/>
         <ImageView
+            android:id="@+id/danmu"
             android:layout_width="@dimen/dp_30"
             android:layout_height="@dimen/dp_30"
             android:background="@mipmap/danmuguan"
@@ -86,5 +87,4 @@
             android:layout_marginTop="@dimen/dp_10"/>
 
     </LinearLayout>
-
 </RelativeLayout>

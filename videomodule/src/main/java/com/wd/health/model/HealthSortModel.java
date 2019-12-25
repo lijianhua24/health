@@ -9,13 +9,6 @@ import com.wd.health.utils.ApiServers;
 import com.wd.health.utils.RetrofitManager;
 import com.wd.mylibrary.utils.CommonObserver;
 import com.wd.mylibrary.utils.CommonSchedulers;
-
-/**
- * <p>文件描述：<p>
- * <p>作者：黎怡志<p>
- * <p>创建时间：2019/12/19<p>
- * <p>更改时间：2019/12/19<p>n
- */
 public class HealthSortModel implements IContract.iModel {
 
     @Override

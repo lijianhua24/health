@@ -21,12 +21,6 @@ import com.wd.health.presenter.HealthSortPresenter;
 import com.wd.mylibrary.Base.BaseFragment;
 import java.util.List;
 import butterknife.BindView;
-/**
- * <p>文件描述：<p>
- * <p>作者：黎怡志<p>
- * <p>创建时间：2019/12/19<p>
- * <p>更改时间：2019/12/19<p>
- */
 public class VideoFragment extends BaseFragment<HealthSortPresenter> implements IContract.iView {
     @BindView(R.id.videofragment_tablayout)
     TabLayout videofragment_tablayout;

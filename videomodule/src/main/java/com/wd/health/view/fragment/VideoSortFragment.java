@@ -1,6 +1,4 @@
 package com.wd.health.view.fragment;
-
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,14 +19,7 @@ import com.wd.mylibrary.Test.ToastUtils;
 import com.wd.mylibrary.app.Constant;
 import java.util.List;
 import butterknife.BindView;
-/**
- * <p>文件描述：<p>
- * <p>作者：黎怡志<p>
- * <p>创建时间：2019/12/19<p>
- * <p>更改时间：2019/12/19<p>
- */
 public class VideoSortFragment extends BaseFragment<HealthSortPresenter> implements IContract.iView {
-
     @BindView(R.id.xrecyclerview)
     XRecyclerView xrecyclerview;
     private int anInt;
@@ -36,7 +27,6 @@ public class VideoSortFragment extends BaseFragment<HealthSortPresenter> impleme
     private int count = 5;
     private int userId;
     private String sessionId;
-
     @Override
     protected HealthSortPresenter providePresenter() {
         return new HealthSortPresenter();
@@ -62,14 +52,12 @@ public class VideoSortFragment extends BaseFragment<HealthSortPresenter> impleme
                 xrecyclerview.loadMoreComplete();
             }
         });
-
     }
 
     @Override
     protected void initView() {
 
     }
-
 
     @Override
     protected int provideLayoutId() {
@@ -129,6 +117,8 @@ public class VideoSortFragment extends BaseFragment<HealthSortPresenter> impleme
                 mPresenter.getHealthCollection(userId, sessionId, id);
             }
         });
+
+
     }
 
     @Override
@@ -183,5 +173,4 @@ public class VideoSortFragment extends BaseFragment<HealthSortPresenter> impleme
     public void VideoCommentFailure(Throwable e) {
         ToastUtils.show("请检查网络");
     }
-
 }
