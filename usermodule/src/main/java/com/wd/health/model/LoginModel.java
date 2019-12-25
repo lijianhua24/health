@@ -22,7 +22,11 @@ public class LoginModel implements LoginContract.iModel {
                 .subscribe(new CommonObserver<LoginBean>() {
                     @Override
                     public void onNext(LoginBean loginBean) {
-                        callBack.onLoginSuccess(loginBean);
+                        try {
+                            callBack.onLoginSuccess(loginBean);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override

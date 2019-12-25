@@ -90,6 +90,7 @@ public class InquiryActivity extends BaseActivity<FettlesPresenter> implements H
         tab.setupWithViewPager(pager);
        // pager.getCurrentItem();
         tab.getTabAt(position1).select();
+        pager.setOffscreenPageLimit(result.size());
 
     }
 

@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.wd.health.bean.LoginBean;
 import com.wd.health.contract.LoginContract;
 import com.wd.health.presenter.LoginPresenter;
+import com.wd.health.utils.MD5Utils;
 import com.wd.health.view.RegisteredActivity;
 import com.wd.mylibrary.Base.BaseActivity;
 import com.wd.mylibrary.Base.BasePresenter;
@@ -102,10 +103,17 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     }
 
     @Override
-    public void onLoginSuccess(LoginBean loginBean) {
+    public void onLoginSuccess(LoginBean loginBean) throws Exception {
         Logger.d("LoginActivity",""+loginBean.getMessage());
         if (loginBean.getMessage().equals("登录成功")) {
+            String jiGuangPwd = loginBean.getResult().getJiGuangPwd();
+            String userName = loginBean.getResult().getUserName();
+            String s = RsaCoder.decryptByPublicKey(jiGuangPwd);
+            Log.d(TAG, "onLoginSuccess: "+s);
+            Log.d(TAG, "userName: "+userName);
             ToastUtils.show("登录成功");
+            String md5 = MD5Utils.MD5(s);
+            Log.d(TAG, "md5: "+md5);
         }else {
             ToastUtils.show("输入的邮箱或密码不正确！");
         }

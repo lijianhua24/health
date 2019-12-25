@@ -11,13 +11,13 @@ import com.wd.mylibrary.Base.IBaseView;
  */
 public interface LoginContract {
     interface iView extends IBaseView{
-        void onLoginSuccess(LoginBean loginBean);
+        void onLoginSuccess(LoginBean loginBean) throws Exception;
         void onLoginFailure(Throwable e);
     }
     interface iModel{
         void getLoginData(String email,String pwd,iLoginCallBack callBack);
         interface iLoginCallBack{
-            void onLoginSuccess(LoginBean loginBean);
+            void onLoginSuccess(LoginBean loginBean) throws Exception;
             void onLoginFailure(Throwable failure);
         }
 

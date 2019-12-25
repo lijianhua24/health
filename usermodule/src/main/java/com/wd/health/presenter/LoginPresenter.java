@@ -20,7 +20,7 @@ public class LoginPresenter extends BasePresenter<LoginContract.iView>implements
     public void getLoginPresenter(String email, String pwd) {
         loginModel.getLoginData(email, pwd, new LoginContract.iModel.iLoginCallBack() {
             @Override
-            public void onLoginSuccess(LoginBean loginBean) {
+            public void onLoginSuccess(LoginBean loginBean) throws Exception {
                 if (isViewAttached()) {
                     if (loginBean != null && Constant.SUCCESS_CODE.equals(loginBean.getStatus())) {
                         getView().onLoginSuccess(loginBean);

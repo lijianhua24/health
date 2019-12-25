@@ -1,5 +1,6 @@
 package com.wd.health.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -32,9 +33,11 @@ import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.content.EventNotificationContent;
 import cn.jpush.im.android.api.content.TextContent;
 import cn.jpush.im.android.api.event.MessageEvent;
+import cn.jpush.im.android.api.event.NotificationClickEvent;
 import cn.jpush.im.android.api.model.Conversation;
 import cn.jpush.im.android.api.model.GroupInfo;
 import cn.jpush.im.android.api.model.Message;
+import cn.jpush.im.api.BasicCallback;
 
 public class JgActivity extends BaseActivity<ImPresenterPresenter> implements IMContract.IView {
 
@@ -103,20 +106,13 @@ public class JgActivity extends BaseActivity<ImPresenterPresenter> implements IM
             titlesName.setText(doctorName);
             mPresenter.getRecordingPresenter(userId,sessionId, 3853,1,10);
             String userName = result.getUserName();
-            Conversation.createSingleConversation(userName, "c7f6a1d56cb8da740fd18bfa");
-           JMessageClient.getSingleConversation(userName, "c7f6a1d56cb8da740fd18bfa");
-            JMessageClient.enterSingleConversation(userName);
-            List<Conversation> conversationList = JMessageClient.getConversationList();
-            if (conversationList != null) {
-                if (conversationList.size() > 0) {
-                    for (int i = 0; i < conversationList.size(); i++) {
-                        if (conversationList.get(i) != null) {
-                            mPresenter.getCurrentPresenter(userId,sessionId);
-
-                        }
-                    }
+            String jiGuangPwd = "e10adc3949ba59abbe56e057f20f883e";
+            JMessageClient.login("IStXNe896745795", jiGuangPwd, new BasicCallback() {
+                @Override
+                public void gotResult(int i, String s) {
+                    Toast.makeText(JgActivity.this, ""+s+i, Toast.LENGTH_SHORT).show();
                 }
-            }
+            });
 
         }
     }
@@ -199,5 +195,15 @@ public class JgActivity extends BaseActivity<ImPresenterPresenter> implements IM
                 mPresenter.getCurrentPresenter(userId,sessionId);
                 break;
         }
+    }
+    public void onEvent(NotificationClickEvent event) {
+        mPresenter.getCurrentPresenter(userId,sessionId);
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        JMessageClient.unRegisterEventReceiver(this);
     }
 }
