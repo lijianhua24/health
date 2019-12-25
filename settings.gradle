@@ -1,2 +1,2 @@
-include ':app', ':mylibrary', ':patientmodule', ':videomodule', ':homemodel', ':usermodule', ':mymodule'
+include ':app', ':mylibrary', ':patientmodule', ':videomodule', ':homemodel', ':usermodule', ':my', ':orc_library'
 rootProject.name='jiankang'
