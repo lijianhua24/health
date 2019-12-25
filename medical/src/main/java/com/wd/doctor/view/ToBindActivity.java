@@ -54,6 +54,7 @@ public class ToBindActivity extends BaseActivity {
                 startActivity(new Intent(this,BindIdActivity.class));
                 break;
             case R.id.tobind_rl_bank:
+
                 break;
         }
     }

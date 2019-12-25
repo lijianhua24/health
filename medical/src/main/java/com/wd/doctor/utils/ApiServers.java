@@ -15,6 +15,8 @@ import com.wd.doctor.bean.SuffererOutBean;
 import com.wd.doctor.bean.ToBindBean;
 import com.wd.doctor.bean.UploadPhotoBean;
 
+import java.util.Map;
+
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
@@ -98,11 +100,11 @@ public interface ApiServers {
 
     //绑定身份证
     //http://172.17.8.100/health/doctor/verify/v1/bindDoctorIdCard
-    @Headers({"Content-type:application/json;charset=UTF-8"})
+    @Headers({"Content-Type: application/json","Accept: application/json"})
     @POST("doctor/verify/v1/bindDoctorIdCard")
     Observable<ToBindBean> getToBind(@Header("doctorId")int doctorId,
                                      @Header("sessionId")String sessionId,
-                                     @Body RequestBody route);
+                                     @Body Map<String,Object> BodyMap);
     //绑定银行卡
     //http://172.17.8.100/health/doctor/verify/v1/bindDoctorBankCard
     @POST("octor/verify/v1/bindDoctorBankCard")

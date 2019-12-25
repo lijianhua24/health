@@ -70,6 +70,8 @@ dependencies {
     //Tablayout
     implementation 'com.android.support:support-v4:27.1.1'
     implementation 'com.android.support:design:27.1.1'
+    implementation fileTree(dir: 'libs', include: ['*.aar', '*.jar'], exclude: [])
+    implementation project(path: ':orc_library')
 
 
 }

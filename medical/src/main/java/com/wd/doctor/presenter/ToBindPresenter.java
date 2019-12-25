@@ -1,10 +1,14 @@
 package com.wd.doctor.presenter;
 
+import android.util.Log;
+
 import com.wd.doctor.bean.ToBindBean;
 import com.wd.doctor.contract.ToBindContract;
 import com.wd.doctor.model.ToBindModel;
 import com.wd.mylibrary.Base.BasePresenter;
 import com.wd.mylibrary.app.Constant;
+
+import java.util.Map;
 
 import okhttp3.RequestBody;
 
@@ -15,12 +19,12 @@ import okhttp3.RequestBody;
  * <p>更改时间：2019/12/23<p>
  */
 public class ToBindPresenter extends BasePresenter<ToBindContract.iView>implements ToBindContract.iPresenter {
-
+    public static final String TAG="ToBindPresenter";
     private ToBindModel toBindModel;
 
     @Override
-    public void getToBindPresenter(int doctorId, String sessionId, RequestBody route) {
-        toBindModel.getToBindData(doctorId, sessionId, route, new ToBindContract.iModel.iToBindCallBack() {
+    public void getToBindPresenter(int doctorId, String sessionId, Map<String, Object> BodyMap) {
+        toBindModel.getToBindData(doctorId, sessionId, BodyMap, new ToBindContract.iModel.iToBindCallBack() {
             @Override
             public void onToBindSuccess(ToBindBean toBindBean) {
                 if (isViewAttached()) {
@@ -30,7 +34,6 @@ public class ToBindPresenter extends BasePresenter<ToBindContract.iView>implemen
                         getView().onToBindFailure(new Exception("服务器异常"));
                     }
                 }
-
             }
 
             @Override
@@ -41,7 +44,7 @@ public class ToBindPresenter extends BasePresenter<ToBindContract.iView>implemen
             }
 
             @Override
-            public void onBindBankSuccess(ToBindBean data) {
+            public void onBindBankSuccess(ToBindBean toBindBean) {
 
             }
 
@@ -50,8 +53,6 @@ public class ToBindPresenter extends BasePresenter<ToBindContract.iView>implemen
 
             }
         });
-
-
     }
 
     @Override
@@ -68,10 +69,10 @@ public class ToBindPresenter extends BasePresenter<ToBindContract.iView>implemen
             }
 
             @Override
-            public void onBindBankSuccess(ToBindBean data) {
+            public void onBindBankSuccess(ToBindBean toBindBean) {
                 if (isViewAttached()) {
-                    if (data != null && Constant.SUCCESS_CODE.equals(data.getStatus())) {
-                        getView().onBindBankSuccess(data);
+                    if (toBindBean != null && Constant.SUCCESS_CODE.equals(toBindBean.getStatus())) {
+                        getView().onBindBankSuccess(toBindBean);
                     }else {
                         getView().onBindBankFailure(new Exception("服务器异常"));
                     }
@@ -85,6 +86,8 @@ public class ToBindPresenter extends BasePresenter<ToBindContract.iView>implemen
                 }
             }
         });
+
+
     }
 
     @Override

@@ -64,11 +64,11 @@ public class DoctorWalletActivity extends BaseActivity<DoctorWalletPresenter> im
         whetherBindIdCard = result.getWhetherBindIdCard();
         whetherBindBankCard = result.getWhetherBindBankCard();
 
-//        if (whetherBindIdCard == 1 && whetherBindBankCard == 1) {
-//            dowalletTvBind.setText("查看绑定");
-//        } else if (whetherBindIdCard == 2 || whetherBindBankCard == 2) {
-//            dowalletTvBind.setText("去绑定");
-//        }
+        if (whetherBindIdCard == 1 && whetherBindBankCard == 1) {
+            dowalletTvBind.setText("查看绑定");
+        } else if (whetherBindIdCard == 2 || whetherBindBankCard == 2) {
+            dowalletTvBind.setText("去绑定");
+        }
     }
 
     @Override
@@ -84,18 +84,15 @@ public class DoctorWalletActivity extends BaseActivity<DoctorWalletPresenter> im
                 finish();
                 break;
             case R.id.dowallet_tv_Bind:
-//                if (whetherBindIdCard == 1 && whetherBindBankCard == 1) {
-//                    Intent intent = new Intent();
-//                    intent.setClass(this,BindInfoActivity.class);
-//                    startActivity(intent);
-//                } else if (whetherBindIdCard == 2 || whetherBindBankCard == 2) {
-//                    Intent intent = new Intent();
-//                    intent.setClass(this,ToBindActivity.class);
-//                    startActivity(intent);
-//                }
-                Intent intent = new Intent();
-                intent.setClass(this,ToBindActivity.class);
-                startActivity(intent);
+                if (whetherBindIdCard == 1 && whetherBindBankCard == 1) {
+                    Intent intent = new Intent();
+                    intent.setClass(this,BindInfoActivity.class);
+                    startActivity(intent);
+                } else if (whetherBindIdCard == 2 || whetherBindBankCard == 2) {
+                    Intent intent = new Intent();
+                    intent.setClass(this,ToBindActivity.class);
+                    startActivity(intent);
+                }
                 break;
         }
     }

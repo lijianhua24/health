@@ -1,11 +1,16 @@
 package com.wd.doctor.model;
 
+import android.util.Log;
+
 import com.wd.doctor.bean.ToBindBean;
 import com.wd.doctor.contract.ToBindContract;
 import com.wd.doctor.utils.ApiServers;
 import com.wd.doctor.utils.RetrofitManager;
+import com.wd.mylibrary.Test.ToastUtils;
 import com.wd.mylibrary.utils.CommonObserver;
 import com.wd.mylibrary.utils.CommonSchedulers;
+
+import java.util.Map;
 
 import okhttp3.RequestBody;
 
@@ -16,10 +21,11 @@ import okhttp3.RequestBody;
  * <p>更改时间：2019/12/23<p>
  */
 public class ToBindModel implements ToBindContract.iModel {
+        public static final String TAG="ToBindModel";
     @Override
-    public void getToBindData(int doctorId, String sessionId, RequestBody route, iToBindCallBack callBack) {
+    public void getToBindData(int doctorId, String sessionId, Map<String,Object> BodyMap, iToBindCallBack callBack) {
         RetrofitManager.getInstance().create(ApiServers.class)
-                .getToBind(doctorId,sessionId,route)
+                .getToBind(doctorId,sessionId,BodyMap)
                 .compose(CommonSchedulers.io2main())
                 .subscribe(new CommonObserver<ToBindBean>() {
                     @Override
@@ -42,6 +48,7 @@ public class ToBindModel implements ToBindContract.iModel {
                 .subscribe(new CommonObserver<ToBindBean>() {
                     @Override
                     public void onNext(ToBindBean toBindBean) {
+                        Log.d(TAG, "onNext1: "+toBindBean.getMessage());
                         callBack.onBindBankSuccess(toBindBean);
                     }
 

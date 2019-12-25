@@ -3,7 +3,10 @@ package com.wd.doctor.contract;
 import com.wd.doctor.bean.ToBindBean;
 import com.wd.mylibrary.Base.IBaseView;
 
+import java.util.Map;
+
 import okhttp3.RequestBody;
+import retrofit2.http.Body;
 
 /**
  * <p>文件描述：<p>
@@ -16,24 +19,24 @@ public interface ToBindContract {
         void onToBindSuccess(ToBindBean toBindBean);
         void onToBindFailure(Throwable e);
 
-        void onBindBankSuccess(ToBindBean data);
+        void onBindBankSuccess(ToBindBean toBindBean);
         void onBindBankFailure(Throwable e);
 
     }
     interface iModel{
-        void getToBindData(int doctorId, String sessionId, RequestBody route,iToBindCallBack callBack);
+        void getToBindData(int doctorId, String sessionId, Map<String,Object> BodyMap, iToBindCallBack callBack);
         void getBindBankData(int doctorId, String sessionId,String bankCardNumber,String bankName,int bankCardType,iToBindCallBack callBack);
         interface iToBindCallBack{
             void onToBindSuccess(ToBindBean toBindBean);
             void onToBindFailure(Throwable failure);
 
-            void onBindBankSuccess(ToBindBean data);
+            void onBindBankSuccess(ToBindBean toBindBean);
             void onBindBankFailure(Throwable failure);
         }
 
     }
     interface iPresenter{
-        void getToBindPresenter(int doctorId, String sessionId, RequestBody route);
+        void getToBindPresenter(int doctorId, String sessionId, Map<String,Object> BodyMap);
         void getBindBankPresenter(int doctorId, String sessionId,String bankCardNumber,
                                   String bankName,int bankCardType);
 
