@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    >
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/videofragment_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/videofragment_tablayout"
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        app:tabIndicatorHeight="0dp" />
+    <CheckBox
+        android:layout_below="@id/videofragment_tablayout"
+        android:id="@+id/video_pull"
+        android:button="@null"
+        android:background="@drawable/video_selector_pendant"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_20"
+        android:layout_alignParentRight="true"
+        android:src="@mipmap/lalalalala"
+        android:layout_width="15dp"
+        android:layout_height="88dp"/>
+
+</RelativeLayout>

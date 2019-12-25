@@ -5,35 +5,41 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.tu.loadingdialog.LoadingDailog;
 import com.bumptech.glide.Glide;
 import com.wd.health.R;
 import com.wd.health.bean.CircleListShowBean;
 import com.wd.health.bean.DepartmentListBean;
+import com.wd.health.bean.DoTaskBean;
 import com.wd.health.bean.KeywordSearchBean;
 import com.wd.health.bean.ReleasePatientsBean;
 import com.wd.health.bean.UnitDiseaseBean;
+import com.wd.health.bean.UploadPatientBean;
 import com.wd.health.contract.IContract;
+import com.wd.health.model.App;
 import com.wd.health.presenter.DepartmentListPresenter;
 import com.wd.health.view.adapter.ConsultationTwoAdapter;
 import com.wd.health.view.adapter.IllnessAdapter;
@@ -47,41 +53,68 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter> implements IContract.iView {
-    private TextView release_circle_tv_startTime;
-    private RelativeLayout release_circle_iv_startTime;
-    private TextView release_circle_tv_endTime;
-    private RelativeLayout release_circle_iv_endTime;
+    @BindView(R.id.release_sickCircle_iv_user_head_pic)
+    ImageView release_sickCircle_iv_user_head_pic;
+    @BindView(R.id.patient_iv_user_message)
+    ImageView patient_iv_user_message;
+    @BindView(R.id.release_circle_et_title)
+    EditText release_circle_et_title;
+    @BindView(R.id.release_circle_tv_choose_department)
+    TextView release_circle_tv_choose_department;
+    @BindView(R.id.release_circle_iv_choose_department)
+    RelativeLayout release_circle_iv_choose_department;
+    @BindView(R.id.release_circle_tv_choose_disease)
+    TextView release_circle_tv_choose_disease;
+    @BindView(R.id.release_circle_iv_choose_disease)
+    RelativeLayout release_circle_iv_choose_disease;
+    @BindView(R.id.release_circle_et_detail)
+    EditText release_circle_et_detail;
+    @BindView(R.id.release_circle_et_treatmentHospital)
+    EditText release_circle_et_treatmentHospital;
+    @BindView(R.id.release_circle_tv_startTime)
+    TextView release_circle_tv_startTime;
+    @BindView(R.id.release_circle_iv_startTime)
+    RelativeLayout release_circle_iv_startTime;
+    @BindView(R.id.release_circle_tv_endTime)
+    TextView release_circle_tv_endTime;
+    @BindView(R.id.release_circle_iv_endTime)
+    RelativeLayout release_circle_iv_endTime;
+    @BindView(R.id.release_circle_et_treatmentProcess)
+    EditText release_circle_et_treatmentProcess;
+    @BindView(R.id.release_circle_iv_upload_Picture)
+    ImageView release_circle_iv_upload_Picture;
+    @BindView(R.id.release_circle_iv_delete_Picture)
+    ImageView release_circle_iv_delete_Picture;
+    @BindView(R.id.item_switch)
+    Switch item_switch;
+    @BindView(R.id.button_hbi3)
+    Button button_hbi3;
+    @BindView(R.id.aaa)
+    TextView aaa;
+    @BindView(R.id.xuanshangedu_linear)
+    LinearLayout linearLayout;
+    @BindView(R.id.release_circle_btn_publish)
+    Button release_circle_btn_publish;
+    @BindView(R.id.release_circle_linear_sick_circle)
+    LinearLayout  release_circle_linear_sick_circle;
     Calendar calendar = Calendar.getInstance(Locale.CHINA);
-    private RelativeLayout release_circle_iv_choose_department;
-    private RelativeLayout release_circle_iv_choose_disease;
-    private RecyclerView popup_recycler_department;
-    private RecyclerView popup_recycler_disease;
-    private TextView release_circle_tv_choose_disease;
-    private TextView release_circle_tv_choose_department;
-    private ImageView release_circle_iv_upload_Picture;
-    private ImageView release_circle_iv_delete_Picture;
     private int id;
     private PopupWindow popWindow;
     private PopupWindow popWindowDisease;
-    private ImageView release_sickCircle_iv_user_head_pic;
-    private ImageView patient_iv_user_message;
-    private EditText release_circle_et_title;
-    private EditText release_circle_et_detail;
-    private EditText release_circle_et_treatmentHospital;
-    private EditText release_circle_et_treatmentProcess;
-    private Button release_circle_btn_publish;
-    private LinearLayout release_circle_linear_sick_circle;
-    private String sessionId;
-    private int userId;
     private MultipartBody.Part picture;
     private String path;
     private int sickCircleId;
-    private LoadingDailog loadingDailog;
+    private RecyclerView popup_recycler_department;
+    private RecyclerView popup_recycler_disease;
+    private int userId;
+    private String sessionId;
 
     @Override
     protected DepartmentListPresenter providePresenter() {
@@ -90,7 +123,17 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
 
     @Override
     protected void initData() {
-
+        //悬赏额度的开关
+        item_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    linearLayout.setVisibility(View.VISIBLE);
+                } else {
+                    linearLayout.setVisibility(View.GONE);
+                }
+            }
+        });
         //设置在activity启动的时候输入法默认是不开启的
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
@@ -193,11 +236,23 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
             @Override
             public void onClick(View v) {
                 Toast.makeText(ReleaseCirclesActivity.this, "打开相册", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Intent.ACTION_PICK);
+                Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                 intent.setType("image/*");
                 startActivityForResult(intent, 1);
             }
         });
+        //删除选中图片
+        release_circle_iv_delete_Picture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                release_circle_iv_upload_Picture.setImageResource(R.mipmap.add);
+            }
+        });
+
+       /* shapeLoadingDialog = new ShapeLoadingDialog.Builder(ReleaseCirclesActivity.this)
+                .loadText("上传图片中...")
+                RepleaseCircleBean
+                .build();*/
         release_circle_btn_publish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -267,8 +322,12 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
                 map.put("treatmentProcess", treatmentProcess);
                 map.put("amount", 0);
                 //调发布圈子接口
-                mPresenter.getReleasePatientsPresenter(userId, sessionId, map);
-                loadingDailog.show();
+                userId = App.sharedPreferences.getInt("userId", 0);
+                sessionId = App.sharedPreferences.getString("sessionId", null);
+                mPresenter.getReleasePatientsPresenter(ReleaseCirclesActivity.this.userId, ReleaseCirclesActivity.this.sessionId, map);
+                mPresenter.getuploadPatient(ReleaseCirclesActivity.this.userId, ReleaseCirclesActivity.this.sessionId, sickCircleId, picture);
+
+                /*loadingDailog.show();*/
             }
         });
 
@@ -276,25 +335,6 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
 
     @Override
     protected void initView() {
-        release_circle_tv_startTime = (TextView) findViewById(R.id.release_circle_tv_startTime);
-        release_circle_iv_startTime = (RelativeLayout) findViewById(R.id.release_circle_iv_startTime);
-        release_circle_iv_choose_department = (RelativeLayout) findViewById(R.id.release_circle_iv_choose_department);
-        release_circle_iv_choose_disease = (RelativeLayout) findViewById(R.id.release_circle_iv_choose_disease);
-        release_circle_tv_endTime = (TextView) findViewById(R.id.release_circle_tv_endTime);
-        release_circle_tv_choose_disease = (TextView) findViewById(R.id.release_circle_tv_choose_disease);
-        release_circle_tv_choose_department = (TextView) findViewById(R.id.release_circle_tv_choose_department);
-        release_circle_iv_endTime = (RelativeLayout) findViewById(R.id.release_circle_iv_endTime);
-        release_circle_iv_upload_Picture = (ImageView) findViewById(R.id.release_circle_iv_upload_Picture);
-        release_circle_iv_delete_Picture = (ImageView) findViewById(R.id.release_circle_iv_delete_Picture);
-
-        release_sickCircle_iv_user_head_pic = (ImageView) findViewById(R.id.release_sickCircle_iv_user_head_pic);
-        patient_iv_user_message = (ImageView) findViewById(R.id.patient_iv_user_message);
-        release_circle_et_title = (EditText) findViewById(R.id.release_circle_et_title);
-        release_circle_et_detail = (EditText) findViewById(R.id.release_circle_et_detail);
-        release_circle_et_treatmentHospital = (EditText) findViewById(R.id.release_circle_et_treatmentHospital);
-        release_circle_et_treatmentProcess = (EditText) findViewById(R.id.release_circle_et_treatmentProcess);
-        release_circle_btn_publish = (Button) findViewById(R.id.release_circle_btn_publish);
-        release_circle_linear_sick_circle = (LinearLayout) findViewById(R.id.release_circle_linear_sick_circle);
     }
 
     @Override
@@ -305,9 +345,10 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
     @Override
     public void DepartmentListsuccess(DepartmentListBean departmentListBean) {
         final List<DepartmentListBean.ResultBean> result = departmentListBean.getResult();
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 5);
+        gridLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
         ConsultationTwoAdapter consultationTwoAdapter = new ConsultationTwoAdapter(result, this);
-        popup_recycler_department.setLayoutManager(linearLayoutManager);
+        popup_recycler_department.setLayoutManager(gridLayoutManager);
         popup_recycler_department.setAdapter(consultationTwoAdapter);
 
         consultationTwoAdapter.onItemClickListener(new ConsultationTwoAdapter.OnItemClickListener() {
@@ -348,7 +389,21 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
 
     @Override
     public void ReleasePatientssuccess(ReleasePatientsBean ReleasePatientsBean) {
-
+        if (ReleasePatientsBean.getStatus().equals("0000")) {
+            Toast.makeText(this, ReleasePatientsBean.getMessage(), Toast.LENGTH_SHORT).show();
+            sickCircleId = ReleasePatientsBean.getResult();
+            Log.i("sickCircleId", "publishSuccess: " + "sickCircleId" + sickCircleId);
+            if (picture != null) {
+                mPresenter.getuploadPatient(userId, sessionId, sickCircleId, picture);
+            } else {
+                //做任务
+                mPresenter.getDoTask(userId, sessionId, 1003);
+//                    shapeLoadingDialog.dismiss();
+                finish();
+            }
+        } else {
+            Toast.makeText(this, ReleasePatientsBean.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -359,9 +414,10 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
     @Override
     public void UnitDiseasessuccess(UnitDiseaseBean unitDiseaseBean) {
         final List<UnitDiseaseBean.ResultBean> result = unitDiseaseBean.getResult();
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
+        gridLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
         IllnessAdapter illnessAdapter = new IllnessAdapter(result, this);
-        popup_recycler_disease.setLayoutManager(linearLayoutManager);
+        popup_recycler_disease.setLayoutManager(gridLayoutManager);
         popup_recycler_disease.setAdapter(illnessAdapter);
 
         illnessAdapter.onItemClickListener(new IllnessAdapter.OnItemClickListener() {
@@ -377,6 +433,37 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
     @Override
     public void UnitDiseaseFailure(Throwable e) {
 
+    }
+
+    @Override
+    public void uploadPatientsuccess(UploadPatientBean uploadPatientBean) {
+        if (uploadPatientBean.getStatus().equals("0000")) {
+            Toast.makeText(this, uploadPatientBean.getMessage(), Toast.LENGTH_SHORT).show();
+            //做任务
+            mPresenter.getDoTask(userId, sessionId, 1003);
+//                shapeLoadingDialog.dismiss();
+            finish();
+        } else {
+            Toast.makeText(this, uploadPatientBean.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void uploadPatientFailure(Throwable e) {
+
+    }
+
+    @Override
+    public void DoTasksuccess(DoTaskBean doTaskBean) {
+        if (doTaskBean.getStatus().equals("0000")) {
+            Toast.makeText(this, "每日首发病友圈完成!快去领取奖励吧", Toast.LENGTH_SHORT).show();
+            mPresenter.getuploadPatient(userId, sessionId, sickCircleId, picture);
+        }
+    }
+
+
+    @Override
+    public void DoTaskFailure(Throwable e) {
     }
 
     @Override
@@ -411,25 +498,18 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
     private void initPopWindowDepartment(View v) {
         View view = LayoutInflater.from(this).inflate(R.layout.item_popip_department, null, false);
         popup_recycler_department = view.findViewById(R.id.popup_recycler_department);
-        //1.构造一个PopupWindow，参数依次是加载的View，宽高
         popWindow = new PopupWindow(view,
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
-        popWindow.setAnimationStyle(R.anim.anim_pop);  //设置加载动画
-        //这些为了点击非PopupWindow区域，PopupWindow会消失的，如果没有下面的
-        //代码的话，你会发现，当你把PopupWindow显示出来了，无论你按多少次后退键
-        //PopupWindow并不会关闭，而且退不出程序，加上下述代码可以解决这个问题
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        popWindow.setAnimationStyle(R.anim.anim_pop);
         popWindow.setTouchable(true);
         popWindow.setTouchInterceptor(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 return false;
-                // 这里如果返回true的话，touch事件将被拦截
-                // 拦截后 PopupWindow的onTouchEvent不被调用，这样点击外部区域无法dismiss
             }
         });
-        popWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));    //要为popWindow设置一个背景才有效
-        //设置popupWindow显示的位置，参数依次是参照View，x轴的偏移量，y轴的偏移量
-        popWindow.showAsDropDown(v, 50, 0);
+        popWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));
+        popWindow.showAsDropDown(v, 30, 30);
         mPresenter.getDepartmentListPresenter();
     }
 
@@ -439,11 +519,8 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
         popup_recycler_disease = view.findViewById(R.id.popup_recycler_disease);
         //1.构造一个PopupWindow，参数依次是加载的View，宽高
         popWindowDisease = new PopupWindow(view,
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
         popWindowDisease.setAnimationStyle(R.anim.anim_pop);  //设置加载动画
-        //这些为了点击非PopupWindow区域，PopupWindow会消失的，如果没有下面的
-        //代码的话，你会发现，当你把PopupWindow显示出来了，无论你按多少次后退键
-        //PopupWindow并不会关闭，而且退不出程序，加上下述代码可以解决这个问题
         popWindowDisease.setTouchable(true);
         popWindowDisease.setTouchInterceptor(new View.OnTouchListener() {
             @Override
@@ -460,5 +537,12 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
         //根据科室查询对应病症
         mPresenter.getUnitDiseasePresenter(id);
 
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

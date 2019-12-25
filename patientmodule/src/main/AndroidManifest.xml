@@ -3,7 +3,7 @@
     package="com.wd.health">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <application
         android:networkSecurityConfig="@xml/network_config"
         android:name=".model.App"
@@ -16,7 +16,9 @@
         <activity android:name=".view.activity.ReleaseCirclesActivity"></activity>
         <activity android:name=".view.activity.PatientDetailsActivity" />
         <activity android:name=".view.activity.SearchActivity" />
-        <activity android:name=".view.activity.PatientActivity">
+        <activity android:name=".view.activity.PatientActivity"
+            android:theme="@style/AppTheme"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -50,8 +50,8 @@ public class KeywordSearchAdapter extends RecyclerView.Adapter {
         myViewHolder.sick_circle_amount.setText(datas.get(i).getAmount()+"");
         //文章发布的时间
         long releaseTime = datas.get(i).getReleaseTime();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String format = formatter.format(releaseTime);
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
+        String format = format1.format(releaseTime);
         myViewHolder.sick_circle_releaseTime.setText(format);
         //文章需要的H币数量
         myViewHolder.sick_circle_detail.setText(datas.get(i).getDetail()+"");

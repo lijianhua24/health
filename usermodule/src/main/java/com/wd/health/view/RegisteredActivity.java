@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.wd.health.LoginActivity;
-import com.wd.health.R;
 import com.wd.health.bean.RegisteredBean;
 import com.wd.health.bean.SendEmilBean;
 import com.wd.health.contract.RegisteredContract;
@@ -20,6 +19,7 @@ import com.wd.mylibrary.Base.BaseActivity;
 import com.wd.mylibrary.Test.Logger;
 import com.wd.mylibrary.Test.ToastUtils;
 import com.wd.mylibrary.utils.RsaCoder;
+import com.wd.mymodule.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

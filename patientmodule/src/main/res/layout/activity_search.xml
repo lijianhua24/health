@@ -26,6 +26,7 @@
             android:layout_height="@dimen/dp_28"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            android:singleLine="true"
             android:layout_marginLeft="@dimen/dp_30"
             android:background="@drawable/ed_back_shape"
             android:hint="请输入病症名称或标题关键字"
@@ -49,6 +50,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </androidx.recyclerview.widget.RecyclerView>
-
+<LinearLayout
+    android:gravity="center"
+    android:orientation="vertical"
+    android:visibility="gone"
+    android:id="@+id/niumeiyou"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:background="@mipmap/niu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </ImageView>
+    <TextView
+        android:id="@+id/niuwei"
+        android:text="抱歉,没有找到“癌症”的病友圈"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="@dimen/dp_30"
+        android:layout_height="wrap_content">
+    </TextView>
+</LinearLayout>
 
 </LinearLayout>

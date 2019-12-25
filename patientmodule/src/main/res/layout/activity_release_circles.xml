@@ -319,14 +319,13 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_200"
+                    android:layout_height="@dimen/dp_100"
                     android:layout_marginLeft="@dimen/dp_10"
                     android:layout_marginTop="@dimen/dp_16"
                     android:layout_marginRight="@dimen/dp_8">
-
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_200">
+                        android:layout_height="@dimen/dp_100">
 
                         <EditText
                             android:id="@+id/release_circle_et_treatmentProcess"
@@ -359,29 +358,33 @@
 
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="@dimen/dp_77"
-                android:layout_height="@dimen/dp_77"
-                android:layout_marginLeft="@dimen/dp_20"
-                android:layout_marginTop="@dimen/dp_20">
+        <RelativeLayout
+            android:layout_width="82dp"
+            android:layout_height="@dimen/dp_77"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_20">
 
-                <ImageView
-                    android:id="@+id/release_circle_iv_upload_Picture"
-                    android:layout_width="@dimen/dp_72"
-                    android:layout_height="@dimen/dp_72"
-                    android:background="@mipmap/add"
-                    android:layout_marginTop="@dimen/dp_5"
-                    android:layout_marginRight="@dimen/dp_5"/>
+            <!--     <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/release_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </androidx.recyclerview.widget.RecyclerView>-->
+            <ImageView
+                android:id="@+id/release_circle_iv_upload_Picture"
+                android:layout_width="@dimen/dp_72"
+                android:layout_height="@dimen/dp_72"
+                android:layout_marginTop="@dimen/dp_5"
+                android:layout_marginRight="@dimen/dp_5"
+                android:background="@mipmap/add" />
 
-                <ImageView
-                    android:id="@+id/release_circle_iv_delete_Picture"
-                    android:layout_width="@dimen/dp_14"
-                    android:layout_height="@dimen/dp_14"
-                    android:background="@mipmap/common_icon_close_n"
-                    android:layout_alignParentRight="true"/>
+            <ImageView
+                android:id="@+id/release_circle_iv_delete_Picture"
+                android:layout_width="@dimen/dp_14"
+                android:layout_height="@dimen/dp_14"
+                android:layout_alignParentRight="true"
+                android:background="@mipmap/common_icon_close_n" />
 
-            </RelativeLayout>
-
+        </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_30"
@@ -396,6 +399,7 @@
                     android:text="提升悬赏额度" />
 
                 <Switch
+                    android:id="@+id/item_switch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -403,7 +407,97 @@
                     android:layout_centerVertical="true"/>
 
             </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/xuanshangedu_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:visibility="gone">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="提升额度可获得更多的关注,得到更多的建议"
+                android:textSize="10sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_shape"
+                    android:text="10H币"
+                    android:textColor="#999999"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:background="@drawable/button_shape"
+                    android:text="20H币"
+                    android:textColor="#999999"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:background="@drawable/button_shape"
+                    android:text="30H币"
+                    android:textColor="#999999"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp">
+
+                <Button
+                    android:id="@+id/button_hbi3"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_shape"
+                    android:text="自定义"
+                    android:textColor="#999999"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/aaa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toRightOf="@id/button_hbi3"
+                    android:text="当前H币余额 300. 不足? 去"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toRightOf="@id/aaa"
+                    android:text="充值"
+                    android:textColor="#2196F3"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_36"

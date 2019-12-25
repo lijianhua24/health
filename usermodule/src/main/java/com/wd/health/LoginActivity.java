@@ -23,6 +23,7 @@ import com.wd.mylibrary.Test.Logger;
 import com.wd.mylibrary.Test.ToastUtils;
 import com.wd.mylibrary.utils.EncryptUtil;
 import com.wd.mylibrary.utils.RsaCoder;
+import com.wd.mymodule.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
