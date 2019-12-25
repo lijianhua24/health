@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:Fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    tools:context=".activity.MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/black"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:background="@mipmap/my_background" />
+
+    <RelativeLayout
+        android:id="@+id/di1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="20dp">
+
+        <ImageView
+            android:id="@+id/my_return"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@mipmap/common_icon_back_white_n" />
+
+        <ImageView
+            android:id="@+id/my_Message"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/common_nav_message_white_n" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/di2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/di1"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginRight="20dp">
+        <!--roundAsCircle
+        roundedCornerRadius -->
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/iamge_icon"
+            android:layout_width="50dp"
+            Fresco:roundAsCircle="true"
+            android:layout_height="50dp"
+            Fresco:placeholderImage="@mipmap/girl"
+            Fresco:failureImage="@mipmap/girl"/>
+
+        <TextView
+            android:id="@+id/my_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/iamge_icon"
+            android:text="未登录"
+            android:textColor="#fff"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/my_Checkin"
+            android:layout_width="58dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@color/white"
+            android:text="签到"
+            android:textColor="#3087ea"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/wen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/di2"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/layout_corners"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/my_i"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我的问诊"
+            android:textColor="#333333"
+            android:textSize="16sp" />
+
+        <RelativeLayout
+            android:id="@+id/my_inquiry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/my_i"
+            android:layout_marginTop="24dp">
+
+            <ImageView
+                android:id="@+id/my_inquir"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/the_current_inquiry" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/my_inquir"
+                android:text="当前问诊"
+                android:textColor="#333333"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/my_icon_next_n" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/my_history_inquiry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/my_inquiry"
+            android:layout_marginTop="10dp">
+
+            <ImageView
+                android:id="@+id/my_inq"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/historical_inquiry" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/my_inq"
+                android:text="历史问诊"
+                android:textColor="#333333"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/my_icon_next_n" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RadioGroup
+        android:layout_marginTop="30dp"
+        android:id="@+id/rg1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/wen"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/my_file"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/my_icon_file_n"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:text="我的档案" />
+
+        <RadioButton
+            android:id="@+id/my_wallet"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/my_icon_wallet_n"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:text="我的钱包" />
+
+        <RadioButton
+            android:id="@+id/my_Collection"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/common_button_collection_large_n"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:text="我的收藏" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/rg2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rg1"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="30dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/my_Suggest"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/my_icon_advice_n"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:text="被采纳建议" />
+
+        <RadioButton
+            android:id="@+id/my_video"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/my_icon_video_n"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:text="我的视频" />
+
+        <RadioButton
+            android:id="@+id/my_circle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/my_icon_circle_n"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:text="我的病友圈" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/rg3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rg2"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="30dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/my_attention"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/common_icon_attention_large_n"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:text="我的关注" />
+
+        <RadioButton
+            android:id="@+id/my_task"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/my_icon_task_n"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:text="我的任务" />
+
+        <RadioButton
+            android:id="@+id/my_Setting"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/my_icon_set_n"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:text="设置管理" />
+
+    </RadioGroup>
+
+
+</RelativeLayout>

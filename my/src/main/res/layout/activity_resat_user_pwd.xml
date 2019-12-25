@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@mipmap/login_bg"
+    tools:context=".activity.ResatUserPwdActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/fanhui"
+            android:src="@mipmap/common_icon_back_white_n"
+            android:layout_marginLeft="30dp"
+            android:layout_width="16dp"
+            android:layout_height="16dp"/>
+        <TextView
+            android:text="设置新密码"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="280dp"
+        android:layout_height="140dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="170dp"
+        android:background="@drawable/layout_corners"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="30dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/new_pwd1"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14dp"
+                android:hint="请设置新密码"
+                android:textSize="14sp" />
+            <ToggleButton
+                android:id="@+id/yanjing11"
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:padding="5dp"
+                android:layout_marginLeft="190dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="54dp"
+                android:background="@mipmap/login_icon_hide_password_n"
+                android:button="@null"
+                android:checked="true"
+                android:disabledAlpha="@android:integer/config_longAnimTime"
+                android:minWidth="@null"
+                android:minHeight="@null"
+                android:text="@null"
+                android:textOff="@null"
+                android:textOn="@null" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout2"
+            android:layout_below="@id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/new_pwd2"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14dp"
+                android:hint="请再次确认密码"
+                android:textSize="14sp" />
+            <ToggleButton
+                android:id="@+id/yanjing22"
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:padding="5dp"
+                android:layout_marginLeft="190dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="54dp"
+                android:background="@mipmap/login_icon_hide_password_n"
+                android:button="@null"
+                android:checked="true"
+                android:disabledAlpha="@android:integer/config_longAnimTime"
+                android:minWidth="@null"
+                android:minHeight="@null"
+                android:text="@null"
+                android:textOff="@null"
+                android:textOn="@null" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <TextView
+        android:layout_width="260dp"
+        android:background="@color/white"
+        android:layout_gravity="center_horizontal"
+        android:alpha="0.6"
+        android:layout_height="8dp"/>
+    <TextView
+        android:layout_width="240dp"
+        android:background="@color/white"
+        android:layout_gravity="center_horizontal"
+        android:alpha="0.3"
+        android:layout_height="8dp"/>
+    <Button
+        android:id="@+id/btn_finish"
+        android:text="完成"
+        android:textColor="@color/blue"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="250dp"
+        android:background="@drawable/button_corners_white"
+        android:layout_width="300dp"
+        android:layout_height="40dp"/>
+</LinearLayout>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.VideoActivity">
+    <RelativeLayout
+        android:id="@+id/reaaa"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="60dp">
+        <ImageView
+            android:id="@+id/fanhui"
+            android:src="@mipmap/common_icon_back_black_n"
+            android:layout_marginLeft="30dp"
+            android:layout_width="20dp"
+            android:layout_centerVertical="true"
+            android:layout_height="20dp"/>
+        <TextView
+            android:text="购买的视频"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <TextView
+        android:layout_below="@+id/reaaa"
+        android:id="@+id/text_lines"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/lightgray"
+        />
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:id="@+id/xrecy_video"
+        android:layout_below="@+id/text_lines"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <include layout="@layout/message_include" android:visibility="gone" />
+</RelativeLayout>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.HealthyCurrencyActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="60dp">
+        <ImageView
+            android:id="@+id/fanhui"
+            android:src="@mipmap/common_icon_back_black_n"
+            android:layout_marginLeft="30dp"
+            android:layout_width="20dp"
+            android:layout_centerVertical="true"
+            android:layout_height="20dp"/>
+        <TextView
+            android:text="H币入账消息"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/lightgray"
+        />
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:id="@+id/xrecy_healthy"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginVertical="10dp"
+        android:layout_height="match_parent"/>
+    <include layout="@layout/inclode" android:visibility="gone"/>
+</LinearLayout>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:gravity="center"
+
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:background="@drawable/layout_corners"
+        android:layout_width="200dp"
+        android:orientation="vertical"
+        android:layout_height="94dp">
+        <TextView
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:textSize="12sp"
+            android:text="您的档案会被删除!"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:layout_width="200dp"
+            android:layout_height="40dp">
+            <Button
+                android:id="@+id/dialog_quxiao_button"
+                android:textSize="14sp"
+                android:text="取消"
+                android:textColor="#ffffff"
+                android:background="@drawable/button_corners_gray2"
+                android:layout_width="100dp"
+                android:layout_height="40dp"/>
+            <Button
+                android:id="@+id/dialog_queding_button"
+                android:textSize="14sp"
+                android:text="确认"
+                android:textColor="#ffffff"
+                android:background="@drawable/button_corners_blue"
+                android:layout_width="100dp"
+                android:layout_height="40dp"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/text_mrrw2"
+        android:text="签到"
+        android:textSize="12sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/text_hb2"
+        android:text="签到"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/blue"
+        android:layout_below="@id/text_mrrw2"
+        android:textSize="12sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:text="H币"
+        android:layout_marginTop="4dp"
+        android:layout_below="@id/text_mrrw2"
+        android:textSize="12sp"
+        android:layout_toRightOf="@id/text_hb2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:visibility="gone"
+        android:id="@+id/first_button_finish2"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="0dp"
+        android:background="@drawable/button_corners_gray"
+        android:text="已完成"
+        android:textColor="#333333"
+        android:textSize="12sp" />
+    <Button
+
+        android:id="@+id/first_button_go_finish2"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/button_corners_blue"
+        android:text="去完成"
+        android:textColor="#fff"
+        android:textSize="12sp" />
+    <Button
+        android:visibility="gone"
+        android:id="@+id/collar_button_go_finish2"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/button_corners_green"
+        android:text="领H币"
+        android:textColor="#fff"
+        android:textSize="12sp" />
+</RelativeLayout>

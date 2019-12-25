@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="10dp"
+    android:background="@drawable/layout_corners"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/message_jkzx2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/linla1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/message_jkzx2"
+        android:orientation="horizontal">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/image1_jkzx2"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            fresco:placeholderImage="@mipmap/zhanwei"
+            fresco:failureImage="@mipmap/shibai"
+            android:layout_weight="1" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/image2_jkzx2"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            fresco:placeholderImage="@mipmap/zhanwei"
+            fresco:failureImage="@mipmap/shibai"
+            android:layout_weight="1" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/image3_jkzx2"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            fresco:placeholderImage="@mipmap/zhanwei"
+            fresco:failureImage="@mipmap/shibai"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/writer_jkzx2"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/linla1"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/time_jkzx2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linla1"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:textSize="10sp" />
+    <TextView
+        android:id="@+id/under"
+        android:layout_below="@id/time_jkzx2"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
+    <TextView
+        android:layout_below="@id/under"
+        android:background="@color/gray"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+</RelativeLayout>

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.DrawCashActivity">
+    <RelativeLayout
+        android:id="@+id/heead"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/fanhui"
+            android:src="@mipmap/common_icon_back_black_n"
+            android:layout_marginLeft="30dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"/>
+        <TextView
+            android:text="H币提现"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/lightgray"
+        />
+
+    <RelativeLayout
+        android:background="#F2F2F2"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="到账银行卡"
+            android:textSize="12sp"
+            android:id="@+id/daozhang"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            />
+
+        <TextView
+            android:id="@+id/bank_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="中国建设银行"
+            android:textSize="12sp"
+            android:layout_toRightOf="@id/daozhang"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="34dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="当天24点前到账"
+            android:textColor="@color/blue"
+            android:textSize="12sp"
+            android:layout_below="@id/bank_card"
+            android:layout_toRightOf="@id/daozhang"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="34dp"
+            />
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:layout_width="10dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@mipmap/my_icon_next_n"
+            android:layout_alignParentRight="true"
+            />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="#F2F2F2"
+        android:layout_width="match_parent"
+        android:layout_height="170dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="提现金额"
+            android:textSize="12sp"
+            android:id="@+id/jine"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="￥"
+            android:textSize="60sp"
+            android:id="@+id/qian"
+            android:layout_below="@id/jine"
+            android:layout_marginTop="45dp"
+            android:layout_marginLeft="20dp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="20"
+            android:layout_toRightOf="@id/qian"
+            android:textSize="60sp"
+            android:textColor="@color/blue"
+            android:layout_below="@id/jine"
+            android:layout_marginTop="36dp"
+            android:layout_marginLeft="20dp"
+            />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="#F2F2F2"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <CheckBox
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/xuan"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="20dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="全部提现。3050H币，可提现30元"
+            android:textSize="12sp"
+            android:layout_toRightOf="@id/xuan"
+            android:id="@+id/xian"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="10dp"
+            />
+
+        <Button
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/xuan"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_corners_blue"
+            android:text="提现"
+            android:id="@+id/button_tixian"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="当前银行卡"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_marginTop="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@mipmap/bank_card"/>
+    </LinearLayout>
+</LinearLayout>

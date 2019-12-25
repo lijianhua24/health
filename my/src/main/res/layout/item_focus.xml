@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@drawable/layout_corners"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/layout_corners_black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.wd.health.view.SwipeMenu
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/attention_doctor_imagePic"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="65dp"
+                    android:layout_height="78dp"
+                    />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_marginTop="15dp"
+                        android:layout_width="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/attention_doctor_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="曾小贤"
+                            android:textColor="#333333"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:id="@+id/tv_focusOn_jobTitle"
+                            android:layout_marginLeft="20dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="主任"
+                            android:textColor="#de333333"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/attention_doctor_jobtitle"
+                            android:layout_gravity="center"
+                            android:text="妇幼保健医院"
+                            android:textColor="#333333"
+                            android:textSize="10sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="/"
+                            android:textColor="#333333"
+                            android:textSize="10sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/attention_doctor_inauguralhospital"
+                            android:layout_gravity="center"
+                            android:text="儿科"
+                            android:textColor="#333333"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="好评率"
+                            android:textColor="#333333"
+                            android:textSize="12sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="11"
+                            android:id="@+id/attention_doctor_praise"
+                            android:layout_marginLeft="5dp"
+                            android:textColor="#333333"
+                            android:textSize="12sp" />
+                        <TextView
+                            android:layout_marginLeft="20dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="服务患者数"
+                            android:textColor="#333333"
+                            android:textSize="12sp" />
+                        <TextView
+                            android:layout_marginLeft="5dp"
+                            android:id="@+id/attention_doctor_praiseNum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="111"
+                            android:textColor="#333333"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/quxiao"
+                android:layout_marginTop="1dp"
+                android:textColor="#ffffff"
+                android:textSize="14sp"
+                android:background="#FD0505"
+                android:text="取    消    关    注"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"/>
+        </com.wd.health.view.SwipeMenu>
+    </LinearLayout>
+
+</LinearLayout>
