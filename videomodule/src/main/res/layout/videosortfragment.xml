@@ -1,10 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent">
 <com.jcodecraeer.xrecyclerview.XRecyclerView
     android:id="@+id/xrecyclerview"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 </com.jcodecraeer.xrecyclerview.XRecyclerView>
+    <RelativeLayout
+        android:id="@+id/dddd"
+        android:background="#474545"
+        android:visibility="gone"
+        android:layout_marginTop="-200dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/danwen"
+            android:ems="15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </EditText>
+        <TextView
+            android:text="发送"
+            android:id="@+id/dan_fa"
+            android:layout_width="wrap_content"
+            android:layout_toRightOf="@id/danwen"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_height="wrap_content">
+        </TextView>
+    </RelativeLayout>
 </LinearLayout>

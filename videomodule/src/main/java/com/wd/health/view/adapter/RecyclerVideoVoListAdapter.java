@@ -48,7 +48,6 @@ public class RecyclerVideoVoListAdapter extends RecyclerView.Adapter {
         int whetherCollection = datas.get(i).getWhetherCollection();
 
 
-
         if (whetherBuy == 1) {
             myViewHolder.adapter_video_volist_pinglun.setVisibility(View.VISIBLE);
             myViewHolder.adapter_video_volist_goumai.setVisibility(View.GONE);
@@ -111,6 +110,14 @@ public class RecyclerVideoVoListAdapter extends RecyclerView.Adapter {
                 OnItemonclickShouCang.getOnItemonclick(i, id);
             }
         });
+        myViewHolder.adapter_video_volist_pinglun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OnItemonclickpinglun.getOnItemonclickpinglun(i, id);
+            }
+        });
+
+
     }
 
     @Override
@@ -170,5 +177,16 @@ public class RecyclerVideoVoListAdapter extends RecyclerView.Adapter {
 
     public interface OnItemonclickShouCang {
         void getOnItemonclick(int i, int id);
+    }
+
+
+    OnItemonclickpinglun OnItemonclickpinglun;
+
+    public void setOnItemonclickpinglun(OnItemonclickpinglun OnItemonclickpinglun) {
+        this.OnItemonclickpinglun = OnItemonclickpinglun;
+    }
+
+    public interface OnItemonclickpinglun {
+        void getOnItemonclickpinglun(int i, int id);
     }
 }

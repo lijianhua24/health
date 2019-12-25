@@ -1,9 +1,16 @@
 package com.wd.health.view.fragment;
+
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.health.R;
 import com.wd.health.bean.HealthBuyBean;
@@ -17,16 +24,27 @@ import com.wd.health.view.adapter.RecyclerVideoVoListAdapter;
 import com.wd.mylibrary.Base.BaseFragment;
 import com.wd.mylibrary.Test.ToastUtils;
 import com.wd.mylibrary.app.Constant;
+
 import java.util.List;
+
 import butterknife.BindView;
+
 public class VideoSortFragment extends BaseFragment<HealthSortPresenter> implements IContract.iView {
+
     @BindView(R.id.xrecyclerview)
     XRecyclerView xrecyclerview;
+    @BindView(R.id.danwen)
+    EditText dan_wen;
+    @BindView(R.id.dan_fa)
+    TextView dan_fa;
+    @BindView(R.id.dddd)
+    RelativeLayout dddd;
     private int anInt;
     private int page = 1;
     private int count = 5;
     private int userId;
     private String sessionId;
+
     @Override
     protected HealthSortPresenter providePresenter() {
         return new HealthSortPresenter();
@@ -50,6 +68,13 @@ public class VideoSortFragment extends BaseFragment<HealthSortPresenter> impleme
                 page++;
                 mPresenter.getVideoSort(userId, sessionId, anInt, page, count);
                 xrecyclerview.loadMoreComplete();
+            }
+        });
+        dan_fa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String trim = dan_wen.getText().toString().trim();
+                mPresenter.getVideoComment(userId, sessionId, anInt, trim);
             }
         });
     }
@@ -111,14 +136,18 @@ public class VideoSortFragment extends BaseFragment<HealthSortPresenter> impleme
                 builder.show();
             }
         });
-        recyclerVideoVoListAdapter.setOnItemonclickShouCang(new RecyclerVideoVoListAdapter.OnItemonclickShouCang() {
+        recyclerVideoVoListAdapter.setOnItemonclickShouCang(new RecyclerVideoVoListAdapter.OnItemonclickShouCang(){
             @Override
             public void getOnItemonclick(int i, int id) {
                 mPresenter.getHealthCollection(userId, sessionId, id);
             }
         });
-
-
+        recyclerVideoVoListAdapter.setOnItemonclickpinglun(new RecyclerVideoVoListAdapter.OnItemonclickpinglun() {
+            @Override
+            public void getOnItemonclickpinglun(int i, int id) {
+                dddd.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     @Override
@@ -150,15 +179,13 @@ public class VideoSortFragment extends BaseFragment<HealthSortPresenter> impleme
     }
 
     @Override
-    public void HealthCollectionFailure(Throwable e) {
+    public void HealthCollectionFailure(Throwable e)          {
         ToastUtils.show("请检查网络");
     }
 
     @Override
     public void QvideoListsuccess(QvideoListBean qvideoListBean) {
-
     }
-
     @Override
     public void QvideoListFailure(Throwable e) {
         ToastUtils.show("请检查网络");
@@ -166,7 +193,12 @@ public class VideoSortFragment extends BaseFragment<HealthSortPresenter> impleme
 
     @Override
     public void VideoCommentsuccess(HealthBuyBean healthBuyBean) {
-
+        if (healthBuyBean.getStatus() == Constant.SUCCESS_CODE) {
+            ToastUtils.show(healthBuyBean.getMessage());
+            dddd.setVisibility(View.GONE);
+        } else {
+            ToastUtils.show(healthBuyBean.getMessage());
+        }
     }
 
     @Override
