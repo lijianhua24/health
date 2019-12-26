@@ -31,6 +31,7 @@ import butterknife.OnClick;
 import cn.jmessage.biz.httptask.task.GetEventNotificationTaskMng;
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.content.EventNotificationContent;
+import cn.jpush.im.android.api.content.MessageContent;
 import cn.jpush.im.android.api.content.TextContent;
 import cn.jpush.im.android.api.event.MessageEvent;
 import cn.jpush.im.android.api.event.NotificationClickEvent;
@@ -38,6 +39,8 @@ import cn.jpush.im.android.api.model.Conversation;
 import cn.jpush.im.android.api.model.GroupInfo;
 import cn.jpush.im.android.api.model.Message;
 import cn.jpush.im.api.BasicCallback;
+
+import static cn.jpush.im.android.api.model.Conversation.createSingleConversation;
 
 public class JgActivity extends BaseActivity<ImPresenterPresenter> implements IMContract.IView {
 
@@ -63,6 +66,8 @@ public class JgActivity extends BaseActivity<ImPresenterPresenter> implements IM
     private int recordId;
     private CurrentBean.ResultBean result;
     private List<RecordingBean.ResultBean> result1;
+    private String APPKEY = "e10adc3949ba59abbe56e057f20f883e";
+    private String userName;
 
     @Override
     protected ImPresenterPresenter providePresenter() {
@@ -104,15 +109,16 @@ public class JgActivity extends BaseActivity<ImPresenterPresenter> implements IM
             doctorId = result.getDoctorId();
             String doctorName = result.getDoctorName();
             titlesName.setText(doctorName);
-            mPresenter.getRecordingPresenter(userId,sessionId, 3853,1,10);
-            String userName = result.getUserName();
-            String jiGuangPwd = "e10adc3949ba59abbe56e057f20f883e";
-            JMessageClient.login("IStXNe896745795", jiGuangPwd, new BasicCallback() {
+            userName = result.getUserName();
+            mPresenter.getRecordingPresenter(userId,sessionId, 3882,1,10);
+            JMessageClient.login("IStXNe896745795", "e10adc3949ba59abbe56e057f20f883e", new BasicCallback() {
                 @Override
                 public void gotResult(int i, String s) {
-                    Toast.makeText(JgActivity.this, ""+s+i, Toast.LENGTH_SHORT).show();
+
                 }
             });
+
+
 
         }
     }
@@ -130,6 +136,7 @@ public class JgActivity extends BaseActivity<ImPresenterPresenter> implements IM
             imRecycler.setSelected(false);
             recordingAdapter = new RecordingAdapter(this, result1);
             imRecycler.setAdapter(recordingAdapter);
+            String userName = result.getUserName();
             recordingAdapter.setId(new RecordingAdapter.getposition() {
                 @Override
                 public void getposition(int position) {
@@ -171,12 +178,18 @@ public class JgActivity extends BaseActivity<ImPresenterPresenter> implements IM
             case R.id.im_fs_tv:
                 String s = imEdit.getText().toString();
                 if (s!=null){
-                    mPresenter.getMessagePresenter(userId,sessionId,3853,s,1,157);
+                    mPresenter.getMessagePresenter(userId,sessionId,3882,s,1,156);
                     mPresenter.getCurrentPresenter(userId,sessionId);
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
                     linearLayoutManager.setReverseLayout(true);//布局反向
                     linearLayoutManager.setStackFromEnd(true);//数据反向
-
+//创建跨应用会话
+                    Conversation con = createSingleConversation(userName, APPKEY);
+                    MessageContent content = new TextContent(s);
+//创建一条消息
+                    Message message = con.createSendMessage(content);
+//发送消息
+                    JMessageClient.sendMessage(message);
                     imRecycler.setLayoutManager(linearLayoutManager);
                     imEdit.setText(null);
                 }else {

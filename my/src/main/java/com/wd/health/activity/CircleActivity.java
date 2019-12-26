@@ -3,10 +3,8 @@ package com.wd.health.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import com.wd.health.R;
-import com.wd.health.utils.RsaCoder;
 
 public class CircleActivity extends AppCompatActivity {
 

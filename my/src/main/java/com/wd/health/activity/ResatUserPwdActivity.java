@@ -19,8 +19,8 @@ import com.wd.health.bean.ResetUserPwdBean;
 import com.wd.health.bean.user.EmailBean;
 import com.wd.health.contract.RegisterContract;
 import com.wd.health.presenter.RegPresenter;
-import com.wd.health.utils.RsaCoder;
 import com.wd.mylibrary.Base.BaseActivity;
+import com.wd.mylibrary.utils.RsaCoder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -12,8 +12,8 @@ import com.wd.health.R;
 import com.wd.health.bean.UpdateUserPwdBean;
 import com.wd.health.contract.UpdateUserPwdContract;
 import com.wd.health.presenter.UpdateUserPwdPresenter;
-import com.wd.health.utils.RsaCoder;
 import com.wd.mylibrary.Base.BaseActivity;
+import com.wd.mylibrary.utils.RsaCoder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

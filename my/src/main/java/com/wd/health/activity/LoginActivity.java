@@ -1,11 +1,11 @@
 package com.wd.health.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -25,9 +25,9 @@ import com.wd.health.bean.evebus.SettingBus;
 import com.wd.health.bean.user.LoginBean;
 import com.wd.health.contract.LoginContract;
 import com.wd.health.presenter.LoginPresenter;
-import com.wd.health.utils.RsaCoder;
 import com.wd.mylibrary.Base.BaseActivity;
 import com.wd.mylibrary.Test.Logger;
+import com.wd.mylibrary.utils.RsaCoder;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -69,6 +69,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     TextView forgetPwd;
     private SharedPreferences.Editor editor;
     private String md5;
+    private String s;
 
     @Override
     protected LoginPresenter providePresenter() {
@@ -135,6 +136,18 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
             editor.putString("email", bean.getResult().getEmail());
             editor.commit();
 
+            LoginBean.ResultBean result = bean.getResult();
+            String jiGuangPwd = result.getJiGuangPwd();
+            String userName = result.getUserName();
+            try {
+                s = RsaCoder.decryptByPublicKey(jiGuangPwd);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            Log.d(TAG, "onLoginSuccess: "+s);
+            String s1 = MD5(s);
+            Log.d(TAG, "onLoginSuccess: "+s1);
             EventBus.getDefault().postSticky(new SettingBus(bean.getResult().getNickName(), bean.getResult().getHeadPic()));
             Toast.makeText(this, "" + bean.getMessage(), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent();

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -29,8 +28,8 @@ import com.wd.health.bean.user.IdBean;
 import com.wd.health.contract.IdContract;
 import com.wd.health.presenter.IdPresenter;
 import com.wd.health.utils.FileUtil;
-import com.wd.health.utils.RsaCoder;
 import com.wd.mylibrary.Base.BaseActivity;
+import com.wd.mylibrary.utils.RsaCoder;
 
 import java.io.File;
 

@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,13 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.health.R;
-import com.wd.health.adapter.HistoryAdapter;
 import com.wd.health.adapter.VideoAdapter;
 import com.wd.health.bean.VideoBean;
 import com.wd.health.contract.VideoContract;
 import com.wd.health.presenter.VodelPresenter;
-import com.wd.health.utils.RsaCoder;
 import com.wd.mylibrary.Base.BaseActivity;
+import com.wd.mylibrary.utils.RsaCoder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
