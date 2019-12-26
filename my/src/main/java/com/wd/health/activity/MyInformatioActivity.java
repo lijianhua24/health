@@ -198,7 +198,9 @@ public class MyInformatioActivity extends BaseActivity<ModifyHeadPicPresenter> i
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void getname(SexbeanBus sexbeanBus) {
         name = sexbeanBus.getSex();
-        myInformationName.setText(name);
+        if (name!=null){
+            myInformationName.setText(name);
+        }
     }
 
     @OnClick({R.id.fanhui, R.id.my_information_Avatar, R.id.my_information_Avatar_a, R.id.my_information_name_a, R.id.my_information_gender_a, R.id.my_information_Sign, R.id.my_information_mailbox_a, R.id.my_information_weixin_a, R.id.my_information_Certification_a, R.id.my_information_Bankcard_a})

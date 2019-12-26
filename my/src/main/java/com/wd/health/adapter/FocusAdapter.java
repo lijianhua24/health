@@ -52,7 +52,7 @@ public class FocusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             ((MyViewHolder) holder).tvFocusOnJobTitle.setText(list.get(position).getJobTitle());
             ((MyViewHolder) holder).attentionDoctorJobtitle.setText(list.get(position).getInauguralHospital());
             ((MyViewHolder) holder).attentionDoctorPraise.setText(list.get(position).getPraise());
-            ((MyViewHolder) holder).attentionDoctorPraiseNum.setText("" + list.get(position).getNumber());
+            //((MyViewHolder) holder).attentionDoctorPraiseNum.setText("" + list.get(position).getNumber());
         }
     }
 
