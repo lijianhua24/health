@@ -63,6 +63,7 @@ dependencies {
     implementation rootProject.ext.dependencies["ijkplayer"]
     implementation rootProject.ext.dependencies["ijkplayerarmv7a"]
     implementation rootProject.ext.dependencies["ijkplayerexo"]
+    implementation 'com.github.ctiao:DanmakuFlameMaster:0.7.3'
 
     implementation project(path: ':mylibrary')
 }

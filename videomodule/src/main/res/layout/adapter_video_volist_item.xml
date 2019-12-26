@@ -5,84 +5,95 @@
     android:background="#666464">
 
     <com.dou361.ijkplayer.widget.IjkVideoView
-        android:id="@+id/adapter_video_volist_ijkplayer"
-        android:layout_width="@dimen/dp_600"
-        android:layout_height="@dimen/dp_720">
+        android:id="@+id/video_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     </com.dou361.ijkplayer.widget.IjkVideoView>
     <ImageView
-        android:id="@+id/adapter_video_start_stop"
-        android:layout_width="@dimen/dp_65"
-        android:layout_height="@dimen/dp_65"
-        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:background="@mipmap/common_icon_time_out_n"
-        android:visibility="gone"/>
-
-    <LinearLayout
-        android:layout_width="@dimen/dp_30"
-        android:layout_height="@dimen/dp_190"
         android:layout_centerVertical="true"
+        android:id="@+id/video_pause"
+        android:visibility="invisible"
+        android:src="@mipmap/common_icon_time_out_n"
+        android:layout_width="65dp"
+        android:layout_height="65dp"/>
+    <CheckBox
+        android:button="@null"
+        android:id="@+id/qian"
+        android:layout_marginTop="400dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/video_common_icon_toll_n"
+        android:layout_marginRight="@dimen/dp_20"
+        android:layout_width="@dimen/dp_30"
+        android:layout_height="@dimen/dp_30"/>
+    <ImageView
+        android:id="@+id/cb_collecte"
+        android:background="@drawable/video_selector_collecte"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/dp_20"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/adapter_video_volist_goumai"
-            android:layout_width="@dimen/dp_30"
-            android:layout_height="@dimen/dp_30"
-            android:background="@mipmap/common_icon_toll_n"/>
-        <ImageView
-            android:visibility="gone"
-            android:id="@+id/adapter_video_volist_pinglun"
-            android:layout_width="@dimen/dp_30"
-            android:layout_height="@dimen/dp_30"
-            android:background="@mipmap/pinglun_icon"/>
-        <ImageView
-            android:id="@+id/adapter_video_volist_shoucang"
-            android:layout_width="@dimen/dp_30"
-            android:layout_height="@dimen/dp_30"
-            android:background="@mipmap/common_button_collection_large_n"
-            android:layout_marginTop="@dimen/dp_20"/>
-        <ImageView
-            android:id="@+id/danmu"
-            android:layout_width="@dimen/dp_30"
-            android:layout_height="@dimen/dp_30"
-            android:background="@mipmap/danmuguan"
-            android:layout_marginTop="@dimen/dp_20"/>
-
-        <TextView
-            android:id="@+id/adapter_video_volist_buyNum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_20"
-            android:text="0万人已购买"
-            android:textColor="#ffffff"
-            android:textSize="@dimen/sp_10"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_80"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_below="@id/qian"
+        android:layout_width="@dimen/dp_30"
+        android:layout_height="@dimen/dp_30"/>
+    <CheckBox
+        android:id="@+id/cb_barrage"
+        android:background="@drawable/video_common_icon_open_live_commenting_n"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_below="@id/cb_collecte"
+        android:button="@null"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_30"/>
+    <TextView
+        android:textStyle="bold"
+        android:textColor="#ffffff"
+        android:id="@+id/video_title"
+        android:text="48653"
+        android:layout_marginBottom="70dp"
         android:layout_alignParentBottom="true"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/adapter_video_volist_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="00"
-            android:layout_marginLeft="@dimen/dp_30"
-            android:textSize="@dimen/sp_16"
-            android:textColor="#ffffff"/>
-
-        <TextView
-            android:id="@+id/adapter_video_volist_abstracts"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="00"
-            android:layout_marginLeft="@dimen/dp_30"
-            android:textSize="@dimen/sp_10"
-            android:textColor="#ffffff"
-            android:layout_marginTop="@dimen/dp_10"/>
-
-    </LinearLayout>
+        android:textSize="@dimen/dp_16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:textColor="#ffffff"
+        android:text="嘎多干点"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:textSize="@dimen/sp_12"
+        android:id="@+id/video_content"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:layout_alignParentBottom="true"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/video_want"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_20"
+        android:layout_below="@id/cb_barrage"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:layout_marginRight="@dimen/dp_20"
+        android:visibility="invisible"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:id="@+id/video_edit"
+        android:hint="快来留下你的看法吧"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/video_send"
+        android:visibility="invisible"
+        android:background="@mipmap/common_icon_send_n"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="@dimen/dp_20"
+        android:layout_width="45dp"
+        android:layout_height="45dp"/>
 </RelativeLayout>

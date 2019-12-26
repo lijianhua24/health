@@ -1,6 +1,5 @@
 package com.wd.health.view.fragment;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,7 +7,6 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -28,6 +26,7 @@ import com.wd.mylibrary.app.Constant;
 import java.util.List;
 
 import butterknife.BindView;
+import master.flame.danmaku.ui.widget.DanmakuView;
 
 public class VideoSortFragment extends BaseFragment<HealthSortPresenter> implements IContract.iView {
 
@@ -77,11 +76,13 @@ public class VideoSortFragment extends BaseFragment<HealthSortPresenter> impleme
                 mPresenter.getVideoComment(userId, sessionId, anInt, trim);
             }
         });
+
+        mPresenter.getVideoSort(userId,sessionId,anInt,page, count);
+
     }
 
     @Override
     protected void initView() {
-
     }
 
     @Override
@@ -111,43 +112,47 @@ public class VideoSortFragment extends BaseFragment<HealthSortPresenter> impleme
     @Override
     public void VideoSortsuccess(VideoSortBean videoSortBean) {
         List<VideoSortBean.ResultBean> resultBeans = videoSortBean.getResult();
-        RecyclerVideoVoListAdapter recyclerVideoVoListAdapter = new RecyclerVideoVoListAdapter(getContext());
-        recyclerVideoVoListAdapter.addData(resultBeans);
+        RecyclerVideoVoListAdapter recyclerVideoVoListAdapter = new RecyclerVideoVoListAdapter(resultBeans, getContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         xrecyclerview.setLayoutManager(linearLayoutManager);
         xrecyclerview.setAdapter(recyclerVideoVoListAdapter);
-        recyclerVideoVoListAdapter.setOnItemonclick(new RecyclerVideoVoListAdapter.OnItemonclick() {
+        recyclerVideoVoListAdapter.setsetOnTouch(new RecyclerVideoVoListAdapter.setOnTouch() {
             @Override
-            public void getOnItemonclick(int i, int id) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("购买视频");
-                builder.setNegativeButton("取消购买", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        ToastUtils.show("用户已取消");
-                    }
-                });
-                builder.setPositiveButton("确认购买", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        mPresenter.getHealthBuy(userId, sessionId, id, 100);
-                    }
-                });
-                builder.show();
+            public void onClick(int osid) {
+                mPresenter.getQvideoList(userId, sessionId, osid);
             }
         });
-        recyclerVideoVoListAdapter.setOnItemonclickShouCang(new RecyclerVideoVoListAdapter.OnItemonclickShouCang(){
+        recyclerVideoVoListAdapter.setOnDian(new RecyclerVideoVoListAdapter.setOnDian() {
             @Override
-            public void getOnItemonclick(int i, int id) {
-                mPresenter.getHealthCollection(userId, sessionId, id);
+            public void onPriceClick(int ci) {
+                if (ci % 2 == 1) {
+//                    video_danmu.setVisibility(View.GONE);
+                } else if (ci % 2 == 0) {
+//                    video_danmu.setVisibility(View.VISIBLE);
+                }
             }
         });
-        recyclerVideoVoListAdapter.setOnItemonclickpinglun(new RecyclerVideoVoListAdapter.OnItemonclickpinglun() {
+        recyclerVideoVoListAdapter.setSetOnPingLun(new RecyclerVideoVoListAdapter.setOnPingLun() {
             @Override
-            public void getOnItemonclickpinglun(int i, int id) {
-                dddd.setVisibility(View.VISIBLE);
+            public void onPingLunClick(int vid, String pl) {
+                mPresenter.getVideoComment(userId,sessionId,vid,pl);
             }
         });
+
+        recyclerVideoVoListAdapter.setVideLun(new RecyclerVideoVoListAdapter.VideLun() {
+            @Override
+            public void getData(int contens) {
+
+            }
+        });
+        recyclerVideoVoListAdapter.setSetOnPriceTouch(new RecyclerVideoVoListAdapter.setOnPriceTouch() {
+            @Override
+            public void onPriceClick(int mp, int ooid) {
+                mPresenter.getHealthBuy(userId,sessionId,ooid,100);
+            }
+        });
+
+
     }
 
     @Override
@@ -179,13 +184,14 @@ public class VideoSortFragment extends BaseFragment<HealthSortPresenter> impleme
     }
 
     @Override
-    public void HealthCollectionFailure(Throwable e)          {
+    public void HealthCollectionFailure(Throwable e) {
         ToastUtils.show("请检查网络");
     }
 
     @Override
     public void QvideoListsuccess(QvideoListBean qvideoListBean) {
     }
+
     @Override
     public void QvideoListFailure(Throwable e) {
         ToastUtils.show("请检查网络");

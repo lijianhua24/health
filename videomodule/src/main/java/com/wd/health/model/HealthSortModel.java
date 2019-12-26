@@ -68,7 +68,7 @@ public class HealthSortModel implements IContract.iModel {
     @Override
     public void getHealthCollection(int userId, String sessionId, int videoId, iDepartmentListCallBack callBack) {
         RetrofitManager.getInstance().create(ApiServers.class)
-                .HealthCollection(userId, sessionId, videoId)
+                .HealthCollection(userId, sessionId,videoId)
                 .compose(CommonSchedulers.io2main())
                 .subscribe(new CommonObserver<HealthBuyBean>() {
                     @Override

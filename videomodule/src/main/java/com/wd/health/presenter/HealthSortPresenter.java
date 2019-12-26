@@ -152,7 +152,6 @@ public class HealthSortPresenter extends BasePresenter<IContract.iView> implemen
         healthSortModel.getHealthBuy(userId, sessionId, videoId, price, new IContract.iModel.iDepartmentListCallBack() {
             @Override
             public void healthSortsuccess(HealthSortBean healthSortBean) {
-
             }
 
             @Override
@@ -181,14 +180,10 @@ public class HealthSortPresenter extends BasePresenter<IContract.iView> implemen
             }
 
             @Override
-            public void HealthCollectionsuccess(HealthBuyBean healthBuyBean) {
-
-            }
+            public void HealthCollectionsuccess(HealthBuyBean healthBuyBean) {}
 
             @Override
-            public void HealthCollectionFailure(Throwable e) {
-
-            }
+            public void HealthCollectionFailure(Throwable e){}
 
             @Override
             public void QvideoListsuccess(QvideoListBean qvideoListBean) {

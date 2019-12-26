@@ -46,7 +46,7 @@ public interface ApiServers {
     Observable<HealthBuyBean>HealthCollection(
             @Header("userId")int userId,
             @Header("sessionId")String sessionId,
-            @Query("videoId") int videoId
+            @Query("videoId") int  videoId
     );
 
     @GET("user/video/v1/findVideoCommentList")
