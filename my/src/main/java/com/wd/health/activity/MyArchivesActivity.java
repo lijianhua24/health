@@ -21,6 +21,7 @@ import androidx.annotation.Nullable;
 import com.bumptech.glide.Glide;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.bean.user.AddArchivesBean;
 import com.wd.health.bean.user.DeleteArchivesBean;
 import com.wd.health.bean.user.UpdateArchivesBean;
@@ -40,31 +41,31 @@ import butterknife.Unbinder;
 
 public class MyArchivesActivity extends BaseActivity<MyFilePresenter> implements MyFileContract.Iview {
 
-    @BindView(R.id.message_fanhui)
+    @BindView(R2.id.message_fanhui)
     ImageView messageFanhui;
-    @BindView(R.id.text_bingzheng)
+    @BindView(R2.id.text_bingzheng)
     TextView textBingzheng;
-    @BindView(R.id.text_neike)
+    @BindView(R2.id.text_neike)
     TextView textNeike;
-    @BindView(R.id.text_xiangqing)
+    @BindView(R2.id.text_xiangqing)
     TextView textXiangqing;
-    @BindView(R.id.text_tiantan)
+    @BindView(R2.id.text_tiantan)
     TextView textTiantan;
-    @BindView(R.id.text_riqi)
+    @BindView(R2.id.text_riqi)
     TextView textRiqi;
-    @BindView(R.id.text_jingli)
+    @BindView(R2.id.text_jingli)
     TextView textJingli;
-    @BindView(R.id.info_img)
+    @BindView(R2.id.info_img)
     ImageView infoImg;
-    @BindView(R.id.button_delete)
+    @BindView(R2.id.button_delete)
     Button buttonDelete;
-    @BindView(R.id.button_bianji)
+    @BindView(R2.id.button_bianji)
     Button buttonBianji;
-    @BindView(R.id.myfile_button)
+    @BindView(R2.id.myfile_button)
     Button myfileButton;
-    @BindView(R.id.message_include_relat)
+    @BindView(R2.id.message_include_relat)
     RelativeLayout messageIncludeRelat;
-    @BindView(R.id.my_archives_relat)
+    @BindView(R2.id.my_archives_relat)
     RelativeLayout myArchivesLinear;
     private Unbinder bind;
     private SharedPreferences sp;
@@ -82,7 +83,7 @@ public class MyArchivesActivity extends BaseActivity<MyFilePresenter> implements
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_my_archives;
+        return R2.layout.activity_my_archives;
     }
 
     @Override

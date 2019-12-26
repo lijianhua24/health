@@ -13,6 +13,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.tabs.TabLayout;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.app.App;
 import com.wd.health.bean.DepartmentBean;
 import com.wd.health.contract.HomeContract;
@@ -27,15 +28,15 @@ import butterknife.BindView;
 public class InquiryActivity extends BaseActivity<FettlesPresenter> implements HomeContract.CommonContreact.IView {
 
 
-    @BindView(R.id.home_touxiang)
+    @BindView(R2.id.home_touxiang)
     SimpleDraweeView homeTouxiang;
-    @BindView(R.id.title_name)
+    @BindView(R2.id.title_name)
     TextView titleName;
-    @BindView(R.id.home_xiaoxi)
+    @BindView(R2.id.home_xiaoxi)
     ImageView homeXiaoxi;
-    @BindView(R.id.tab)
+    @BindView(R2.id.tab)
     TabLayout tab;
-    @BindView(R.id.pager)
+    @BindView(R2.id.pager)
     ViewPager pager;
 
     @Override
@@ -55,7 +56,7 @@ public class InquiryActivity extends BaseActivity<FettlesPresenter> implements H
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_inquiry;
+        return R2.layout.activity_inquiry;
     }
 
     @Override

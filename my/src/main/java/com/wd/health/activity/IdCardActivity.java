@@ -24,6 +24,7 @@ import com.baidu.ocr.ui.camera.CameraActivity;
 import com.baidu.ocr.ui.camera.CameraNativeHelper;
 import com.baidu.ocr.ui.camera.CameraView;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.bean.user.IdBean;
 import com.wd.health.contract.IdContract;
 import com.wd.health.presenter.IdPresenter;
@@ -40,18 +41,18 @@ import butterknife.OnClick;
 public class IdCardActivity extends BaseActivity<IdPresenter> implements IdContract.IView {
 
 
-    @BindView(R.id.back)
+    @BindView(R2.id.back)
     RelativeLayout back;
-    @BindView(R.id.id_card_front_button_auto)
+    @BindView(R2.id.id_card_front_button_auto)
     ImageView idCardFrontButtonAuto;
-    @BindView(R.id.id_card_back_button_auto)
+    @BindView(R2.id.id_card_back_button_auto)
     ImageView idCardBackButtonAuto;
     private static final int REQUEST_CODE_CAMERA = 102;
     private static final int REQUEST_CODE_DRIVING_LICENSE = 103;
     private static final int REQUEST_CODE_VEHICLE_LICENSE = 104;
-    @BindView(R.id.btn_next)
+    @BindView(R2.id.btn_next)
     Button btnNext;
-    @BindView(R.id.btn_ok)
+    @BindView(R2.id.btn_ok)
     Button btnOk;
     private SharedPreferences sp1;
     private SharedPreferences sp;
@@ -97,7 +98,7 @@ public class IdCardActivity extends BaseActivity<IdPresenter> implements IdContr
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_id_card;
+        return R2.layout.activity_id_card;
     }
     @Override
     public void onIdSuccess(IdBean bean) {

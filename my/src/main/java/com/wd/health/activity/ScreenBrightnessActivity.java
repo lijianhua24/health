@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.mylibrary.Base.BaseActivity;
 import com.wd.mylibrary.Base.BasePresenter;
 
@@ -29,9 +30,9 @@ import butterknife.OnClick;
 public class ScreenBrightnessActivity extends BaseActivity {
 
 
-    @BindView(R.id.fanhui)
+    @BindView(R2.id.fanhui)
     ImageView fanhui;
-    @BindView(R.id.screen_seekbar)
+    @BindView(R2.id.screen_seekbar)
     SeekBar mScreenSeekbar;
 
     private static String[] PERMISSIONS_STORAGE = {
@@ -47,7 +48,7 @@ public class ScreenBrightnessActivity extends BaseActivity {
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_screen_brightness;
+        return R2.layout.activity_screen_brightness;
     }
 
 

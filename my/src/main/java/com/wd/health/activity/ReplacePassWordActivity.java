@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.bean.UpdateUserPwdBean;
 import com.wd.health.contract.UpdateUserPwdContract;
 import com.wd.health.presenter.UpdateUserPwdPresenter;
@@ -21,15 +22,15 @@ import butterknife.OnClick;
 
 public class ReplacePassWordActivity extends BaseActivity<UpdateUserPwdPresenter> implements UpdateUserPwdContract.IView {
 
-    @BindView(R.id.fanhui)
+    @BindView(R2.id.fanhui)
     ImageView fanhui;
-    @BindView(R.id.pwd_oldpwd)
+    @BindView(R2.id.pwd_oldpwd)
     EditText pwdOldpwd;
-    @BindView(R.id.pwd_newpwd)
+    @BindView(R2.id.pwd_newpwd)
     EditText pwdNewpwd;
-    @BindView(R.id.pwd_newpwd2)
+    @BindView(R2.id.pwd_newpwd2)
     EditText pwdNewpwd2;
-    @BindView(R.id.pwd_buttton)
+    @BindView(R2.id.pwd_buttton)
     Button pwdButtton;
     private String id;
     private String sessionId;
@@ -43,7 +44,7 @@ public class ReplacePassWordActivity extends BaseActivity<UpdateUserPwdPresenter
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_replace_pass_word;
+        return R2.layout.activity_replace_pass_word;
     }
 
     @Override

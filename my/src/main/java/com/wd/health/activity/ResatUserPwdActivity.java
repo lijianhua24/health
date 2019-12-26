@@ -13,6 +13,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.bean.CheckCodeBean;
 import com.wd.health.bean.RegBean;
 import com.wd.health.bean.ResetUserPwdBean;
@@ -28,17 +29,17 @@ import butterknife.OnClick;
 
 public class ResatUserPwdActivity extends BaseActivity<RegPresenter> implements RegisterContract.IView {
 
-    @BindView(R.id.fanhui)
+    @BindView(R2.id.fanhui)
     ImageView fanhui;
-    @BindView(R.id.new_pwd1)
+    @BindView(R2.id.new_pwd1)
     EditText newPwd1;
-    @BindView(R.id.yanjing11)
+    @BindView(R2.id.yanjing11)
     ToggleButton yanjing11;
-    @BindView(R.id.new_pwd2)
+    @BindView(R2.id.new_pwd2)
     EditText newPwd2;
-    @BindView(R.id.yanjing22)
+    @BindView(R2.id.yanjing22)
     ToggleButton yanjing22;
-    @BindView(R.id.btn_finish)
+    @BindView(R2.id.btn_finish)
     Button btnFinish;
     private String email;
     private String pwd1;

@@ -12,6 +12,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.bean.CheckCodeBean;
 import com.wd.health.bean.RegBean;
 import com.wd.health.bean.ResetUserPwdBean;
@@ -28,23 +29,23 @@ import butterknife.OnClick;
 
 public class RegisterActivity extends BaseActivity<RegPresenter> implements RegisterContract.IView {
 
-    @BindView(R.id.edit_email_rg)
+    @BindView(R2.id.edit_email_rg)
     EditText editEmailRg;
-    @BindView(R.id.button_rg)
+    @BindView(R2.id.button_rg)
     CheckBox buttonRg;
-    @BindView(R.id.edit_code_rg)
+    @BindView(R2.id.edit_code_rg)
     EditText editCodeRg;
-    @BindView(R.id.edit_pwd_rg)
+    @BindView(R2.id.edit_pwd_rg)
     EditText editPwdRg;
-    @BindView(R.id.hide_ears)
+    @BindView(R2.id.hide_ears)
     ToggleButton hideEars;
-    @BindView(R.id.edit_pwd_rg2)
+    @BindView(R2.id.edit_pwd_rg2)
     EditText editPwdRg2;
-    @BindView(R.id.hide_ears2)
+    @BindView(R2.id.hide_ears2)
     ToggleButton hideEars2;
-    @BindView(R.id.edit_yaoqing)
+    @BindView(R2.id.edit_yaoqing)
     EditText editYaoqing;
-    @BindView(R.id.reg_btn)
+    @BindView(R2.id.reg_btn)
     Button regBtn;
     private String pwd1;
     public static final String TAG = "RegisterActivity";

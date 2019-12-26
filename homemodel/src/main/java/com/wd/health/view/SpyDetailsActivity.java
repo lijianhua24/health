@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.app.App;
 import com.wd.health.bean.SpyDetailsBean;
 import com.wd.health.contract.HomeContract;
@@ -18,17 +19,17 @@ import butterknife.OnClick;
 public class SpyDetailsActivity extends BaseActivity<SpyDetailsPresenter> implements HomeContract.SpyDetailsContreact.IView {
 
 
-    @BindView(R.id.syp_title)
+    @BindView(R2.id.syp_title)
     TextView sypTitle;
-    @BindView(R.id.spy_name)
+    @BindView(R2.id.spy_name)
     TextView spyName;
-    @BindView(R.id.titles_touxiang)
+    @BindView(R2.id.titles_touxiang)
     ImageView titlesTouxiang;
-    @BindView(R.id.titles_name)
+    @BindView(R2.id.titles_name)
     TextView titlesName;
-    @BindView(R.id.home_xiaoxi)
+    @BindView(R2.id.home_xiaoxi)
     ImageView homeXiaoxi;
-    @BindView(R.id.spy_wib)
+    @BindView(R2.id.spy_wib)
     WebView spyWib;
 
     @Override
@@ -82,7 +83,7 @@ public class SpyDetailsActivity extends BaseActivity<SpyDetailsPresenter> implem
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_spy_details;
+        return R2.layout.activity_spy_details;
     }
 
 

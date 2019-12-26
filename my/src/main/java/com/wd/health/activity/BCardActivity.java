@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.mylibrary.Base.BaseActivity;
 import com.wd.mylibrary.Base.BasePresenter;
 
@@ -19,11 +20,11 @@ import io.card.payment.CreditCard;
 public class BCardActivity extends BaseActivity {
     public static final int MY_SCAN_REQUEST_CODE = 10;
 
-    @BindView(R.id.fanhui)
+    @BindView(R2.id.fanhui)
     ImageView fanhui;
-    @BindView(R.id.text_card)
+    @BindView(R2.id.text_card)
     TextView textCard;
-    @BindView(R.id.btn_check)
+    @BindView(R2.id.btn_check)
     Button btnCheck;
 
     @Override
@@ -33,7 +34,7 @@ public class BCardActivity extends BaseActivity {
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_bcard;
+        return R2.layout.activity_bcard;
     }
 
     @Override

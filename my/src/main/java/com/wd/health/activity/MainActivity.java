@@ -17,6 +17,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.bean.AddSignBean;
 import com.wd.health.bean.evebus.SettingBus;
 import com.wd.health.bean.evebus.SexbeanBus;
@@ -42,57 +43,57 @@ import butterknife.OnClick;
      **/
 public class MainActivity extends BaseActivity<AddSignPresenter> implements AddSignContract.IView {
 
-    @BindView(R.id.iamge_icon)
+    @BindView(R2.id.iamge_icon)
     SimpleDraweeView iamgeIcon;
-    @BindView(R.id.toolbar)
+    @BindView(R2.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.my_return)
+    @BindView(R2.id.my_return)
     ImageView myReturn;
-    @BindView(R.id.my_Message)
+    @BindView(R2.id.my_Message)
     ImageView myMessage;
-    @BindView(R.id.di1)
+    @BindView(R2.id.di1)
     RelativeLayout di1;
-    @BindView(R.id.my_name)
+    @BindView(R2.id.my_name)
     TextView myName;
-    @BindView(R.id.my_Checkin)
+    @BindView(R2.id.my_Checkin)
     Button myCheckin;
-    @BindView(R.id.di2)
+    @BindView(R2.id.di2)
     RelativeLayout di2;
-    @BindView(R.id.my_i)
+    @BindView(R2.id.my_i)
     TextView myI;
-    @BindView(R.id.my_inquir)
+    @BindView(R2.id.my_inquir)
     ImageView myInquir;
-    @BindView(R.id.my_inquiry)
+    @BindView(R2.id.my_inquiry)
     RelativeLayout myInquiry;
-    @BindView(R.id.my_inq)
+    @BindView(R2.id.my_inq)
     ImageView myInq;
-    @BindView(R.id.my_history_inquiry)
+    @BindView(R2.id.my_history_inquiry)
     RelativeLayout myHistoryInquiry;
-    @BindView(R.id.wen)
+    @BindView(R2.id.wen)
     RelativeLayout wen;
-    @BindView(R.id.my_file)
+    @BindView(R2.id.my_file)
     RadioButton myFile;
-    @BindView(R.id.my_wallet)
+    @BindView(R2.id.my_wallet)
     RadioButton myWallet;
-    @BindView(R.id.my_Collection)
+    @BindView(R2.id.my_Collection)
     RadioButton myCollection;
-    @BindView(R.id.rg1)
+    @BindView(R2.id.rg1)
     RadioGroup rg1;
-    @BindView(R.id.my_Suggest)
+    @BindView(R2.id.my_Suggest)
     RadioButton mySuggest;
-    @BindView(R.id.my_video)
+    @BindView(R2.id.my_video)
     RadioButton myVideo;
-    @BindView(R.id.my_circle)
+    @BindView(R2.id.my_circle)
     RadioButton myCircle;
-    @BindView(R.id.rg2)
+    @BindView(R2.id.rg2)
     RadioGroup rg2;
-    @BindView(R.id.my_attention)
+    @BindView(R2.id.my_attention)
     RadioButton myAttention;
-    @BindView(R.id.my_task)
+    @BindView(R2.id.my_task)
     RadioButton myTask;
-    @BindView(R.id.my_Setting)
+    @BindView(R2.id.my_Setting)
     RadioButton mySetting;
-    @BindView(R.id.rg3)
+    @BindView(R2.id.rg3)
     RadioGroup rg3;
     private String id;
     private String sessionId;
@@ -101,7 +102,7 @@ public class MainActivity extends BaseActivity<AddSignPresenter> implements AddS
     boolean as=false;
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_main;
+        return R2.layout.activity_main;
     }
 
     @Override

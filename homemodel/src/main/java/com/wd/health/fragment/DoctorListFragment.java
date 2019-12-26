@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
+import com.wd.health.R2;
 import com.wd.health.view.JgActivity;
 import com.wd.health.R;
 import com.wd.health.adapter.CheckDortorsAdapter;
@@ -40,33 +41,33 @@ import butterknife.OnClick;
 public class DoctorListFragment extends BaseFragment<CheckDoctorsPresenter> implements HomeContract.CheckDoctorsContreact.IView {
 
     private static final String TAG = "asdasdasdas";
-    @BindView(R.id.tablayout)
+    @BindView(R2.id.tablayout)
     TabLayout tablayout;
-    @BindView(R.id.imgs)
+    @BindView(R2.id.imgs)
     ImageView img;
-    @BindView(R.id.name)
+    @BindView(R2.id.name)
     TextView name;
-    @BindView(R.id.work)
+    @BindView(R2.id.work)
     TextView work;
-    @BindView(R.id.address)
+    @BindView(R2.id.address)
     TextView address;
-    @BindView(R.id.good)
+    @BindView(R2.id.good)
     TextView good;
-    @BindView(R.id.number)
+    @BindView(R2.id.number)
     TextView number;
-    @BindView(R.id.more)
+    @BindView(R2.id.more)
     ImageView more;
-    @BindView(R.id.money)
+    @BindView(R2.id.money)
     TextView money;
-    @BindView(R.id.btn_go)
+    @BindView(R2.id.btn_go)
     Button btnGo;
-    @BindView(R.id.up)
+    @BindView(R2.id.up)
     ImageView up;
-    @BindView(R.id.recy)
+    @BindView(R2.id.recy)
     RecyclerView recy;
-    @BindView(R.id.next)
+    @BindView(R2.id.next)
     ImageView next;
-    @BindView(R.id.page)
+    @BindView(R2.id.page)
     TextView page1;
     private String userId;
     private String sessionId;
@@ -142,7 +143,7 @@ public class DoctorListFragment extends BaseFragment<CheckDoctorsPresenter> impl
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.fragment_doctor_list;
+        return R2.layout.fragment_doctor_list;
     }
 
 

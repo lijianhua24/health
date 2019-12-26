@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.adapter.RecordingAdapter;
 import com.wd.health.app.App;
 import com.wd.health.bean.CurrentBean;
@@ -45,19 +46,19 @@ import static cn.jpush.im.android.api.model.Conversation.createSingleConversatio
 public class JgActivity extends BaseActivity<ImPresenterPresenter> implements IMContract.IView {
 
 
-    @BindView(R.id.titles_touxiang)
+    @BindView(R2.id.titles_touxiang)
     ImageView titlesTouxiang;
-    @BindView(R.id.titles_name)
+    @BindView(R2.id.titles_name)
     TextView titlesName;
-    @BindView(R.id.home_xiaoxi)
+    @BindView(R2.id.home_xiaoxi)
     ImageView homeXiaoxi;
-    @BindView(R.id.im_recycler)
+    @BindView(R2.id.im_recycler)
     RecyclerView imRecycler;
-    @BindView(R.id.im_smart)
+    @BindView(R2.id.im_smart)
     SmartRefreshLayout imSmart;
-    @BindView(R.id.im_edit)
+    @BindView(R2.id.im_edit)
     EditText imEdit;
-    @BindView(R.id.im_fs_tv)
+    @BindView(R2.id.im_fs_tv)
     TextView imFsTv;
     private String userId;
     private String sessionId;
@@ -97,7 +98,7 @@ public class JgActivity extends BaseActivity<ImPresenterPresenter> implements IM
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_jg;
+        return R2.layout.activity_jg;
     }
 
     @Override

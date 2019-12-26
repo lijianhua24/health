@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.bean.PerfectUserInfoBean;
 import com.wd.health.bean.evebus.SeekBarBean;
 import com.wd.health.contract.PerfectUserInfoContract;
@@ -25,27 +26,27 @@ import butterknife.OnClick;
 public class SignActivity extends BaseActivity<PerfectUserInfoPresenter> implements PerfectUserInfoContract.IView {
 
 
-    @BindView(R.id.fanhui)
+    @BindView(R2.id.fanhui)
     ImageView fanhui;
-    @BindView(R.id.image_height)
+    @BindView(R2.id.image_height)
     ImageView imageHeight;
-    @BindView(R.id.sign_seekbar)
+    @BindView(R2.id.sign_seekbar)
     SeekBar signSeekbar;
-    @BindView(R.id.image_weight)
+    @BindView(R2.id.image_weight)
     ImageView imageWeight;
-    @BindView(R.id.we_seekbar)
+    @BindView(R2.id.we_seekbar)
     SeekBar weSeekbar;
-    @BindView(R.id.age_weight)
+    @BindView(R2.id.age_weight)
     ImageView ageWeight;
-    @BindView(R.id.age_seekbar)
+    @BindView(R2.id.age_seekbar)
     SeekBar ageSeekbar;
-    @BindView(R.id.btn_finish_sign)
+    @BindView(R2.id.btn_finish_sign)
     Button btnFinishSign;
-    @BindView(R.id.text_progress)
+    @BindView(R2.id.text_progress)
     TextView textProgress;
-    @BindView(R.id.text2_progress)
+    @BindView(R2.id.text2_progress)
     TextView text2Progress;
-    @BindView(R.id.text3_progress)
+    @BindView(R2.id.text3_progress)
     TextView text3Progress;
     private int height;
     private int weight;
@@ -54,7 +55,7 @@ public class SignActivity extends BaseActivity<PerfectUserInfoPresenter> impleme
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_sign;
+        return R2.layout.activity_sign;
     }
 
 

@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.adapter.DrugAdapter;
 import com.wd.health.adapter.SubjectAdapter;
 import com.wd.health.bean.DrugBean;
@@ -20,9 +21,9 @@ import butterknife.BindView;
 
 public class DepartmentFragment extends BaseFragment<DepartmentPresenter> implements HomeContract.DepartmentContreact.IView {
 
-    @BindView(R.id.departent_keshi)
+    @BindView(R2.id.departent_keshi)
     RecyclerView departentKeshi;
-    @BindView(R.id.departent_bing)
+    @BindView(R2.id.departent_bing)
     RecyclerView departentBing;
 
     @Override
@@ -83,6 +84,6 @@ public class DepartmentFragment extends BaseFragment<DepartmentPresenter> implem
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.fragment_department;
+        return R2.layout.fragment_department;
     }
 }

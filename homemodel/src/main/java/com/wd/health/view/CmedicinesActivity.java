@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.adapter.XiyaoAdapter;
 import com.wd.health.adapter.YiJiAdapter;
 import com.wd.health.adapter.ZhongyaoAdapter;
@@ -23,27 +24,27 @@ import butterknife.BindView;
 public class CmedicinesActivity extends BaseActivity<CmedicinesPreesenter> implements HomeContract.CmedicinesContreact.IView {
 
 
-    @BindView(R.id.home_touxiang)
+    @BindView(R2.id.home_touxiang)
     SimpleDraweeView homeTouxiang;
-    @BindView(R.id.home_xiaoxi)
+    @BindView(R2.id.home_xiaoxi)
     ImageView homeXiaoxi;
-    @BindView(R.id.cmedicines_name)
+    @BindView(R2.id.cmedicines_name)
     TextView cmedicinesName;
-    @BindView(R.id.cmedicines_bingli)
+    @BindView(R2.id.cmedicines_bingli)
     TextView cmedicinesBingli;
-    @BindView(R.id.cmedicines_zhengzhuang)
+    @BindView(R2.id.cmedicines_zhengzhuang)
     TextView cmedicinesZhengzhuang;
-    @BindView(R.id.cmedicines_yiji)
+    @BindView(R2.id.cmedicines_yiji)
     RecyclerView cmedicinesYiji;
-    @BindView(R.id.cmedicines_xiyao)
+    @BindView(R2.id.cmedicines_xiyao)
     RecyclerView cmedicinesXiyao;
-    @BindView(R.id.cmedicines_zhongyao)
+    @BindView(R2.id.cmedicines_zhongyao)
     RecyclerView cmedicinesZhongyao;
-    @BindView(R.id.yiji_wu)
+    @BindView(R2.id.yiji_wu)
     TextView yijiWu;
-    @BindView(R.id.xiyao_wu)
+    @BindView(R2.id.xiyao_wu)
     TextView xiyaoWu;
-    @BindView(R.id.zhongyao_wu)
+    @BindView(R2.id.zhongyao_wu)
     TextView zhongyaoWu;
 
     @Override
@@ -111,7 +112,7 @@ public class CmedicinesActivity extends BaseActivity<CmedicinesPreesenter> imple
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_cmedicines;
+        return R2.layout.activity_cmedicines;
     }
 
 

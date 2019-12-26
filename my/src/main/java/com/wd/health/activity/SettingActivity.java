@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.bean.InvitationCodeBean;
 import com.wd.health.bean.UserInvitationCodeBean;
 import com.wd.health.bean.evebus.SexbeanBus;
@@ -37,33 +38,33 @@ import butterknife.OnClick;
 public class SettingActivity extends BaseActivity<MakeCodePresenter> implements MakeCodeContract.IView {
 
 
-    @BindView(R.id.fanhui)
+    @BindView(R2.id.fanhui)
     ImageView fanhui;
-    @BindView(R.id.setting_inquir)
+    @BindView(R2.id.setting_inquir)
     SimpleDraweeView settingInquir;
-    @BindView(R.id.setting_name)
+    @BindView(R2.id.setting_name)
     TextView settingName;
-    @BindView(R.id.setting_user)
+    @BindView(R2.id.setting_user)
     RelativeLayout settingUser;
-    @BindView(R.id.setting_changepwd)
+    @BindView(R2.id.setting_changepwd)
     RelativeLayout settingChangepwd;
-    @BindView(R.id.setting_Cache_test)
+    @BindView(R2.id.setting_Cache_test)
     TextView settingCacheTest;
-    @BindView(R.id.setting_C)
+    @BindView(R2.id.setting_C)
     ImageView settingC;
-    @BindView(R.id.setting_Cache)
+    @BindView(R2.id.setting_Cache)
     RelativeLayout settingCache;
-    @BindView(R.id.setting_brightness)
+    @BindView(R2.id.setting_brightness)
     RelativeLayout settingBrightness;
-    @BindView(R.id.setting_version)
+    @BindView(R2.id.setting_version)
     RelativeLayout settingVersion;
-    @BindView(R.id.setting_help)
+    @BindView(R2.id.setting_help)
     RelativeLayout settingHelp;
-    @BindView(R.id.setting_attention)
+    @BindView(R2.id.setting_attention)
     RelativeLayout settingAttention;
-    @BindView(R.id.setting_invite)
+    @BindView(R2.id.setting_invite)
     RelativeLayout settingInvite;
-    @BindView(R.id.setting_out)
+    @BindView(R2.id.setting_out)
     TextView settingOut;
     private String totalCacheSize1;
     private String totalCacheSize;
@@ -74,7 +75,7 @@ public class SettingActivity extends BaseActivity<MakeCodePresenter> implements 
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_setting;
+        return R2.layout.activity_setting;
     }
 
     @Override

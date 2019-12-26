@@ -26,6 +26,7 @@ import androidx.core.content.ContextCompat;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.bean.GetUserInfoByIdBean;
 import com.wd.health.bean.ModifyHeadPicBean;
 import com.wd.health.bean.ModifyNickNameBean;
@@ -63,55 +64,55 @@ import okhttp3.RequestBody;
  **/
 public class MyInformatioActivity extends BaseActivity<ModifyHeadPicPresenter> implements ModifyHeadPicContract.IView {
 
-    @BindView(R.id.fanhui)
+    @BindView(R2.id.fanhui)
     ImageView fanhui;
-    @BindView(R.id.my_information_Avatar)
+    @BindView(R2.id.my_information_Avatar)
     SimpleDraweeView myInformationAvatar;
-    @BindView(R.id.my_information_Avatar_a)
+    @BindView(R2.id.my_information_Avatar_a)
     RelativeLayout myInformationAvatarA;
-    @BindView(R.id.my_information_name)
+    @BindView(R2.id.my_information_name)
     TextView myInformationName;
-    @BindView(R.id.a2)
+    @BindView(R2.id.a2)
     ImageView a2;
-    @BindView(R.id.my_information_name_a)
+    @BindView(R2.id.my_information_name_a)
     RelativeLayout myInformationNameA;
-    @BindView(R.id.my_information_gender)
+    @BindView(R2.id.my_information_gender)
     ImageView myInformationGender;
-    @BindView(R.id.b1)
+    @BindView(R2.id.b1)
     ImageView b1;
-    @BindView(R.id.my_information_gender_a)
+    @BindView(R2.id.my_information_gender_a)
     RelativeLayout myInformationGenderA;
-    @BindView(R.id.my_information_height)
+    @BindView(R2.id.my_information_height)
     TextView myInformationHeight;
-    @BindView(R.id.my_information_bodyweight)
+    @BindView(R2.id.my_information_bodyweight)
     TextView myInformationBodyweight;
-    @BindView(R.id.my_information_age)
+    @BindView(R2.id.my_information_age)
     TextView myInformationAge;
-    @BindView(R.id.b2)
+    @BindView(R2.id.b2)
     ImageView b2;
-    @BindView(R.id.my_information_Sign)
+    @BindView(R2.id.my_information_Sign)
     RelativeLayout myInformationSign;
-    @BindView(R.id.my_information_mailbox)
+    @BindView(R2.id.my_information_mailbox)
     TextView myInformationMailbox;
-    @BindView(R.id.my_information_mailbox_a)
+    @BindView(R2.id.my_information_mailbox_a)
     RelativeLayout myInformationMailboxA;
-    @BindView(R.id.my_information_weixin)
+    @BindView(R2.id.my_information_weixin)
     TextView myInformationWeixin;
-    @BindView(R.id.c2)
+    @BindView(R2.id.c2)
     ImageView c2;
-    @BindView(R.id.my_information_weixin_a)
+    @BindView(R2.id.my_information_weixin_a)
     RelativeLayout myInformationWeixinA;
-    @BindView(R.id.my_information_Certification)
+    @BindView(R2.id.my_information_Certification)
     TextView myInformationCertification;
-    @BindView(R.id.d1)
+    @BindView(R2.id.d1)
     ImageView d1;
-    @BindView(R.id.my_information_Certification_a)
+    @BindView(R2.id.my_information_Certification_a)
     RelativeLayout myInformationCertificationA;
-    @BindView(R.id.my_information_Bankcard)
+    @BindView(R2.id.my_information_Bankcard)
     TextView myInformationBankcard;
-    @BindView(R.id.d2)
+    @BindView(R2.id.d2)
     ImageView d2;
-    @BindView(R.id.my_information_Bankcard_a)
+    @BindView(R2.id.my_information_Bankcard_a)
     RelativeLayout myInformationBankcardA;
     private String nickName;
     private String email;
@@ -132,7 +133,7 @@ public class MyInformatioActivity extends BaseActivity<ModifyHeadPicPresenter> i
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_my_informatio;
+        return R2.layout.activity_my_informatio;
     }
 
 

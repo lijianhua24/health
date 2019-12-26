@@ -33,6 +33,7 @@ import com.baidu.ocr.ui.camera.CameraActivity;
 import com.baidu.ocr.ui.camera.CameraNativeHelper;
 import com.baidu.ocr.ui.camera.CameraView;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.bean.user.BindUserBankCardBean;
 import com.wd.health.contract.BindUserBankCardContract;
 import com.wd.health.presenter.BindUserBankCardPresenter;
@@ -51,15 +52,15 @@ public class BankActivity extends BaseActivity<BindUserBankCardPresenter> implem
     private static final int REQUEST_CODE_VEHICLE_LICENSE = 104;
     int beforeTextLength = 0;
     int onTextLength = 0;
-    @BindView(R.id.back2)
+    @BindView(R2.id.back2)
     RelativeLayout back2;
-    @BindView(R.id.relativre)
+    @BindView(R2.id.relativre)
     RelativeLayout relativre;
-    @BindView(R.id.rela)
+    @BindView(R2.id.rela)
     RelativeLayout rela;
-    @BindView(R.id.bank_camera)
+    @BindView(R2.id.bank_camera)
     ImageView bankCamera;
-    @BindView(R.id.message_bankcard)
+    @BindView(R2.id.message_bankcard)
     LinearLayout messageBankcard;
     private EditText bank_card;
     private EditText phone_num;
@@ -379,7 +380,7 @@ public class BankActivity extends BaseActivity<BindUserBankCardPresenter> implem
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_bank;
+        return R2.layout.activity_bank;
     }
 
 

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.adapter.BonusPollSignAdapter;
 import com.wd.health.adapter.UserTaskAdapter;
 import com.wd.health.adapter.UserTaskItemAdapter;
@@ -35,15 +36,15 @@ import butterknife.OnClick;
  **/
 public class findUserTaskListActivity extends BaseActivity<UserTaskListPresenter> implements UserTaskContract.IView {
 
-    @BindView(R.id.fanhui)
+    @BindView(R2.id.fanhui)
     ImageView fanhui;
-    @BindView(R.id.recy_jdt)
+    @BindView(R2.id.recy_jdt)
     RecyclerView recyJdt;
   /*  @BindView(R.id.my_task)
     RecyclerView myTask;*/
-    @BindView(R.id.recy_mrrw)
+    @BindView(R2.id.recy_mrrw)
     RecyclerView recyMrrw;
-    @BindView(R.id.recy_ycxrw)
+    @BindView(R2.id.recy_ycxrw)
     RecyclerView recyYcxrw;
     private String id;
     private String sessionId;
@@ -55,7 +56,7 @@ public class findUserTaskListActivity extends BaseActivity<UserTaskListPresenter
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_find_user_task_list;
+        return R2.layout.activity_find_user_task_list;
     }
 
     @Override

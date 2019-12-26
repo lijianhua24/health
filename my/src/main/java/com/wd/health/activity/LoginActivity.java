@@ -20,6 +20,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.wd.health.R;
 
+import com.wd.health.R2;
 import com.wd.health.bean.WxLogBean;
 import com.wd.health.bean.evebus.SettingBus;
 import com.wd.health.bean.user.LoginBean;
@@ -44,28 +45,28 @@ import static com.wd.health.app.App.api;
 public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContract.IView {
 
 
-    @BindView(R.id.email)
+    @BindView(R2.id.email)
     ImageView email;
-    @BindView(R.id.edit_email)
+    @BindView(R2.id.edit_email)
     EditText editEmail;
-    @BindView(R.id.relativeLayout)
+    @BindView(R2.id.relativeLayout)
     RelativeLayout relativeLayout;
-    @BindView(R.id.lock)
+    @BindView(R2.id.lock)
     ImageView lock;
-    @BindView(R.id.edit_pwd)
+    @BindView(R2.id.edit_pwd)
     EditText editPwd;
-    @BindView(R.id.yanjing)
+    @BindView(R2.id.yanjing)
     ToggleButton yanjing;
-    @BindView(R.id.relativeLayout2)
+    @BindView(R2.id.relativeLayout2)
     RelativeLayout relativeLayout2;
-    @BindView(R.id.btn_login)
+    @BindView(R2.id.btn_login)
     Button btnLogin;
-    @BindView(R.id.weixin)
+    @BindView(R2.id.weixin)
     SimpleDraweeView weixin;
     public static final String TAG = "LoginActivity";
-    @BindView(R.id.reg)
+    @BindView(R2.id.reg)
     TextView reg;
-    @BindView(R.id.forget_pwd)
+    @BindView(R2.id.forget_pwd)
     TextView forgetPwd;
     private SharedPreferences.Editor editor;
     private String md5;
@@ -78,7 +79,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_login;
+        return R2.layout.activity_login;
     }
 
 

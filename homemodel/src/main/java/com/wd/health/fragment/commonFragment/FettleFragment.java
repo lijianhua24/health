@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.adapter.KeShiAdapter;
 import com.wd.health.adapter.UnitDiseaseAdapter;
 import com.wd.health.bean.DepartmentBean;
@@ -23,9 +24,9 @@ import butterknife.BindView;
 public class FettleFragment extends BaseFragment<FettlePresenter> implements HomeContract.CommonContreact.IView {
 
 
-    @BindView(R.id.fettle_keshi)
+    @BindView(R2.id.fettle_keshi)
     RecyclerView fettleKeshi;
-    @BindView(R.id.fettle_bing)
+    @BindView(R2.id.fettle_bing)
     RecyclerView fettleBing;
 
     @Override
@@ -49,7 +50,7 @@ public class FettleFragment extends BaseFragment<FettlePresenter> implements Hom
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.fragment_fettle;
+        return R2.layout.fragment_fettle;
     }
 
     @Override

@@ -9,6 +9,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.bean.GetUserInfoByIdBean;
 import com.wd.health.bean.ModifyHeadPicBean;
 import com.wd.health.bean.ModifyNickNameBean;
@@ -25,18 +26,18 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class UpdateUserSexActivity extends BaseActivity<ModifyHeadPicPresenter> implements ModifyHeadPicContract.IView {
-    @BindView(R.id.fanhui)
+    @BindView(R2.id.fanhui)
     ImageView fanhui;
-    @BindView(R.id.btn_finish_sex)
+    @BindView(R2.id.btn_finish_sex)
     Button btnFinishSex;
-    @BindView(R.id.boy01)
+    @BindView(R2.id.boy01)
     CheckBox boy01;
-    @BindView(R.id.gilr01)
+    @BindView(R2.id.gilr01)
     CheckBox gilr01;
     int sex;
-    @BindView(R.id.boy_check01)
+    @BindView(R2.id.boy_check01)
     ImageView boyCheck01;
-    @BindView(R.id.boy_check02)
+    @BindView(R2.id.boy_check02)
     ImageView boyCheck02;
     private String id;
     private String sessionId;

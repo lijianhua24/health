@@ -12,6 +12,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.view.fragment.FragBYQ;
 import com.wd.health.view.fragment.FragJKSP;
 import com.wd.health.view.FragJKZX;
@@ -28,11 +29,11 @@ import butterknife.OnClick;
 public class CollectionActivity extends BaseActivity {
 
 
-    @BindView(R.id.fanhui)
+    @BindView(R2.id.fanhui)
     ImageView fanhui;
-    @BindView(R.id.tablayout)
+    @BindView(R2.id.tablayout)
     TabLayout tablayout;
-    @BindView(R.id.vp)
+    @BindView(R2.id.vp)
     ViewPager vp;
 
     @Override
@@ -42,7 +43,7 @@ public class CollectionActivity extends BaseActivity {
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_collection;
+        return R2.layout.activity_collection;
     }
 
     @Override

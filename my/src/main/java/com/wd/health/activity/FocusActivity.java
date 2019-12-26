@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.adapter.FocusAdapter;
 import com.wd.health.bean.FocusBean;
 import com.wd.health.contract.FocusContract;
@@ -25,9 +26,9 @@ import butterknife.OnClick;
 public class FocusActivity extends BaseActivity<FocusPresenter> implements FocusContract.IView {
 
 
-    @BindView(R.id.fanhui)
+    @BindView(R2.id.fanhui)
     ImageView fanhui;
-    @BindView(R.id.xrecy_view)
+    @BindView(R2.id.xrecy_view)
     XRecyclerView xrecyView;
     int page=1;
     @Override
@@ -37,7 +38,7 @@ public class FocusActivity extends BaseActivity<FocusPresenter> implements Focus
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_focus;
+        return R2.layout.activity_focus;
     }
 
     @Override

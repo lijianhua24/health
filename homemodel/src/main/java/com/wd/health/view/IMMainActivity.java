@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.wd.health.R;
+import com.wd.health.R2;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,19 +21,19 @@ import cn.jpush.im.api.BasicCallback;
 
 public class IMMainActivity extends AppCompatActivity {
 
-    @BindView(R.id.editText3)
+    @BindView(R2.id.editText3)
     EditText editText3;
-    @BindView(R.id.editText4)
+    @BindView(R2.id.editText4)
     EditText editText4;
-    @BindView(R.id.button)
+    @BindView(R2.id.button)
     Button button;
-    @BindView(R.id.button2)
+    @BindView(R2.id.button2)
     Button button2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_immain);
+        setContentView(R2.layout.activity_immain);
         ButterKnife.bind(this);
     }
 

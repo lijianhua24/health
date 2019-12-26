@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.adapter.HistoryAdapter;
 import com.wd.health.bean.EndInquiryBean;
 import com.wd.health.bean.user.HistoryBean;
@@ -27,16 +28,16 @@ import butterknife.OnClick;
 
 public class HistoryRecordListActivity extends BaseActivity<HistoryPresenter> implements HistoryContract.IView {
 
-    @BindView(R.id.fanhui)
+    @BindView(R2.id.fanhui)
     ImageView fanhui;
-    @BindView(R.id.xrecy_history)
+    @BindView(R2.id.xrecy_history)
     XRecyclerView xrecyHistory;
     int page = 1;
-    @BindView(R.id.message_include_img)
+    @BindView(R2.id.message_include_img)
     SimpleDraweeView messageIncludeImg;
-    @BindView(R.id.message_include_text)
+    @BindView(R2.id.message_include_text)
     TextView messageIncludeText;
-    @BindView(R.id.message_include_relat)
+    @BindView(R2.id.message_include_relat)
     RelativeLayout messageIncludeRelat;
 
     @Override
@@ -46,7 +47,7 @@ public class HistoryRecordListActivity extends BaseActivity<HistoryPresenter> im
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_history_record_list;
+        return R2.layout.activity_history_record_list;
     }
 
     @Override

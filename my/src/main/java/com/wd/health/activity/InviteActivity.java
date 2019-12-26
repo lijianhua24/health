@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.bean.InvitationCodeBean;
 import com.wd.health.bean.UserInvitationCodeBean;
 import com.wd.health.contract.MakeCodeContract;
@@ -24,13 +25,13 @@ import butterknife.OnClick;
 public class InviteActivity extends BaseActivity<MakeCodePresenter> implements MakeCodeContract.IView {
 
 
-    @BindView(R.id.fanhui)
+    @BindView(R2.id.fanhui)
     ImageView fanhui;
-    @BindView(R.id.invate_code)
+    @BindView(R2.id.invate_code)
     TextView invateCode;
-    @BindView(R.id.erweima_iamge)
+    @BindView(R2.id.erweima_iamge)
     SimpleDraweeView erweimaIamge;
-    @BindView(R.id.btn_invate)
+    @BindView(R2.id.btn_invate)
     Button btnInvate;
     private String id;
     private String sessionId;
@@ -43,7 +44,7 @@ public class InviteActivity extends BaseActivity<MakeCodePresenter> implements M
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_invite;
+        return R2.layout.activity_invite;
     }
 
     @Override

@@ -26,6 +26,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.adapter.TuAdapter;
 import com.wd.health.bean.user.AddArchivesBean;
 import com.wd.health.bean.user.DeleteArchivesBean;
@@ -55,39 +56,39 @@ import okhttp3.RequestBody;
 
 public class AddArchivesActivity extends BaseActivity<MyFilePresenter> implements MyFileContract.Iview {
 
-    @BindView(R.id.message_fanhui)
+    @BindView(R2.id.message_fanhui)
     ImageView messageFanhui;
-    @BindView(R.id.diseaseMain)
+    @BindView(R2.id.diseaseMain)
     EditText diseaseMain;
-    @BindView(R.id.diseaseNow)
+    @BindView(R2.id.diseaseNow)
     EditText diseaseNow;
-    @BindView(R.id.diseaseBefore)
+    @BindView(R2.id.diseaseBefore)
     EditText diseaseBefore;
-    @BindView(R.id.treatmentHospitalRecent)
+    @BindView(R2.id.treatmentHospitalRecent)
     EditText treatmentHospitalRecent;
-    @BindView(R.id.start)
+    @BindView(R2.id.start)
     TextView start;
-    @BindView(R.id.edit_starttime)
+    @BindView(R2.id.edit_starttime)
     TextView editStarttime;
-    @BindView(R.id.img_startTime)
+    @BindView(R2.id.img_startTime)
     ImageView imgStartTime;
-    @BindView(R.id.startTime)
+    @BindView(R2.id.startTime)
     RelativeLayout startTime;
-    @BindView(R.id.end)
+    @BindView(R2.id.end)
     TextView end;
-    @BindView(R.id.edit_endtime)
+    @BindView(R2.id.edit_endtime)
     TextView editEndtime;
-    @BindView(R.id.img_endTime)
+    @BindView(R2.id.img_endTime)
     ImageView imgEndTime;
-    @BindView(R.id.endTime)
+    @BindView(R2.id.endTime)
     RelativeLayout endTime;
-    @BindView(R.id.treatmentProcess)
+    @BindView(R2.id.treatmentProcess)
     EditText treatmentProcess;
-    @BindView(R.id.bo_image_list)
+    @BindView(R2.id.bo_image_list)
     RecyclerView boImageList;
-    @BindView(R.id.add_image)
+    @BindView(R2.id.add_image)
     ImageView addImage;
-    @BindView(R.id.addFiles)
+    @BindView(R2.id.addFiles)
     Button addFiles;
     private Unbinder bind;
     private SharedPreferences sp;
@@ -322,7 +323,7 @@ public class AddArchivesActivity extends BaseActivity<MyFilePresenter> implement
     }
 
 
-    @OnClick(R.id.message_fanhui)
+    @OnClick(R2.id.message_fanhui)
     public void onViewClicked() {
         finish();
     }

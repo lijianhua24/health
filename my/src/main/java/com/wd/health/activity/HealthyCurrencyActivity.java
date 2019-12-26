@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.adapter.HealthyCurrencyAdapter;
 import com.wd.health.bean.HealthyCurrencyBean;
 import com.wd.health.bean.SystemMessageBean;
@@ -27,14 +28,14 @@ import butterknife.OnClick;
 public class HealthyCurrencyActivity extends BaseActivity<SystemMessagePresenter> implements SystemMessageContract.IView {
 
 
-    @BindView(R.id.fanhui)
+    @BindView(R2.id.fanhui)
     ImageView fanhui;
-    @BindView(R.id.xrecy_healthy)
+    @BindView(R2.id.xrecy_healthy)
     XRecyclerView xrecyHealthy;
     int page = 1;
-    @BindView(R.id.no_imageview)
+    @BindView(R2.id.no_imageview)
     ImageView noImageview;
-    @BindView(R.id.no_message)
+    @BindView(R2.id.no_message)
     TextView noMessage;
 
     @Override
@@ -44,7 +45,7 @@ public class HealthyCurrencyActivity extends BaseActivity<SystemMessagePresenter
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_healthy_currency;
+        return R2.layout.activity_healthy_currency;
     }
 
     @Override

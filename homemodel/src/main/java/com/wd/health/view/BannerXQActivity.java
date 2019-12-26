@@ -7,6 +7,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.app.App;
 import com.wd.mylibrary.Base.BaseActivity;
 import com.wd.mylibrary.Base.BasePresenter;
@@ -15,7 +16,7 @@ import butterknife.BindView;
 
 public class BannerXQActivity extends BaseActivity {
 
-    @BindView(R.id.banner_xq_wb)
+    @BindView(R2.id.banner_xq_wb)
     WebView bannerXqWb;
     private String jumpUrl;
 
@@ -84,7 +85,7 @@ public class BannerXQActivity extends BaseActivity {
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_banner_xq;
+        return R2.layout.activity_banner_xq;
     }
 
 

@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.bean.GetUserInfoByIdBean;
 import com.wd.health.bean.ModifyHeadPicBean;
 import com.wd.health.bean.ModifyNickNameBean;
@@ -28,13 +29,13 @@ import butterknife.OnClick;
 
 public class ModifyNickNameActivity extends BaseActivity<ModifyHeadPicPresenter> implements ModifyHeadPicContract.IView {
 
-    @BindView(R.id.fanhui)
+    @BindView(R2.id.fanhui)
     ImageView fanhui;
-    @BindView(R.id.btn_finish_name)
+    @BindView(R2.id.btn_finish_name)
     Button btnFinishName;
-    @BindView(R.id.edit_name_name)
+    @BindView(R2.id.edit_name_name)
     EditText editNameName;
-    @BindView(R.id.iamge_name)
+    @BindView(R2.id.iamge_name)
     ImageView iamgeName;
     private String sessionId;
     private String id;
@@ -48,7 +49,7 @@ public class ModifyNickNameActivity extends BaseActivity<ModifyHeadPicPresenter>
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_modify_nick_name;
+        return R2.layout.activity_modify_nick_name;
     }
 
     @Override

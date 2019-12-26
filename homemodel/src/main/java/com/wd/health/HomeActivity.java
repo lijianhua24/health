@@ -19,7 +19,7 @@ import butterknife.BindView;
 public class HomeActivity extends BaseActivity {
 
 
-    @BindView(R.id.home_pager)
+    @BindView(R2.id.home_pager)
     ViewPager homePager;
 
     private ArrayList<Fragment> list;
@@ -56,7 +56,7 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_home;
+        return R2.layout.activity_home;
     }
 
 

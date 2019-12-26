@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.bean.CheckCodeBean;
 import com.wd.health.bean.RegBean;
 import com.wd.health.bean.ResetUserPwdBean;
@@ -23,15 +24,15 @@ import butterknife.OnClick;
 
 public class ForgetActivity extends BaseActivity<RegPresenter> implements RegisterContract.IView {
 
-    @BindView(R.id.fanhui)
+    @BindView(R2.id.fanhui)
     ImageView fanhui;
-    @BindView(R.id.new_email)
+    @BindView(R2.id.new_email)
     EditText newEmail;
-    @BindView(R.id.btn_email)
+    @BindView(R2.id.btn_email)
     CheckBox btnEmail;
-    @BindView(R.id.edit_code)
+    @BindView(R2.id.edit_code)
     EditText editCode;
-    @BindView(R.id.next)
+    @BindView(R2.id.next)
     Button next;
     private String email;
 
@@ -47,7 +48,7 @@ public class ForgetActivity extends BaseActivity<RegPresenter> implements Regist
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_forget;
+        return R2.layout.activity_forget;
     }
 
     @Override

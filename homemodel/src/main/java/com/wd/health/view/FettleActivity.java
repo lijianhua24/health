@@ -11,6 +11,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.tabs.TabLayout;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.fragment.commonFragment.DepartmentFragment;
 import com.wd.health.fragment.commonFragment.FettleFragment;
 import com.wd.mylibrary.Base.BaseActivity;
@@ -22,13 +23,13 @@ import butterknife.BindView;
 
 public class FettleActivity extends BaseActivity {
 
-    @BindView(R.id.home_touxiang)
+    @BindView(R2.id.home_touxiang)
     SimpleDraweeView homeTouxiang;
-    @BindView(R.id.home_xiaoxi)
+    @BindView(R2.id.home_xiaoxi)
     ImageView homeXiaoxi;
-    @BindView(R.id.fettle_tab)
+    @BindView(R2.id.fettle_tab)
     TabLayout fettleTab;
-    @BindView(R.id.fettle_pager)
+    @BindView(R2.id.fettle_pager)
     ViewPager fettlePager;
     private ArrayList<Fragment> list;
     private ArrayList<String> name;
@@ -84,7 +85,7 @@ public class FettleActivity extends BaseActivity {
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_fettle;
+        return R2.layout.activity_fettle;
     }
 
 }

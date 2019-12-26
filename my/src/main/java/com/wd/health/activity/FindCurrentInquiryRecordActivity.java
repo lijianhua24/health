@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.bean.EndInquiryBean;
 import com.wd.health.bean.user.HistoryBean;
 import com.wd.health.bean.user.InquiryRecordBean;
@@ -29,33 +30,33 @@ import butterknife.OnClick;
 public class FindCurrentInquiryRecordActivity extends BaseActivity<HistoryPresenter> implements HistoryContract.IView {
 
 
-    @BindView(R.id.fanhui)
+    @BindView(R2.id.fanhui)
     ImageView fanhui;
-    @BindView(R.id.reaaa)
+    @BindView(R2.id.reaaa)
     RelativeLayout reaaa;
-    @BindView(R.id.text_lines)
+    @BindView(R2.id.text_lines)
     TextView textLines;
-    @BindView(R.id.xrecy_inquiry)
+    @BindView(R2.id.xrecy_inquiry)
     SimpleDraweeView xrecyInquiry;
-    @BindView(R.id.inquiry_name)
+    @BindView(R2.id.inquiry_name)
     TextView inquiryName;
-    @BindView(R.id.inquiry_title)
+    @BindView(R2.id.inquiry_title)
     TextView inquiryTitle;
-    @BindView(R.id.inquiry_department)
+    @BindView(R2.id.inquiry_department)
     TextView inquiryDepartment;
-    @BindView(R.id.inquiry_time)
+    @BindView(R2.id.inquiry_time)
     TextView inquiryTime;
-    @BindView(R.id.linay)
+    @BindView(R2.id.linay)
     LinearLayout linay;
-    @BindView(R.id.btn_go)
+    @BindView(R2.id.btn_go)
     Button btnGo;
-    @BindView(R.id.btn_end)
+    @BindView(R2.id.btn_end)
     Button btnEnd;
-    @BindView(R.id.message_include_img)
+    @BindView(R2.id.message_include_img)
     SimpleDraweeView messageIncludeImg;
-    @BindView(R.id.message_include_text)
+    @BindView(R2.id.message_include_text)
     TextView messageIncludeText;
-    @BindView(R.id.message_include_relat)
+    @BindView(R2.id.message_include_relat)
     RelativeLayout messageIncludeRelat;
     private int recordId;
     private String id;
@@ -73,7 +74,7 @@ public class FindCurrentInquiryRecordActivity extends BaseActivity<HistoryPresen
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_find_current_inquiry_record;
+        return R2.layout.activity_find_current_inquiry_record;
     }
 
     @Override

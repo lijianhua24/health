@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.adapter.DiseaseAdaapter;
 import com.wd.health.adapter.DoctorAdaapter;
 import com.wd.health.adapter.DrugsAdaapter;
@@ -37,33 +38,33 @@ import butterknife.OnClick;
 
 public class SouActivity extends BaseActivity<SearchPresenter> implements HomeContract.SearchContreact.IView {
 
-    @BindView(R.id.home_touxiang)
+    @BindView(R2.id.home_touxiang)
     SimpleDraweeView homeTouxiang;
-    @BindView(R.id.flowlayout)
+    @BindView(R2.id.flowlayout)
     XCFlowLayout flowlayout;
-    @BindView(R.id.sou_edit)
+    @BindView(R2.id.sou_edit)
     EditText souEdit;
-    @BindView(R.id.sou_sou)
+    @BindView(R2.id.sou_sou)
     TextView souSou;
-    @BindView(R.id.sou_recy)
+    @BindView(R2.id.sou_recy)
     RecyclerView souRecy;
-    @BindView(R.id.linear_history)
+    @BindView(R2.id.linear_history)
     LinearLayout linearHistory;
-    @BindView(R.id.sou_doctors)
+    @BindView(R2.id.sou_doctors)
     RecyclerView souDoctors;
-    @BindView(R.id.sou_drug)
+    @BindView(R2.id.sou_drug)
     RecyclerView souDrug;
-    @BindView(R.id.sou_Illness)
+    @BindView(R2.id.sou_Illness)
     RecyclerView souIllness;
-    @BindView(R.id.sou_sv)
+    @BindView(R2.id.sou_sv)
     NestedScrollView souSv;
-    @BindView(R.id.sou_no)
+    @BindView(R2.id.sou_no)
     LinearLayout souNo;
-    @BindView(R.id.sou_tv_doctors)
+    @BindView(R2.id.sou_tv_doctors)
     TextView souTvDoctors;
-    @BindView(R.id.sou_tv_drug)
+    @BindView(R2.id.sou_tv_drug)
     TextView souTvDrug;
-    @BindView(R.id.sou_tv_Illness)
+    @BindView(R2.id.sou_tv_Illness)
     TextView souTvIllness;
 
     private TextView textView1;
@@ -160,7 +161,7 @@ public class SouActivity extends BaseActivity<SearchPresenter> implements HomeCo
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_sou;
+        return R2.layout.activity_sou;
     }
 
     @OnClick(R.id.sou_sou)

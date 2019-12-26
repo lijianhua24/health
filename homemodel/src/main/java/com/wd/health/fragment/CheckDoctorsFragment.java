@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.wd.health.R;
+import com.wd.health.R2;
 
 
 public class CheckDoctorsFragment extends Fragment {
@@ -25,7 +26,7 @@ public class CheckDoctorsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View inflate = inflater.inflate(R.layout.fragment_check_doctors, container, false);
+        View inflate = inflater.inflate(R2.layout.fragment_check_doctors, container, false);
         TextView viewById = inflate.findViewById(R.id.check_doctors);
         Bundle bundle = new Bundle();
         String position = bundle.getString("position");

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.adapter.MySickCircleCommentListAdapter;
 import com.wd.health.bean.user.MySickCircleCommentListBean;
 import com.wd.health.bean.user.MySickCircleListBean;
@@ -30,15 +31,15 @@ import butterknife.OnClick;
 public class MySickCircleCommentActivity extends BaseActivity<MySickCirclePresenter> implements MySinkCircleContract.IView {
 
 
-    @BindView(R.id.message_fanhui)
+    @BindView(R2.id.message_fanhui)
     ImageView messageFanhui;
-    @BindView(R.id.mysickcircle_rlv)
+    @BindView(R2.id.mysickcircle_rlv)
     RecyclerView mysickcircleRlv;
-    @BindView(R.id.message_include_img)
+    @BindView(R2.id.message_include_img)
     SimpleDraweeView messageIncludeImg;
-    @BindView(R.id.message_include_text)
+    @BindView(R2.id.message_include_text)
     TextView messageIncludeText;
-    @BindView(R.id.message_include_relat)
+    @BindView(R2.id.message_include_relat)
     RelativeLayout messageIncludeRelat;
     public static final String TAG="MySickCircleActivity";
     @Override

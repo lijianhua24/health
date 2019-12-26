@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.wd.health.R;
+import com.wd.health.R2;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -15,7 +16,7 @@ public class MyAdoptedListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_adopted_list);
+        setContentView(R2.layout.activity_my_adopted_list);
 
         String md5 = MD5("123456");
         Log.d(TAG, "onCreate: "+md5);

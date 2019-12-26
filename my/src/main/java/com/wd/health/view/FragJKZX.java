@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.adapter.JKZXAdapter;
 import com.wd.health.bean.JKZXBean;
 import com.wd.health.contract.ConlltionContract;
@@ -26,7 +27,7 @@ import butterknife.BindView;
  * @date :2019/12/13 19:44
  */
 public class FragJKZX extends BaseFragment<CollectionPresenter> implements ConlltionContract.IView {
-    @BindView(R.id.xrecy_view_jkzx)
+    @BindView(R2.id.xrecy_view_jkzx)
     XRecyclerView xrecyViewJkzx;
     public static final String TAG="FragJKZX";
     int page =1;

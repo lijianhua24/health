@@ -7,6 +7,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.mylibrary.Base.BaseActivity;
 import com.wd.mylibrary.Base.BasePresenter;
 
@@ -17,17 +18,17 @@ import butterknife.OnClick;
 public class IdOKActivity extends BaseActivity {
 
 
-    @BindView(R.id.fanhui)
+    @BindView(R2.id.fanhui)
     ImageView fanhui;
-    @BindView(R.id.back)
+    @BindView(R2.id.back)
     RelativeLayout back;
-    @BindView(R.id.text_name)
+    @BindView(R2.id.text_name)
     TextView textName;
-    @BindView(R.id.text_sex)
+    @BindView(R2.id.text_sex)
     TextView textSex;
-    @BindView(R.id.text_nation)
+    @BindView(R2.id.text_nation)
     TextView textNation;
-    @BindView(R.id.text_number)
+    @BindView(R2.id.text_number)
     TextView textNumber;
 
     @Override
@@ -37,7 +38,7 @@ public class IdOKActivity extends BaseActivity {
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_id_ok;
+        return R2.layout.activity_id_ok;
     }
 
     @Override

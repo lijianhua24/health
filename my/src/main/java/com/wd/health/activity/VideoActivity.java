@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.adapter.VideoAdapter;
 import com.wd.health.bean.VideoBean;
 import com.wd.health.contract.VideoContract;
@@ -29,15 +30,15 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 public class VideoActivity extends BaseActivity<VodelPresenter> implements VideoContract.IView {
 
 
-    @BindView(R.id.fanhui)
+    @BindView(R2.id.fanhui)
     ImageView fanhui;
-    @BindView(R.id.xrecy_video)
+    @BindView(R2.id.xrecy_video)
     XRecyclerView xrecyVideo;
-    @BindView(R.id.message_include_img)
+    @BindView(R2.id.message_include_img)
     SimpleDraweeView messageIncludeImg;
-    @BindView(R.id.message_include_text)
+    @BindView(R2.id.message_include_text)
     TextView messageIncludeText;
-    @BindView(R.id.message_include_relat)
+    @BindView(R2.id.message_include_relat)
     RelativeLayout messageIncludeRelat;
     int page =1;
     public static final String TAG="video";

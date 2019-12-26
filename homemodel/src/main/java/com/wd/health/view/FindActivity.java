@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.adapter.PrecautionsAdapter;
 import com.wd.health.app.App;
 import com.wd.health.bean.FindBean;
@@ -22,31 +23,31 @@ import butterknife.OnClick;
 public class FindActivity extends BaseActivity<FindPresenter> implements HomeContract.FindContreact.IView {
 
 
-    @BindView(R.id.home_touxiang)
+    @BindView(R2.id.home_touxiang)
     SimpleDraweeView homeTouxiang;
-    @BindView(R.id.home_xiaoxi)
+    @BindView(R2.id.home_xiaoxi)
     ImageView homeXiaoxi;
-    @BindView(R.id.find_chengfen)
+    @BindView(R2.id.find_chengfen)
     TextView findChengfen;
-    @BindView(R.id.find_jinji)
+    @BindView(R2.id.find_jinji)
     TextView findJinji;
-    @BindView(R.id.find_zhuzhi)
+    @BindView(R2.id.find_zhuzhi)
     TextView findZhuzhi;
-    @BindView(R.id.find_yongliang)
+    @BindView(R2.id.find_yongliang)
     TextView findYongliang;
-    @BindView(R.id.find_xingzhuang)
+    @BindView(R2.id.find_xingzhuang)
     TextView findXingzhuang;
-    @BindView(R.id.find_guige)
+    @BindView(R2.id.find_guige)
     TextView findGuige;
-    @BindView(R.id.find_fanying)
+    @BindView(R2.id.find_fanying)
     TextView findFanying;
-    @BindView(R.id.find_tiaojian)
+    @BindView(R2.id.find_tiaojian)
     TextView findTiaojian;
-    @BindView(R.id.find_shixiang)
+    @BindView(R2.id.find_shixiang)
     RecyclerView findShixiang;
-    @BindView(R.id.find_wenhao)
+    @BindView(R2.id.find_wenhao)
     TextView findWenhao;
-    @BindView(R.id.find_name)
+    @BindView(R2.id.find_name)
     TextView findName;
 
     @Override
@@ -70,7 +71,7 @@ public class FindActivity extends BaseActivity<FindPresenter> implements HomeCon
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_find;
+        return R2.layout.activity_find;
     }
 
 

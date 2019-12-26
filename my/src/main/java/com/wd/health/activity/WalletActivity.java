@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.adapter.UserConsumptionRecordAdapter;
 import com.wd.health.bean.UserConsumptionRecordBean;
 import com.wd.health.bean.WalletYUERBean;
@@ -24,17 +25,17 @@ import butterknife.OnClick;
 
 public class WalletActivity extends BaseActivity<WalletPresenter> implements WalletContract.IView {
 
-    @BindView(R.id.fanhui)
+    @BindView(R2.id.fanhui)
     ImageView fanhui;
-    @BindView(R.id.Wallet_Amount)
+    @BindView(R2.id.Wallet_Amount)
     TextView WalletAmount;
-    @BindView(R.id.aa)
+    @BindView(R2.id.aa)
     TextView aa;
-    @BindView(R.id.Wallet_withdraw)
+    @BindView(R2.id.Wallet_withdraw)
     TextView WalletWithdraw;
-    @BindView(R.id.Wallet_Recharge)
+    @BindView(R2.id.Wallet_Recharge)
     TextView WalletRecharge;
-    @BindView(R.id.Wallet_RecyclerView)
+    @BindView(R2.id.Wallet_RecyclerView)
     RecyclerView WalletRecyclerView;
 
     @Override

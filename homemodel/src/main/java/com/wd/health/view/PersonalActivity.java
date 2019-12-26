@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.adapter.CommentAdapter;
 import com.wd.health.adapter.MyGiftAdapter;
 import com.wd.health.app.App;
@@ -29,43 +30,43 @@ import butterknife.BindView;
 
 public class PersonalActivity extends BaseActivity<DoctorListPresenter> implements HomeContract.CheckDoctorsContreact.IView {
     private static final String TAG = "PersonalActivity";
-    @BindView(R.id.back)
+    @BindView(R2.id.back)
     ImageView back;
-    @BindView(R.id.rela)
+    @BindView(R2.id.rela)
     RelativeLayout rela;
-    @BindView(R.id.head_img)
+    @BindView(R2.id.head_img)
     ImageView headImg;
-    @BindView(R.id.name)
+    @BindView(R2.id.name)
     TextView name;
-    @BindView(R.id.work)
+    @BindView(R2.id.work)
     TextView work;
-    @BindView(R.id.address)
+    @BindView(R2.id.address)
     TextView address;
-    @BindView(R.id.good)
+    @BindView(R2.id.good)
     TextView good;
-    @BindView(R.id.number)
+    @BindView(R2.id.number)
     TextView number;
-    @BindView(R.id.gift)
+    @BindView(R2.id.gift)
     TextView gift;
-    @BindView(R.id.recrivegift)
+    @BindView(R2.id.recrivegift)
     TextView recrivegift;
-    @BindView(R.id.recy)
+    @BindView(R2.id.recy)
     RecyclerView recy;
-    @BindView(R.id.jieshao)
+    @BindView(R2.id.jieshao)
     TextView jieshao;
-    @BindView(R.id.scaddress)
+    @BindView(R2.id.scaddress)
     TextView scaddress;
-    @BindView(R.id.commit_count)
+    @BindView(R2.id.commit_count)
     TextView commitCount;
-    @BindView(R.id.recy_commit)
+    @BindView(R2.id.recy_commit)
     RecyclerView recyCommit;
-    @BindView(R.id.more)
+    @BindView(R2.id.more)
     TextView more;
-    @BindView(R.id.price)
+    @BindView(R2.id.price)
     TextView price;
-    @BindView(R.id.go_now)
+    @BindView(R2.id.go_now)
     Button goNow;
-    @BindView(R.id.nolike)
+    @BindView(R2.id.nolike)
     ImageView nolike;
 
     private int doctorId;

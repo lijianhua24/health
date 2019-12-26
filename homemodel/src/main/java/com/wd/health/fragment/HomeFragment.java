@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.adapter.InfoSectionAdapter;
 import com.wd.health.adapter.MyAdapter;
 import com.wd.health.adapter.SectionAdapter;
@@ -34,15 +35,15 @@ import butterknife.OnClick;
 public class HomeFragment extends BaseFragment<BannerPresenter> implements HomeContract.BnnerContreact.IView {
 
 
-    @BindView(R.id.home_recy)
+    @BindView(R2.id.home_recy)
     RecyclerView homeRecy;
-    @BindView(R.id.home_recy2)
+    @BindView(R2.id.home_recy2)
     RecyclerView homeRecy2;
-    @BindView(R.id.home_gengduo)
+    @BindView(R2.id.home_gengduo)
     TextView homeGengduo;
-    @BindView(R.id.search)
+    @BindView(R2.id.search)
     TextView homeSou;
-    @BindView(R.id.home_InfoSection_recy)
+    @BindView(R2.id.home_InfoSection_recy)
     RecyclerView homeInfoSectionRecy;
 
     private int i1;

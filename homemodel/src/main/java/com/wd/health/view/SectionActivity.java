@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.adapter.GengDuoAdapter;
 import com.wd.health.app.App;
 import com.wd.health.bean.InfoSectionBean;
@@ -18,7 +19,7 @@ import butterknife.BindView;
 public class SectionActivity extends BaseActivity<SectionPresenter> implements HomeContract.InfoSectionContreact.IView {
 
 
-    @BindView(R.id.section_recy_gengduo)
+    @BindView(R2.id.section_recy_gengduo)
     RecyclerView sectionRecyGengduo;
 
     @Override
@@ -45,7 +46,7 @@ public class SectionActivity extends BaseActivity<SectionPresenter> implements H
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_section;
+        return R2.layout.activity_section;
     }
 
     @Override

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.wd.health.R;
+import com.wd.health.R2;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,21 +19,21 @@ import butterknife.OnClick;
 
 public class MessageActivity extends AppCompatActivity {
 
-    @BindView(R.id.fanhui)
+    @BindView(R2.id.fanhui)
     ImageView fanhui;
-    @BindView(R.id.text_biaoji)
+    @BindView(R2.id.text_biaoji)
     TextView textBiaoji;
-    @BindView(R.id.system_message)
+    @BindView(R2.id.system_message)
     LinearLayout systemMessage;
-    @BindView(R.id.wenzhen_message)
+    @BindView(R2.id.wenzhen_message)
     LinearLayout wenzhenMessage;
-    @BindView(R.id.H_message)
+    @BindView(R2.id.H_message)
     LinearLayout HMessage;
-    @BindView(R.id.image_none)
+    @BindView(R2.id.image_none)
     ImageView imageNone;
-    @BindView(R.id.btn_none)
+    @BindView(R2.id.btn_none)
     Button btnNone;
-    @BindView(R.id.lin_none)
+    @BindView(R2.id.lin_none)
     LinearLayout linNone;
 
     @Override
