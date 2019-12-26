@@ -24,6 +24,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.tabs.TabLayout;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.bean.CircleListShowBean;
 import com.wd.health.bean.DepartmentListBean;
 import com.wd.health.bean.DoTaskBean;

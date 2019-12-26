@@ -28,15 +28,24 @@ import com.wd.mylibrary.Test.ToastUtils;
 
 import java.util.List;
 
+import butterknife.BindView;
+
 public class SearchActivity extends BaseActivity<DepartmentListPresenter> implements IContract.iView {
-    private ImageView search_back;
-    private EditText search_keyword;
-    private TextView search_text;
-    private RecyclerView search_recyclerView;
-    private RelativeLayout patient_relative_serach;
+    @BindView(R.id.search_back)
+    ImageView search_back;
+    @BindView(R.id.search_keyword)
+    EditText search_keyword;
+    @BindView(R.id.search_text)
+    TextView search_text;
+    @BindView(R.id.patient_relative_serach)
+    RelativeLayout patient_relative_serach;
+    @BindView(R.id.search_recyclerView)
+    RecyclerView search_recyclerView;
+    @BindView(R.id.niuwei)
+    TextView niuwei;
+    @BindView(R.id.niumeiyou)
+    LinearLayout niumeiyou;
     private KeywordSearchAdapter keywordSearchAdapter;
-    private LinearLayout niumeiyou;
-    private TextView niuwei;
     private String trim;
 
 
@@ -64,12 +73,6 @@ public class SearchActivity extends BaseActivity<DepartmentListPresenter> implem
 
     @Override
     protected void initView() {
-        search_back = findViewById(R.id.search_back);
-        search_keyword = findViewById(R.id.search_keyword);
-        search_text = findViewById(R.id.search_text);
-        niuwei=findViewById(R.id.niuwei);
-        search_recyclerView = findViewById(R.id.search_recyclerView);
-        niumeiyou = findViewById(R.id.niumeiyou);
     }
 
     @Override
@@ -130,6 +133,7 @@ public class SearchActivity extends BaseActivity<DepartmentListPresenter> implem
             });
         }
     }
+
     @Override
     public void KeywordSearchFailure(Throwable e) {
         ToastUtils.show("没有网");

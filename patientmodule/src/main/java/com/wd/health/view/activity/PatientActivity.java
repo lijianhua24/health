@@ -1,5 +1,7 @@
 package com.wd.health.view.activity;
 
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -12,11 +14,17 @@ import com.wd.mylibrary.Base.BasePresenter;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class PatientActivity extends BaseActivity {
 
-    private NoScrollViewPager patient_pager;
+
+    @BindView(R.id.patient_pager)
+    NoScrollViewPager patient_pager;
     private ArrayList<Fragment> list;
     private ArrayList<String> name;
+
     @Override
     protected BasePresenter providePresenter() {
         return null;
@@ -41,7 +49,7 @@ public class PatientActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        patient_pager = findViewById(R.id.patient_pager);
+
         list = new ArrayList<>();
         name = new ArrayList<>();
     }
@@ -49,5 +57,12 @@ public class PatientActivity extends BaseActivity {
     @Override
     protected int provideLayoutId() {
         return R.layout.activity_patient;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }
