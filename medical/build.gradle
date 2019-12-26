@@ -59,8 +59,8 @@ dependencies {
     //让retrofit支持Rxjava2
     implementation 'com.squareup.retrofit2:adapter-rxjava2:+'
     //Butterknife依赖
-    implementation 'com.jakewharton:butterknife:10.0.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
+    implementation 'com.jakewharton:butterknife:10.2.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
 
     implementation rootProject.ext.dependencies["fresco:fresco"]
     implementation rootProject.ext.dependencies["recyclerview"]

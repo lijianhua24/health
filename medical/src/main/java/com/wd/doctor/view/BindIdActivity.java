@@ -341,7 +341,7 @@ public class BindIdActivity extends BaseActivity<ToBindPresenter> implements ToB
                                 "性别: " + sex + "\n" +
                                 "民族: " + nation + "\n" +
                                 "身份证号码: " + num + "\n" +
-                                "生日" + birthday + "\n" +
+                                "生日:" + birthday + "\n" +
                                 "住址: " + address + "\n");
 
                         /*idCard = new SPUtils(IdCardActivity.this, "IdCard");

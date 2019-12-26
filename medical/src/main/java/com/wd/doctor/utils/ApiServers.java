@@ -7,6 +7,7 @@ import com.wd.doctor.bean.EnquiryBean;
 import com.wd.doctor.bean.ImageQueryBean;
 import com.wd.doctor.bean.LoginBean;
 import com.wd.doctor.bean.PostReviewBean;
+import com.wd.doctor.bean.QueryIdBean;
 import com.wd.doctor.bean.ResidencyBean;
 import com.wd.doctor.bean.SearchSuffererBean;
 import com.wd.doctor.bean.SimagePhotosBean;
@@ -113,6 +114,9 @@ public interface ApiServers {
                                       @Query("bankCardNumber")String bankCardNumber,
                                       @Query("bankName")String bankName,
                                       @Query("bankCardType")int bankCardType);
-
-
+    //查询医生身份证信息
+    //http://172.17.8.100/health/doctor/verify/v1/findDoctorIdCardInfo
+    @GET("doctor/verify/v1/findDoctorIdCardInfo")
+    Observable<QueryIdBean> getQueryId(@Header("doctorId")int doctorId,
+                                       @Header("sessionId")String sessionId);
 }
