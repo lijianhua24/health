@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.bean.CircleListShowBean;
 import com.wd.health.bean.DepartmentListBean;
 import com.wd.health.bean.DoTaskBean;
@@ -31,19 +32,19 @@ import java.util.List;
 import butterknife.BindView;
 
 public class SearchActivity extends BaseActivity<DepartmentListPresenter> implements IContract.iView {
-    @BindView(R.id.search_back)
+    @BindView(R2.id.search_back)
     ImageView search_back;
-    @BindView(R.id.search_keyword)
+    @BindView(R2.id.search_keyword)
     EditText search_keyword;
-    @BindView(R.id.search_text)
+    @BindView(R2.id.search_text)
     TextView search_text;
-    @BindView(R.id.patient_relative_serach)
+    @BindView(R2.id.patient_relative_serach)
     RelativeLayout patient_relative_serach;
-    @BindView(R.id.search_recyclerView)
+    @BindView(R2.id.search_recyclerView)
     RecyclerView search_recyclerView;
-    @BindView(R.id.niuwei)
+    @BindView(R2.id.niuwei)
     TextView niuwei;
-    @BindView(R.id.niumeiyou)
+    @BindView(R2.id.niumeiyou)
     LinearLayout niumeiyou;
     private KeywordSearchAdapter keywordSearchAdapter;
     private String trim;

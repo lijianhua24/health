@@ -343,46 +343,36 @@
 
             </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_30"
-                android:layout_marginTop="@dimen/dp_20"
-                android:background="#cccccc">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/dp_20"
-                    android:text="可添加1张照片" />
-
-            </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="82dp"
-            android:layout_height="@dimen/dp_77"
-            android:layout_marginLeft="@dimen/dp_20"
-            android:layout_marginTop="@dimen/dp_20">
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:background="#cccccc">
 
-            <!--     <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/release_recyclerview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </androidx.recyclerview.widget.RecyclerView>-->
-            <ImageView
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:text="可添加1张照片" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="77dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp">
+
+            <GridLayout
                 android:id="@+id/release_circle_iv_upload_Picture"
-                android:layout_width="@dimen/dp_72"
-                android:layout_height="@dimen/dp_72"
-                android:layout_marginTop="@dimen/dp_5"
-                android:layout_marginRight="@dimen/dp_5"
-                android:background="@mipmap/add" />
+                android:layout_width="wrap_content"
+                android:layout_height="72dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/add" />
 
-            <ImageView
-                android:id="@+id/release_circle_iv_delete_Picture"
-                android:layout_width="@dimen/dp_14"
-                android:layout_height="@dimen/dp_14"
-                android:layout_alignParentRight="true"
-                android:background="@mipmap/common_icon_close_n" />
 
         </RelativeLayout>
             <RelativeLayout

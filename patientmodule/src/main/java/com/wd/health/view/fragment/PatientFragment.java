@@ -23,6 +23,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.tabs.TabLayout;
+
 import com.wd.health.R;
 import com.wd.health.R2;
 import com.wd.health.bean.CircleListShowBean;
@@ -46,33 +47,33 @@ import butterknife.BindView;
 
 
 public class PatientFragment extends BaseFragment<DepartmentListPresenter> implements ObservableScrollView.ScrollViewListener, IContract.iView {
-    @BindView(R.id.circle_touxiang)
+    @BindView(R2.id.circle_touxiang)
     SimpleDraweeView circle_touxiang;
-    @BindView(R.id.circle_message)
+    @BindView(R2.id.circle_message)
     ImageView circle_message;
-    @BindView(R.id.patient_relative_titlebar)
+    @BindView(R2.id.patient_relative_titlebar)
     RelativeLayout patient_relative_titlebar;
-    @BindView(R.id.patient_tv_department_name)
+    @BindView(R2.id.patient_tv_department_name)
     TextView patient_tv_department_name;
-    @BindView(R.id.patient_tv_department_keyword)
+    @BindView(R2.id.patient_tv_department_keyword)
     EditText patient_tv_department_keyword;
-    @BindView(R.id.patient_iv_user_news)
+    @BindView(R2.id.patient_iv_user_news)
     ImageView patient_iv_user_news;
-    @BindView(R.id.patient_relative_serach)
+    @BindView(R2.id.patient_relative_serach)
     RelativeLayout patient_relative_serach;
-    @BindView(R.id.patient_tablayout)
+    @BindView(R2.id.patient_tablayout)
     TabLayout patient_tablayout;
-    @BindView(R.id.patient_iv_search)
+    @BindView(R2.id.patient_iv_search)
     ImageView patient_iv_search;
-    @BindView(R.id.bbb)
+    @BindView(R2.id.bbb)
     RelativeLayout bbb;
-    @BindView(R.id.patient_viewpager)
+    @BindView(R2.id.patient_viewpager)
     ViewPager patient_viewpager;
-    @BindView(R.id.xiangxi_rlv)
+    @BindView(R2.id.xiangxi_rlv)
     RecyclerView xiangxi_rlv;
-    @BindView(R.id.patient_linear_layout)
+    @BindView(R2.id.patient_linear_layout)
     RelativeLayout patient_linear_layout;
-    @BindView(R.id.patient_scorll_view)
+    @BindView(R2.id.patient_scorll_view)
     ObservableScrollView patient_scorll_view;
     private int mImageHeight;
     private KeywordSearchAdapter keywordSearchAdapter;

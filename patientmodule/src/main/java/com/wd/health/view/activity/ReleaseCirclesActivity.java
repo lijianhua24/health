@@ -1,5 +1,6 @@
 package com.wd.health.view.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,6 +19,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -31,6 +34,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.bean.CircleListShowBean;
 import com.wd.health.bean.DepartmentListBean;
 import com.wd.health.bean.DoTaskBean;
@@ -45,8 +49,10 @@ import com.wd.health.view.adapter.ConsultationTwoAdapter;
 import com.wd.health.view.adapter.IllnessAdapter;
 import com.wd.mylibrary.Base.BaseActivity;
 import com.wd.mylibrary.utils.ImageUtil;
+import com.ypx.imagepicker.bean.ImageItem;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -60,55 +66,56 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter> implements IContract.iView {
-    @BindView(R.id.release_sickCircle_iv_user_head_pic)
+    @BindView(R2.id.release_sickCircle_iv_user_head_pic)
     ImageView release_sickCircle_iv_user_head_pic;
-    @BindView(R.id.patient_iv_user_message)
+    @BindView(R2.id.patient_iv_user_message)
     ImageView patient_iv_user_message;
-    @BindView(R.id.release_circle_et_title)
+    @BindView(R2.id.release_circle_et_title)
     EditText release_circle_et_title;
-    @BindView(R.id.release_circle_tv_choose_department)
+    @BindView(R2.id.release_circle_tv_choose_department)
     TextView release_circle_tv_choose_department;
-    @BindView(R.id.release_circle_iv_choose_department)
+    @BindView(R2.id.release_circle_iv_choose_department)
     RelativeLayout release_circle_iv_choose_department;
-    @BindView(R.id.release_circle_tv_choose_disease)
+    @BindView(R2.id.release_circle_tv_choose_disease)
     TextView release_circle_tv_choose_disease;
-    @BindView(R.id.release_circle_iv_choose_disease)
+    @BindView(R2.id.release_circle_iv_choose_disease)
     RelativeLayout release_circle_iv_choose_disease;
-    @BindView(R.id.release_circle_et_detail)
+    @BindView(R2.id.release_circle_et_detail)
     EditText release_circle_et_detail;
-    @BindView(R.id.release_circle_et_treatmentHospital)
+    @BindView(R2.id.release_circle_et_treatmentHospital)
     EditText release_circle_et_treatmentHospital;
-    @BindView(R.id.release_circle_tv_startTime)
+    @BindView(R2.id.release_circle_tv_startTime)
     TextView release_circle_tv_startTime;
-    @BindView(R.id.release_circle_iv_startTime)
+    @BindView(R2.id.release_circle_iv_startTime)
     RelativeLayout release_circle_iv_startTime;
-    @BindView(R.id.release_circle_tv_endTime)
+    @BindView(R2.id.release_circle_tv_endTime)
     TextView release_circle_tv_endTime;
-    @BindView(R.id.release_circle_iv_endTime)
+    @BindView(R2.id.release_circle_iv_endTime)
     RelativeLayout release_circle_iv_endTime;
-    @BindView(R.id.release_circle_et_treatmentProcess)
+    @BindView(R2.id.release_circle_et_treatmentProcess)
     EditText release_circle_et_treatmentProcess;
-    @BindView(R.id.release_circle_iv_upload_Picture)
-    ImageView release_circle_iv_upload_Picture;
-    @BindView(R.id.release_circle_iv_delete_Picture)
+    @BindView(R2.id.release_circle_iv_upload_Picture)
+    GridLayout release_circle_iv_upload_Picture;
+    @BindView(R2.id.release_circle_iv_delete_Picture)
     ImageView release_circle_iv_delete_Picture;
-    @BindView(R.id.item_switch)
+    @BindView(R2.id.item_switch)
     Switch item_switch;
-    @BindView(R.id.button_hbi3)
+    @BindView(R2.id.button_hbi3)
     Button button_hbi3;
-    @BindView(R.id.aaa)
+    @BindView(R2.id.aaa)
     TextView aaa;
-    @BindView(R.id.xuanshangedu_linear)
+    @BindView(R2.id.xuanshangedu_linear)
     LinearLayout linearLayout;
-    @BindView(R.id.release_circle_btn_publish)
+    @BindView(R2.id.release_circle_btn_publish)
     Button release_circle_btn_publish;
-    @BindView(R.id.release_circle_linear_sick_circle)
+    @BindView(R2.id.release_circle_linear_sick_circle)
     LinearLayout  release_circle_linear_sick_circle;
     Calendar calendar = Calendar.getInstance(Locale.CHINA);
     private int id;
     private PopupWindow popWindow;
     private PopupWindow popWindowDisease;
     private MultipartBody.Part picture;
+    private List<ImageItem> picList ;
     private String path;
     private int sickCircleId;
     private RecyclerView popup_recycler_department;
@@ -123,6 +130,7 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
 
     @Override
     protected void initData() {
+        picList=new ArrayList<>();
         //悬赏额度的开关
         item_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -143,7 +151,7 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
             public void onClick(View v) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(ReleaseCirclesActivity.this);
                 final View view = (LinearLayout) getLayoutInflater().inflate(R.layout.dialog_date, null);
-                final DatePicker datePicker = (DatePicker) view.findViewById(R.id.date_picker);
+               final DatePicker datePicker = (DatePicker) view.findViewById(R.id.date_picker);
                 //设置日期简略显示 否则详细显示 包括:星期\周
                 datePicker.setCalendarViewShown(false);
                 //初始化当前日期
@@ -182,7 +190,7 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
             public void onClick(View v) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(ReleaseCirclesActivity.this);
                 final View view = (LinearLayout) getLayoutInflater().inflate(R.layout.dialog_date, null);
-                final DatePicker datePicker = (DatePicker) view.findViewById(R.id.date_picker);
+           final DatePicker datePicker = (DatePicker) view.findViewById(R.id.date_picker);
                 //设置日期简略显示 否则详细显示 包括:星期\周
                 datePicker.setCalendarViewShown(false);
                 //初始化当前日期
@@ -241,13 +249,7 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
                 startActivityForResult(intent, 1);
             }
         });
-        //删除选中图片
-        release_circle_iv_delete_Picture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                release_circle_iv_upload_Picture.setImageResource(R.mipmap.add);
-            }
-        });
+
 
        /* shapeLoadingDialog = new ShapeLoadingDialog.Builder(ReleaseCirclesActivity.this)
                 .loadText("上传图片中...")
@@ -466,34 +468,6 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
     public void DoTaskFailure(Throwable e) {
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        //判断是不是选中图片了
-        if (requestCode == 1) {
-            if (resultCode == Activity.RESULT_OK) {
-                Uri uri = data.getData();
-                if (uri != null) {
-                    //用一个工具类获取图片的绝对路径,我会粘到下方
-                    path = ImageUtil.getPath(this, uri);
-                    Glide.with(this).load(path)
-                            .placeholder(R.mipmap.add)
-                            .error(R.mipmap.add)
-                            .into(release_circle_iv_upload_Picture);
-                    if (path != null) {
-                        //转换为file类型
-                        File file = new File(path);
-                        //进行类型转换,因为在RetrofitService定义的是@Part MultipartBody.Part,所以要转成这样的格式
-                        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-                        picture = MultipartBody.Part.createFormData("picture", file.getName(), requestBody);
-                    }
-                }
-            } else {
-                Toast.makeText(this, "取消相册", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
     ////科室列表
     private void initPopWindowDepartment(View v) {
         View view = LayoutInflater.from(this).inflate(R.layout.item_popip_department, null, false);
@@ -545,4 +519,141 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
     }
+    /**
+     * 刷新图片显示
+     *//*
+    private void refreshGridLayout() {
+        release_circle_iv_upload_Picture.setVisibility(View.VISIBLE);
+        release_circle_iv_upload_Picture.removeAllViews();
+        int num = picList.size();
+        final int picSize = (getScreenWidth() - dp(20)) / 4;
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(picSize, picSize);
+        if (num >= 6) {
+            release_circle_iv_upload_Picture.setVisibility(View.VISIBLE);
+            for (int i = 0; i < num; i++) {
+                RelativeLayout view = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.a_layout_pic_select, null);
+                view.setLayoutParams(params);
+                view.setPadding(dp(5), dp(5), dp(5), dp(5));
+                setPicItemClick(view, i);
+                release_circle_iv_upload_Picture.addView(view);
+            }
+        } else {
+            release_circle_iv_upload_Picture.setVisibility(View.VISIBLE);
+            ImageView imageView = new ImageView(this);
+            imageView.setLayoutParams(params);
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            imageView.setPadding(dp(5), dp(5), dp(5), dp(5));
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startPick();
+                }
+            });
+            for (int i = 0; i < num; i++) {
+                RelativeLayout view = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.a_layout_pic_select, null);
+                view.setLayoutParams(params);
+                view.setPadding(dp(5), dp(5), dp(5), dp(5));
+                setPicItemClick(view, i);
+                release_circle_iv_upload_Picture.addView(view);
+                Log.e("qwe", "" + view);
+            }
+            release_circle_iv_upload_Picture.addView(imageView);
+        }
+    }
+
+    public void setPicItemClick(RelativeLayout layout, final int pos) {
+        ImageView iv_pic = (ImageView) layout.getChildAt(0);
+        ImageView iv_close = (ImageView) layout.getChildAt(1);
+        Glide.with(this).load(picList.get(pos).path).into(iv_pic);
+        iv_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                picList.remove(pos);
+                refreshGridLayout();
+            }
+        });
+        iv_pic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                preview(pos);
+            }
+        });
+    }
+
+    public int dp(float dpVal) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                dpVal, this.getResources().getDisplayMetrics());
+    }
+
+    *//**
+     * 获得屏幕宽度
+     *//*
+    public int getScreenWidth() {
+        WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        assert wm != null;
+        wm.getDefaultDisplay().getMetrics(outMetrics);
+        return outMetrics.widthPixels;
+    }
+
+    private void startPick() {
+
+        pick(6 - picList.size());
+    }
+
+    private void preview(int pos) {
+        IPickerPresenter presenter = true ? new WeChatPresenter() : new CustomImgPickerPresenter();
+        //开启编辑预览
+        ImagePicker.preview(this, presenter, picList, pos, new OnImagePickCompleteListener() {
+            @Override
+            public void onImagePickComplete(ArrayList<ImageItem> items) {
+                //图片编辑回调，主线程
+                picList.clear();
+                picList.addAll(items);
+                refreshGridLayout();
+            }
+        });
+    }
+
+    private void pick(int count) {
+        final IPickerPresenter presenter = true ? new WeChatPresenter() : new CustomImgPickerPresenter();
+        ImagePicker.withMulti(presenter)//指定presenter
+                .setMaxCount(count)//设置选择的最大数
+                .setColumnCount(4)//设置显示列数
+                .showCamera(true)//设置是否显示拍照按钮（在列表第一个）
+                .setMaxVideoDuration(120000)//设置视频可选择的最大时长
+                //设置只能选择视频或图片
+                .setSinglePickImageOrVideoType(true)
+                //设置只能选择一个视频
+                .setVideoSinglePick(true)
+                //设置下次选择需要屏蔽的图片或视频（简单点就是不可重复选择）
+                .setShieldList(new ArrayList<String>())
+                //设置下次选择需要带入的图片和视频（简单点就是记录上次选择的图片，可以取消之前选择）
+                .setLastImageList(new ArrayList<String>())
+                //调用多选
+                .pick(this, new OnImagePickCompleteListener() {
+
+                    private String pa;
+
+                    @Override
+                    public void onImagePickComplete(ArrayList<ImageItem> items) {
+                        //处理回调回来的图片信息，主线程
+                        picList.addAll(items);
+                        list = new ArrayList<>();
+                        for (int i = 0; i < items.size(); i++) {
+                            list.add(items.get(i).path);
+                        }
+                        for (int i = 0; i < list.size(); i++) {
+                            pa = list.get(i);
+                        }
+                        File file = new File(pa);
+                        RequestBody requestBody = MultipartBody.create(MediaType.parse("image/*"), file);
+                        MultipartBody.Part part = MultipartBody.Part.createFormData("image", file.getName(), requestBody);
+                        parts.add(part);
+                        refreshGridLayout();
+                    }
+                });
+
+    }*/
+
 }

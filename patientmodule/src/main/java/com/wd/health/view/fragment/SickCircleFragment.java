@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.bean.CircleListShowBean;
 import com.wd.health.bean.DepartmentListBean;
 import com.wd.health.bean.DoTaskBean;
@@ -32,7 +33,7 @@ import butterknife.BindView;
  * <p>更改时间：2019/12/18<p>
  */
 public class SickCircleFragment extends BaseFragment<DepartmentListPresenter> implements IContract.iView {
-    @BindView(R.id.patient_recycler_sick_circle_list)
+    @BindView(R2.id.patient_recycler_sick_circle_list)
     XRecyclerView patient_recycler_sick_circle_list;
     private int page = 1;
     private int count1 = 10;

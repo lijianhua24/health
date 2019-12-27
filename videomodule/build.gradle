@@ -17,6 +17,7 @@ android {
         ndk {
             abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
         }
+
     }
 
     buildTypes {
@@ -64,6 +65,7 @@ dependencies {
     implementation rootProject.ext.dependencies["ijkplayerarmv7a"]
     implementation rootProject.ext.dependencies["ijkplayerexo"]
     implementation 'com.github.ctiao:DanmakuFlameMaster:0.7.3'
+    implementation 'com.yanzhenjie:permission:2.0.3'
 
     implementation project(path: ':mylibrary')
 }

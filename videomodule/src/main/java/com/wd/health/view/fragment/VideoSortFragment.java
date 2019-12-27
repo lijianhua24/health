@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -20,12 +21,14 @@ import com.wd.health.model.App;
 import com.wd.health.presenter.HealthSortPresenter;
 import com.wd.health.view.adapter.RecyclerVideoVoListAdapter;
 import com.wd.mylibrary.Base.BaseFragment;
+import com.wd.mylibrary.Test.Logger;
 import com.wd.mylibrary.Test.ToastUtils;
 import com.wd.mylibrary.app.Constant;
 
 import java.util.List;
 
 import butterknife.BindView;
+import master.flame.danmaku.danmaku.model.BaseDanmaku;
 import master.flame.danmaku.ui.widget.DanmakuView;
 
 public class VideoSortFragment extends BaseFragment<HealthSortPresenter> implements IContract.iView {
@@ -38,12 +41,13 @@ public class VideoSortFragment extends BaseFragment<HealthSortPresenter> impleme
     TextView dan_fa;
     @BindView(R.id.dddd)
     RelativeLayout dddd;
+    @BindView(R.id.video_danmu)
+    DanmakuView video_danmu;
     private int anInt;
     private int page = 1;
     private int count = 5;
     private int userId;
     private String sessionId;
-
     @Override
     protected HealthSortPresenter providePresenter() {
         return new HealthSortPresenter();
@@ -77,7 +81,7 @@ public class VideoSortFragment extends BaseFragment<HealthSortPresenter> impleme
             }
         });
 
-        mPresenter.getVideoSort(userId,sessionId,anInt,page, count);
+        mPresenter.getVideoSort(userId, sessionId, anInt, page, count);
 
     }
 
@@ -126,16 +130,16 @@ public class VideoSortFragment extends BaseFragment<HealthSortPresenter> impleme
             @Override
             public void onPriceClick(int ci) {
                 if (ci % 2 == 1) {
-//                    video_danmu.setVisibility(View.GONE);
+                    video_danmu.setVisibility(View.GONE);
                 } else if (ci % 2 == 0) {
-//                    video_danmu.setVisibility(View.VISIBLE);
+                    video_danmu.setVisibility(View.VISIBLE);
                 }
             }
         });
         recyclerVideoVoListAdapter.setSetOnPingLun(new RecyclerVideoVoListAdapter.setOnPingLun() {
             @Override
             public void onPingLunClick(int vid, String pl) {
-                mPresenter.getVideoComment(userId,sessionId,vid,pl);
+                mPresenter.getVideoComment(userId, sessionId, vid, pl);
             }
         });
 
@@ -148,10 +152,20 @@ public class VideoSortFragment extends BaseFragment<HealthSortPresenter> impleme
         recyclerVideoVoListAdapter.setSetOnPriceTouch(new RecyclerVideoVoListAdapter.setOnPriceTouch() {
             @Override
             public void onPriceClick(int mp, int ooid) {
-                mPresenter.getHealthBuy(userId,sessionId,ooid,100);
+                mPresenter.getHealthBuy(userId, sessionId, ooid, 100);
             }
         });
 
+recyclerVideoVoListAdapter.setOnDian(new RecyclerVideoVoListAdapter.setOnDian() {
+    @Override
+    public void onPriceClick(int ci) {
+        if (ci%2==1){
+            video_danmu.setVisibility(View.GONE);
+        }else if (ci%2==0){
+            video_danmu.setVisibility(View.VISIBLE);
+        }
+    }
+});
 
     }
 
@@ -190,6 +204,15 @@ public class VideoSortFragment extends BaseFragment<HealthSortPresenter> impleme
 
     @Override
     public void QvideoListsuccess(QvideoListBean qvideoListBean) {
+        List<QvideoListBean.ResultBean> result = qvideoListBean.getResult();
+        String message = qvideoListBean.getMessage();
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+        for (int j = 0; j < result.size(); j++) {
+            String content = result.get(j).getContent();
+            Logger.d("TTR",content);
+
+    }
+
     }
 
     @Override
@@ -211,4 +234,23 @@ public class VideoSortFragment extends BaseFragment<HealthSortPresenter> impleme
     public void VideoCommentFailure(Throwable e) {
         ToastUtils.show("请检查网络");
     }
+/*    private void sendTextMessage() {
+        addDanmaku(true);
+    }
+    */
+ /*   private void addDanmaku(boolean islive) {
+        BaseDanmaku danmaku = mContext.mDanmakuFactory.createDanmaku(BaseDanmaku.TYPE_SCROLL_RL);
+        if (danmaku == null || video_danmu == null) {
+            return;
+        }
+
+        danmaku.text = contents;
+        danmaku.padding = 5;
+        //danmaku.priority = 0;  // 可能会被各种过滤器过滤并隐藏显示
+        danmaku.isLive = islive;
+        danmaku.setTime(video_danmu.getCurrentTime() + 1000);
+        danmaku.textSize = 20f * (mParser.getDisplayer().getDensity() - 0.6f); //文本弹幕字体大小
+
+        video_danmu.addDanmaku(danmaku);
+    }*/
 }
