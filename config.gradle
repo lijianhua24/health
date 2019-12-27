@@ -3,7 +3,7 @@ ext {
     //有重用的地方写在这里面，保证代码一致
     android = [compileSdkVersion       : 29,
                buildToolsVersion       : "29.0.2",
-               minSdkVersion           : 21,
+               minSdkVersion           : 22,
                targetSdkVersion        : 29,
                versionCode             : 1,
                versionName             : "1.0",
@@ -93,6 +93,13 @@ ext {
             "ijkplayer"              : "tv.danmaku.ijk.media:ijkplayer-java:0.8.8",
             "ijkplayerarmv7a"        : "tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8",
             "ijkplayerexo"           : "tv.danmaku.ijk.media:ijkplayer-exo:0.8.8",
+            "SmartRefreshLayout"           : "com.scwang.smartrefresh:SmartRefreshLayout:1.1.0",
+            "SmartRefreshLayouts"           : "com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14",
+            "jiguangjcore"           : "cn.jiguang.sdk:jcore:2.0.0",
+            "jiguangjmessage"           : "cn.jiguang.sdk:jmessage:2.9.0",
+            "jiguangjmessage"           : "com.github.bumptech.glide:glide:4.9.0",
+            "bumptech"           : "com.github.bumptech.glide:glide:4.9.0",
+            "autolayout"           : "com.zhy:autolayout:1.4.5",
 
     ]
 }
