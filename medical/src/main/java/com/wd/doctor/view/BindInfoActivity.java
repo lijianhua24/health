@@ -16,6 +16,8 @@ import com.wd.mylibrary.Base.BaseActivity;
 import com.wd.mylibrary.Test.Logger;
 import com.wd.mylibrary.utils.RsaCoder;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -43,6 +45,8 @@ public class BindInfoActivity extends BaseActivity<BindInFoPresenter> implements
     private String sessionId;
     private final int ONE=1;
     private final int TWO=2;
+    private SharedPreferences.Editor edit;
+
     @Override
     protected BindInFoPresenter providePresenter() {
         return new BindInFoPresenter();
@@ -63,6 +67,7 @@ public class BindInfoActivity extends BaseActivity<BindInFoPresenter> implements
     @Override
     protected void initView() {
         sharedPreferences = getSharedPreferences("config", MODE_PRIVATE);
+        edit = sharedPreferences.edit();
         doctorId = sharedPreferences.getInt("doctorId", 0);
         sessionId = sharedPreferences.getString("sessionId", "");
         mPresenter.getQueryIdPresenter(doctorId,sessionId);
@@ -109,11 +114,13 @@ public class BindInfoActivity extends BaseActivity<BindInFoPresenter> implements
         Logger.d("onQueryBankSuccess", "" + queryBankBean.getMessage());
         QueryBankBean.ResultBean result = queryBankBean.getResult();
         String bankName = result.getBankName();
+        bindinfoTvBankName.setText(bankName);
+        edit.putString("bankName",bankName);
+        edit.commit();
         String bankCardNumber = result.getBankCardNumber();
         String s = bankCardHide(bankCardNumber);
-        bindinfoTvBankName.setText(bankName);
         bindinfoTvBankCardNumber.setText(s);
-        Log.d(TAG, "onQueryBankSuccess: "+bankCardNumber);
+
         int bankCardType = result.getBankCardType();
         if (bankCardType==ONE) {
             bindinfoTvBankCardType.setText("储蓄卡");

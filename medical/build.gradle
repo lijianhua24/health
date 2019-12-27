@@ -74,5 +74,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.aar', '*.jar'], exclude: [])
     implementation project(path: ':orc_library')
 
-
+//EventBus依赖
+    implementation 'org.greenrobot:eventbus:3.1.1'
 }

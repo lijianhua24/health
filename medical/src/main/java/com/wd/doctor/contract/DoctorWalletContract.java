@@ -19,14 +19,10 @@ public interface DoctorWalletContract {
         void onQueryRevenueSuccess(QueryRevenueBean queryRevenueBean);
         void onQueryRevenueFailure(Throwable e);
 
-        void onWithdrawSuccess(WithdrawBean withdrawBean);
-        void onWithdrawFailure(Throwable e);
     }
     interface iModel{
         void getDoctorWalletData(int doctorId,String sessionId,iDoctorWalletCallBack callBack);
         void getQueryRevenueData(int doctorId, String sessionId, int page,int count,iDoctorWalletCallBack callBack);
-        void getWithdrawData(int doctorId, String sessionId,int money,iDoctorWalletCallBack callBack);
-
         interface iDoctorWalletCallBack{
             void onDoctorWalletSuccess(DoctorWalletBean doctorWalletBean);
             void onDoctorWalletFailure(Throwable failure);
@@ -34,15 +30,12 @@ public interface DoctorWalletContract {
             void onQueryRevenueSuccess(QueryRevenueBean queryRevenueBean);
             void onQueryRevenueFailure(Throwable failure);
 
-            void onWithdrawSuccess(WithdrawBean withdrawBean);
-            void onWithdrawFailure(Throwable failure);
         }
 
     }
     interface iPresenter{
         void getDoctorWalletPresenter(int doctorId,String sessionId);
         void getQueryRevenuePresenter(int doctorId, String sessionId,int page,int count);
-        void getWithdrawPresenter(int doctorId, String sessionId,int money);
 
     }
 }

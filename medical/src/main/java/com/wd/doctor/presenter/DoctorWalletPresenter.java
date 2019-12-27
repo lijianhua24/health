@@ -49,15 +49,6 @@ public class DoctorWalletPresenter extends BasePresenter<DoctorWalletContract.iV
 
             }
 
-            @Override
-            public void onWithdrawSuccess(WithdrawBean withdrawBean) {
-
-            }
-
-            @Override
-            public void onWithdrawFailure(Throwable failure) {
-
-            }
         });
     }
 
@@ -92,60 +83,9 @@ public class DoctorWalletPresenter extends BasePresenter<DoctorWalletContract.iV
                 }
             }
 
-            @Override
-            public void onWithdrawSuccess(WithdrawBean withdrawBean) {
-
-            }
-
-            @Override
-            public void onWithdrawFailure(Throwable failure) {
-
-            }
         });
     }
 
-    @Override
-    public void getWithdrawPresenter(int doctorId, String sessionId, int money) {
-        doctorWalletModel.getWithdrawData(doctorId, sessionId, money, new DoctorWalletContract.iModel.iDoctorWalletCallBack() {
-            @Override
-            public void onDoctorWalletSuccess(DoctorWalletBean doctorWalletBean) {
-
-            }
-
-            @Override
-            public void onDoctorWalletFailure(Throwable failure) {
-
-            }
-
-            @Override
-            public void onQueryRevenueSuccess(QueryRevenueBean queryRevenueBean) {
-
-            }
-
-            @Override
-            public void onQueryRevenueFailure(Throwable failure) {
-
-            }
-
-            @Override
-            public void onWithdrawSuccess(WithdrawBean withdrawBean) {
-                if (isViewAttached()) {
-                    if (withdrawBean != null && Constant.SUCCESS_CODE.equals(withdrawBean.getStatus())) {
-                        getView().onWithdrawSuccess(withdrawBean);
-                    }else {
-                        getView().onWithdrawFailure(new Exception("服务器异常"));
-                    }
-                }
-            }
-
-            @Override
-            public void onWithdrawFailure(Throwable failure) {
-                if (isViewAttached()) {
-                    getView().onWithdrawFailure(failure);
-                }
-            }
-        });
-    }
 
     @Override
     protected void initModel() {

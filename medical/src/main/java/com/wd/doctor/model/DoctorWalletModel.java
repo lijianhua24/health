@@ -52,21 +52,4 @@ public class DoctorWalletModel implements DoctorWalletContract.iModel {
                 });
     }
 
-    @Override
-    public void getWithdrawData(int doctorId, String sessionId, int money, iDoctorWalletCallBack callBack) {
-        RetrofitManager.getInstance().create(ApiServers.class)
-                .getWithdraw(doctorId,sessionId,money)
-                .compose(CommonSchedulers.io2main())
-                .subscribe(new CommonObserver<WithdrawBean>() {
-                    @Override
-                    public void onNext(WithdrawBean withdrawBean) {
-                        callBack.onWithdrawSuccess(withdrawBean);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        callBack.onWithdrawFailure(e);
-                    }
-                });
-    }
 }

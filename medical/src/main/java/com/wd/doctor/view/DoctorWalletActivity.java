@@ -3,6 +3,7 @@ package com.wd.doctor.view;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -47,7 +48,7 @@ public class DoctorWalletActivity extends BaseActivity<DoctorWalletPresenter> im
     private int whetherBindIdCard;
     private int whetherBindBankCard;
     private int balance;
-
+    private final int zz=2000;
     @Override
     protected DoctorWalletPresenter providePresenter() {
         return new DoctorWalletPresenter();
@@ -111,22 +112,6 @@ public class DoctorWalletActivity extends BaseActivity<DoctorWalletPresenter> im
 
     }
 
-    @Override
-    public void onWithdrawSuccess(WithdrawBean withdrawBean) {
-        Logger.d("onWithdrawSuccess",""+withdrawBean.getMessage());
-        if (withdrawBean.getStatus().equals("0000")) {
-            ToastUtils.show("点击");
-        } else if (withdrawBean.getStatus().equals("8002")) {
-            ToastUtils.show(withdrawBean.getMessage());
-        }
-    }
-
-    @Override
-    public void onWithdrawFailure(Throwable e) {
-        ToastUtils.show(e.getMessage());
-    }
-
-
     @OnClick({R.id.dowallet_iv_back, R.id.dowallet_tv_Bind,R.id.dowallet_but_withdraw})
     public void onClick(View view) {
         switch (view.getId()) {
@@ -145,7 +130,14 @@ public class DoctorWalletActivity extends BaseActivity<DoctorWalletPresenter> im
                 }
                 break;
             case R.id.dowallet_but_withdraw:
-                mPresenter.getWithdrawPresenter(doctorId,sessionId,balance);
+                if (balance >= zz) {
+                    Intent intent = new Intent();
+                    intent.setClass(this,WithdrawActivity.class);
+                    intent.putExtra("money",balance);
+                    startActivity(intent);
+                }else {
+                    ToastUtils.show("Money不允许你这样做");
+                }
                 break;
         }
     }
