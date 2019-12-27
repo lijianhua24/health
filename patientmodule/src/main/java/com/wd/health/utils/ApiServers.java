@@ -12,6 +12,7 @@ import com.wd.health.bean.ReleasePatientsBean;
 import com.wd.health.bean.UnitDiseaseBean;
 import com.wd.health.bean.UploadPatientBean;
 
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
@@ -100,7 +101,7 @@ public interface ApiServers {
     Observable<UploadPatientBean> UploadPatient(@Header("userId") int userId,
                                                 @Header("sessionId") String sessionId,
                                                 @Query("sickCircleId") int sickCircleId,
-                                                @Part MultipartBody.Part part
+                                                @Part List<MultipartBody.Part> parts
     );
 
     //做任务
