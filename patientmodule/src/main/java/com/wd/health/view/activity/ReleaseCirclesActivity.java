@@ -48,10 +48,8 @@ import com.wd.health.presenter.DepartmentListPresenter;
 import com.wd.health.view.adapter.ConsultationTwoAdapter;
 import com.wd.health.view.adapter.IllnessAdapter;
 import com.wd.mylibrary.Base.BaseActivity;
-import com.wd.mylibrary.utils.ImageUtil;
 import com.ypx.imagepicker.bean.ImageItem;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -61,9 +59,7 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import okhttp3.MediaType;
 import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 
 public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter> implements IContract.iView {
     @BindView(R2.id.release_sickCircle_iv_user_head_pic)
@@ -96,8 +92,6 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
     EditText release_circle_et_treatmentProcess;
     @BindView(R2.id.release_circle_iv_upload_Picture)
     GridLayout release_circle_iv_upload_Picture;
-    @BindView(R2.id.release_circle_iv_delete_Picture)
-    ImageView release_circle_iv_delete_Picture;
     @BindView(R2.id.item_switch)
     Switch item_switch;
     @BindView(R2.id.button_hbi3)

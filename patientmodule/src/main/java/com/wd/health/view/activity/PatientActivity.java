@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.view.custom.NoScrollViewPager;
 import com.wd.health.view.fragment.PatientFragment;
 import com.wd.mylibrary.Base.BaseActivity;
@@ -20,7 +21,7 @@ import butterknife.ButterKnife;
 public class PatientActivity extends BaseActivity {
 
 
-    @BindView(R.id.patient_pager)
+    @BindView(R2.id.patient_pager)
     NoScrollViewPager patient_pager;
     private ArrayList<Fragment> list;
     private ArrayList<String> name;
