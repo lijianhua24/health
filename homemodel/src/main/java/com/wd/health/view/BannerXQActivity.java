@@ -6,7 +6,6 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.wd.health.R;
 import com.wd.health.R2;
 import com.wd.health.app.App;
 import com.wd.mylibrary.Base.BaseActivity;
