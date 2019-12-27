@@ -71,7 +71,7 @@ public class FindActivity extends BaseActivity<FindPresenter> implements HomeCon
 
     @Override
     protected int provideLayoutId() {
-        return R2.layout.activity_find;
+        return R.layout.activity_find;
     }
 
 
@@ -79,6 +79,7 @@ public class FindActivity extends BaseActivity<FindPresenter> implements HomeCon
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.home_touxiang:
+                finish();
                 break;
             case R.id.home_xiaoxi:
                 break;

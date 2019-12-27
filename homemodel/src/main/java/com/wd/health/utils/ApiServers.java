@@ -4,6 +4,8 @@ import com.wd.health.bean.AttentionBean;
 import com.wd.health.bean.BannerBean;
 import com.wd.health.bean.CheckDoctorsBean;
 import com.wd.health.bean.CmedicinesBean;
+import com.wd.health.bean.CollectionBean;
+import com.wd.health.bean.CollectionsBean;
 import com.wd.health.bean.ConsultBean;
 import com.wd.health.bean.CurrentBean;
 import com.wd.health.bean.DepartmentBean;
@@ -113,5 +115,11 @@ public interface ApiServers {
     @POST("user/inquiry/verify/v1/pushMessage")
     Observable<PushMessageBean> getMessage(@Header("userId") String userId, @Header("sessionId") String sessionId, @Field("inquiryId") int inquiryId,@Field("content") String content,@Field("type") int type,@Field("doctorId") int doctorId);
 
-    //
+    //收藏资讯
+    @POST("user/verify/v1/addInfoCollection")
+    Observable<CollectionBean> getCollection(@Header("userId") String userId,@Header("sessionId") String sessionId,@Query("infoId") int infoId);//收藏资讯
+
+    //取消资讯收藏
+    @POST("user/verify/v1/addInfoCollection")
+    Observable<CollectionsBean> getCollections(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("infoId") int infoId);
 }

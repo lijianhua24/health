@@ -276,6 +276,22 @@ public interface HomeContract {
 
                 void onSpyDetailsFailure(Throwable e);
             }
+            void getgetCollectionModel(String userId,String sessionId,Integer infoId,IModelgetCollectionCallback callback);
+
+            //model层中的接口回调
+            interface IModelgetCollectionCallback {
+                void ongetCollectionSuccess(Object data);
+
+                void ongetCollectionFailure(Throwable e);
+            }
+            void getgetCollectionsModel(String userId,String sessionId,Integer infoId,IModelgetCollectionsCallback callback);
+
+            //model层中的接口回调
+            interface IModelgetCollectionsCallback {
+                void ongetCollectionsSuccess(Object data);
+
+                void ongetCollectionsFailure(Throwable e);
+            }
         }
 
         //view层  命名必须是IView
@@ -286,12 +302,24 @@ public interface HomeContract {
 
             void onSpyDetailsFailure(Throwable e);
 
+            void ongetCollectionSuccess(Object data);
+
+            void ongetCollectionFailure(Throwable e);
+
+            void ongetCollectionsSuccess(Object data);
+
+            void ongetCollectionsFailure(Throwable e);
+
         }
 
         //presenter层   命名必须是IPresenter
         interface IPresenter {
 
             void getSpyDetailsPresenter(String userId,String sessionId,Integer infoId);
+
+            void getgetCollectionPresenter(String userId,String sessionId,Integer infoId);
+
+            void getgetCollectionsPresenter(String userId,String sessionId,Integer infoId);
 
         }
     }

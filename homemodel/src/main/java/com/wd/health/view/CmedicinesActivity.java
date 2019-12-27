@@ -112,7 +112,7 @@ public class CmedicinesActivity extends BaseActivity<CmedicinesPreesenter> imple
 
     @Override
     protected int provideLayoutId() {
-        return R2.layout.activity_cmedicines;
+        return R.layout.activity_cmedicines;
     }
 
 

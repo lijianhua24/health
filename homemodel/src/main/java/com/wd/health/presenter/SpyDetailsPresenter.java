@@ -24,6 +24,36 @@ public class SpyDetailsPresenter extends BasePresenter<HomeContract.SpyDetailsCo
     }
 
     @Override
+    public void getgetCollectionPresenter(String userId, String sessionId, Integer infoId) {
+        homeModel.getgetCollectionModel(userId, sessionId, infoId, new HomeContract.SpyDetailsContreact.IModel.IModelgetCollectionCallback() {
+            @Override
+            public void ongetCollectionSuccess(Object data) {
+                getView().ongetCollectionSuccess(data);
+            }
+
+            @Override
+            public void ongetCollectionFailure(Throwable e) {
+                getView().ongetCollectionFailure(e);
+            }
+        });
+    }
+
+    @Override
+    public void getgetCollectionsPresenter(String userId, String sessionId, Integer infoId) {
+        homeModel.getgetCollectionsModel(userId, sessionId, infoId, new HomeContract.SpyDetailsContreact.IModel.IModelgetCollectionsCallback() {
+            @Override
+            public void ongetCollectionsSuccess(Object data) {
+                getView().ongetCollectionsSuccess(data);
+            }
+
+            @Override
+            public void ongetCollectionsFailure(Throwable e) {
+                getView().ongetCollectionsFailure(e);
+            }
+        });
+    }
+
+    @Override
     protected void initModel() {
         homeModel = new HomeModel();
     }

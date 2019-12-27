@@ -180,7 +180,7 @@ public class JgActivity extends BaseActivity<ImPresenterPresenter> implements IM
                 String s = imEdit.getText().toString();
                 if (s!=null){
                     mPresenter.getMessagePresenter(userId,sessionId,3882,s,1,156);
-                    mPresenter.getCurrentPresenter(userId,sessionId);
+
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
                     linearLayoutManager.setReverseLayout(true);//布局反向
                     linearLayoutManager.setStackFromEnd(true);//数据反向

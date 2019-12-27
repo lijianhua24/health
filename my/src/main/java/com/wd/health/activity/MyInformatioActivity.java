@@ -133,7 +133,7 @@ public class MyInformatioActivity extends BaseActivity<ModifyHeadPicPresenter> i
 
     @Override
     protected int provideLayoutId() {
-        return R2.layout.activity_my_informatio;
+        return R.layout.activity_my_informatio;
     }
 
 

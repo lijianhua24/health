@@ -16,7 +16,7 @@ public class MyAdoptedListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R2.layout.activity_my_adopted_list);
+        setContentView(R.layout.activity_my_adopted_list);
 
         String md5 = MD5("123456");
         Log.d(TAG, "onCreate: "+md5);

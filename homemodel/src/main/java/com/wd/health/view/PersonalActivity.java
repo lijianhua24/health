@@ -81,7 +81,7 @@ public class PersonalActivity extends BaseActivity<DoctorListPresenter> implemen
 
     @Override
     protected void initData() {
-
+        recyCommit.setNestedScrollingEnabled(false);
         doctorId =this.getIntent().getIntExtra("doctorId", 0);
         userId = App.sharedPreferences.getString("userId", null);
         sessionId = App.sharedPreferences.getString("sessionId", null);

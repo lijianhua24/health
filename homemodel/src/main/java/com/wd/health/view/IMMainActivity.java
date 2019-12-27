@@ -33,7 +33,7 @@ public class IMMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R2.layout.activity_immain);
+        setContentView(R.layout.activity_immain);
         ButterKnife.bind(this);
     }
 

@@ -59,6 +59,7 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
     <ImageView
+        android:padding="50dp"
         android:background="@mipmap/common_button_collection_small_n"
         android:layout_width="50dp"
         android:id="@+id/spy_shoucang"

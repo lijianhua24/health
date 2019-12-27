@@ -4,6 +4,8 @@ import com.wd.health.bean.AttentionBean;
 import com.wd.health.bean.BannerBean;
 import com.wd.health.bean.CheckDoctorsBean;
 import com.wd.health.bean.CmedicinesBean;
+import com.wd.health.bean.CollectionBean;
+import com.wd.health.bean.CollectionsBean;
 import com.wd.health.bean.ConsultBean;
 import com.wd.health.bean.CurrentBean;
 import com.wd.health.bean.DepartmentBean;
@@ -232,6 +234,40 @@ public class HomeModel implements HomeContract.BnnerContreact.IModel, HomeContra
                     @Override
                     public void onError(Throwable e) {
                         callback.onSpyDetailsFailure(e);
+                    }
+                });
+    }
+
+    @Override
+    public void getgetCollectionModel(String userId, String sessionId, Integer infoId, IModelgetCollectionCallback callback) {
+        RequestNet.getInstance().create().getCollection(userId, sessionId, infoId)
+                .compose(CommonSchedulers.<CollectionBean>io2main())
+                .subscribe(new CommonObserver<CollectionBean>() {
+                    @Override
+                    public void onNext(CollectionBean emailBean) {
+                        callback.ongetCollectionSuccess(emailBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.ongetCollectionFailure(e);
+                    }
+                });
+    }
+
+    @Override
+    public void getgetCollectionsModel(String userId, String sessionId, Integer infoId, IModelgetCollectionsCallback callback) {
+        RequestNet.getInstance().create().getCollections(userId, sessionId, infoId)
+                .compose(CommonSchedulers.<CollectionsBean>io2main())
+                .subscribe(new CommonObserver<CollectionsBean>() {
+                    @Override
+                    public void onNext(CollectionsBean emailBean) {
+                        callback.ongetCollectionsSuccess(emailBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.ongetCollectionsFailure(e);
                     }
                 });
     }

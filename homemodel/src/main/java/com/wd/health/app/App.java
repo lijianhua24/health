@@ -22,7 +22,7 @@ public class App extends com.wd.mylibrary.app.App {
         JMessageClient.init(this,true);
         SharedPreferences.Editor edit = sharedPreferences.edit();
         edit.putString("userId","456");
-        edit.putString("sessionId","1577340594918456");
+        edit.putString("sessionId","1577411404818456");
         edit.commit();
 
     }

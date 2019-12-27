@@ -38,7 +38,7 @@ public class FocusActivity extends BaseActivity<FocusPresenter> implements Focus
 
     @Override
     protected int provideLayoutId() {
-        return R2.layout.activity_focus;
+        return R.layout.activity_focus;
     }
 
     @Override
