@@ -35,7 +35,7 @@
         android:text="查看资料  >>"
         android:layout_alignParentRight="true"
         android:layout_alignBottom="@id/my_iv_touxiang"
-        android:textSize="@dimen/sp_12"
+        android:textSize="@dimen/sp_16"
         android:id="@+id/my_tv_geren"
         android:gravity="center"
         android:layout_marginBottom="@dimen/dp_25"

@@ -42,6 +42,7 @@
         android:background="@mipmap/my_wallet_bg"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/dowallet_iv_back"
+        android:id="@+id/dowallet_rl_one"
         android:layout_marginTop="@dimen/dp_44"
         >
         <TextView
@@ -59,7 +60,6 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="@dimen/sp_48"
-            android:text="29870"
             android:paddingLeft="@dimen/dp_20"
             android:textColor="@color/white"
             android:paddingTop="@dimen/dp_60"
@@ -81,6 +81,7 @@
             android:layout_height="@dimen/dp_29"
             android:background="@drawable/doctorwalletbton"
             android:text="提现"
+            android:id="@+id/dowallet_but_withdraw"
             android:textColor="@color/blue"
             android:gravity="center"
             android:layout_alignParentBottom="true"
@@ -88,6 +89,13 @@
             android:layout_marginBottom="@dimen/dp_20"
             android:layout_marginRight="@dimen/dp_20"
             ></Button>
-    </RelativeLayout>
 
+    </RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="@dimen/dp_320"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/dowallet_rl_one"
+        android:id="@+id/dowallet_rcv_Revenue"
+        ></androidx.recyclerview.widget.RecyclerView>
 </RelativeLayout>

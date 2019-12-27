@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginTop="@dimen/dp_20"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/hei"
+        android:textSize="@dimen/sp_14"
+        android:textStyle="bold"
+        android:id="@+id/revenue_tv_incomeType"
+        android:layout_marginLeft="@dimen/dp_20"
+        ></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/revenue_tv_incomeType"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:textSize="@dimen/sp_10"
+        android:textColor="@color/huii"
+        android:layout_marginTop="@dimen/dp_4"
+        android:id="@+id/revenue_tv_recordTime"
+        ></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_3"
+        android:layout_toLeftOf="@id/revenue_tv_money"
+        android:id="@+id/revenue_tv_direction"
+        android:textSize="@dimen/sp_14"
+        android:textStyle="bold"
+        ></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_20"
+        android:id="@+id/revenue_tv_money"
+        android:textSize="@dimen/sp_14"
+        android:textStyle="bold"
+        ></TextView>
+</RelativeLayout>

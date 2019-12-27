@@ -1,6 +1,8 @@
 package com.wd.doctor.model;
 
 import com.wd.doctor.bean.DoctorWalletBean;
+import com.wd.doctor.bean.QueryRevenueBean;
+import com.wd.doctor.bean.WithdrawBean;
 import com.wd.doctor.contract.DoctorWalletContract;
 import com.wd.doctor.utils.ApiServers;
 import com.wd.doctor.utils.RetrofitManager;
@@ -28,6 +30,42 @@ public class DoctorWalletModel implements DoctorWalletContract.iModel {
                     @Override
                     public void onError(Throwable e) {
                         callBack.onDoctorWalletFailure(e);
+                    }
+                });
+    }
+
+    @Override
+    public void getQueryRevenueData(int doctorId, String sessionId, int page, int count, iDoctorWalletCallBack callBack) {
+        RetrofitManager.getInstance().create(ApiServers.class)
+                .getQueryRevenue(doctorId,sessionId,page,count)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<QueryRevenueBean>() {
+                    @Override
+                    public void onNext(QueryRevenueBean queryRevenueBean) {
+                        callBack.onQueryRevenueSuccess(queryRevenueBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callBack.onQueryRevenueFailure(e);
+                    }
+                });
+    }
+
+    @Override
+    public void getWithdrawData(int doctorId, String sessionId, int money, iDoctorWalletCallBack callBack) {
+        RetrofitManager.getInstance().create(ApiServers.class)
+                .getWithdraw(doctorId,sessionId,money)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<WithdrawBean>() {
+                    @Override
+                    public void onNext(WithdrawBean withdrawBean) {
+                        callBack.onWithdrawSuccess(withdrawBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callBack.onWithdrawFailure(e);
                     }
                 });
     }

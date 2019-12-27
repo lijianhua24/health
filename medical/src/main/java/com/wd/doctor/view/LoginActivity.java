@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wd.doctor.R;
+import com.wd.doctor.R2;
 import com.wd.doctor.bean.ImageQueryBean;
 import com.wd.doctor.bean.LoginBean;
 import com.wd.doctor.contract.LoginContract;
