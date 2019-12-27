@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.bean.HealthBuyBean;
 import com.wd.health.bean.HealthSortBean;
 import com.wd.health.bean.QvideoListBean;
@@ -28,20 +29,19 @@ import com.wd.mylibrary.app.Constant;
 import java.util.List;
 
 import butterknife.BindView;
-import master.flame.danmaku.danmaku.model.BaseDanmaku;
 import master.flame.danmaku.ui.widget.DanmakuView;
 
 public class VideoSortFragment extends BaseFragment<HealthSortPresenter> implements IContract.iView {
 
-    @BindView(R.id.xrecyclerview)
+    @BindView(R2.id.xrecyclerview)
     XRecyclerView xrecyclerview;
-    @BindView(R.id.danwen)
+    @BindView(R2.id.danwen)
     EditText dan_wen;
-    @BindView(R.id.dan_fa)
+    @BindView(R2.id.dan_fa)
     TextView dan_fa;
-    @BindView(R.id.dddd)
+    @BindView(R2.id.dddd)
     RelativeLayout dddd;
-    @BindView(R.id.video_danmu)
+    @BindView(R2.id.video_danmu)
     DanmakuView video_danmu;
     private int anInt;
     private int page = 1;

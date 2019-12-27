@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.view.curtrom.NoScrollViewPager;
 import com.wd.health.view.fragment.VideoFragment;
 import com.wd.mylibrary.Base.BaseActivity;
@@ -18,7 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class VideoActivity extends BaseActivity {
-    @BindView(R.id.video_pager)
+    @BindView(R2.id.video_pager)
     NoScrollViewPager video_pager;
     private ArrayList<Fragment> list;
     @Override
