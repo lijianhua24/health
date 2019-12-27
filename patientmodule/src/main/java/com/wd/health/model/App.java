@@ -1,6 +1,4 @@
 package com.wd.health.model;
-
-import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -19,7 +17,7 @@ public class App  extends com.wd.mylibrary.app.App {
         super.onCreate();
         sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
         SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putString("sessionId","1576889997444445");
+        edit.putString("sessionId","1577408441496445");
         edit.putInt("userId",445);
         edit.commit();
     }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:state_checked="true"><bitmap android:src="@drawable/lalalalala"/></item>
-    <item android:state_checked="false"><bitmap android:src="@drawable/lalalalala"/></item>
+    <item android:state_checked="true"><bitmap android:src="@drawable/video_drop_down"/></item>
+    <item android:state_checked="false"><bitmap android:src="@drawable/video_drop_down"/></item>
 </selector>

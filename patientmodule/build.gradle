@@ -1,18 +1,26 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.jakewharton.butterknife'
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
 
 
     defaultConfig {
         applicationId "com.wd.health"
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ AROUTER_MODULE_NAME : project.getName() ]
+            }
+        }
+
     }
+
+
 
     buildTypes {
         release {
@@ -37,8 +45,8 @@ dependencies {
 
 
     //Butterknife依赖
-    implementation 'com.jakewharton:butterknife:10.0.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
+    implementation 'com.jakewharton:butterknife:10.2.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
     implementation rootProject.ext.dependencies["recyclerview"]
     implementation rootProject.ext.dependencies["xrecyclerview"]
     implementation rootProject.ext.dependencies["xrecyclerviews"]
@@ -56,22 +64,4 @@ dependencies {
     implementation 'com.ypx.yimagepicker:androidx:2.4.2'
 
     implementation project(path: ':mylibrary')
-////Gson
-//    //okhttp
-//    implementation 'com.squareup.okhttp3:okhttp:3.9.0'
-
-//    //日志拦截器
-//    implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
-
-    //配置retrofit2.0
-//    implementation 'com.squareup.retrofit2:retrofit:+'
-    //让retrofit2.0 支持Gson解析
-//    implementation 'com.squareup.retrofit2:converter-gson:+'
-
-    //Rxjava2需要依赖
-//    implementation 'io.reactivex.rxjava2:rxjava:+'
-//    implementation 'io.reactivex.rxjava2:rxandroid:+'
-
-    //让retrofit支持Rxjava2
-//    implementation 'com.squareup.retrofit2:adapter-rxjava2:+'
 }

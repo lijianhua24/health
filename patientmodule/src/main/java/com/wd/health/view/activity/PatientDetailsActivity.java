@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.bean.CommentCircleBean;
 import com.wd.health.bean.OpinionBean;
 import com.wd.health.bean.PatientDetailsBean;
@@ -42,60 +43,59 @@ import butterknife.ButterKnife;
 public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter> implements IContractDetails.iView {
 
 
-    @BindView(R.id.patient_iv_user_head_pic)
+    @BindView(R2.id.patient_iv_user_head_pic)
     ImageView patient_iv_user_head_pic;
-    @BindView(R.id.patient_activity_tv_title)
+    @BindView(R2.id.patient_activity_tv_title)
     TextView patient_activity_tv_title;
-    @BindView(R.id.patient_iv_user_message)
+    @BindView(R2.id.patient_iv_user_message)
     ImageView patient_iv_user_message;
-    @BindView(R.id.patient_relative_titlebar)
+    @BindView(R2.id.patient_relative_titlebar)
     RelativeLayout patient_relative_titlebar;
-    @BindView(R.id.patient_activity_tv_adoptNickName)
+    @BindView(R2.id.patient_activity_tv_adoptNickName)
     TextView patient_activity_tv_adoptNickName;
-    @BindView(R.id.patient_activity_tv_disease)
+    @BindView(R2.id.patient_activity_tv_disease)
     TextView patient_activity_tv_disease;
-    @BindView(R.id.patient_activity_tv_department)
+    @BindView(R2.id.patient_activity_tv_department)
     TextView patient_activity_tv_department;
-    @BindView(R.id.patient_activity_tv_detail)
+    @BindView(R2.id.patient_activity_tv_detail)
     TextView patient_activity_tv_detail;
-    @BindView(R.id.patient_activity_tv_treatment_time)
+    @BindView(R2.id.patient_activity_tv_treatment_time)
     TextView patient_activity_tv_treatment_time;
-    @BindView(R.id.patient_activity_tv_treatmentProcess)
+    @BindView(R2.id.patient_activity_tv_treatmentProcess)
     TextView patient_activity_tv_treatmentProcess;
-    @BindView(R.id.patient_activity_iv_picture)
+    @BindView(R2.id.patient_activity_iv_picture)
     ImageView patient_activity_iv_picture;
-    @BindView(R.id.patient_activity_tv_commentNum)
+    @BindView(R2.id.patient_activity_tv_commentNum)
     TextView patient_activity_tv_commentNum;
-    @BindView(R.id.patient_activity_iv_content)
+    @BindView(R2.id.patient_activity_iv_content)
     ImageView patient_activity_iv_content;
-    @BindView(R.id.patient_activity_tv_collectionNum)
+    @BindView(R2.id.patient_activity_tv_collectionNum)
     TextView patient_activity_tv_collectionNum;
-    @BindView(R.id.img_HeadPic)
+    @BindView(R2.id.img_HeadPic)
     SimpleDraweeView imgHeadPic;
-    @BindView(R.id.name_NickName)
+    @BindView(R2.id.name_NickName)
     TextView nameNickName;
-    @BindView(R.id.time_adoptTime)
+    @BindView(R2.id.time_adoptTime)
     TextView time_adoptTime;
-    @BindView(R.id.text_adoptComment)
+    @BindView(R2.id.text_adoptComment)
     TextView textadoptComment;
-    @BindView(R.id.adoptFlag)
+    @BindView(R2.id.adoptFlag)
     LinearLayout adoptFlag;
-    @BindView(R.id.recycler_sick_circle_comment_list)
+    @BindView(R2.id.recycler_sick_circle_comment_list)
     RecyclerView recycler_sick_circle_comment_list;
-    @BindView(R.id.patient_activity_iv_cancel)
+    @BindView(R2.id.patient_activity_iv_cancel)
     ImageView patient_activity_iv_cancel;
-    @BindView(R.id.patient_activity_et_content)
+    @BindView(R2.id.patient_activity_et_content)
     EditText patient_activity_et_content;
-    @BindView(R.id.patient_activity_iv_send_content)
+    @BindView(R2.id.patient_activity_iv_send_content)
     ImageView patient_activity_iv_send_content;
-    @BindView(R.id.patient_activity_relative_content)
+    @BindView(R2.id.patient_activity_relative_content)
     RelativeLayout patient_activity_relative_content;
-    @BindView(R.id.patient_activity_iv_intent_release_sickCircle)
+    @BindView(R2.id.patient_activity_iv_intent_release_sickCircle)
     ImageView patient_activity_iv_intent_release_sickCircle;
-    @BindView(R.id.patient_activity_relative_release_sickCircle)
+    @BindView(R2.id.patient_activity_relative_release_sickCircle)
     RelativeLayout patient_activity_relative_release_sickCircle;
     private RecyclerSickCircleCommentListAdapter recyclerSickCircleCommentListAdapter;
-    private RelativeLayout activiy_patient_zong;
     private LinearLayout activiy_patient_deng;
     private int userId;
     private String sessionId;
@@ -138,7 +138,6 @@ public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter
 
     @Override
     protected void initView() {
-        activiy_patient_zong = findViewById(R.id.activiy_patient_zong);
     }
 
     @Override

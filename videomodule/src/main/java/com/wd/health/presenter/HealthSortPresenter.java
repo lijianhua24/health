@@ -7,13 +7,6 @@ import com.wd.health.bean.VideoSortBean;
 import com.wd.health.contract.IContract;
 import com.wd.health.model.HealthSortModel;
 import com.wd.mylibrary.Base.BasePresenter;
-
-/**
- * <p>文件描述：<p>
- * <p>作者：黎怡志<p>
- * <p>创建时间：2019/12/19<p>
- * <p>更改时间：2019/12/19<p>
- */
 public class HealthSortPresenter extends BasePresenter<IContract.iView> implements IContract.iPresenter {
 
     private HealthSortModel healthSortModel;
@@ -159,7 +152,6 @@ public class HealthSortPresenter extends BasePresenter<IContract.iView> implemen
         healthSortModel.getHealthBuy(userId, sessionId, videoId, price, new IContract.iModel.iDepartmentListCallBack() {
             @Override
             public void healthSortsuccess(HealthSortBean healthSortBean) {
-
             }
 
             @Override
@@ -188,14 +180,10 @@ public class HealthSortPresenter extends BasePresenter<IContract.iView> implemen
             }
 
             @Override
-            public void HealthCollectionsuccess(HealthBuyBean healthBuyBean) {
-
-            }
+            public void HealthCollectionsuccess(HealthBuyBean healthBuyBean) {}
 
             @Override
-            public void HealthCollectionFailure(Throwable e) {
-
-            }
+            public void HealthCollectionFailure(Throwable e){}
 
             @Override
             public void QvideoListsuccess(QvideoListBean qvideoListBean) {
