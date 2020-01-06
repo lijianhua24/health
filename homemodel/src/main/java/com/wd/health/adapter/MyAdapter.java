@@ -20,6 +20,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.stx.xhb.androidx.XBanner;
 import com.stx.xhb.androidx.entity.SimpleBannerInfo;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.app.App;
 import com.wd.health.bean.BannerBean;
 import com.wd.health.bean.DepartmentBean;
@@ -209,7 +210,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     class MyBannerHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.banner_banner)
+        @BindView(R2.id.banner_banner)
         XBanner bannerBanner;
 
         public MyBannerHolder(@NonNull View itemView) {

@@ -2,6 +2,8 @@ package com.wd.mylibrary.app;
 
 import android.app.Application;
 
+
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.wd.mylibrary.Test.ToastUtils;
 
@@ -16,6 +18,9 @@ public class App extends Application {
         sContext = this;
         ToastUtils.init(sContext);
         Fresco.initialize(this);
+       /* ARouter.openLog();
+        ARouter.openDebug();*/
+        ARouter.init(this);
 
     }
 

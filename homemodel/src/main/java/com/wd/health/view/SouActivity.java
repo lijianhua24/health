@@ -164,7 +164,7 @@ public class SouActivity extends BaseActivity<SearchPresenter> implements HomeCo
         return R2.layout.activity_sou;
     }
 
-    @OnClick(R.id.sou_sou)
+    @OnClick(R2.id.sou_sou)
     public void onViewClicked() {
         String s = souEdit.getText().toString();
         String trim = s.trim();

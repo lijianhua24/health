@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import butterknife.BindView;
 
 
-//@Route(path = "/app/sMainActivity")
 public class HomeActivity extends BaseActivity {
 
 

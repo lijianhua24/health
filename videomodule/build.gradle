@@ -64,6 +64,7 @@ dependencies {
     implementation rootProject.ext.dependencies["ijkplayer"]
     implementation rootProject.ext.dependencies["ijkplayerarmv7a"]
     implementation rootProject.ext.dependencies["ijkplayerexo"]
+    implementation rootProject.ext.dependencies["autolayout"]
     implementation 'com.github.ctiao:DanmakuFlameMaster:0.7.3'
     implementation 'com.yanzhenjie:permission:2.0.3'
 

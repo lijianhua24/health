@@ -186,7 +186,7 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements HomeC
         return R.layout.fragment_home;
     }
 
-    @OnClick(R.id.home_gengduo)
+    @OnClick(R2.id.home_gengduo)
     public void onViewClicked() {
         Toast.makeText(getActivity(), "更多", Toast.LENGTH_SHORT).show();
         SharedPreferences.Editor edit = App.sharedPreferences.edit();

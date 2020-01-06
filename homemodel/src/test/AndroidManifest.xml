@@ -9,7 +9,8 @@
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" /> <!-- 申请电源锁需要的权限 -->
     <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- 震动权限 -->
     <uses-permission android:name="android.permission.VIBRATE" />
-
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
        android:name=".app.App"
@@ -32,20 +33,20 @@
         <activity android:name=".view.FindActivity" />
         <activity android:name=".view.FettleActivity" />
         <activity android:name=".view.BannerXQActivity" />
-        <activity android:name=".HomeActivity">
-            <intent-filter>
+        <activity android:name=".HomeActivity"/>
+           <!-- <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            </intent-filter>-->
 
-        <!--<meta-data
+
+        <meta-data
             android:name="design_width_in_dp"
             android:value="360" />
         <meta-data
-            android:names="design_height_in_dp"
-            android:value="640" />-->
+            android:name="design_height_in_dp"
+            android:value="640" />
 
         <service
             android:name=".XService"

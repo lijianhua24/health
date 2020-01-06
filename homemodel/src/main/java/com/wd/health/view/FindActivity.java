@@ -1,5 +1,6 @@
 package com.wd.health.view;
 
+import android.annotation.SuppressLint;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -75,13 +76,14 @@ public class FindActivity extends BaseActivity<FindPresenter> implements HomeCon
     }
 
 
-    @OnClick({R.id.home_touxiang, R.id.home_xiaoxi})
+    @SuppressLint("InvalidR2Usage")
+    @OnClick({R2.id.home_touxiang, R2.id.home_xiaoxi})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.home_touxiang:
+            case R2.id.home_touxiang:
                 finish();
                 break;
-            case R.id.home_xiaoxi:
+            case R2.id.home_xiaoxi:
                 break;
         }
     }

@@ -125,7 +125,7 @@ public class SpyDetailsActivity extends BaseActivity<SpyDetailsPresenter> implem
         return R.layout.activity_spy_details;
     }
 
-    @OnClick(R.id.spy_shoucang)
+    @OnClick(R2.id.spy_shoucang)
     public void onViewClicked() {
 
     }

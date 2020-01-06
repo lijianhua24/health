@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.butterknife'
 android {
+
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
 
@@ -26,9 +27,10 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [AROUTER_MODULE_NAME: project.getName()]
+                arguments = [ moduleName : project.getName() ]
             }
         }
+
     }
 
     buildTypes {
@@ -42,6 +44,15 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    /*sourceSets {
+        main {
+            //组件化与继承模式使用不同的AndroidManifest文件
+            if (true) {
+                manifest.srcFile 'src/test/AndroidManifest.xml'
+            }
+        }
+    }*/
+
 }
 
 dependencies {
@@ -57,44 +68,48 @@ dependencies {
 
     implementation 'com.android.support:design:28.0.0'
 
+    //Butterknife依赖
     implementation 'com.jakewharton:butterknife:10.0.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
-//Gson
-    implementation 'com.google.code.gson:gson:2.4'
-
-    //okhttp
-    implementation 'com.squareup.okhttp3:okhttp:3.9.0'
-
-    //日志拦截器
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
-
-    //配置retrofit2.0
-    implementation 'com.squareup.retrofit2:retrofit:+'
-    //让retrofit2.0 支持Gson解析
-    implementation 'com.squareup.retrofit2:converter-gson:+'
-
-    //Rxjava2需要依赖
-    implementation 'io.reactivex.rxjava2:rxjava:+'
-    implementation 'io.reactivex.rxjava2:rxandroid:+'
-
-    //让retrofit支持Rxjava2
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:+'
+    //apply plugin: 'com.jakewharton.butterknife'
+    //
+    implementation rootProject.ext.dependencies["recyclerview"]
+    implementation rootProject.ext.dependencies["xrecyclerview"]
+    implementation rootProject.ext.dependencies["xrecyclerviews"]
+    implementation rootProject.ext.dependencies["glide"]
+    implementation rootProject.ext.dependencies["fresco:fresco"]
+    implementation rootProject.ext.dependencies["gson"]
+    implementation rootProject.ext.dependencies["logging-interceptor"]
+    implementation rootProject.ext.dependencies["okhttp3"]
+    implementation rootProject.ext.dependencies["retrofit"]
+    implementation rootProject.ext.dependencies["retrofit-converter-gson"]
+    implementation rootProject.ext.dependencies["retrofit-adapter-rxjava"]
+    implementation rootProject.ext.dependencies["rxjava2:rxandroid"]
+    implementation rootProject.ext.dependencies["rxjava2:rxjava"]
+    implementation rootProject.ext.dependencies["retrofit2:adapter"]
 
     implementation rootProject.ext.dependencies["fresco:fresco"]
 
     implementation rootProject.ext.dependencies["Xbanner"]
-    implementation rootProject.ext.dependencies["xrecyclerview"]
-    implementation rootProject.ext.dependencies["xrecyclerviews"]
+    implementation rootProject.ext.dependencies["autolayout"]
+    implementation rootProject.ext.dependencies["glide"]
+    implementation rootProject.ext.dependencies["jiguangjcore"]
+    implementation rootProject.ext.dependencies["jiguangjmessage"]
+    implementation rootProject.ext.dependencies["jiguangjmessages"]
+    implementation rootProject.ext.dependencies["SmartRefreshLayout"]
+    implementation rootProject.ext.dependencies["SmartRefreshLayouts"]
 
-    implementation 'com.zhy:autolayout:1.4.5'
 
-    implementation 'com.github.bumptech.glide:glide:4.9.0'
-    implementation 'cn.jiguang.sdk:jmessage:2.9.0'  // 此处以JMessage 2.9.0 版本为例。
-    implementation 'cn.jiguang.sdk:jcore:2.0.0'  // 此处以JCore 2.0.0 版本为例。
+   // implementation 'cn.jiguang.sdk:jmessage:2.9.0'  // 此处以JMessage 2.9.0 版本为例。
+  //  implementation 'cn.jiguang.sdk:jcore:2.0.0'  // 此处以JCore 2.0.0 版本为例。
     //SmartRefreshLayout(Recycleview)刷新效果依赖
-    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
+    //implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
 //没有使用特殊Header和Footer，可以不加下面这行
-    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14'
+   // implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14'
+    //annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+    /*implementation 'com.alibaba:arouter-api:1.3.1'
 
+    annotationProcessor'com.alibaba:arouter-compiler:1.1.4'*/
+    //implementation 'com.zhy:autolayout:1.4.5'
 
 }

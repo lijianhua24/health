@@ -1,5 +1,6 @@
 package com.wd.health.view;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -98,7 +99,7 @@ public class JgActivity extends BaseActivity<ImPresenterPresenter> implements IM
 
     @Override
     protected int provideLayoutId() {
-        return R2.layout.activity_jg;
+        return R.layout.activity_jg;
     }
 
     @Override
@@ -170,13 +171,14 @@ public class JgActivity extends BaseActivity<ImPresenterPresenter> implements IM
 
 
 
-    @OnClick({R.id.titles_touxiang, R.id.im_fs_tv})
+    @SuppressLint("InvalidR2Usage")
+    @OnClick({R2.id.titles_touxiang, R2.id.im_fs_tv})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.titles_touxiang:
+            case R2.id.titles_touxiang:
                 fileList();
                 break;
-            case R.id.im_fs_tv:
+            case R2.id.im_fs_tv:
                 String s = imEdit.getText().toString();
                 if (s!=null){
                     mPresenter.getMessagePresenter(userId,sessionId,3882,s,1,156);

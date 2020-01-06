@@ -1,5 +1,6 @@
 package com.wd.health.view;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,12 +38,13 @@ public class IMMainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.button, R.id.button2})
+    @SuppressLint("InvalidR2Usage")
+    @OnClick({R2.id.button, R2.id.button2})
     public void onViewClicked(View view) {
         String name = editText3.getText().toString();
         String pwd = editText4.getText().toString();
         switch (view.getId()) {
-            case R.id.button:
+            case R2.id.button:
                 JMessageClient.register(name, pwd, new BasicCallback() {
                     @Override
                     public void gotResult(int i, String s) {
@@ -54,7 +56,7 @@ public class IMMainActivity extends AppCompatActivity {
                     }
                 });
                 break;
-            case R.id.button2:
+            case R2.id.button2:
                 JMessageClient.login(name, pwd, new BasicCallback() {
                     @Override
                     public void gotResult(int i, String s) {

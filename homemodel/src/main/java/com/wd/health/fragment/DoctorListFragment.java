@@ -1,5 +1,6 @@
 package com.wd.health.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -294,10 +295,11 @@ public class DoctorListFragment extends BaseFragment<CheckDoctorsPresenter> impl
 
     }
 
-    @OnClick({R.id.up, R.id.next, R.id.more})
+    @SuppressLint("InvalidR2Usage")
+    @OnClick({R2.id.up, R2.id.next, R2.id.more})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.up:
+            case R2.id.up:
                 page = page - 1;
                 if (position == 0) {
                     mPresenter.getCheckDoctorsPresenter(departmentId, 1, 0, page, 4);
@@ -313,7 +315,7 @@ public class DoctorListFragment extends BaseFragment<CheckDoctorsPresenter> impl
                 }
                 page1.setText("" + page);
                 break;
-            case R.id.next:
+            case R2.id.next:
                 page++;
                 if (position == 0) {
                     mPresenter.getCheckDoctorsPresenter(departmentId, 1, 0, page, 4);
@@ -329,7 +331,7 @@ public class DoctorListFragment extends BaseFragment<CheckDoctorsPresenter> impl
                 }
                 page1.setText("" + page);
                 break;
-            case R.id.more:
+            case R2.id.more:
                 Intent intent = new Intent(getActivity(), PersonalActivity.class);
                 intent.putExtra("doctorId",doctorId);
                 startActivity(intent);

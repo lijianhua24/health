@@ -95,19 +95,19 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:+'
     //让retrofit支持Rxjava2
     implementation 'com.squareup.retrofit2:adapter-rxjava2:+'
-    api 'com.github.AnJiaoDe:MultiFlowLayout:V1.1.2'
+    implementation 'com.github.AnJiaoDe:MultiFlowLayout:V1.1.2'
 
-    api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
 
-    api 'io.card:android-sdk:5.5.1'
+    implementation 'io.card:android-sdk:5.5.1'
 
-    api 'liji.library.dev:citypickerview:0.7.0'
-    api 'cn.qqtheme.framework:AndroidPicker:latest.integration'
-    api 'com.android.support:cardview-v7:28.0.0'
-    api 'com.github.fanyanlong:RecyTest:V1.0.2'
+    implementation 'liji.library.dev:citypickerview:0.7.0'
+    implementation 'cn.qqtheme.framework:AndroidPicker:latest.integration'
+    implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'com.github.fanyanlong:RecyTest:V1.0.2'
 
-    api 'com.dou361.ijkplayer:jjdxm-ijkplayer:1.0.5'
-    api  'fm.jiecao:jiecaovideoplayer:5.5'
+    implementation 'com.dou361.ijkplayer:jjdxm-ijkplayer:1.0.5'
+    implementation  'fm.jiecao:jiecaovideoplayer:5.5'
     implementation project(path: ':mylibrary')
     implementation project(path: ':orc_library')
     implementation 'com.zhy:autolayout:1.4.5'
