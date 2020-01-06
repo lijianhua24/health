@@ -9,6 +9,7 @@ import com.wd.health.bean.UnitDiseaseBean;
 import com.wd.health.bean.UploadPatientBean;
 import com.wd.mylibrary.Base.IBaseView;
 
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.MultipartBody;
@@ -51,7 +52,7 @@ public interface IContract  extends IBaseView {
         void getKeywordSearch(String keyWord,iDepartmentListCallBack callBack);
 
         void getUnitDisease(int  departmentId,iDepartmentListCallBack callBack);
-        void getuploadPatient(int  userId, String sessionId, int sickCircleId, MultipartBody.Part part, iDepartmentListCallBack callBack);
+        void getuploadPatient(int  userId, String sessionId, int sickCircleId, List<MultipartBody.Part> parts, iDepartmentListCallBack callBack);
         void getDoTask(int  userId, String sessionId, int taskId,iDepartmentListCallBack callBack);
         void getCircleListShow(int departmentId,int page,int count,iDepartmentListCallBack callBack);
 
@@ -91,7 +92,7 @@ public interface IContract  extends IBaseView {
         );
         void getUnitDiseasePresenter(int departmentId);
 
-        void getuploadPatient(int  userId, String sessionId, int sickCircleId, MultipartBody.Part part);
+        void getuploadPatient(int  userId, String sessionId, int sickCircleId, List<MultipartBody.Part> parts);
         void getDoTask(int  userId, String sessionId, int taskId);
     }
 }

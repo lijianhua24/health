@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.health.R;
 import com.wd.health.R2;
 import com.wd.health.bean.CommentCircleBean;
@@ -100,7 +99,8 @@ public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter
     private int userId;
     private String sessionId;
     int page = 1;
-    int count = 5;
+    int count = 10;
+    private int sickCircleId;
 
     @Override
     protected void initData() {
@@ -167,7 +167,7 @@ public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter
                 .into(patient_activity_iv_picture);
         patient_activity_tv_commentNum.setText(result.getCommentNum() + "");
         patient_activity_tv_collectionNum.setText(result.getCollectionNum() + "");
-        int sickCircleId = result.getSickCircleId();
+        sickCircleId = result.getSickCircleId();
 
         Uri parse = Uri.parse(result.getAdoptHeadPic());
         imgHeadPic.setImageURI(parse);
@@ -194,7 +194,8 @@ public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter
     }
 
     @Override
-    public void PatientDetailsFailure(Throwable e){}
+    public void PatientDetailsFailure(Throwable e) {
+    }
 
     @Override
     public void QueryCommentsuccess(QueryCommentBean queryCommentBean) {
@@ -202,8 +203,13 @@ public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter
         SyLinearLayoutManager syLinearLayoutManager = new SyLinearLayoutManager(this, SyLinearLayoutManager.VERTICAL, false);
         recyclerSickCircleCommentListAdapter = new RecyclerSickCircleCommentListAdapter(this);
         recyclerSickCircleCommentListAdapter.addData(result);
+      /*  syLinearLayoutManager.setReverseLayout(true);//布局反向
+        syLinearLayoutManager.setStackFromEnd(true);//数据反向
+        mPresenter.getQueryCommentPresenter(userId, sessionId, sickCircleId, page, count);*/
         recycler_sick_circle_comment_list.setLayoutManager(syLinearLayoutManager);
         recycler_sick_circle_comment_list.setAdapter(recyclerSickCircleCommentListAdapter);
+        recyclerSickCircleCommentListAdapter.notifyDataSetChanged();
+
     }
 
     @Override

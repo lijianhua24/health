@@ -12,6 +12,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.bean.HealthBuyBean;
 import com.wd.health.bean.HealthSortBean;
 import com.wd.health.bean.QvideoListBean;
@@ -22,11 +23,11 @@ import com.wd.mylibrary.Base.BaseFragment;
 import java.util.List;
 import butterknife.BindView;
 public class VideoFragment extends BaseFragment<HealthSortPresenter> implements IContract.iView {
-    @BindView(R.id.videofragment_tablayout)
+    @BindView(R2.id.videofragment_tablayout)
     TabLayout videofragment_tablayout;
-    @BindView(R.id.videofragment_viewpager)
+    @BindView(R2.id.videofragment_viewpager)
     ViewPager videofragment_viewpager;
-    @BindView(R.id.video_pull)
+    @BindView(R2.id.video_pull)
     CheckBox videoPull;
     @Override
     protected HealthSortPresenter providePresenter() {

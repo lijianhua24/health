@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.jakewharton.butterknife'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -7,10 +7,10 @@ android {
 
     defaultConfig {
         applicationId "com.wd.health"
-        minSdkVersion rootProject.ext.android["minSdkVersion"]
-        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
-        versionCode rootProject.ext.android["versionCode"]
-        versionName rootProject.ext.android["versionName"]
+        minSdkVersion 22
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
@@ -64,7 +64,6 @@ dependencies {
     implementation rootProject.ext.dependencies["ijkplayer"]
     implementation rootProject.ext.dependencies["ijkplayerarmv7a"]
     implementation rootProject.ext.dependencies["ijkplayerexo"]
-    implementation rootProject.ext.dependencies["autolayout"]
     implementation 'com.github.ctiao:DanmakuFlameMaster:0.7.3'
     implementation 'com.yanzhenjie:permission:2.0.3'
 

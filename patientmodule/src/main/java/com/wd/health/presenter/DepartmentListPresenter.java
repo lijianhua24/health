@@ -11,6 +11,7 @@ import com.wd.health.contract.IContract;
 import com.wd.health.model.DepartmentListModel;
 import com.wd.mylibrary.Base.BasePresenter;
 
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.MultipartBody;
@@ -403,8 +404,8 @@ public class DepartmentListPresenter extends BasePresenter<IContract.iView> impl
     }
 
     @Override
-    public void getuploadPatient(int userId, String sessionId, int sickCircleId, MultipartBody.Part part) {
-        departmentListModel.getuploadPatient(userId, sessionId, sickCircleId, part, new IContract.iModel.iDepartmentListCallBack() {
+    public void getuploadPatient(int userId, String sessionId, int sickCircleId, List<MultipartBody.Part> parts) {
+        departmentListModel.getuploadPatient(userId, sessionId, sickCircleId, parts, new IContract.iModel.iDepartmentListCallBack() {
             @Override
             public void DepartmentListsuccess(DepartmentListBean departmentListBean) {
 

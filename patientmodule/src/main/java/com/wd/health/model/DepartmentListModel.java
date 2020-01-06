@@ -13,6 +13,7 @@ import com.wd.health.utils.RetrofitManager;
 import com.wd.mylibrary.utils.CommonObserver;
 import com.wd.mylibrary.utils.CommonSchedulers;
 
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.functions.Consumer;
@@ -99,9 +100,9 @@ public class DepartmentListModel implements IContract.iModel {
     }
 
     @Override
-    public void getuploadPatient(int userId, String sessionId, int sickCircleId, MultipartBody.Part part, iDepartmentListCallBack callBack) {
+    public void getuploadPatient(int userId, String sessionId, int sickCircleId, List<MultipartBody.Part> parts, iDepartmentListCallBack callBack) {
         RetrofitManager.getInstance().create(ApiServers.class)
-                .UploadPatient(userId, sessionId, sickCircleId, part)
+                .UploadPatient(userId, sessionId, sickCircleId, parts)
                 .compose(CommonSchedulers.io2main())
                 .subscribe(new CommonObserver<UploadPatientBean>() {
                     @Override

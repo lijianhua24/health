@@ -1,13 +1,11 @@
 package com.wd.health.view.activity;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -47,9 +45,15 @@ import com.wd.health.model.App;
 import com.wd.health.presenter.DepartmentListPresenter;
 import com.wd.health.view.adapter.ConsultationTwoAdapter;
 import com.wd.health.view.adapter.IllnessAdapter;
+import com.wd.health.view.custom.CustomImgPickerPresenter;
+import com.wd.health.view.custom.WeChatPresenter;
 import com.wd.mylibrary.Base.BaseActivity;
+import com.ypx.imagepicker.ImagePicker;
 import com.ypx.imagepicker.bean.ImageItem;
+import com.ypx.imagepicker.data.OnImagePickCompleteListener;
+import com.ypx.imagepicker.presenter.IPickerPresenter;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -59,7 +63,9 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.MediaType;
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter> implements IContract.iView {
     @BindView(R2.id.release_sickCircle_iv_user_head_pic)
@@ -108,15 +114,15 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
     private int id;
     private PopupWindow popWindow;
     private PopupWindow popWindowDisease;
-    private MultipartBody.Part picture;
-    private List<ImageItem> picList ;
     private String path;
     private int sickCircleId;
+    private List<MultipartBody.Part> parts = new ArrayList<>();
     private RecyclerView popup_recycler_department;
     private RecyclerView popup_recycler_disease;
     private int userId;
     private String sessionId;
-
+    private List<String> list;
+    private ArrayList<ImageItem> picList = new ArrayList<>();
     @Override
     protected DepartmentListPresenter providePresenter() {
         return new DepartmentListPresenter();
@@ -124,7 +130,7 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
 
     @Override
     protected void initData() {
-        picList=new ArrayList<>();
+        refreshGridLayout();
         //悬赏额度的开关
         item_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -232,23 +238,6 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
                 initPopWindowDisease(v);
             }
         });
-
-        //打开相册
-        release_circle_iv_upload_Picture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(ReleaseCirclesActivity.this, "打开相册", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-                intent.setType("image/*");
-                startActivityForResult(intent, 1);
-            }
-        });
-
-
-       /* shapeLoadingDialog = new ShapeLoadingDialog.Builder(ReleaseCirclesActivity.this)
-                .loadText("上传图片中...")
-                RepleaseCircleBean
-                .build();*/
         release_circle_btn_publish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -321,9 +310,8 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
                 userId = App.sharedPreferences.getInt("userId", 0);
                 sessionId = App.sharedPreferences.getString("sessionId", null);
                 mPresenter.getReleasePatientsPresenter(ReleaseCirclesActivity.this.userId, ReleaseCirclesActivity.this.sessionId, map);
-                mPresenter.getuploadPatient(ReleaseCirclesActivity.this.userId, ReleaseCirclesActivity.this.sessionId, sickCircleId, picture);
+                mPresenter.getuploadPatient(ReleaseCirclesActivity.this.userId, ReleaseCirclesActivity.this.sessionId, sickCircleId, parts);
 
-                /*loadingDailog.show();*/
             }
         });
 
@@ -380,7 +368,6 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
 
     @Override
     public void KeywordSearchFailure(Throwable e) {
-
     }
 
     @Override
@@ -389,8 +376,8 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
             Toast.makeText(this, ReleasePatientsBean.getMessage(), Toast.LENGTH_SHORT).show();
             sickCircleId = ReleasePatientsBean.getResult();
             Log.i("sickCircleId", "publishSuccess: " + "sickCircleId" + sickCircleId);
-            if (picture != null) {
-                mPresenter.getuploadPatient(userId, sessionId, sickCircleId, picture);
+            if (parts != null) {
+                mPresenter.getuploadPatient(userId, sessionId, sickCircleId, parts);
             } else {
                 //做任务
                 mPresenter.getDoTask(userId, sessionId, 1003);
@@ -437,7 +424,6 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
             Toast.makeText(this, uploadPatientBean.getMessage(), Toast.LENGTH_SHORT).show();
             //做任务
             mPresenter.getDoTask(userId, sessionId, 1003);
-//                shapeLoadingDialog.dismiss();
             finish();
         } else {
             Toast.makeText(this, uploadPatientBean.getMessage(), Toast.LENGTH_SHORT).show();
@@ -446,14 +432,15 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
 
     @Override
     public void uploadPatientFailure(Throwable e) {
-
+        Toast.makeText(this, "上传失败", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     @Override
     public void DoTasksuccess(DoTaskBean doTaskBean) {
         if (doTaskBean.getStatus().equals("0000")) {
             Toast.makeText(this, "每日首发病友圈完成!快去领取奖励吧", Toast.LENGTH_SHORT).show();
-            mPresenter.getuploadPatient(userId, sessionId, sickCircleId, picture);
+            mPresenter.getuploadPatient(userId, sessionId, sickCircleId, parts);
         }
     }
 
@@ -515,7 +502,7 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
     }
     /**
      * 刷新图片显示
-     *//*
+     */
     private void refreshGridLayout() {
         release_circle_iv_upload_Picture.setVisibility(View.VISIBLE);
         release_circle_iv_upload_Picture.removeAllViews();
@@ -579,9 +566,6 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
                 dpVal, this.getResources().getDisplayMetrics());
     }
 
-    *//**
-     * 获得屏幕宽度
-     *//*
     public int getScreenWidth() {
         WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
         DisplayMetrics outMetrics = new DisplayMetrics();
@@ -648,6 +632,6 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
                     }
                 });
 
-    }*/
+    }
 
 }
