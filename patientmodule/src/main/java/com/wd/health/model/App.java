@@ -17,7 +17,7 @@ public class App  extends com.wd.mylibrary.app.App {
         super.onCreate();
         sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
         SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putString("sessionId","1577408441496445");
+        edit.putString("sessionId","1577771346413445");
         edit.putInt("userId",445);
         edit.commit();
     }

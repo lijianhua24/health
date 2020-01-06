@@ -1,23 +1,19 @@
 package com.wd.health.view.activity;
 
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
-
 import com.wd.health.R;
 import com.wd.health.R2;
 import com.wd.health.view.custom.NoScrollViewPager;
 import com.wd.health.view.fragment.PatientFragment;
 import com.wd.mylibrary.Base.BaseActivity;
 import com.wd.mylibrary.Base.BasePresenter;
-
+import com.wd.mylibrary.Test.ToastUtils;
 import java.util.ArrayList;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
 public class PatientActivity extends BaseActivity {
 
 
@@ -30,9 +26,13 @@ public class PatientActivity extends BaseActivity {
     protected BasePresenter providePresenter() {
         return null;
     }
-
     @Override
     protected void initData() {
+        if ( hasNetwork()){
+            ToastUtils.show("有网");
+        }else {
+            showNoNetTip();
+        }
         list.add(new PatientFragment());
         patient_pager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @NonNull
@@ -50,7 +50,6 @@ public class PatientActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
         list = new ArrayList<>();
         name = new ArrayList<>();
     }

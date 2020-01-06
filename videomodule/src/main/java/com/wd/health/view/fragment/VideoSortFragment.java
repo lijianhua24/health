@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.dou361.ijkplayer.widget.IjkVideoView;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.health.R;
 import com.wd.health.R2;
@@ -21,14 +22,20 @@ import com.wd.health.contract.IContract;
 import com.wd.health.model.App;
 import com.wd.health.presenter.HealthSortPresenter;
 import com.wd.health.view.adapter.RecyclerVideoVoListAdapter;
+import com.wd.health.view.curtrom.AcFunDanmakuParser;
 import com.wd.mylibrary.Base.BaseFragment;
 import com.wd.mylibrary.Test.Logger;
 import com.wd.mylibrary.Test.ToastUtils;
 import com.wd.mylibrary.app.Constant;
 
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
+import master.flame.danmaku.danmaku.model.BaseDanmaku;
+import master.flame.danmaku.danmaku.model.DanmakuTimer;
+import master.flame.danmaku.danmaku.model.IDisplayer;
+import master.flame.danmaku.danmaku.model.android.DanmakuContext;
 import master.flame.danmaku.ui.widget.DanmakuView;
 
 public class VideoSortFragment extends BaseFragment<HealthSortPresenter> implements IContract.iView {
@@ -45,9 +52,16 @@ public class VideoSortFragment extends BaseFragment<HealthSortPresenter> impleme
     DanmakuView video_danmu;
     private int anInt;
     private int page = 1;
-    private int count = 5;
+    private int count = 100;
     private int userId;
     private String sessionId;
+    private String contents;
+    private DanmakuContext mContext;
+    private AcFunDanmakuParser mParser;
+    private BaseDanmaku danmaku;
+    private IjkVideoView mVideoView;
+    private LinearLayoutManager linearLayoutManager;
+
     @Override
     protected HealthSortPresenter providePresenter() {
         return new HealthSortPresenter();
@@ -82,6 +96,47 @@ public class VideoSortFragment extends BaseFragment<HealthSortPresenter> impleme
         });
 
         mPresenter.getVideoSort(userId, sessionId, anInt, page, count);
+        mContext = DanmakuContext.create();
+        //设置最大显示行数
+
+        HashMap<Integer, Integer> maxLinesPair = new HashMap<>();
+        maxLinesPair.put(BaseDanmaku.TYPE_SCROLL_RL, 5); // 滚动弹幕最大显示5行
+        // 设置是否禁止重叠
+        HashMap<Integer, Boolean> overlappingEnablePair = new HashMap<>();
+        overlappingEnablePair.put(BaseDanmaku.TYPE_SCROLL_RL, true);
+        overlappingEnablePair.put(BaseDanmaku.TYPE_FIX_TOP, true);
+        mContext.setDanmakuStyle(IDisplayer.DANMAKU_STYLE_STROKEN, 10) //描边的厚度
+                .setDuplicateMergingEnabled(false)
+                .setScrollSpeedFactor(1.5f) //弹幕的速度。注意！此值越小，速度越快！值越大，速度越慢。// by phil
+                .setScaleTextSize(1.5f)  //缩放的值
+                .setMaximumLines(maxLinesPair)
+                .preventOverlapping(overlappingEnablePair);
+
+        mParser = new AcFunDanmakuParser();
+        video_danmu.prepare(mParser, mContext);
+        video_danmu.enableDanmakuDrawingCache(true);
+        if (video_danmu != null) {
+            video_danmu.setCallback(new master.flame.danmaku.controller.DrawHandler.Callback() {
+                @Override
+                public void updateTimer(DanmakuTimer timer) {
+                }
+
+                @Override
+                public void drawingFinished() {
+
+                }
+
+                @Override
+                public void danmakuShown(BaseDanmaku danmaku) {
+                    Log.d("弹幕文本", "danmakuShown text=" + danmaku.text);
+                }
+
+                @Override
+                public void prepared() {
+                    video_danmu.start();
+                }
+            });
+        }
 
     }
 
@@ -117,7 +172,8 @@ public class VideoSortFragment extends BaseFragment<HealthSortPresenter> impleme
     public void VideoSortsuccess(VideoSortBean videoSortBean) {
         List<VideoSortBean.ResultBean> resultBeans = videoSortBean.getResult();
         RecyclerVideoVoListAdapter recyclerVideoVoListAdapter = new RecyclerVideoVoListAdapter(resultBeans, getContext());
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         xrecyclerview.setLayoutManager(linearLayoutManager);
         xrecyclerview.setAdapter(recyclerVideoVoListAdapter);
         recyclerVideoVoListAdapter.setsetOnTouch(new RecyclerVideoVoListAdapter.setOnTouch() {
@@ -142,7 +198,6 @@ public class VideoSortFragment extends BaseFragment<HealthSortPresenter> impleme
                 mPresenter.getVideoComment(userId, sessionId, vid, pl);
             }
         });
-
         recyclerVideoVoListAdapter.setVideLun(new RecyclerVideoVoListAdapter.VideLun() {
             @Override
             public void getData(int contens) {
@@ -153,6 +208,12 @@ public class VideoSortFragment extends BaseFragment<HealthSortPresenter> impleme
             @Override
             public void onPriceClick(int mp, int ooid) {
                 mPresenter.getHealthBuy(userId, sessionId, ooid, 100);
+            }
+        });
+        recyclerVideoVoListAdapter.setSetOnClick(new RecyclerVideoVoListAdapter.setOnClick() {
+            @Override
+            public void onClick(int oid) {
+               mPresenter.getHealthCollection(userId,sessionId,oid);
             }
         });
 
@@ -204,15 +265,16 @@ recyclerVideoVoListAdapter.setOnDian(new RecyclerVideoVoListAdapter.setOnDian() 
 
     @Override
     public void QvideoListsuccess(QvideoListBean qvideoListBean) {
+        Logger.d("LKHJ",qvideoListBean.getMessage());
         List<QvideoListBean.ResultBean> result = qvideoListBean.getResult();
         String message = qvideoListBean.getMessage();
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
         for (int j = 0; j < result.size(); j++) {
-            String content = result.get(j).getContent();
-            Logger.d("TTR",content);
-
+           contents = result.get(j).getContent();
+            Logger.d("TTR",contents);
+            sendTextMessage();
     }
-
+        sendTextMessage();
     }
 
     @Override
@@ -234,23 +296,68 @@ recyclerVideoVoListAdapter.setOnDian(new RecyclerVideoVoListAdapter.setOnDian() 
     public void VideoCommentFailure(Throwable e) {
         ToastUtils.show("请检查网络");
     }
-/*    private void sendTextMessage() {
+    private void sendTextMessage() {
         addDanmaku(true);
     }
-    */
- /*   private void addDanmaku(boolean islive) {
-        BaseDanmaku danmaku = mContext.mDanmakuFactory.createDanmaku(BaseDanmaku.TYPE_SCROLL_RL);
+    private void addDanmaku(boolean islive) {
+        danmaku = mContext.mDanmakuFactory.createDanmaku(danmaku.TYPE_SCROLL_RL);
         if (danmaku == null || video_danmu == null) {
             return;
         }
-
         danmaku.text = contents;
         danmaku.padding = 5;
-        //danmaku.priority = 0;  // 可能会被各种过滤器过滤并隐藏显示
         danmaku.isLive = islive;
         danmaku.setTime(video_danmu.getCurrentTime() + 1000);
-        danmaku.textSize = 20f * (mParser.getDisplayer().getDensity() - 0.6f); //文本弹幕字体大小
+        danmaku.textSize = 20f * (mParser.getDisplayer().getDensity() - 0.6f);
 
         video_danmu.addDanmaku(danmaku);
-    }*/
+    }
+    @Override
+    public void onPause() {
+        if (video_danmu != null && video_danmu.isPrepared()) {
+            video_danmu.pause();
+        }
+        super.onPause();
+
+    }
+
+    @Override
+    public void onResume() {
+        if (video_danmu != null && video_danmu.isPrepared() && video_danmu.isPaused()) {
+            video_danmu.resume();
+        }
+        super.onResume();
+
+    }
+
+
+    @Override
+    public void onStop() {
+        if (video_danmu != null) {
+            video_danmu.stop();
+            video_danmu = null;
+        }
+        super.onStop();
+    }
+    @Override
+    public void onDestroyView() {
+        if (video_danmu != null) {
+            video_danmu.release();
+            video_danmu = null;
+        }
+        super.onDestroyView();
+    }
+    @Override
+    public void onDestroy() {
+        if (mVideoView != null) {
+            mVideoView.pause();
+        }
+        if (video_danmu != null) {
+            video_danmu.release();
+            video_danmu = null;
+        }
+        super.onDestroy();
+
+    }
+
 }

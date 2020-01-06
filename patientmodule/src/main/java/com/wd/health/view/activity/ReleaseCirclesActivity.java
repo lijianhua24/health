@@ -1,7 +1,6 @@
 package com.wd.health.view.activity;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -48,6 +47,7 @@ import com.wd.health.view.adapter.IllnessAdapter;
 import com.wd.health.view.custom.CustomImgPickerPresenter;
 import com.wd.health.view.custom.WeChatPresenter;
 import com.wd.mylibrary.Base.BaseActivity;
+import com.wd.mylibrary.Test.Logger;
 import com.ypx.imagepicker.ImagePicker;
 import com.ypx.imagepicker.bean.ImageItem;
 import com.ypx.imagepicker.data.OnImagePickCompleteListener;
@@ -109,7 +109,7 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
     @BindView(R2.id.release_circle_btn_publish)
     Button release_circle_btn_publish;
     @BindView(R2.id.release_circle_linear_sick_circle)
-    LinearLayout  release_circle_linear_sick_circle;
+    LinearLayout release_circle_linear_sick_circle;
     Calendar calendar = Calendar.getInstance(Locale.CHINA);
     private int id;
     private PopupWindow popWindow;
@@ -123,6 +123,7 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
     private String sessionId;
     private List<String> list;
     private ArrayList<ImageItem> picList = new ArrayList<>();
+
     @Override
     protected DepartmentListPresenter providePresenter() {
         return new DepartmentListPresenter();
@@ -151,7 +152,7 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
             public void onClick(View v) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(ReleaseCirclesActivity.this);
                 final View view = (LinearLayout) getLayoutInflater().inflate(R.layout.dialog_date, null);
-               final DatePicker datePicker = (DatePicker) view.findViewById(R.id.date_picker);
+                final DatePicker datePicker = (DatePicker) view.findViewById(R.id.date_picker);
                 //设置日期简略显示 否则详细显示 包括:星期\周
                 datePicker.setCalendarViewShown(false);
                 //初始化当前日期
@@ -190,7 +191,7 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
             public void onClick(View v) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(ReleaseCirclesActivity.this);
                 final View view = (LinearLayout) getLayoutInflater().inflate(R.layout.dialog_date, null);
-           final DatePicker datePicker = (DatePicker) view.findViewById(R.id.date_picker);
+                final DatePicker datePicker = (DatePicker) view.findViewById(R.id.date_picker);
                 //设置日期简略显示 否则详细显示 包括:星期\周
                 datePicker.setCalendarViewShown(false);
                 //初始化当前日期
@@ -222,7 +223,6 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
                 builder.create().show();
             }
         });
-
         //请选择就诊科室
         release_circle_iv_choose_department.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -230,7 +230,6 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
                 initPopWindowDepartment(v);
             }
         });
-
         //对应病症
         release_circle_iv_choose_disease.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -305,13 +304,12 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
                 map.put("treatmentStartTime", treatmentStartTime);
                 map.put("treatmentEndTime", treatmentEndTime);
                 map.put("treatmentProcess", treatmentProcess);
-                map.put("amount", 0);
+                map.put("amount", 100);
                 //调发布圈子接口
                 userId = App.sharedPreferences.getInt("userId", 0);
                 sessionId = App.sharedPreferences.getString("sessionId", null);
-                mPresenter.getReleasePatientsPresenter(ReleaseCirclesActivity.this.userId, ReleaseCirclesActivity.this.sessionId, map);
-                mPresenter.getuploadPatient(ReleaseCirclesActivity.this.userId, ReleaseCirclesActivity.this.sessionId, sickCircleId, parts);
-
+                mPresenter.getReleasePatientsPresenter(userId, sessionId, map);
+                mPresenter.getuploadPatient(userId, sessionId, sickCircleId, parts);
             }
         });
 
@@ -378,6 +376,7 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
             Log.i("sickCircleId", "publishSuccess: " + "sickCircleId" + sickCircleId);
             if (parts != null) {
                 mPresenter.getuploadPatient(userId, sessionId, sickCircleId, parts);
+                Log.i("jjjj", "initModel: 1111" + mPresenter);
             } else {
                 //做任务
                 mPresenter.getDoTask(userId, sessionId, 1003);
@@ -432,7 +431,8 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
 
     @Override
     public void uploadPatientFailure(Throwable e) {
-        Toast.makeText(this, "上传失败", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "请求失败" + e.getMessage(), Toast.LENGTH_SHORT).show();
+        Logger.d("fdddds",e.getMessage()+"");
         finish();
     }
 
@@ -443,8 +443,6 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
             mPresenter.getuploadPatient(userId, sessionId, sickCircleId, parts);
         }
     }
-
-
     @Override
     public void DoTaskFailure(Throwable e) {
     }
@@ -500,9 +498,10 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
     }
+
     /**
      * 刷新图片显示
-     */
+     **/
     private void refreshGridLayout() {
         release_circle_iv_upload_Picture.setVisibility(View.VISIBLE);
         release_circle_iv_upload_Picture.removeAllViews();
@@ -611,7 +610,7 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
                 //调用多选
                 .pick(this, new OnImagePickCompleteListener() {
 
-                    private String pa;
+                    private String picture      ;
 
                     @Override
                     public void onImagePickComplete(ArrayList<ImageItem> items) {
@@ -622,11 +621,11 @@ public class ReleaseCirclesActivity extends BaseActivity<DepartmentListPresenter
                             list.add(items.get(i).path);
                         }
                         for (int i = 0; i < list.size(); i++) {
-                            pa = list.get(i);
+                            picture = list.get(i);
                         }
-                        File file = new File(pa);
+                        File file = new File(picture);
                         RequestBody requestBody = MultipartBody.create(MediaType.parse("image/*"), file);
-                        MultipartBody.Part part = MultipartBody.Part.createFormData("image", file.getName(), requestBody);
+                        MultipartBody.Part part = MultipartBody.Part.createFormData("picture", file.getName(), requestBody);
                         parts.add(part);
                         refreshGridLayout();
                     }

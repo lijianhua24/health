@@ -64,7 +64,8 @@ public class RecyclerVideoVoListAdapter  extends RecyclerView.Adapter<RecyclerVi
             holder.cb_collecte.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    setOnClick.onClick(id);
+                    int id2 = list.get(position).getId();
+                    setOnClick.onClick(id2);
                     holder.cb_collecte.setBackgroundResource(R.drawable.video_common_button_collection_small_s);
                 }
             });
@@ -111,7 +112,6 @@ public class RecyclerVideoVoListAdapter  extends RecyclerView.Adapter<RecyclerVi
                 }
             }
         });
-
         holder.video_view.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -164,7 +164,6 @@ public class RecyclerVideoVoListAdapter  extends RecyclerView.Adapter<RecyclerVi
             cb_barrage = itemView.findViewById(R.id.cb_barrage);
             video_edit = itemView.findViewById(R.id.video_edit);
             video_send = itemView.findViewById(R.id.video_send);
-
         }
     }
     public VideLun videLun;
@@ -180,7 +179,7 @@ public class RecyclerVideoVoListAdapter  extends RecyclerView.Adapter<RecyclerVi
     }
     private setOnClick setOnClick;
 
-    public void setSetOnClick(RecyclerVideoVoListAdapter.setOnClick setOnClick) {
+    public void setSetOnClick(setOnClick setOnClick) {
         this.setOnClick = setOnClick;
     }
     public interface setOnTouch{

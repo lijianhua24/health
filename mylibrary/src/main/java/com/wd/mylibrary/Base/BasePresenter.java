@@ -57,6 +57,7 @@ public abstract class BasePresenter<V extends IBaseView> {
      * 每次调用业务请求的时候都要先调用方法检查是否与 View 绑定
      * 只有返回ture才进行回调
      */
+
     protected boolean isViewAttached() {
         if (mWeakReference == null || mWeakReference.get() == null) {
             return false;

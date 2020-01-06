@@ -9,6 +9,8 @@ import com.wd.health.model.PatientDetailsModel;
 import com.wd.mylibrary.Base.BasePresenter;
 import com.wd.mylibrary.Test.Logger;
 
+import java.lang.ref.WeakReference;
+
 /**
  * <p>文件描述：<p>
  * <p>作者：黎怡志<p>
@@ -19,7 +21,6 @@ public class PatientDetailsPresenter extends BasePresenter<IContractDetails.iVie
 
 
     private PatientDetailsModel model;
-
     @Override
     protected void initModel() {
         model = new PatientDetailsModel();
@@ -47,7 +48,6 @@ public class PatientDetailsPresenter extends BasePresenter<IContractDetails.iVie
 
             @Override
             public void QueryCommentFailure(Throwable e) {
-
             }
 
             @Override
@@ -67,7 +67,6 @@ public class PatientDetailsPresenter extends BasePresenter<IContractDetails.iVie
 
             @Override
             public void OpinionBeanFailure(Throwable e) {
-
             }
         });
     }

@@ -28,7 +28,6 @@ import com.wd.health.presenter.PatientDetailsPresenter;
 import com.wd.health.view.adapter.RecyclerSickCircleCommentListAdapter;
 import com.wd.health.view.custom.SyLinearLayoutManager;
 import com.wd.mylibrary.Base.BaseActivity;
-import com.wd.mylibrary.Test.Logger;
 import com.wd.mylibrary.Test.ToastUtils;
 import com.wd.mylibrary.app.Constant;
 
@@ -62,8 +61,6 @@ public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter
     TextView patient_activity_tv_treatment_time;
     @BindView(R2.id.patient_activity_tv_treatmentProcess)
     TextView patient_activity_tv_treatmentProcess;
-    @BindView(R2.id.patient_activity_iv_picture)
-    ImageView patient_activity_iv_picture;
     @BindView(R2.id.patient_activity_tv_commentNum)
     TextView patient_activity_tv_commentNum;
     @BindView(R2.id.patient_activity_iv_content)
@@ -94,6 +91,10 @@ public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter
     ImageView patient_activity_iv_intent_release_sickCircle;
     @BindView(R2.id.patient_activity_relative_release_sickCircle)
     RelativeLayout patient_activity_relative_release_sickCircle;
+    @BindView(R2.id.activiy_patient_zong)
+    RelativeLayout activiyPatientZong;
+    @BindView(R.id.patient_activity_iv_picture)
+    ImageView patientActivityIvPicture;
     private RecyclerSickCircleCommentListAdapter recyclerSickCircleCommentListAdapter;
     private LinearLayout activiy_patient_deng;
     private int userId;
@@ -101,6 +102,7 @@ public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter
     int page = 1;
     int count = 10;
     private int sickCircleId;
+    private PatientDetailsBean.ResultBean result;
 
     @Override
     protected void initData() {
@@ -138,6 +140,10 @@ public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter
 
     @Override
     protected void initView() {
+        SyLinearLayoutManager syLinearLayoutManager = new SyLinearLayoutManager(this, SyLinearLayoutManager.VERTICAL, false);
+        syLinearLayoutManager.setReverseLayout(true);//布局反向
+        syLinearLayoutManager.setStackFromEnd(true);//数据反向
+        recycler_sick_circle_comment_list.setLayoutManager(syLinearLayoutManager);
     }
 
     @Override
@@ -147,8 +153,7 @@ public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter
 
     @Override
     public void PatientDetailssuccess(PatientDetailsBean patientDetailsBean) {
-        Logger.d("CCCCCC", "" + patientDetailsBean.getMessage());
-        PatientDetailsBean.ResultBean result = patientDetailsBean.getResult();
+        result = patientDetailsBean.getResult();
         patient_activity_tv_title.setText(result.getTitle() + "");
         patient_activity_tv_adoptNickName.setText(result.getAdoptNickName() + "");
         patient_activity_tv_disease.setText(result.getDisease() + "");
@@ -161,14 +166,9 @@ public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter
         String endTimes = format0.format(treatmentEndTime);
         String startTimes = format0.format(treatmentStartTime);
         patient_activity_tv_treatment_time.setText(startTimes + "----" + endTimes);
-        Glide.with(this).load(result.getPicture())
-                .placeholder(R.drawable.none_comment)
-                .error(R.drawable.none_comment)
-                .into(patient_activity_iv_picture);
         patient_activity_tv_commentNum.setText(result.getCommentNum() + "");
         patient_activity_tv_collectionNum.setText(result.getCollectionNum() + "");
         sickCircleId = result.getSickCircleId();
-
         Uri parse = Uri.parse(result.getAdoptHeadPic());
         imgHeadPic.setImageURI(parse);
         nameNickName.setText(result.getAdoptNickName());
@@ -176,6 +176,12 @@ public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter
         Date date1 = new Date(result.getTreatmentEndTime());
         SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
         textadoptComment.setText(simpleDateFormat1.format(date1));
+        String picture = result.getPicture();
+        String[] split = picture.split(",");
+        Glide.with(this)
+                .load(picture)
+                .placeholder(R.mipmap.deng)
+                .into(patientActivityIvPicture);
         patient_activity_iv_intent_release_sickCircle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -200,13 +206,10 @@ public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter
     @Override
     public void QueryCommentsuccess(QueryCommentBean queryCommentBean) {
         List<QueryCommentBean.ResultBean> result = queryCommentBean.getResult();
-        SyLinearLayoutManager syLinearLayoutManager = new SyLinearLayoutManager(this, SyLinearLayoutManager.VERTICAL, false);
+        ToastUtils.show(queryCommentBean.getMessage());
+//
         recyclerSickCircleCommentListAdapter = new RecyclerSickCircleCommentListAdapter(this);
         recyclerSickCircleCommentListAdapter.addData(result);
-      /*  syLinearLayoutManager.setReverseLayout(true);//布局反向
-        syLinearLayoutManager.setStackFromEnd(true);//数据反向
-        mPresenter.getQueryCommentPresenter(userId, sessionId, sickCircleId, page, count);*/
-        recycler_sick_circle_comment_list.setLayoutManager(syLinearLayoutManager);
         recycler_sick_circle_comment_list.setAdapter(recyclerSickCircleCommentListAdapter);
         recyclerSickCircleCommentListAdapter.notifyDataSetChanged();
 
@@ -219,8 +222,10 @@ public class PatientDetailsActivity extends BaseActivity<PatientDetailsPresenter
 
     @Override
     public void CommentCirclesuccess(CommentCircleBean commentCircleBean) {
+        mPresenter.getQueryCommentPresenter(userId, sessionId, sickCircleId, 1, 10);
         if (commentCircleBean.getStatus() == Constant.SUCCESS_CODE) {
             ToastUtils.show(commentCircleBean.getMessage());
+
         } else {
             ToastUtils.show(commentCircleBean.getMessage());
         }

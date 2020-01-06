@@ -1,5 +1,7 @@
 package com.wd.health.presenter;
 
+import android.util.Log;
+
 import com.wd.health.bean.CircleListShowBean;
 import com.wd.health.bean.DepartmentListBean;
 import com.wd.health.bean.DoTaskBean;
@@ -405,77 +407,79 @@ public class DepartmentListPresenter extends BasePresenter<IContract.iView> impl
 
     @Override
     public void getuploadPatient(int userId, String sessionId, int sickCircleId, List<MultipartBody.Part> parts) {
-        departmentListModel.getuploadPatient(userId, sessionId, sickCircleId, parts, new IContract.iModel.iDepartmentListCallBack() {
-            @Override
-            public void DepartmentListsuccess(DepartmentListBean departmentListBean) {
+        if (isViewAttached()) {
+            departmentListModel.getuploadPatient(userId, sessionId, sickCircleId, parts, new IContract.iModel.iDepartmentListCallBack() {
+                @Override
+                public void DepartmentListsuccess(DepartmentListBean departmentListBean) {
 
-            }
+                }
 
-            @Override
-            public void DepartmentListFailure(Throwable e) {
+                @Override
+                public void DepartmentListFailure(Throwable e) {
 
-            }
+                }
 
-            @Override
-            public void CircleListShowsuccess(CircleListShowBean circleListShowBean) {
+                @Override
+                public void CircleListShowsuccess(CircleListShowBean circleListShowBean) {
 
-            }
+                }
 
-            @Override
-            public void CircleListShowFailure(Throwable e) {
+                @Override
+                public void CircleListShowFailure(Throwable e) {
 
-            }
+                }
 
-            @Override
-            public void KeywordSearchsuccess(KeywordSearchBean keywordSearchBean) {
+                @Override
+                public void KeywordSearchsuccess(KeywordSearchBean keywordSearchBean) {
 
-            }
+                }
 
-            @Override
-            public void KeywordSearchFailure(Throwable e) {
+                @Override
+                public void KeywordSearchFailure(Throwable e) {
 
-            }
+                }
 
-            @Override
-            public void ReleasePatientssuccess(ReleasePatientsBean ReleasePatientsBean) {
+                @Override
+                public void ReleasePatientssuccess(ReleasePatientsBean ReleasePatientsBean) {
 
-            }
+                }
 
-            @Override
-            public void ReleasePatientsFailure(Throwable e) {
+                @Override
+                public void ReleasePatientsFailure(Throwable e) {
 
-            }
+                }
 
-            @Override
-            public void UnitDiseasesuccess(UnitDiseaseBean unitDiseaseBean) {
+                @Override
+                public void UnitDiseasesuccess(UnitDiseaseBean unitDiseaseBean) {
 
-            }
+                }
 
-            @Override
-            public void UnitDiseaseFailure(Throwable e) {
+                @Override
+                public void UnitDiseaseFailure(Throwable e) {
 
-            }
+                }
 
-            @Override
-            public void uploadPatientsuccess(UploadPatientBean uploadPatientBean) {
-                getView().uploadPatientsuccess(uploadPatientBean);
-            }
+                @Override
+                public void uploadPatientsuccess(UploadPatientBean uploadPatientBean) {
+                    getView().uploadPatientsuccess(uploadPatientBean);
+                }
 
-            @Override
-            public void uploadPatientFailure(Throwable e) {
-                getView().uploadPatientFailure(e);
-            }
+                @Override
+                public void uploadPatientFailure(Throwable e) {
+                    getView().uploadPatientFailure(e);
+                }
 
-            @Override
-            public void DoTasksuccess(DoTaskBean doTaskBean) {
+                @Override
+                public void DoTasksuccess(DoTaskBean doTaskBean) {
 
-            }
+                }
 
-            @Override
-            public void DoTaskFailure(Throwable e) {
+                @Override
+                public void DoTaskFailure(Throwable e) {
 
-            }
-        });
+                }
+            });
+        }
     }
 
     @Override
@@ -552,7 +556,6 @@ public class DepartmentListPresenter extends BasePresenter<IContract.iView> impl
             }
         });
     }
-
 
     @Override
     protected void initModel() {

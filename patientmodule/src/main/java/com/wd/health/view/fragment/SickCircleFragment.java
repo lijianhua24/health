@@ -60,7 +60,8 @@ public class SickCircleFragment extends BaseFragment<DepartmentListPresenter> im
                 mPresenter.getCircleListShowPresenter(anInt, page, count1);
                 patient_recycler_sick_circle_list.loadMoreComplete();
             }
-        });
+
+            });
 
         mPresenter.getCircleListShowPresenter(anInt, page, count1);
 
@@ -83,8 +84,6 @@ public class SickCircleFragment extends BaseFragment<DepartmentListPresenter> im
         super.onActivityCreated(savedInstanceState);
         Bundle bundle = getArguments();
         anInt = bundle.getInt("anInt");
-        Log.d("LLLLLLLKL", "initData: " + anInt);
-
     }
 
     @Override

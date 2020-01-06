@@ -39,7 +39,7 @@ public class DepartmentListModel implements IContract.iModel {
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(Throwable e){
                         callBack.DepartmentListFailure(e);
                     }
                 });
@@ -112,7 +112,9 @@ public class DepartmentListModel implements IContract.iModel {
 
                     @Override
                     public void onError(Throwable e) {
-                        callBack.uploadPatientFailure(e);
+                        if (callBack!=null){
+                            callBack.uploadPatientFailure(e);
+                        }
                     }
                 });
     }
