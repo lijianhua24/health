@@ -64,7 +64,7 @@ dependencies {
     implementation 'com.ypx.yimagepicker:androidx:3.0.1'
     //SmartRefreshLayout(Recycleview)刷新效果依赖
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
-//没有使用特殊Header和Footer，可以不加下面这行
+    //没有使用特殊Header和Footer，可以不加下面这行
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14'
     implementation project(path: ':mylibrary')
 }

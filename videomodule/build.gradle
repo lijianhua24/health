@@ -18,9 +18,9 @@ android {
             }
         }
         multiDexEnabled true
-        ndk {
+      /*  ndk {
             abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
-        }
+        }*/
 
     }
 
